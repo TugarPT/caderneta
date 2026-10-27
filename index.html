@@ -580,6 +580,13 @@ body:not([data-tab="movimentos"]):not([data-tab="orcamentos"]):not([data-tab="re
 .goal .pbar{grid-column:1/-1;height:7px}
 .goal .gf{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.76rem;color:var(--ink-2)}
 .ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.dmode{display:inline-flex;gap:2px;margin-left:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:2px;vertical-align:middle}
+.dmode button{border:0;background:transparent;border-radius:6px;padding:2px 8px;font-size:.74rem;font-weight:600;color:var(--ink-2);cursor:pointer}
+.dmode button[aria-checked="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.gpaid-h{grid-column:1/-1;margin:14px 0 0;font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2)}
+.goal.paid .pbar i{background:var(--in)}
+.goal.paid .gp{color:var(--in);font-size:.8rem}
+.goal.paid .ic{opacity:.75}
 .pbar{display:block;height:8px;border-radius:99px;background:color-mix(in srgb,var(--ink-2) 16%,transparent);overflow:hidden}
 .pbar i{display:block;height:100%;border-radius:99px;background:var(--in)}
 .promo{position:relative;overflow:hidden;border-radius:var(--r);padding:18px 22px;min-height:104px;display:flex;align-items:center;color:#fff;background:linear-gradient(115deg,#1e3a8a,#2563eb 55%,#60a5fa)}
@@ -1687,6 +1694,7 @@ dialog.wrapdlg[open]{display:flex}
       <details><summary>O que é o lucro real e o lucro potencial?</summary><p>Lucro real é o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. Lucro potencial é a valorização do que ainda tens; só passa a real quando vendes.</p></details>
       <details><summary>Como funcionam as contas?</summary><p>Em Contas escreves o saldo de hoje de cada conta. Cada movimento que registares nessa conta soma ou tira ao saldo sozinho.</p></details>
       <details><summary>Como ligo uma meta a uma conta ou cartão?</summary><p>Ao criar ou editar uma meta, escolhe em “Onde está o dinheiro” a conta ou o cartão onde guardas esse dinheiro. Em Contas passas a ver o saldo total e o saldo disponível: cada valor que juntas à meta sai do disponível, mas o total fica igual, porque o dinheiro continua lá. Se tirares dinheiro da meta, volta ao disponível. Não dá para pôr numa meta mais do que o disponível.</p></details>
+      <details><summary>Já comprei o que estava a juntar. E agora?</summary><p>Toca na meta e carrega em “✓ Paga”. Escreve quanto pagaste, a categoria, a data e com que conta. A app regista a despesa em Transações, o dinheiro da meta deixa de estar reservado e a meta passa para “Pagas”. Se te enganaste, abre a meta paga e carrega em “Desfazer pagamento”.</p></details>
       <details><summary>Porque não me deixa registar uma despesa?</summary><p>Uma conta não pode ficar com saldo negativo. Se a despesa ou a transferência passa do saldo disponível (o saldo menos o que está em metas), a app não a grava e diz quanto tens. Confirma o saldo da conta em Contas ou tira dinheiro de uma meta. Os cartões de crédito são a exceção: o saldo deles é o que deves.</p></details>
       <details><summary>Como controlo os gastos quando estou fora?</summary><p>Em Estadias cria uma estadia com o dia em que chegas, o dia em que voltas e, se quiseres, o dinheiro que puseste de parte. Todas as despesas desses dias contam sozinhas; se pagas a estadia com uma conta ou cartão próprio, escolhe essa conta para contar só essa. Num movimento que não tem nada a ver (a renda de cá, por exemplo) carrega em “Não contar”. Enquanto estás fora, o Dashboard mostra quanto já gastaste e quanto podes gastar por dia até voltares.</p></details>
       <details><summary>Como registo um crédito ou dinheiro emprestado?</summary><p>Em Empréstimos carrega em “+ Novo crédito” e escreve o montante, a TAN, o prazo em meses e a data da 1.ª prestação. A app faz o plano de pagamentos, mostra quanto ainda deves, os juros já pagos e os que faltam, e simula quanto poupas se amortizares. Se escolheres a conta das prestações, a app pode lançá-las sozinha todos os meses: os juros e encargos contam como despesa (categoria Créditos) e o capital só tira o dinheiro da conta, sem contar como despesa. Para dinheiro emprestado a alguém (ou que te emprestaram) usa “+ Com uma pessoa” e vai registando o que é devolvido. Tudo o que deves entra no património como dívida.</p></details>
@@ -1877,11 +1885,11 @@ dialog.wrapdlg[open]{display:flex}
     <div class="row3">
       <label for="gTarget">Objetivo (€)<input id="gTarget" inputmode="decimal" placeholder="0,00"></label>
       <label for="gSaved">Já juntaste (€)<input id="gSaved" inputmode="decimal" placeholder="0,00"></label>
-      <label for="gDue">Até quando<input id="gDue" type="month"></label>
+      <div><span class="flabel" id="gDueLbl"><label for="gDue" style="display:inline">Até quando</label><span class="dmode" id="gDueMode" role="radiogroup" aria-label="Tipo de prazo"><button type="button" role="radio" aria-checked="true" data-dm="m">Só mês</button><button type="button" role="radio" aria-checked="false" data-dm="d">Dia</button></span></span><input id="gDue" type="month" aria-labelledby="gDueLbl"></div>
     </div>
     <div id="gPayL" hidden><span class="flabel" id="gPayLbl">Onde está o dinheiro <span style="font-weight:500">(conta ou cartão)</span></span><div class="paypick" id="gPay" role="radiogroup" aria-labelledby="gPayLbl"></div><p class="note" style="margin:6px 0 0">O que pões na meta continua no saldo total da conta, mas deixa de contar no saldo disponível.</p></div>
-    <p class="note" style="margin:0">A data é opcional. Com data, a app diz-te quanto tens de pôr de lado por mês. Sem data, estima quando lá chegas ao ritmo a que tens poupado.</p>
-    <div class="actions"><button class="btn primary" type="submit" id="gSubmit">Criar meta</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="gDel" style="margin-left:auto;color:var(--out)" hidden>Apagar meta</button></div>
+    <p class="note" style="margin:0">A data é opcional e pode ser só o mês ou um dia certo. Com data, a app diz-te quanto tens de pôr de lado por mês. Sem data, estima quando lá chegas ao ritmo a que tens poupado.</p>
+    <div class="actions"><button class="btn primary" type="submit" id="gSubmit">Criar meta</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="gUnpay" hidden>Desfazer pagamento</button><button class="btn ghost" type="button" id="gDel" style="margin-left:auto;color:var(--out)" hidden>Apagar meta</button></div>
   </form>
 </dialog>
 <dialog id="stayDlg">
@@ -2051,7 +2059,23 @@ dialog.wrapdlg[open]{display:flex}
     <p class="muted" id="gAddInfo" style="margin:0;font-size:.88rem"></p>
     <label for="gAddAmt">Valor (€)<input id="gAddAmt" inputmode="decimal" placeholder="0,00"></label>
     <p class="note" style="margin:0">Para tirar dinheiro da meta, escreve um valor negativo.</p>
-    <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="gAddEdit" style="margin-left:auto">Editar meta</button></div>
+    <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="gAddPaid" style="margin-left:auto">✓ Paga</button><button class="btn ghost" type="button" id="gAddEdit">Editar meta</button></div>
+  </form>
+</dialog>
+<dialog id="gPaidDlg" aria-labelledby="gPaidTitle">
+  <form id="gPaidForm" novalidate>
+    <div class="dlg-h"><h3 id="gPaidTitle">Marcar como paga</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <p class="muted" id="gPaidInfo" style="margin:0;font-size:.88rem"></p>
+    <div class="row2">
+      <label for="gPaidAmt">Quanto pagaste (€)<input id="gPaidAmt" inputmode="decimal" placeholder="0,00"></label>
+      <label for="gPaidDate">Data<input id="gPaidDate" type="date"></label>
+    </div>
+    <div class="row2">
+      <label for="gPaidCat">Categoria<select id="gPaidCat"></select></label>
+      <label for="gPaidAcct">Pago com<select id="gPaidAcct"></select></label>
+    </div>
+    <p class="note" style="margin:0">Fica registada uma despesa em Transações e o dinheiro desta meta deixa de estar reservado. A meta passa para “Pagas”.</p>
+    <div class="actions"><button class="btn primary" type="submit">Marcar como paga</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
   </form>
 </dialog>
 <div class="toast" id="toast" hidden></div>
@@ -2550,7 +2574,7 @@ const xfers=()=>[...S.items.values()].filter(o=>o.kind==="xfer").sort((a,b)=>(b.
 const xferFx=(a,skip)=>xfers().filter(x=>x.id!==skip&&(x.from===a.id||x.to===a.id)&&(x.at||0)>(a.baseAt||0)).reduce((s,x)=>s+(x.to===a.id?+x.amount:-x.amount),0);
 /* savings goals linked to an account (goal.acct, optional goal.card): that money stays in the balance but leaves "disponível" */
 const goalAcct=g=>{const a=g&&g.acct&&S.items.get(g.acct);return a&&a.kind==="acct"?a:null};
-const goalsIn=a=>[...S.items.values()].filter(g=>g.kind==="goal"&&g.acct===a.id);
+const goalsIn=a=>[...S.items.values()].filter(g=>g.kind==="goal"&&!g.paid&&g.acct===a.id);
 const goalMoney=a=>Math.max(0,goalsIn(a).reduce((s,g)=>s+(+g.saved||0),0));
 const acctAvail=(a,all,skip)=>{const b=acctBal(a,all,skip),g=goalMoney(a);return g?Math.max(0,b-g):b};
 /* balances can't go below zero (credit cards excepted): raw = balance minus goal money, may be negative */
@@ -2698,31 +2722,39 @@ const GOAL_IC=[["Emergência","#2f9e7a",'<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 
 const goalIc=k=>GOAL_IC.find(x=>x[0]===k)||GOAL_IC[GOAL_IC.length-1];
 const goalTile=k=>{const g=goalIc(k);return `<span class="ic" style="background:${g[1]}">${SVG(g[2])}</span>`};
 const SVG=d=>`<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round">${d}</svg>`;
-const goalsList=()=>[...S.items.values()].filter(o=>o.kind==="goal").sort((a,b)=>(a.created||"").localeCompare(b.created||""));
+const goalsPaid=()=>[...S.items.values()].filter(o=>o.kind==="goal"&&o.paid).sort((a,b)=>(b.paid.date||"").localeCompare(a.paid.date||""));
+const goalsList=()=>[...S.items.values()].filter(o=>o.kind==="goal"&&!o.paid).sort((a,b)=>(a.created||"").localeCompare(b.created||""));
 /* average monthly savings over the last 3 complete months that had movements */
 function avgSave(all){const nowM=ym(new Date()),ms=[1,2,3].map(k=>monthTotals(shiftYM(nowM,-k),all)).filter(x=>x.list.length);
   return ms.length?Math.max(0,ms.reduce((a,x)=>a+x.inS-x.outS,0)/ms.length):0}
 function goalPlan(g,avg){const rem=Math.max(0,(+g.target||0)-(+g.saved||0));
   if(!rem)return{done:true};
-  if(g.due){const now=new Date(),[y,mo]=g.due.split("-").map(Number),left=(y-now.getFullYear())*12+(mo-1-now.getMonth());
-    return left<0?{late:true,rem}:{need:rem/Math.max(1,left+1),left:left+1,rem}}
+  if(g.due){const now=new Date(),[y,mo,d]=g.due.split("-").map(Number),left=(y-now.getFullYear())*12+(mo-1-now.getMonth());
+    // exact day: late the day after; "days" counts down in the last month
+    const days=d?Math.round((new Date(y,mo-1,d,12)-new Date(now.getFullYear(),now.getMonth(),now.getDate(),12))/864e5):null;
+    return left<0||days<0?{late:true,rem}:{need:rem/Math.max(1,left+1),left:left+1,rem,days}}
   return avg>0?{eta:Math.ceil(rem/avg),rem}:{rem}}
 function goalLeft(r){if(r.done)return "Meta cumprida";if(r.late)return "O prazo passou";
+  if(r.days!=null&&r.days<=31)return r.days===0?"É hoje":r.days===1?"Falta 1 dia":`Faltam ${r.days} dias`;
   if(r.left)return r.left>=12&&r.left%12===0?(r.left===12?"Falta 1 ano":`Faltam ${r.left/12} anos`):r.left===1?"Falta 1 mês":`Faltam ${r.left} meses`;
   if(r.eta)return `Faltam ~${r.eta} ${r.eta===1?"mês":"meses"} ao teu ritmo`;return `Faltam ${eur0(r.rem)}`}
 function renderGoals(){
-  const G=goalsList(),avg=avgSave(txs());
+  const G=goalsList(),P=goalsPaid(),avg=avgSave(txs());
   const sv=G.reduce((a,g)=>a+(+g.saved||0),0),tg=G.reduce((a,g)=>a+(+g.target||0),0);
-  $("#poupSub").textContent=G.length?`Já juntaste ${eur0(sv)} de ${eur0(tg)} em ${G.length} ${G.length===1?"meta":"metas"}. Toca numa meta para juntar dinheiro ou a editar.`:"As tuas metas e quanto falta para cada uma.";
+  $("#poupSub").textContent=(G.length?`Já juntaste ${eur0(sv)} de ${eur0(tg)} em ${G.length} ${G.length===1?"meta":"metas"}. Toca numa meta para juntar dinheiro, editar ou marcar como paga.`:"As tuas metas e quanto falta para cada uma.")+(P.length?` ${P.length} ${P.length===1?"meta paga":"metas pagas"}.`:"");
+  const prow=g=>{const ga=g.paid.tx&&S.items.get(g.paid.tx),a=ga&&ga.acct&&S.items.get(ga.acct);
+    return `<div class="goal paid" data-id="${esc(g.id)}" tabindex="0" role="button" title="Ver ou desfazer o pagamento">${goalTile(g.icon)}<div class="gt"><b>${esc(g.name)}</b><span class="amt">Pago ${eur0(g.paid.amount)}</span></div><b class="gp">✓ Paga</b><span class="pbar"><i style="width:100%"></i></span><span class="gf"><span>${g.paid.date?"A "+esc(g.paid.date.split("-").reverse().join("/")):""}</span><span>${a&&a.kind==="acct"?esc(a.name):""}</span></span></div>`};
+  const paidH=P.length?`<h4 class="gpaid-h">Pagas</h4>`+P.map(prow).join(""):"";
+  if(!G.length&&P.length){$("#goals").innerHTML=`<p class="muted" style="margin:0">Todas as metas estão pagas. Cria outra para continuares a juntar.</p><div class="actions"><button class="btn" type="button" data-gnew>Nova meta</button></div>`;$("#goalsAll").innerHTML=`<p class="muted" style="margin:0;grid-column:1/-1">Não tens metas por pagar.</p>`+paidH;return}
   if(!G.length){$("#goals").innerHTML=$("#goalsAll").innerHTML=`<p class="muted" style="margin:0">Dá um nome ao que queres juntar (uma viagem, o fundo de emergência, um carro) e acompanha aqui quanto falta.</p><div class="actions"><button class="btn" type="button" data-gnew>Criar a primeira meta</button></div>`;return}
   const row=g=>{const t=+g.target||0,sv=+g.saved||0,p=t?Math.min(1,sv/t):0,r=goalPlan(g,avg);
     const ga=goalAcct(g),gk=ga&&g.card&&S.items.get(g.card),where=ga?`<span class="gacc">${gk?cardTile("mini-ic"):""}${esc(gk&&gk.kind==="card"?cardName(gk):ga.name)}</span>`:"";
     const side=(r.need?`${eur0(r.need)}/mês${avg>0&&r.need>avg*1.05?" "+chip("warn","acima do ritmo"):""}`:"")+(r.need&&where?" · ":"")+where;
-    return `<div class="goal" data-id="${esc(g.id)}" tabindex="0" role="button" title="Juntar dinheiro ou editar">${goalTile(g.icon)}<div class="gt"><b>${esc(g.name)}${g.demo?'<span class="demo-tag">exemplo</span>':""}</b><span class="amt">${eur0(sv)} / ${eur0(t)}</span></div><b class="gp">${Math.round(p*100)}%</b><span class="pbar"><i style="width:${p*100}%"></i></span><span class="gf"><span>${goalLeft(r)}</span><span>${side}</span></span></div>`};
-  $("#goals").innerHTML=G.slice(0,4).map(row).join("");$("#goalsAll").innerHTML=G.map(row).join("");
+    return `<div class="goal" data-id="${esc(g.id)}" tabindex="0" role="button" title="Juntar dinheiro ou editar">${goalTile(g.icon)}<div class="gt"><b>${esc(g.name)}${g.demo?'<span class="demo-tag">exemplo</span>':""}</b><span class="amt">${eur0(sv)} / ${eur0(t)}</span></div><b class="gp">${Math.round(p*100)}%</b><span class="pbar"><i style="width:${p*100}%"></i></span><span class="gf"><span>${goalLeft(r)}${g.due&&g.due.length>7&&!r.done?" · até "+esc(g.due.split("-").reverse().join("/")):""}</span><span>${side}</span></span></div>`};
+  $("#goals").innerHTML=G.slice(0,4).map(row).join("");$("#goalsAll").innerHTML=G.map(row).join("")+paidH;
 }
-function openGoal(g){S.editGoal=g?g.id:null;$("#goalTitle").textContent=g?"Editar meta":"Nova meta";$("#gSubmit").textContent=g?"Guardar":"Criar meta";$("#gDel").hidden=!g;
-  $("#gName").value=g?g.name:"";$("#gTarget").value=g?numStr(g.target):"";$("#gSaved").value=g&&+g.saved?numStr(g.saved):"";$("#gDue").value=g&&g.due||"";
+function openGoal(g){S.editGoal=g?g.id:null;$("#goalTitle").textContent=g?(g.paid?"Meta paga":"Editar meta"):"Nova meta";$("#gUnpay").hidden=!(g&&g.paid);$("#gSubmit").textContent=g?"Guardar":"Criar meta";$("#gDel").hidden=!g;
+  $("#gName").value=g?g.name:"";$("#gTarget").value=g?numStr(g.target):"";$("#gSaved").value=g&&+g.saved?numStr(g.saved):"";setDueMode(g&&g.due&&g.due.length>7?"d":"m",g&&g.due||"");
   pickGoalIc(g?g.icon:"Emergência");S.gPay=g&&goalAcct(g)?(g.card&&S.items.get(g.card)&&S.items.get(g.card).acct===g.acct?"c:"+g.card:"a:"+g.acct):"";renderGPay();$("#goalDlg").showModal();$("#gName").focus()}
 /* where the goal's money sits: an account (not credit cards) or a debit card (its account) */
 function renderGPay(){const A=accts().filter(a=>a.type!=="Cartão de crédito"),K=cards().filter(k=>A.some(a=>a.id===k.acct)),v=S.gPay||"";
@@ -2734,9 +2766,36 @@ function pickGoalIc(k){S.goalIc=k;$("#gIcons").innerHTML=GOAL_IC.map(([n,c,d])=>
 $("#gIcons").addEventListener("click",e=>{const b=e.target.closest("[data-gic]");if(b)pickGoalIc(b.dataset.gic)});
 $("#goalNew").onclick=()=>openGoal(null);
 function openGAdd(g){S.addGoal=g.id;$("#gAddTitle").textContent="Juntar a "+g.name;const ga=goalAcct(g);$("#gAddInfo").innerHTML=`Já tens ${eur(g.saved)} de ${eur(g.target)}.`+(ga?` O dinheiro fica em <b>${esc(ga.name)}</b>, onde tens <b>${eur(acctAvail(ga,txs()))}</b> disponíveis.`:"");$("#gAddAmt").value="";$("#gAddDlg").showModal();$("#gAddAmt").focus()}
-["#goals","#goalsAll"].forEach(sel=>{const go=e=>{const r=e.target.closest(".goal");if(!r)return;const g=S.items.get(r.dataset.id);if(g)openGAdd(g)};
+["#goals","#goalsAll"].forEach(sel=>{const go=e=>{const r=e.target.closest(".goal");if(!r)return;const g=S.items.get(r.dataset.id);if(g)(g.paid?openGoal:openGAdd)(g)};
   $(sel).addEventListener("click",go);$(sel).addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("goal")){e.preventDefault();go(e)}})});
 document.addEventListener("click",e=>{if(e.target.closest("[data-gnew]"))openGoal(null)});
+/* goal deadline: month only (AAAA-MM, counts to the end of that month) or an exact day */
+function setDueMode(m,v){const i=$("#gDue");if(v===undefined){const c=i.value;v=!c?"":m==="d"?(c.length>7?c:(()=>{const[y,mo]=c.split("-").map(Number);return c+"-"+String(new Date(y,mo,0).getDate()).padStart(2,"0")})()):c.slice(0,7)}
+  i.type=m==="d"?"date":"month";i.value=v;document.querySelectorAll("#gDueMode [data-dm]").forEach(b=>b.setAttribute("aria-checked",String(b.dataset.dm===m)))}
+$("#gDueMode").addEventListener("click",e=>{const b=e.target.closest("[data-dm]");if(b)setDueMode(b.dataset.dm)});
+/* "Paga": records the purchase as a normal expense and frees the goal's reserved money */
+const GOAL_CAT={"Viagem":"Lazer","Casa":"Casa","Carro":"Transportes","Educação":"Educação","Tecnologia":"Compras","Presente":"Compras"};
+function openGPaid(g){S.paidGoal=g.id;const ga=goalAcct(g),A=accts();
+  $("#gPaidTitle").textContent="Pagar "+g.name;$("#gPaidInfo").textContent=`Tens ${eur(g.saved)} juntos de ${eur(g.target)}.`;
+  $("#gPaidAmt").value=numStr(+g.saved>0?g.saved:g.target);$("#gPaidDate").value=todayISO();
+  const cats=OUT_CATS.map(c=>c[0]).filter(c=>!["Investimento","Créditos"].includes(c)),dc=GOAL_CAT[g.icon]||(cats.includes("Compras")?"Compras":cats[0]);
+  $("#gPaidCat").innerHTML=cats.map(c=>`<option${c===dc?" selected":""}>${esc(c)}</option>`).join("");
+  $("#gPaidAcct").innerHTML=`<option value="">Sem conta</option>`+A.map(a=>`<option value="${esc(a.id)}">${esc(a.name)}${a.inst?" · "+esc(a.inst):""}</option>`).join("");
+  $("#gPaidAcct").value=ga?ga.id:"";$("#gPaidDlg").showModal();$("#gPaidAmt").focus()}
+$("#gAddPaid").onclick=()=>{const g=S.items.get(S.addGoal);$("#gAddDlg").close();if(g)openGPaid(g)};
+$("#gPaidForm").addEventListener("submit",e=>{e.preventDefault();const g=S.items.get(S.paidGoal);if(!g)return;
+  const v=parseNum($("#gPaidAmt").value),date=$("#gPaidDate").value||todayISO(),acct=$("#gPaidAcct").value||undefined,a=acct&&S.items.get(acct);
+  if(!(v>0)){toast("Escreve quanto pagaste");return $("#gPaidAmt").focus()}
+  const amount=Math.round(v*100)/100;
+  // the goal's own money is released by this payment, so it counts as available here
+  if(noNeg(a)){const av=availRaw(a,txs())+(g.acct===a.id?+g.saved||0:0);if(amount>av+.005){toast(`Não há saldo suficiente em ${a.name}: podes pagar até ${eur(Math.max(0,av))}.`);return $("#gPaidAmt").focus()}}
+  const t={id:newId("t"),kind:"tx",type:"out",amount,desc:g.name,cat:$("#gPaidCat").value,date,acct,at:Date.now(),goal:g.id};
+  const k=g.card&&S.items.get(g.card);if(k&&k.kind==="card"&&k.acct===acct)t.card=k.id;
+  Store.putMany([t,Object.assign({},g,{paid:{date,amount,tx:t.id}})]);$("#gPaidDlg").close();
+  toast(`${g.name} paga. A despesa de ${eur(amount)} ficou em Transações.`)});
+$("#gUnpay").onclick=()=>{const g=S.items.get(S.editGoal);if(!g||!g.paid)return;
+  const c=Object.assign({},g);delete c.paid;const t=g.paid.tx&&S.items.get(g.paid.tx);
+  Store.put(c);if(t)Store.del(t.id);$("#goalDlg").close();toast(t?"Pagamento desfeito. A despesa foi apagada e a meta voltou.":"Pagamento desfeito.")};
 $("#gAddEdit").onclick=()=>{const g=S.items.get(S.addGoal);$("#gAddDlg").close();if(g)openGoal(g)};
 $("#goalForm").addEventListener("submit",e=>{e.preventDefault();
   const name=$("#gName").value.trim(),t=parseNum($("#gTarget").value),sv=$("#gSaved").value.trim()?parseNum($("#gSaved").value):0;
@@ -2747,7 +2806,7 @@ $("#goalForm").addEventListener("submit",e=>{e.preventDefault();
   const pv=S.gPay||"",pk=pv.startsWith("c:")&&S.items.get(pv.slice(2)),pa=pk?pk.acct:pv.startsWith("a:")?pv.slice(2):"";
   const go=Object.assign({},old||{created:new Date().toISOString()},{id:old?old.id:newId("g"),kind:"goal",name,icon:S.goalIc,target:Math.round(t*100)/100,saved:Math.round(sv*100)/100});
   if($("#gDue").value)go.due=$("#gDue").value;else delete go.due;
-  {const a=pa&&S.items.get(pa);if(noNeg(a)){const av=availRaw(a,txs())+(old&&old.acct===a.id?+old.saved||0:0);if(go.saved>av+.005){toast(`Em ${a.name} só cabem ${eur(Math.max(0,av))} nesta meta: é o saldo disponível.`);return $("#gSaved").focus()}}}
+  {const a=pa&&S.items.get(pa);if(noNeg(a)&&!go.paid){const av=availRaw(a,txs())+(old&&old.acct===a.id?+old.saved||0:0);if(go.saved>av+.005){toast(`Em ${a.name} só cabem ${eur(Math.max(0,av))} nesta meta: é o saldo disponível.`);return $("#gSaved").focus()}}}
   if(pa&&S.items.get(pa)){go.acct=pa;if(pk)go.card=pk.id;else delete go.card}else{delete go.acct;delete go.card}
   Store.put(go);
   $("#goalDlg").close();toast(old?"Meta guardada":"Meta criada")});
