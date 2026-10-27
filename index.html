@@ -561,6 +561,14 @@ body:not([data-tab="movimentos"]):not([data-tab="orcamentos"]):not([data-tab="re
 .kc .v{font-size:clamp(1.05rem,1.42cqi,1.55rem)}
 .kc .eye{width:28px;height:28px;margin-left:auto;background:transparent;border-color:transparent}
 .kc .eye svg{width:16px;height:16px}
+.kc .kgo{width:28px;height:28px;margin-left:auto;background:transparent;border-color:transparent;color:var(--ink-2)}
+.kc .kgo:hover{background:var(--surface);border-color:var(--line);color:var(--accent)}
+.kc .kgo svg{width:16px;height:16px}
+#availList .tx{grid-template-columns:auto minmax(0,1fr) auto;cursor:default}
+#availList .tx .a{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+#availList .tx .a small{display:block;font-size:.72rem;font-weight:500;color:var(--ink-2);font-family:var(--f-body)}
+#availList .acct-tot b{font-variant-numeric:tabular-nums}
+.avail-off{margin:10px 0 0;font-size:.8rem;color:var(--ink-2)}
 .g-cat .dcat{grid-template-columns:118px minmax(0,1fr);gap:12px}
 .g-cat .donut{width:118px;height:118px}
 .g-cat .dcat li{font-size:.8rem;gap:6px}
@@ -1325,7 +1333,7 @@ dialog.wrapdlg[open]{display:flex}
         <div class="greet g-greet"><div><h1 id="hello">Olá</h1><p>Aqui está um resumo da tua situação financeira.</p></div><label class="mpick"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><select id="mSel" aria-label="Mês"></select></label></div>
         <div class="kpi5 g-kpi">
             <div class="kc kc-nw" style="--c:var(--accent)"><div class="kh2"><span class="kround"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M4 20h16"/><path d="M6 16V11M10 16V7M14 16v-5M18 16V5"/></svg></span><span class="kt">Património</span><button class="iconbtn eye" id="eyeBtn" type="button" aria-label="Esconder património" title="Esconder património" aria-pressed="false"></button></div><div class="v" id="kNet"></div><div class="foot" id="kNetD"></div><div class="spark" id="kSpark"></div></div>
-            <div class="kc" style="--c:#22a06b"><div class="kh2"><span class="kround"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v2.5"/><rect x="4" y="7.5" width="16.5" height="12" rx="2.5"/><path d="M15.5 13.5h2"/></svg></span><span class="kt">Saldo disponível</span></div><div class="v" id="kAvail"></div><div class="foot" id="kAvailF"></div></div>
+            <div class="kc" style="--c:#22a06b"><div class="kh2"><span class="kround"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H18v2.5"/><rect x="4" y="7.5" width="16.5" height="12" rx="2.5"/><path d="M15.5 13.5h2"/></svg></span><span class="kt">Saldo disponível</span><button class="iconbtn kgo" type="button" id="availBtn" aria-haspopup="dialog" aria-controls="availDlg" aria-label="Ver o saldo disponível de cada conta" title="Ver por conta"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="m9 6 6 6-6 6"/></svg></button></div><div class="v" id="kAvail"></div><div class="foot" id="kAvailF"></div></div>
             <div class="kc" style="--c:#22a06b"><div class="kh2"><span class="kround"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M12 4v11M7 10l5 5 5-5"/><path d="M4 20h16"/></svg></span><span class="kt">Receitas do mês</span></div><div class="v" id="kIn"></div><div class="foot" id="kInF"></div></div>
             <div class="kc" style="--c:#e5484d"><div class="kh2"><span class="kround"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M12 15V4M7 9l5-5 5 5"/><path d="M4 20h16"/></svg></span><span class="kt">Despesas do mês</span><button class="iconbtn kinv" id="invExpBtn" type="button" aria-pressed="true"></button></div><div class="v" id="kOut"></div><div class="foot" id="kOutF"></div></div>
             <div class="kc" style="--c:var(--accent)"><div class="kh2"><span class="kround"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" style="fill:currentColor"/></svg></span><span class="kt">Taxa de poupança</span></div><div class="v" id="kRate"></div><div class="foot" id="kRateF"></div></div>
@@ -2090,6 +2098,11 @@ dialog.wrapdlg[open]{display:flex}
     <div class="actions"><button class="btn primary" type="submit">Registar resgate</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
   </form>
 </dialog>
+<dialog id="availDlg" aria-labelledby="availTitle"><form method="dialog" novalidate>
+  <div class="dlg-h"><h3 id="availTitle">Saldo disponível por conta</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+  <div class="recent" id="availList"></div>
+  <div class="actions" style="margin-top:12px"><button class="btn" type="button" id="availGo">Ver contas</button><button class="btn ghost" type="button" data-close>Fechar</button></div>
+</form></dialog>
 <dialog id="gAddDlg">
   <form id="gAddForm" novalidate>
     <div class="dlg-h"><h3 id="gAddTitle">Juntar à meta</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
@@ -2812,6 +2825,17 @@ function openGAdd(g){S.addGoal=g.id;$("#gAddTitle").textContent="Juntar a "+g.na
 ["#goals","#goalsAll"].forEach(sel=>{const go=e=>{const r=e.target.closest(".goal");if(!r)return;const g=S.items.get(r.dataset.id);if(g)(g.paid?openGoal:openGAdd)(g)};
   $(sel).addEventListener("click",go);$(sel).addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("goal")){e.preventDefault();go(e)}})});
 document.addEventListener("click",e=>{if(e.target.closest("[data-gnew]"))openGoal(null)});
+/* Dashboard "Saldo disponível" → per account */
+function openAvail(){const all=txs(),A=accts(),AV=A.filter(x=>AVAIL.includes(x.type)),off=A.filter(x=>!AVAIL.includes(x.type));
+  const rows=AV.map(a=>{const b=acctBal(a,all),g=goalMoney(a),v=acctAvail(a,all);
+    return `<div class="tx">${acctIc(a)}<span class="d"><b>${esc(a.name)}${a.demo?'<span class="demo-tag">exemplo</span>':""}</b><span>${esc(a.inst||a.type)}</span></span><span class="a" style="${v<0?"color:var(--out)":""}">${eur(v)}${g?`<small>${eur(b)} no total</small><small>${eur(g)} em metas</small>`:""}</span></div>`}).join("");
+  const tot=AV.reduce((t,a)=>t+acctAvail(a,all),0),ig=AV.reduce((t,a)=>t+goalMoney(a),0);
+  $("#availList").innerHTML=AV.length?rows+`<div class="acct-tot"><span>Total disponível${ig?`<small style="display:block;font-weight:500;font-size:.76rem;color:var(--ink-2)">${eur(ig)} guardados em metas</small>`:""}</span><b>${eur(tot)}</b></div>`
+    +(off.length?`<p class="avail-off">Não contam aqui: ${off.map(a=>esc(a.name)).join(", ")} (corretoras e cartões de crédito entram no património).</p>`:"")
+    :`<p class="muted" style="margin:4px 0">Ainda não tens contas de banco, poupança ou dinheiro. Junta-as em Contas para veres aqui o disponível de cada uma.</p>`;
+  $("#availDlg").showModal()}
+$("#availBtn").addEventListener("click",e=>{e.stopPropagation();openAvail()});
+$("#availGo").onclick=()=>{$("#availDlg").close();setTab("contas");window.scrollTo({top:0})};
 /* automatic contributions (goal.auto) */
 const GA_EV={d:"/dia",w:"/semana",m:"/mês"},GA_EVN={d:["dia","dias"],w:["semana","semanas"],m:["mês","meses"]};
 const isoD=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
