@@ -354,6 +354,10 @@ details.more>summary:hover b{color:var(--accent)}
   .sale .sv .num{font-size:.82rem;color:var(--ink-2)}
 }
 body.privacy .src .r b,body.privacy .sale .num,body.privacy .sale small{filter:blur(8px)}
+#cafMini .sale{grid-template-columns:96px minmax(0,1fr) 140px 170px}
+#cafMini .soon b{color:var(--accent)}
+#cafMinBtn[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+@media (max-width:640px){#cafMini .sale{grid-template-columns:minmax(0,1fr) auto}#cafMini .sale .sv small{display:block;margin-left:0}}
 details.closedgrp{margin-top:16px}
 details.closedgrp summary{cursor:pointer;font-weight:600;color:var(--ink-2);font-size:.88rem;margin-bottom:10px}
 dialog{border:0;border-radius:16px;padding:0;background:var(--surface);color:var(--ink);width:min(560px,calc(100% - 32px));max-height:calc(100% - 32px);box-shadow:var(--shadow)}
@@ -1151,6 +1155,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <div class="listhead">
         <h3>Posições</h3>
         <div class="filters">
+          <button class="btn ghost" type="button" id="cafMinBtn" data-isp="caf" aria-pressed="false" aria-controls="invRows cafMini">Minimizar</button>
           <select id="iSort" aria-label="Ordenar">
             <option value="val">Maior valor</option>
             <option value="real">Mais lucro real</option>
@@ -1162,6 +1167,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
         </div>
       </div>
       <div class="clsfilter" id="iCls"></div>
+      <div class="sales" id="cafMini" hidden></div>
       <div class="poscards" id="invRows"></div>
       <div id="invClosed"></div>
       <p class="note" data-isp="xtb outras">O preço atual escreves diretamente no cartão de cada posição; os Certificados de Aforro calculam-se sozinhos. O lucro real é só o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. A valorização do que ainda tens é lucro potencial e só passa a real quando vendes. A comparação com o esperado usa os dois juntos.</p>
@@ -2935,7 +2941,7 @@ function renderCaf(){const L=cafs(),B=cafBase(),open=L.filter(c=>+c.amount>0);
   if(!L.length){$("#cafSum").innerHTML=`<p class="muted" style="margin:0;grid-column:1/-1">Carrega em “+ Subscrição” e regista cada compra de certificados (série, data e montante). A app calcula os juros trimestrais, os prémios de permanência e o IRS, e junta-os à carteira.</p>`;return}
   const K=open.map(c=>({c,k:cafCalc(c,B)})),sub=open.reduce((a,c)=>a+ +c.amount,0),val=K.reduce((a,x)=>a+x.k.v,0),nx=K.filter(x=>x.k.next).sort((a,b)=>a.k.next.localeCompare(b.k.next))[0],red=L.reduce((a,c)=>a+(+c.realized||0),0);
   $("#cafSum").innerHTML=`<div><span>Valor atual</span><b>${eur(val)}</b><span>${open.length} ${open.length===1?"subscrição":"subscrições"}</span></div><div><span>Subscrito</span><b>${eur(sub)}</b><span>capital ainda aplicado</span></div><div><span>Juros já somados</span><b style="color:var(--in)">${seur(val-sub)}</b><span>líquidos de IRS</span></div>`+
-    (nx?`<div><span>Próximos juros</span><b>+ ${eur(nx.k.nextNet)}</b><span>a ${nx.k.next.split("-").reverse().join("/")} · Série ${esc(nx.c.serie||"F")}</span></div>`:"")+(red?`<div><span>Já recebido em resgates</span><b>${seur(red)}</b><span>lucro real</span></div>`:"")}
+    (nx?`<div><span>Próximos juros</span><b>+ ${eur(nx.k.nextNet)}</b><span>a ${nx.k.next.split("-").reverse().join("/")} (${inDays(nx.k.next)}) · Série ${esc(nx.c.serie||"F")}</span></div>`:"")+(red?`<div><span>Já recebido em resgates</span><b>${seur(red)}</b><span>lucro real</span></div>`:"")}
 $("#cafBase").addEventListener("change",()=>{const v=parseNum($("#cafBase").value);if(!(v>=-1&&v<15)){toast("Escreve a taxa em %, por exemplo 2,1");return}
   const st=settings();Store.put(Object.assign({},st,{id:"settings",kind:"settings",cafBase:Math.round(v*1000)/1000}));toast("Taxa base guardada")});
 function openCaf(c){S.editCaf=c?c.id:null;$("#cafTitle").textContent=c?"Editar subscrição":"Nova subscrição";$("#cafSubmit").textContent=c?"Guardar":"Adicionar";$("#cafDel").hidden=!c;
@@ -3020,6 +3026,7 @@ function renderIsub(all,P){const sec=$("#tab-investimentos"),SL=salesList(),cnt=
       $("#subSalesSum").innerHTML=`<div><span>Recebeste</span><b>${eur(L.reduce((a,x)=>a+x.v,0))}</b><span>${L.length} ${k==="caf"?(L.length===1?"resgate":"resgates"):(L.length===1?"venda":"vendas")}</span></div><div><span>${k==="caf"?"Juros recebidos":"Lucro das vendas"}</span><b style="color:${g>=0?"var(--in)":"var(--out)"}">${seur(g)}</b><span>lucro real</span></div>`;
       $("#subSalesRows").innerHTML=SALE_HEAD+L.slice(0,8).map(saleRow).join("")+(L.length>8?`<p class="muted" style="margin:10px 0 0;font-size:.85rem">Mais ${L.length-8} na aba Vendas.</p>`:"")}}
   else $("#subSales").hidden=true;
+  renderCafMini(all);
   renderSales(SL,P);
 }
 const saleRow=x=>{const dem=x.i.demo?'<span class="demo-tag">exemplo</span>':"",what=x.legacy?"várias vendas, só o total":x.src==="caf"?"resgate":x.q?NUM.format(x.q)+" × "+eur(x.v/x.q):"";
@@ -3028,6 +3035,21 @@ const saleRow=x=>{const dem=x.i.demo?'<span class="demo-tag">exemplo</span>':"",
       <div class="sv r"><span class="num">${eur(x.v)}</span><small>custou ${eur(x.c)}</small></div>
       <div class="sg r"><b class="num" style="color:${x.g>=0?"var(--in)":"var(--out)"}">${seur(x.g)}</b><small>${x.c?spct(x.g/x.c):""}</small></div></div>`};
 const SALE_HEAD=`<div class="sale sh" aria-hidden="true"><div>Data</div><div>Investimento</div><div class="r">Valor da venda</div><div class="r">Lucro real</div></div>`;
+S.cafMin=(()=>{try{return localStorage.getItem("caderneta.cafMin")==="1"}catch(e){return false}})();
+function inDays(d){const n=Math.round((Date.parse(d+"T12:00:00")-Date.parse(todayISO()+"T12:00:00"))/864e5);return n<=0?"hoje":n===1?"amanhã":"daqui a "+n+" dias"}
+/* compact list of the open certificates, soonest interest payment first */
+function renderCafMini(all){const on=S.isub==="caf"&&S.cafMin,b=$("#cafMinBtn");
+  b.setAttribute("aria-pressed",on);b.textContent=on?"Ver cartões":"Minimizar";
+  $("#cafMini").hidden=!on;$("#invRows").hidden=on;if(on)$("#iCls").innerHTML="";
+  if(!on)return;
+  const L=all.filter(x=>x.i.caf&&!x.s.closed).sort((a,b)=>(a.i.cafK.next||"9999").localeCompare(b.i.cafK.next||"9999"));
+  $("#cafMini").innerHTML=L.length?`<div class="sale sh" aria-hidden="true"><div>Subscrito</div><div>Certificado</div><div class="r">Valor atual</div><div class="r">Próximo pagamento</div></div>`+L.map((x,k)=>{const K=x.i.cafK;
+    return `<div class="sale${k===0&&K.next?" soon":""}"><div class="sd">${dmy(x.i.buyDate)}</div>
+      <div class="sn"><b>${esc(x.i.name)}</b>${x.i.demo?'<span class="demo-tag">exemplo</span>':""}<small>subscrito ${eur0(x.s.cost)} · taxa ${pct2(K.cur.gross)}</small></div>
+      <div class="sv r"><span class="num">${eur(x.s.val)}</span><small>juros ${seur(x.s.unreal)}</small></div>
+      <div class="sg r">${K.next?`<b class="num">+ ${eur(K.nextNet)}</b><small>${dmy(K.next)} · ${inDays(K.next)}</small>`:`<b>—</b><small>chegou ao fim do prazo</small>`}</div></div>`}).join("")
+    :`<p class="muted" style="padding:12px 0">${SUB_EMPTY.caf}</p>`}
+$("#cafMinBtn").onclick=()=>{S.cafMin=!S.cafMin;try{localStorage.setItem("caderneta.cafMin",S.cafMin?"1":"0")}catch(e){}renderInv()};
 function renderSales(SL,P){
   const srcs=["xtb","caf","outras"].filter(k=>SL.some(x=>x.src===k));
   if(S.slSrc!=="all"&&!srcs.includes(S.slSrc))S.slSrc="all";
