@@ -926,6 +926,121 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
 #rpt .rp-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
 #rpt .rp-foot{margin-top:18px;color:#666;font-size:8.5pt;border-top:1px solid #ddd;padding-top:8px}
 #rpt tr.tot td{font-weight:700;border-bottom:1.5px solid #bbb}
+
+/* subscrições */
+.sb-acts{align-items:center}
+.sb-filt small{font-family:var(--f-mono);font-size:.7rem;opacity:.75;margin-left:2px}
+.kpi4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;container-type:inline-size}
+.sb-kpi .kc .v{font-size:clamp(1.15rem,3.2cqi,1.6rem);overflow:hidden;text-overflow:ellipsis}
+.sb-sug{margin-bottom:16px}
+.sb-sugr{grid-template-columns:auto minmax(0,1fr) auto;cursor:default}
+.sb-sugr:hover{background:transparent}
+.sb-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,330px);gap:16px;margin-top:16px;align-items:start}
+.sb-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sb-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sb-q{position:relative;display:block}
+.sb-q svg{position:absolute;left:10px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--ink-2);pointer-events:none}
+.sb-q input{padding-left:32px;width:170px}
+.sb-tools select{width:auto}
+.sb-catf{display:flex;gap:8px;align-items:center;font-size:.85rem;background:var(--accent-soft);border-radius:10px;padding:6px 10px;margin-bottom:8px}
+.sb-r{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1.2fr) minmax(0,1fr) minmax(0,1.15fr) minmax(0,1.1fr) 92px 34px;gap:10px;align-items:center;padding:9px 6px;border-bottom:1px solid var(--line);border-radius:8px;cursor:pointer}
+.sb-r:not(.sb-hd):hover{background:var(--surface-2)}
+.sb-r:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.sb-hd{cursor:default;font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-2);font-weight:700;padding-block:6px}
+.sb-r.off .sb-svc,.sb-r.off .sb-val,.sb-r.off .sb-cat{opacity:.55}
+.sb-svc{display:flex;gap:10px;align-items:center;min-width:0}
+.sb-svc .d{min-width:0;display:flex;flex-direction:column}
+.sb-svc b{font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-r small{font-size:.74rem;color:var(--ink-2);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-logo{width:36px;height:36px;border-radius:10px;display:inline-grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:.95rem;flex:none;letter-spacing:-.02em;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.tx .ic.sb-logo{border-radius:10px}
+.sb-pill{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.74rem;font-weight:700;padding:2px 9px;border-radius:999px;color:color-mix(in srgb,var(--c) 80%,var(--ink));background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+.sb-val b,.sb-nx b{font-variant-numeric:tabular-nums;font-weight:700;font-size:.9rem}
+.sb-val small.sb-up{color:var(--warn);font-weight:700}
+.sb-trial{color:var(--accent)!important;font-weight:700}
+.sb-pay{font-size:.82rem;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sb-more{border:0;background:transparent;width:32px;height:32px;border-radius:8px;cursor:pointer;color:var(--ink-2);font-size:1.15rem;line-height:1}
+.sb-more:hover,.sb-more[aria-expanded="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.sb-none{margin:14px 6px;font-size:.9rem}
+.sb-menu{position:fixed;z-index:40;min-width:190px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:5px;display:flex;flex-direction:column}
+.sb-menu button{border:0;background:none;text-align:left;padding:9px 11px;border-radius:8px;cursor:pointer;font-weight:600;font-size:.88rem}
+.sb-menu button:hover,.sb-menu button:focus-visible{background:var(--surface-2);outline:none}
+.sb-menu button.bad{color:var(--out)}
+.sb-donut{display:grid;grid-template-columns:140px minmax(0,1fr);gap:14px;align-items:center}
+.sb-donut ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.sb-donut li button{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;border:0;background:none;padding:4px 6px;border-radius:7px;cursor:pointer;font-size:.84rem;text-align:left}
+.sb-donut li button:hover,.sb-donut li button[aria-pressed="true"]{background:var(--surface-2)}
+.sb-donut li span{overflow-wrap:anywhere;line-height:1.25}
+.sb-donut li b{font-family:var(--f-mono);font-size:.78rem;font-weight:600}
+.sb-donut .dot{border-radius:50%}
+.sb-seg{cursor:pointer;transition:opacity .15s}
+.sb-seg:hover{opacity:.8}
+.sb-seg.dim{opacity:.25}
+.sb-bars{display:flex;flex-direction:column;gap:4px}
+.sb-bar{display:grid;grid-template-columns:minmax(0,1fr) auto 40px;gap:2px 10px;align-items:center;border:0;background:none;padding:6px;border-radius:8px;cursor:pointer;text-align:left;font-size:.86rem}
+.sb-bar:hover,.sb-bar[aria-pressed="true"]{background:var(--surface-2)}
+.sb-bar .n{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sb-bar .n small{color:var(--ink-2);font-family:var(--f-mono);font-size:.72rem}
+.sb-bar .v{font-variant-numeric:tabular-nums;font-weight:700}
+.sb-bar .p{color:var(--ink-2);font-family:var(--f-mono);font-size:.76rem;text-align:right}
+.sb-bar .b{grid-column:1/-1;height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.sb-bar .b i{display:block;height:100%;border-radius:99px}
+.sb-tip{margin-top:0;grid-template-columns:auto minmax(0,1fr);background:var(--surface);border-color:var(--line)}
+.sb-tip .kic{background:var(--warn-soft);color:var(--warn)}
+.sb-tip .btn{grid-column:1/-1;justify-self:start}
+.sb-hist svg{width:100%;height:auto;display:block}
+.sb-hb{cursor:pointer;outline:none}
+.sb-hb:hover rect+rect,.sb-hb:focus-visible rect+rect{fill:var(--accent)!important}
+.sb-hb:focus-visible rect:first-child{stroke:var(--accent);stroke-width:2}
+.sb-bot{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+.sb-upc{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}
+.sb-uc{flex:0 0 112px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:10px;cursor:pointer;text-align:left;min-width:0}
+.sb-uc:hover{border-color:var(--ink-2)}
+.sb-uc .sb-logo{width:30px;height:30px;font-size:.82rem;margin-bottom:4px}
+.sb-uc b{font-size:.84rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sb-uc small{font-size:.72rem;color:var(--ink-2)}
+.sb-uc .num{font-weight:600;font-size:.84rem}
+.sb-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.sb-cal .wd{font-size:.68rem;text-align:center;color:var(--ink-2);font-weight:700}
+.sb-cal .c{aspect-ratio:1;border:0;border-radius:8px;background:var(--surface-2);font-family:var(--f-mono);font-size:.72rem;color:var(--ink-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;min-width:0}
+.sb-cal .c:disabled{cursor:default}
+.sb-cal .c.past{opacity:.6}
+.sb-cal .c.on{background:var(--accent-soft);color:var(--ink);font-weight:700;cursor:pointer}
+.sb-cal .c.on:hover,.sb-cal .c.sel{box-shadow:inset 0 0 0 2px var(--accent)}
+.sb-cal .c.t{outline:2px solid var(--accent);outline-offset:1px}
+.sb-cal .c i{display:flex;gap:2px}
+.sb-cal .c em{width:5px;height:5px;border-radius:50%;display:block}
+.sb-cald{display:flex;flex-direction:column;gap:2px;margin-top:10px;font-size:.84rem;background:var(--surface-2);border-radius:10px;padding:8px 10px}
+.sb-dprev{display:flex;gap:12px;align-items:center;background:var(--surface-2);border-radius:12px;padding:10px 12px}
+.sb-dprev b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.sb-dprev small{color:var(--ink-2);font-size:.8rem}
+.sb-use{display:grid;width:100%}
+.sb-use button{padding:8px}
+.sb-tag{color:var(--accent)!important}
+body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
+@media (max-width:1240px){.sb-r{grid-template-columns:minmax(0,2fr) minmax(0,1.1fr) minmax(0,1fr) minmax(0,1.15fr) 88px 34px}.sb-pay{display:none}.sb-hd span:nth-child(5){display:none}}
+@media (max-width:1020px){.sb-grid{grid-template-columns:1fr}.sb-grid>.sb-col:last-child{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}.sb-bot{grid-template-columns:1fr 1fr}.sb-bot>.card:first-child{grid-column:1/-1}}
+@media (max-width:760px){
+  .sb-acts{width:100%}
+  .sb-filt{width:100%;overflow-x:auto}
+  .sb-filt button{white-space:nowrap;padding:6px 6px;font-size:.78rem}
+  .sb-sugr .btn{padding:7px 10px;font-size:.84rem}
+  .sb-sugr .d span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sb-acts .btn.primary{width:100%}
+  .kpi4{grid-template-columns:1fr 1fr;gap:10px}
+  .sb-tools{width:100%}.sb-q{flex:1}.sb-q input{width:100%}
+  .sb-hd{display:none}
+  .sb-r{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"svc val more" "cat nx st";gap:6px 10px;padding:11px 4px}
+  .sb-svc{grid-area:svc}.sb-val{grid-area:val;text-align:right}.sb-more{grid-area:more;justify-self:end}
+  .sb-r .sb-cat{grid-area:cat;padding-left:46px;min-width:0}
+  .sb-r .sb-nx{grid-area:nx;text-align:right;display:flex;gap:6px;align-items:baseline;justify-content:flex-end}
+  .sb-r .sb-nx b{font-size:.8rem}.sb-r .sb-nx small:not(.sb-trial){display:none}
+  .sb-r .sb-nx b:only-child,.sb-r.off .sb-nx small{display:block}
+  .sb-r .sb-st{grid-area:st;justify-self:end}
+  .sb-bot{grid-template-columns:1fr}
+  .sb-donut{grid-template-columns:120px minmax(0,1fr)}
+}
+@media (max-width:420px){.sb-kpi .kc{padding:12px 10px}.sb-kpi .kround{width:28px;height:28px}.sb-kpi .kh2{font-size:.74rem}}
 </style>
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -968,6 +1083,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
     <button role="tab" data-tab="estadias" aria-selected="false"><svg class="tic" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><rect x="6" y="7" width="12" height="12.5" rx="2"/><path d="M9.5 7V4.5h5V7M10 11v5M14 11v5M8.5 19.5V21M15.5 19.5V21"/></svg><span>Estadias</span></button>
     <button role="tab" data-tab="investimentos" aria-selected="false"><svg class="tic" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M3 17.5 9 11.5l4 4 8-8"/><path d="M15 7.5h6v6"/></svg><span>Investimentos</span></button>
     <button role="tab" data-tab="contas" aria-selected="false"><svg class="tic" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M3.5 9.5 12 4.5l8.5 5"/><path d="M5.5 10v7.5M9.5 10v7.5M14.5 10v7.5M18.5 10v7.5"/><path d="M3.5 20h17"/></svg><span>Contas</span></button>
+    <button role="tab" data-tab="subscricoes" aria-selected="false"><svg class="tic" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M15.5 10.2a3.6 3.6 0 1 0 .3 3.6"/><path d="M15.8 8.4v2.1h-2.1"/></svg><span>Subscrições</span></button>
     <button role="tab" data-tab="relatorios" aria-selected="false"><svg class="tic" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8h5"/><path d="M9.5 17v-3M12.5 17v-5M15.5 17v-2"/></svg><span>Relatórios</span></button>
     <div class="navsec">Outros</div>
     <button role="tab" data-tab="definicoes" aria-selected="false"><svg class="tic" viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Definições</span></button>
@@ -1239,6 +1355,46 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
     <div class="card" style="margin-top:16px"><div class="cardhead" style="margin-bottom:4px"><h3>Cartões</h3><button class="link" type="button" data-knew>+ Novo cartão</button></div><p class="note" style="margin:0 0 6px">Junta os teus cartões de débito para escolheres em cada movimento com qual pagaste. O dinheiro sai da conta a que o cartão está ligado. Os cartões de crédito criam-se como conta (+ Nova conta → Cartão), porque têm saldo próprio: o que deves.</p><div class="recent" id="cardList"></div></div>
     <div class="card" style="margin-top:16px"><div class="cardhead" style="margin-bottom:4px"><h3>Transferências</h3><button class="link" type="button" data-xnew hidden>+ Nova transferência</button></div><p class="note xf-help">Dinheiro que passa de uma conta tua para outra. Muda os dois saldos, mas não conta como receita nem despesa.</p><div class="recent" id="xferList"></div></div>
     <p class="note">Saldo total: o que está em cada conta. Saldo disponível: o total menos o dinheiro que já puseste nas metas ligadas a essa conta. O saldo disponível no Dashboard soma bancos, poupanças e dinheiro (menos o que está em metas). Corretoras e cartões de crédito entram no património.</p>
+  </section>
+
+  <!-- SUBSCRIÇÕES -->
+  <section id="tab-subscricoes" class="panel" role="tabpanel" tabindex="-1" hidden>
+    <div class="phead"><div><h1>Subscrições</h1><p>Gere as tuas subscrições e serviços recorrentes. Cada uma sai sozinha no dia certo, da conta ou cartão que escolheres.</p></div>
+      <div class="actions sb-acts"><div class="segs sb-filt" id="subFilt" role="group" aria-label="Filtrar por estado"></div><button class="btn primary" type="button" data-subnew>+ Adicionar subscrição</button></div></div>
+    <div class="card empty" id="subEmpty" hidden>
+      <span class="kic acc" style="width:52px;height:52px;border-radius:16px"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round" style="width:26px;height:26px"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="M15.5 10.2a3.6 3.6 0 1 0 .3 3.6"/><path d="M15.8 8.4v2.1h-2.1"/></svg></span>
+      <h2>Ainda não tens subscrições</h2>
+      <p>Junta a Netflix, o Spotify, o ginásio ou a cloud. A app lança cada pagamento sozinha, avisa-te antes de sair e mostra quanto gastas por mês e por ano.</p>
+      <div class="actions"><button class="btn primary" type="button" data-subnew>Adicionar a primeira</button><button class="btn" type="button" data-demo="load">Ver com dados de exemplo</button></div>
+    </div>
+    <div class="card sb-sug" id="subSug" hidden></div>
+    <div id="subMain" hidden>
+      <div class="kpi4 sb-kpi" id="subKpi"></div>
+      <div class="sb-grid">
+        <div class="sb-col">
+          <div class="card sb-tblc">
+            <div class="cardhead"><div><h3>As tuas subscrições</h3><p class="note" id="subTblN" style="margin:2px 0 0"></p></div>
+              <div class="sb-tools"><label class="sb-q"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="subQ" type="search" placeholder="Procurar" aria-label="Procurar subscrição" autocomplete="off"></label>
+                <select id="subSort" aria-label="Ordenar"><option value="next">Ordenar: Próximo pagamento</option><option value="new">Ordenar: Mais recentes</option><option value="val">Ordenar: Valor mensal</option><option value="name">Ordenar: Nome</option></select>
+                <button class="iconbtn" type="button" id="subCsv" title="Exportar lista (CSV)" aria-label="Exportar lista (CSV)"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M12 4v11M7 10l5 5 5-5"/><path d="M4 20h16"/></svg></button></div></div>
+            <div class="sb-catf" id="subCatF" hidden></div>
+            <div class="sb-tbl" id="subTbl" role="table" aria-label="Subscrições"></div>
+            <p class="note" id="subSaved" hidden></p>
+          </div>
+          <div class="card chart sb-hist"><div class="cardhead"><div><h3>Gasto com subscrições</h3><p class="note" style="margin:2px 0 0">Últimos 12 meses: pagamentos lançados pela app e despesas na categoria Subscrições. Toca numa barra para ver os movimentos.</p></div><b class="num" id="subHistT"></b></div><div id="subHist"></div></div>
+        </div>
+        <div class="sb-col">
+          <div class="card"><h3>Resumo de gastos</h3><div class="sb-donut" id="subDonut"></div></div>
+          <div class="card"><h3>Subscrições por categoria</h3><div class="sb-bars" id="subBars"></div></div>
+          <div class="tip sb-tip" id="subTip" hidden><span class="kic"><svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V17h5v-1.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span><div><span class="eyebrow" style="color:var(--warn)">Dica inteligente</span><p id="subTipT"></p></div><button class="btn" type="button" id="subTipGo" hidden>Ver detalhes</button></div>
+        </div>
+      </div>
+      <div class="sb-bot">
+        <div class="card"><div class="cardhead" style="margin-bottom:8px"><h3>Próximos pagamentos</h3><small class="muted" id="subUpcT"></small></div><div class="sb-upc" id="subUpc"></div></div>
+        <div class="card"><div class="cardhead" style="margin-bottom:8px"><h3 id="subCalH">Calendário</h3><small class="muted" id="subCalT"></small></div><div id="subCal"></div></div>
+        <div class="card"><div class="cardhead" style="margin-bottom:4px"><h3>Últimas transações</h3><button class="link" type="button" id="subTxAll">Ver todas →</button></div><div class="recent" id="subTx"></div></div>
+      </div>
+    </div>
   </section>
 
   <!-- RELATÓRIOS -->
@@ -1539,6 +1695,35 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
     <div class="actions"><button class="btn primary" type="submit" id="rSubmit">Criar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="rPause" hidden>Pausar</button><button class="btn ghost" type="button" id="rDel" style="margin-left:auto;color:var(--out)" hidden>Apagar</button></div>
   </form>
 </dialog>
+<dialog id="subDlg" aria-labelledby="subTitle">
+  <form id="subForm" novalidate>
+    <div class="dlg-h"><h3 id="subTitle">Nova subscrição</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="sb-dprev"><span id="sbLogo"></span><div><b id="sbPN">Serviço</b><small id="sbPS"></small></div></div>
+    <div class="row2">
+      <label for="sbName">Serviço<input id="sbName" list="sbKnown" maxlength="60" placeholder="Ex.: Netflix" autocomplete="off"></label>
+      <label for="sbPlan">Plano<input id="sbPlan" maxlength="60" placeholder="Opcional, ex.: Standard" autocomplete="off"></label>
+    </div>
+    <datalist id="sbKnown"></datalist>
+    <div class="row3">
+      <label for="sbAmt">Valor de cada pagamento (€)<input id="sbAmt" inputmode="decimal" placeholder="0,00" autocomplete="off"></label>
+      <label for="sbEvery">Pagamento<select id="sbEvery"><option value="1">Mensal</option><option value="3">Trimestral</option><option value="6">Semestral</option><option value="12">Anual</option></select></label>
+      <label for="sbStart"><span id="sbStartL">Próximo pagamento</span><input id="sbStart" type="date"></label>
+    </div>
+    <div class="row2">
+      <label for="sbScat">Tipo de serviço<select id="sbScat"></select></label>
+      <label for="sbPay" id="sbPayL">Pago com<select id="sbPay"></select></label>
+    </div>
+    <div class="row2">
+      <label for="sbCat">Categoria nas despesas<select id="sbCat"></select></label>
+      <label for="sbUntil">Termina em<input id="sbUntil" type="month"></label>
+    </div>
+    <div><span class="flabel" id="sbUseL">Quanto a usas? <span style="font-weight:500">(ajuda nas dicas para poupar)</span></span><div class="segs sb-use" id="sbUse" role="radiogroup" aria-labelledby="sbUseL"><button type="button" role="radio" data-use="muito" aria-pressed="false" aria-checked="false">Muito</button><button type="button" role="radio" data-use="medio" aria-pressed="false" aria-checked="false">Às vezes</button><button type="button" role="radio" data-use="pouco" aria-pressed="false" aria-checked="false">Pouco</button></div></div>
+    <label class="chk"><input type="checkbox" id="sbTrial">Estou no período experimental (grátis até ao primeiro pagamento)</label>
+    <div class="rprev" id="sbPrev" aria-live="polite"></div>
+    <div class="actions"><button class="btn primary" type="submit" id="sbSubmit">Adicionar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="sbDel" style="margin-left:auto;color:var(--out)" hidden>Apagar</button></div>
+  </form>
+</dialog>
+<div class="sb-menu" id="subMenu" role="menu" hidden></div>
 <dialog id="cafDlg">
   <form id="cafForm" novalidate>
     <div class="dlg-h"><h3 id="cafTitle">Nova subscrição</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
@@ -1722,6 +1907,7 @@ function setTab(t){
   if(t==="investimentos"){renderSim();renderEvo()}
   if(t==="relatorios"){renderSpend(txs());renderCompare()}
   if(t==="orcamentos")renderBudgets();
+  if(t==="subscricoes")renderSubs();
 }
 document.querySelectorAll(".tabs,.bnav").forEach(n=>n.addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(b){setTab(b.dataset.tab);window.scrollTo({top:0})}}));
 $(".side-brand").innerHTML=$(".top .brand").innerHTML.replace(' id="modeNote"',"").replace("A abrir…","O teu dinheiro, às claras.");
@@ -2320,12 +2506,12 @@ function runRecurring(){
   recs().forEach(r=>{
     if(r.paused||!(+r.amount>0))return;const D=recDue(r,today);if(!D.length)return;
     if(r.type==="xfer"&&(!recAcctName(r.from)||!recAcctName(r.to)||r.from===r.to))return;
-    const acct=r.type!=="xfer"&&recAcctName(r.acct)?r.acct:undefined,demo=r.demo?true:undefined;
+    const acct=r.type!=="xfer"&&recAcctName(r.acct)?r.acct:undefined,demo=r.demo?true:undefined,ck=r.card&&S.items.get(r.card),card=ck&&ck.kind==="card"&&acct&&ck.acct===acct?ck.id:undefined;
     D.forEach(d=>{
       // a past date only moves balances set before it (like a movement typed with that date before the balance)
       const at=d<today?new Date(d+"T12:00:00").getTime():Date.now();
       const o=r.type==="xfer"?{id:"xr-"+r.id+"-"+d,kind:"xfer",from:r.from,to:r.to,amount:+r.amount,date:d,note:r.desc||undefined,at,rec:r.id,demo}
-        :{id:"tr-"+r.id+"-"+d,kind:"tx",type:r.type,amount:+r.amount,desc:r.desc||r.cat,cat:r.cat,date:d,acct,at,rec:r.id,demo};
+        :{id:"tr-"+r.id+"-"+d,kind:"tx",type:r.type,amount:+r.amount,desc:r.desc||r.cat,cat:r.cat,date:d,acct,card,at,rec:r.id,demo};
       if(!S.items.has(o.id)){objs.push(o);n++;names.push(r.desc||r.cat||"Transferência")}});
     objs.push(Object.assign({},r,{last:D[D.length-1]}))});
   if(!objs.length)return;
@@ -2341,8 +2527,8 @@ function renderRecs(){
   const row=r=>{const xf=r.type==="xfer",nx=r.paused?null:recNextOf(r),fa=xf&&recAcctName(r.from),ta=xf&&recAcctName(r.to),miss=xf&&(!fa||!ta);
     const path=xf?`${fa||"conta apagada"} → ${ta||"conta apagada"}`:"",name=r.desc||(xf?path:r.cat);
     const sub=[cap(recFreq(r)),xf?(r.desc?path:""):recAcctName(r.acct)||""].filter(Boolean).join(" · ");
-    const st=miss?chip("warn","conta apagada"):r.paused?chip("neutral","em pausa"):nx?"próximo "+esc(xDay(nx)):chip("neutral","terminou");
-    return `<div class="tx${r.paused||miss?" off":""}" data-rid="${esc(r.id)}" tabindex="0" role="button" title="Editar">${xf?`<span class="ic xf-ic">${SVG(XF_IC)}</span>`:catTile(r.type,r.cat,"ic")}<span class="d"><b>${esc(name)}${r.demo?'<span class="demo-tag">exemplo</span>':""}</b><span>${esc(sub)}</span></span><span class="rt"><span class="a ${xf?"":r.type}">${xf?"":r.type==="in"?"+ ":"− "}${eur(r.amount)}</span><small>${st}</small></span><span class="chev" aria-hidden="true">›</span></div>`};
+    const st=miss?chip("warn","conta apagada"):r.cancelled?chip("neutral","cancelada"):r.paused?chip("neutral","em pausa"):nx?"próximo "+esc(xDay(nx)):chip("neutral","terminou");
+    return `<div class="tx${r.paused||miss?" off":""}" data-rid="${esc(r.id)}" tabindex="0" role="button" title="Editar">${xf?`<span class="ic xf-ic">${SVG(XF_IC)}</span>`:catTile(r.type,r.cat,"ic")}<span class="d"><b>${esc(name)}${r.sub?'<span class="demo-tag sb-tag">subscrição</span>':""}${r.demo?'<span class="demo-tag">exemplo</span>':""}</b><span>${esc(sub)}</span></span><span class="rt"><span class="a ${xf?"":r.type}">${xf?"":r.type==="in"?"+ ":"− "}${eur(r.amount)}</span><small>${st}</small></span><span class="chev" aria-hidden="true">›</span></div>`};
   // payments the app already sees repeating, one tap away from being automatic
   const sug=S.recSug=[...upcomingList(all,"in"),...upcomingList(all,"out")].filter(u=>!u.rec).slice(0,3);
   const sh=sug.length?`<p class="recnote">Estes repetem-se todos os meses. Queres que a app os lance sozinha?</p>`+sug.map((u,i)=>`<div class="tx rsug">${catTile(u.type,u.cat,"ic")}<span class="d"><b>${esc(u.desc)}</b><span>${u.type==="in"?"+ ":"− "}${eur(u.amount)} · dia ${u.day}</span></span><button class="btn" type="button" data-rsug="${i}">Automatizar</button></div>`).join(""):"";
@@ -2372,7 +2558,7 @@ function recPrev(){const r=recForm(),el=$("#rPrev");if(!r.start){el.innerHTML=""
   if(S.editRec)P.push("Mudar o valor ou a conta só afeta os próximos lançamentos.");
   el.innerHTML=P.map(p=>`<span>${p}</span>`).join("")}
 ["#rAmt","#rStart","#rEvery","#rUntil","#rFrom","#rTo"].forEach(s=>$(s).addEventListener("input",recPrev));
-function openRec(r,pre){const A=accts(),p=r||pre||{};S.editRec=r?r.id:null;
+function openRec(r,pre){if(r&&r.sub&&typeof openSub==="function")return openSub(r);const A=accts(),p=r||pre||{};S.editRec=r?r.id:null;
   $("#recTitle").textContent=r?"Editar movimento recorrente":"Novo movimento recorrente";$("#rSubmit").textContent=r?"Guardar":"Criar";
   $("#rDel").hidden=$("#rPause").hidden=!r;if(r)$("#rPause").textContent=r.paused?"Retomar":"Pausar";
   const ao=A.map(a=>`<option value="${esc(a.id)}">${esc(a.name)}${a.inst?" · "+esc(a.inst):""}</option>`).join("");
@@ -2405,6 +2591,255 @@ $("#rPause").onclick=()=>{const r=S.items.get(S.editRec);if(!r)return;const o=Ob
 $("#rDel").onclick=()=>{const r=S.items.get(S.editRec),b=$("#rDel");if(!r)return;
   if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar"},4000);return}
   delete b.dataset.sure;b.textContent="Apagar";Store.del(r.id);$("#recDlg").close();toast("Apagado. Os movimentos já lançados ficam.")};
+
+/* ---------- subscrições: movimentos recorrentes (kind "rec") com sub:true ----------
+   extra fields: plan, scat (service type), card (debit card), use (muito|medio|pouco), trial, hist [{d,a}] old prices, cancelled (date; also paused) */
+const SUB_CATS=[["Entretenimento","#8b5cf6"],["Música","#16a34a"],["Produtividade","#3b82f6"],["IA","#0d9488"],["Compras","#f59e0b"],["Jogos","#db2777"],["Armazenamento","#0891b2"],["Saúde e desporto","#e11d48"],["Notícias e leitura","#a16207"],["Educação","#5a7fa8"],["Telecomunicações","#0284c7"],["Outros","#7c8597"]];
+/* services people often pay for: fills type and colour by itself; no logos fetched, the tile shows the initials */
+const SUB_KNOWN=[[/netflix/i,"Netflix","Entretenimento","#e50914"],[/spotify/i,"Spotify","Música","#1db954"],[/youtube/i,"YouTube Premium","Entretenimento","#ff0033"],[/disney/i,"Disney+","Entretenimento","#113ccf"],
+  [/\bhbo\b|\bmax\b/i,"HBO Max","Entretenimento","#5822b4"],[/prime video|amazon prime/i,"Amazon Prime","Compras","#00a8e1"],[/apple ?tv/i,"Apple TV+","Entretenimento","#1c1c1e"],[/apple music/i,"Apple Music","Música","#fa243c"],
+  [/icloud/i,"iCloud+","Armazenamento","#3693f3"],[/google one/i,"Google One","Armazenamento","#4285f4"],[/chatgpt|openai/i,"ChatGPT Plus","IA","#10a37f"],[/\bclaude\b|anthropic/i,"Claude","IA","#d97757"],[/gemini/i,"Gemini","IA","#4285f4"],[/copilot/i,"Copilot","IA","#0078d4"],
+  [/adobe/i,"Adobe Creative Cloud","Produtividade","#da1f26"],[/microsoft 365|office 365|\bm365\b/i,"Microsoft 365","Produtividade","#d83b01"],[/notion/i,"Notion","Produtividade","#37352f"],[/canva/i,"Canva","Produtividade","#00a3ad"],[/dropbox/i,"Dropbox","Armazenamento","#0061ff"],
+  [/playstation|ps ?plus/i,"PlayStation Plus","Jogos","#0070d1"],[/xbox|game ?pass/i,"Xbox Game Pass","Jogos","#107c10"],[/nintendo/i,"Nintendo Switch Online","Jogos","#e60012"],[/twitch/i,"Twitch","Entretenimento","#9146ff"],[/deezer/i,"Deezer","Música","#a238ff"],
+  [/audible/i,"Audible","Notícias e leitura","#f8991d"],[/kindle/i,"Kindle Unlimited","Notícias e leitura","#f08c00"],[/duolingo/i,"Duolingo","Educação","#58a700"],[/linkedin/i,"LinkedIn Premium","Produtividade","#0a66c2"],[/crunchyroll/i,"Crunchyroll","Entretenimento","#f47521"],
+  [/dazn/i,"DAZN","Entretenimento","#0c161c"],[/sport ?tv/i,"Sport TV","Entretenimento","#c8102e"],[/filmin/i,"Filmin","Entretenimento","#e6007e"],[/strava/i,"Strava","Saúde e desporto","#fc4c02"],
+  [/gin[aá]sio|\bgym\b|fitness|solinca|holmes place|basic.?fit/i,"Ginásio","Saúde e desporto","#e11d48"],[/\bmeo\b/i,"MEO","Telecomunicações","#00a0dc"],[/vodafone/i,"Vodafone","Telecomunicações","#e60000"],[/\bnos\b/i,"NOS","Telecomunicações","#1d1d1b"],[/\bdigi\b/i,"DIGI","Telecomunicações","#1e3a8a"],
+  [/patreon/i,"Patreon","Outros","#ff424d"],[/expresso|p[uú]blico|observador/i,"Jornal","Notícias e leitura","#334155"]];
+const subKnown=n=>SUB_KNOWN.find(k=>k[0].test(String(n||"")))||null;
+const subLooks=n=>{const k=subKnown(n);return !!k&&k[2]!=="Telecomunicações"};
+const subNorm=n=>String(n||"").trim().toLowerCase();
+const subs=()=>recs().filter(r=>r.sub);
+const subMo=r=>(+r.amount||0)/(+r.every||1);
+const subSt=r=>r.cancelled?"cancel":r.paused?"pause":recNextOf(r)?"ativa":"end";
+const SUB_ST={ativa:["good","Ativa"],pause:["warn","Pausada"],cancel:["bad","Cancelada"],end:["neutral","Terminou"]};
+const subScatC=c=>(SUB_CATS.find(x=>x[0]===c)||SUB_CATS[SUB_CATS.length-1])[1];
+const SUB_EV={1:"Mensal",3:"Trimestral",6:"Semestral",12:"Anual"};
+function subColor(r){if(r.color)return r.color;const k=subKnown(r.desc);if(k)return k[3];let x=0;for(const ch of String(r.desc||""))x=(x*31+ch.charCodeAt(0))>>>0;return SUB_CATS[x%(SUB_CATS.length-1)][1]}
+function subLogo(r,cls="sb-logo"){const n=String(r.desc||"?").trim()||"?",c=subColor(r),w=n.split(/\s+/).filter(x=>/^[\p{L}\d]/u.test(x));
+  const ini=(w.length>1&&!/^\d/.test(w[1])?w[0][0]+w[1][0]:[...n][0]).toUpperCase();
+  const hx=c.replace("#",""),lum=(parseInt(hx.slice(0,2),16)*299+parseInt(hx.slice(2,4),16)*587+parseInt(hx.slice(4,6),16)*114)/1000;
+  return `<span class="${cls}" style="background:${c};color:${lum>170?"#111":"#fff"}" aria-hidden="true">${esc(ini)}</span>`}
+const subPayName=r=>{const k=r.card&&S.items.get(r.card);if(k&&k.kind==="card")return cardName(k);return recAcctName(r.acct)||""};
+const subDays=d=>Math.round((new Date(d+"T12:00:00")-new Date(todayISO()+"T12:00:00"))/864e5);
+const subWhen=d=>{const n=subDays(d);return n===0?"hoje":n===1?"amanhã":n>1&&n<=7?`em ${n} dias`:xDay(d)};
+/* payments posted by the app for subscriptions */
+const subTxs=()=>{const ids=new Set(subs().map(r=>r.id));return txs().filter(t=>t.rec&&ids.has(t.rec))};
+/* money kept since a subscription was cancelled */
+const subSavedOf=r=>{if(!r.cancelled)return 0;const m=Math.floor(Math.max(0,subDays(r.cancelled)*-1)/30.44);return m*subMo(r)};
+S.subF="all";S.subQ="";S.subSort="next";S.subCat=null;S.subDay=null;
+try{S.subSort=localStorage.getItem("caderneta.subSort")||"next"}catch(e){}
+
+function subSuggest(){
+  const R=recs(),names=new Set(R.filter(r=>r.sub).map(r=>subNorm(r.desc)));let dis=[];try{dis=JSON.parse(localStorage.getItem("caderneta.subDismiss")||"[]")}catch(e){}
+  const out=[],seen=new Set(),add=o=>{const k=subNorm(o.desc);if(!k||names.has(k)||seen.has(k)||dis.includes(k))return;seen.add(k);out.push(o)};
+  // recurring expenses already automatic that look like subscriptions: just mark them
+  R.filter(r=>!r.sub&&r.type==="out"&&!r.paused&&(r.cat==="Subscrições"||subLooks(r.desc))).forEach(r=>add({rec:r.id,desc:r.desc||r.cat,amount:+r.amount,every:+r.every||1,date:recNextOf(r),why:"já é automático"}));
+  // payments the app sees repeating every month
+  upcomingList(txs(),"out").filter(u=>!u.rec&&(u.cat==="Subscrições"||subLooks(u.desc))).forEach(u=>add({desc:u.desc,amount:u.amount,acct:u.acct,cat:u.cat,date:u.date,every:1,why:"repete-se todos os meses"}));
+  // one-off payments to known services in the last 45 days
+  const lim=iso(new Date(Date.now()-45*864e5)),today=todayISO();
+  txs().filter(t=>t.type==="out"&&!t.rec&&t.date&&t.date>=lim&&subLooks(t.desc)).sort((a,b)=>b.date.localeCompare(a.date)).forEach(t=>{
+    let d=t.date,k=0;while(d<=today&&k<24){k++;const m=shiftYM(t.date.slice(0,7),k);d=m+"-"+pad(Math.min(+t.date.slice(8),dim(m)))}
+    add({desc:t.desc,amount:+t.amount,acct:t.acct,card:t.card,cat:t.cat,date:d,every:1,why:"pagaste a "+xDay(t.date)})});
+  return out.slice(0,4)}
+
+function renderSubs(){
+  const R=subs(),all=txs(),today=todayISO(),sug=S.subSug=S.mode==="loading"?[]:subSuggest();
+  const has=R.length>0;$("#subEmpty").hidden=has||S.mode==="loading";$("#subMain").hidden=!has;
+  const sg=$("#subSug");sg.hidden=!sug.length;
+  sg.innerHTML=sug.length?`<div class="cardhead" style="margin-bottom:6px"><div><h3>Encontrámos ${sug.length===1?"uma subscrição":sug.length+" subscrições"} nas tuas contas</h3><p class="note" style="margin:2px 0 0">Junta-as para a app as lançar sozinha, sem duplicar o que já registaste.</p></div></div>`+
+    sug.map((u,i)=>`<div class="tx sb-sugr">${subLogo(u,"ic sb-logo")}<span class="d"><b>${esc(u.desc)}</b><span>${eur(u.amount)} · ${esc(u.why)}</span></span><span class="actions" style="gap:6px;flex-wrap:nowrap"><button class="btn" type="button" data-subsug="${i}">${u.rec?"Marcar":"Adicionar"}</button><button class="btn ghost" type="button" data-subdis="${i}" aria-label="Ignorar ${esc(u.desc)}" title="Ignorar">×</button></span></div>`).join(""):"";
+  const C={all:R.length,ativa:0,pause:0,cancel:0};R.forEach(r=>{const s=subSt(r);C[s==="end"?"cancel":s]++});
+  $("#subFilt").innerHTML=[["all","Todas"],["ativa","Ativas"],["pause","Pausadas"],["cancel","Canceladas"]].map(([k,l])=>`<button type="button" data-subf="${k}" aria-pressed="${S.subF===k}">${l}${has?` <small>${C[k]}</small>`:""}</button>`).join("");
+  $("#subFilt").hidden=!has;
+  if(!has)return;
+  const A=R.filter(r=>subSt(r)==="ativa"),tot=A.reduce((s,r)=>s+subMo(r),0),m=ym(new Date()),ST_=subTxs();
+  const paidM=sum(ST_.filter(t=>t.date&&t.date.startsWith(m))),paidY=sum(ST_.filter(t=>t.date&&t.date.startsWith(today.slice(0,4))));
+  const nx=A.map(r=>({r,d:recNextOf(r)})).filter(x=>x.d).sort((a,b)=>a.d.localeCompare(b.d))[0];
+  const kc=(c,ic,t,v,f)=>`<div class="kc" style="--c:${c}"><div class="kh2"><span class="kround">${SVG(ic)}</span><span class="kt">${t}</span></div><div class="v">${v}</div><div class="foot">${f}</div></div>`;
+  $("#subKpi").innerHTML=kc("var(--accent)",'<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',"Total mensal",eur(tot),paidM?`<span>${eur(paidM)} já pagos este mês</span>`:`<span>${A.length?"nada pago ainda este mês":"sem subscrições ativas"}</span>`)+
+    kc("#22a06b",'<circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.8-5"/>',"Subscrições ativas",String(A.length),`<span>de ${R.length} no total${C.pause?` · ${C.pause} em pausa`:""}</span>`)+
+    kc("#8a62d6",'<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13.5v3"/>',"Próximo pagamento",nx?esc(nx.r.desc):"—",nx?`<span>${esc(cap(subWhen(nx.d)))} · ${eur(nx.r.amount)}</span>`:"<span>sem pagamentos marcados</span>")+
+    kc("#e0803a",'<ellipse cx="12" cy="6.5" rx="7" ry="2.8"/><path d="M5 6.5v5c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-5M5 11.5v5c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-5"/>',"Gasto anual estimado",eur(tot*12),`<span>${eur(paidY)} pagos em ${today.slice(0,4)}</span>`);
+  // table
+  const q=subNorm(S.subQ);let L=R.filter(r=>{const s=subSt(r);return (S.subF==="all"||S.subF===s||(S.subF==="cancel"&&s==="end"))&&(!S.subCat||(r.scat||"Outros")===S.subCat)&&(!q||subNorm(r.desc+" "+(r.plan||"")+" "+(r.scat||"")).includes(q))});
+  const so=S.subSort,nxOf=r=>subSt(r)==="ativa"?recNextOf(r)||"9":"9"+(r.cancelled||"");
+  L.sort(so==="val"?(a,b)=>subMo(b)-subMo(a):so==="name"?(a,b)=>String(a.desc).localeCompare(String(b.desc),"pt"):so==="new"?(a,b)=>String(b.created||"").localeCompare(String(a.created||"")):(a,b)=>nxOf(a).localeCompare(nxOf(b))||subMo(b)-subMo(a));
+  $("#subSort").value=so;
+  $("#subCatF").hidden=!S.subCat;$("#subCatF").innerHTML=S.subCat?`<span>Só <b>${esc(S.subCat)}</b></span><button class="link" type="button" data-subcat="">Mostrar todas ×</button>`:"";
+  $("#subTblN").textContent=L.length===R.length?`${R.length} ${R.length===1?"serviço":"serviços"}`:`${L.length} de ${R.length}`;
+  const row=r=>{const s=subSt(r),[sc,sl]=SUB_ST[s],n=s==="ativa"?recNextOf(r):null,ev=+r.every||1,h=(r.hist||[]).slice(-1)[0],up=h&&+r.amount>+h.a?(+r.amount/+h.a-1):0,tri=r.trial&&n&&r.start>=today;
+    const nxt=s==="ativa"?`<b>${esc(xDay(n))}</b><small>${esc(subWhen(n)===xDay(n)?(ev===1?"todos os meses":SUB_EV[ev].toLowerCase()):subWhen(n))}</small>`:s==="cancel"?`<small>cancelada a ${esc(xDay(r.cancelled))}</small>`:s==="pause"?`<small>em pausa</small>`:`<small>terminou</small>`;
+    return `<div class="sb-r${s!=="ativa"?" off":""}" role="row" data-sid="${esc(r.id)}" tabindex="0" aria-label="${esc(r.desc)}, ${esc(sl)}">
+      <span class="sb-svc" role="cell">${subLogo(r)}<span class="d"><b>${esc(r.desc)}${r.demo?'<span class="demo-tag">exemplo</span>':""}</b><small>${esc(r.plan||SUB_EV[ev]||"")}</small></span></span>
+      <span class="sb-cat" role="cell"><span class="sb-pill" style="--c:${subScatC(r.scat)}">${esc(r.scat||"Outros")}</span></span>
+      <span class="sb-val" role="cell"><b>${eur(subMo(r))}</b>${ev>1?`<small>${eur(r.amount)} ${SUB_EV[ev].toLowerCase()}</small>`:up?`<small class="sb-up" title="Antes: ${eur(h.a)}">↑ ${(up*100).toFixed(0)}% desde ${esc(xDay(h.d))}</small>`:""}</span>
+      <span class="sb-nx" role="cell">${nxt}${tri?`<small class="sb-trial">teste grátis</small>`:""}</span>
+      <span class="sb-pay" role="cell">${esc(subPayName(r)||"—")}</span>
+      <span class="sb-st" role="cell">${chip(sc,sl)}</span>
+      <button class="sb-more" type="button" data-submenu="${esc(r.id)}" aria-label="Ações para ${esc(r.desc)}" aria-haspopup="menu">⋮</button></div>`};
+  $("#subTbl").innerHTML=`<div class="sb-r sb-hd" role="row"><span role="columnheader">Serviço</span><span role="columnheader">Categoria</span><span role="columnheader">Valor mensal</span><span role="columnheader">Próximo pagamento</span><span role="columnheader">Pago com</span><span role="columnheader">Estado</span><span></span></div>`+
+    (L.length?L.map(row).join(""):`<p class="muted sb-none">${q?`Nada encontrado para “${esc(S.subQ)}”.`:"Nenhuma subscrição com este filtro."} <button class="link" type="button" data-subclear>Limpar filtros</button></p>`);
+  const sv=R.reduce((s,r)=>s+subSavedOf(r),0),nc=R.filter(r=>subSavedOf(r)>0).length;
+  $("#subSaved").hidden=!sv;$("#subSaved").innerHTML=sv?`Desde que cancelaste ${nc===1?"1 subscrição":nc+" subscrições"}, já ficaram <b>${eur(sv)}</b> na tua conta.`:"";
+  // donut + bars by service type (active only)
+  const by={};A.forEach(r=>{const c=r.scat||"Outros";by[c]=(by[c]||0)+subMo(r)});
+  const segs=Object.keys(by).map(c=>({c,v:by[c],col:subScatC(c)})).sort((a,b)=>b.v-a.v);
+  if(!segs.length){$("#subDonut").innerHTML=$("#subBars").innerHTML=`<p class="muted" style="margin:0;font-size:.88rem">Sem subscrições ativas.</p>`}
+  else{const Rr=58,Cc=2*Math.PI*Rr;let off=0,sv2=`<svg viewBox="0 0 160 160" class="donut" role="img" aria-label="Gasto mensal por tipo de serviço"><circle cx="80" cy="80" r="${Rr}" style="fill:none;stroke:var(--surface-2);stroke-width:20"/>`;
+    segs.forEach(g=>{const len=g.v/tot*Cc;sv2+=`<circle class="sb-seg${S.subCat&&S.subCat!==g.c?" dim":""}" data-subcat="${esc(g.c)}" cx="80" cy="80" r="${Rr}" transform="rotate(-90 80 80)" stroke-dasharray="${Math.max(len-(segs.length>1?2:0),0.01)} ${Cc}" stroke-dashoffset="${-off}" style="fill:none;stroke:${g.col};stroke-width:20"><title>${esc(g.c)}: ${eur(g.v)}/mês (${pct(g.v/tot)})</title></circle>`;off+=len});
+    sv2+=`<text x="80" y="80" text-anchor="middle" style="font-size:17px;font-weight:800;font-family:var(--f-display)">${esc(eur(tot))}</text><text x="80" y="98" text-anchor="middle" style="font-size:10px;fill:var(--ink-2)">/mês</text></svg>`;
+    $("#subDonut").innerHTML=sv2+`<ul>${segs.map(g=>`<li><button type="button" data-subcat="${esc(g.c)}" aria-pressed="${S.subCat===g.c}"><i class="dot" style="background:${g.col}"></i><span>${esc(g.c)}</span><b>${pct(g.v/tot)}</b></button></li>`).join("")}</ul>`;
+    const mx=segs[0].v;$("#subBars").innerHTML=segs.map(g=>{const n=A.filter(r=>(r.scat||"Outros")===g.c).length;return `<button type="button" class="sb-bar" data-subcat="${esc(g.c)}" aria-pressed="${S.subCat===g.c}"><span class="n">${esc(g.c)} <small>${n}</small></span><span class="v">${eur(g.v)}</span><span class="p">${Math.round(g.v/tot*100)}%</span><span class="b"><i style="width:${Math.max(3,g.v/mx*100)}%;background:${g.col}"></i></span></button>`}).join("")}
+  renderSubTip(R,A,tot,all);
+  // 12-month history
+  const ids=new Set(R.map(r=>r.id)),M=[];for(let k=11;k>=0;k--)M.push(shiftYM(m,-k));
+  const hv=M.map(mm=>sum(all.filter(t=>t.type==="out"&&t.date&&t.date.startsWith(mm)&&((t.rec&&ids.has(t.rec))||t.cat==="Subscrições"))));
+  const hmx=Math.max(...hv,1),W=600,H=170,T=14,B=26,bw=W/12;$("#subHistT").textContent=eur(hv.reduce((a,b)=>a+b,0));
+  $("#subHist").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Gasto com subscrições por mês">`+M.map((mm,i)=>{const v=hv[i],bh=v/hmx*(H-T-B),x=i*bw;
+    return `<g class="sb-hb" data-subm="${mm}" tabindex="0" role="button" aria-label="${esc(cap(ymLabel(mm)))}: ${esc(eur(v))}"><rect x="${x}" y="0" width="${bw}" height="${H}" style="fill:transparent"/><rect x="${x+bw*.2}" y="${H-B-Math.max(bh,v?2:0)}" width="${bw*.6}" height="${Math.max(bh,v?2:0)}" rx="5" style="fill:${mm===m?"var(--accent)":"color-mix(in srgb,var(--accent) 45%,var(--surface-2))"}"/><title>${esc(cap(ymLabel(mm)))}: ${esc(eur(v))}</title><text x="${x+bw/2}" y="${H-8}" text-anchor="middle">${MSHORT[+mm.slice(5)-1]}</text></g>`}).join("")+`</svg>`;
+  // upcoming (next 35 days)
+  const lim=iso(new Date(Date.now()+35*864e5)),U=[];A.forEach(r=>recSched(r,ds=>{if(ds>lim)return false;if(ds>=today&&(!r.last||ds>r.last))U.push({r,d:ds})}));U.sort((a,b)=>a.d.localeCompare(b.d));
+  $("#subUpcT").textContent=U.length?eur(U.reduce((s,u)=>s+(+u.r.amount||0),0))+" em 35 dias":"";
+  $("#subUpc").innerHTML=U.length?U.slice(0,8).map(u=>`<button type="button" class="sb-uc" data-sid="${esc(u.r.id)}">${subLogo(u.r)}<b>${esc(u.r.desc)}</b><small>${esc(cap(subWhen(u.d)))}</small><span class="num">${eur(u.r.amount)}</span>${u.r.trial&&u.d===u.r.start?`<small class="sb-trial">1.º pagamento</small>`:""}</button>`).join(""):`<p class="muted" style="margin:0;font-size:.88rem">Nada a pagar nas próximas 5 semanas.</p>`;
+  renderSubCal(R);
+  // recent payments posted by the app
+  const T5=ST_.sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,5);
+  $("#subTxAll").hidden=!T5.length;
+  $("#subTx").innerHTML=T5.length?T5.map(t=>{const r=S.items.get(t.rec)||{desc:t.desc};return `<div class="tx r3" data-subtx="${esc(t.desc||"")}" tabindex="0" role="button">${subLogo(r,"ic sb-logo")}<span class="d"><b>${esc(t.desc)}</b><span>${esc(xDay(t.date))}</span></span><span class="rt"><span class="a out">− ${eur(t.amount)}</span></span></div>`}).join("")
+    :`<p class="muted" style="margin:6px 0;font-size:.88rem">Os pagamentos que a app lançar aparecem aqui.</p>`;
+}
+function renderSubTip(R,A,tot,all){
+  const today=todayISO(),T=[];
+  // trials about to turn paid
+  A.filter(r=>r.trial&&r.start>=today&&subDays(r.start)<=7).forEach(r=>T.push({r,t:`O período grátis de <b>${esc(r.desc)}</b> acaba ${esc(subWhen(r.start))}. Se não a quiseres pagar (${esc(eur(r.amount))}), cancela antes disso.`}));
+  // rarely used, most expensive first
+  const lo=A.filter(r=>r.use==="pouco").sort((a,b)=>subMo(b)-subMo(a))[0];
+  if(lo)T.push({r:lo,t:`Podes poupar <b>${esc(eur(subMo(lo)))}/mês</b> (${esc(eur(subMo(lo)*12))} por ano) cancelando <b>${esc(lo.desc)}</b>. Disseste que a usas pouco.`});
+  // price went up
+  const up=A.find(r=>{const h=(r.hist||[]).slice(-1)[0];return h&&+r.amount>+h.a&&subDays(h.d)>-120});
+  if(up){const h=up.hist.slice(-1)[0];T.push({r:up,t:`<b>${esc(up.desc)}</b> subiu de ${esc(eur(h.a))} para ${esc(eur(up.amount))} a ${esc(xDay(h.d))}. Vale a pena ver se há um plano mais barato.`})}
+  // two services of the same type
+  const g={};A.forEach(r=>{const c=r.scat||"Outros";if(c!=="Outros")(g[c]=g[c]||[]).push(r)});
+  const dup=Object.keys(g).find(c=>g[c].length>1&&["Música","Entretenimento","Armazenamento","IA"].includes(c));
+  if(dup){const l=g[dup];T.push({r:l.slice().sort((a,b)=>subMo(a)-subMo(b))[0],t:`Tens ${l.length} serviços de ${esc(dup)} (${l.map(r=>esc(r.desc)).join(", ")}), ${esc(eur(l.reduce((s,r)=>s+subMo(r),0)))}/mês. Precisas de todos?`})}
+  // weight on income (last 3 full months)
+  const cm=ym(new Date()),M3=[1,2,3].map(k=>shiftYM(cm,-k)),inc=sum(all.filter(t=>t.type==="in"&&t.date&&M3.includes(t.date.slice(0,7))))/3;
+  if(inc>0&&tot>0)T.push({t:`As subscrições levam <b>${pct(tot/inc)}</b> das tuas receitas (média dos últimos 3 meses: ${esc(eur0(inc))}/mês).`});
+  const nu=A.filter(r=>!r.use).length;if(!T.length&&nu)T.push({r:A.find(r=>!r.use),t:`Diz quanto usas cada subscrição (Muito, Às vezes, Pouco) e a app mostra-te onde podes poupar.`});
+  const x=T[0];$("#subTip").hidden=!x;if(!x)return;$("#subTipT").innerHTML=x.t;$("#subTipGo").hidden=!x.r;$("#subTipGo").dataset.sid=x.r?x.r.id:""}
+function renderSubCal(R){
+  const m=ym(new Date()),today=todayISO(),D={};
+  R.filter(r=>{const s=subSt(r);return s==="ativa"||(r.last&&r.last.startsWith(m))}).forEach(r=>recSched(r,ds=>{if(ds.slice(0,7)>m)return false;if(!ds.startsWith(m))return;const s=subSt(r);if(s!=="ativa"&&!(r.last&&ds<=r.last))return;(D[ds]=D[ds]||[]).push(r)}));
+  $("#subCalH").textContent=cap(MONTHS[+m.slice(5)-1]);const mt=Object.values(D).flat().reduce((s,r)=>s+(+r.amount||0),0);$("#subCalT").textContent=mt?eur(mt)+" este mês":"";
+  const first=(new Date(m+"-01T12:00:00").getDay()+6)%7,n=dim(m);let s=`<div class="sb-cal" role="grid" aria-label="Pagamentos de ${esc(ymLabel(m))}">`+["S","T","Q","Q","S","S","D"].map(w=>`<span class="wd" aria-hidden="true">${w}</span>`).join("")+`<span></span>`.repeat(first);
+  for(let d=1;d<=n;d++){const ds=m+"-"+pad(d),L=D[ds]||[],t=L.reduce((a,r)=>a+(+r.amount||0),0);
+    s+=`<button type="button" class="c${ds===today?" t":""}${L.length?" on":""}${ds<today?" past":""}${S.subDay===ds?" sel":""}" data-subday="${ds}" ${L.length?"":"disabled"} aria-label="${d}${L.length?": "+esc(L.map(r=>r.desc).join(", "))+", "+esc(eur(t)):""}"${L.length?` title="${esc(L.map(r=>r.desc+" "+eur(r.amount)).join(" · "))}"`:""}><span>${d}</span>${L.length?`<i>${L.slice(0,3).map(r=>`<em style="background:${subColor(r)}"></em>`).join("")}</i>`:""}</button>`}
+  s+="</div>";const sel=S.subDay&&D[S.subDay];
+  s+=sel?`<div class="sb-cald"><b>${esc(cap(xDay(S.subDay)))}</b>${sel.map(r=>`<span>${esc(r.desc)} · ${eur(r.amount)}</span>`).join("")}</div>`:`<p class="note" style="margin:8px 0 0">Toca num dia marcado para ver o que sai.</p>`;
+  $("#subCal").innerHTML=s}
+
+/* actions */
+function subAct(r,a){const o=Object.assign({},r);
+  if(a==="pause"){o.paused=true;toast(`${r.desc} em pausa. Não sai mais nada até a retomares.`)}
+  else if(a==="resume"||a==="react"){const y=iso(new Date(Date.now()-864e5));let lp=r.last||"";recSched(r,ds=>{if(ds>y)return false;if(ds>lp)lp=ds});o.last=lp||null;o.paused=false;delete o.cancelled;
+    toast(a==="react"?`${r.desc} ativa outra vez. Os meses em que esteve cancelada não são lançados.`:`${r.desc} retomada. Os meses em pausa não são lançados.`)}
+  else if(a==="cancel"){o.paused=true;o.cancelled=todayISO();toast(`${r.desc} cancelada. Poupas ${eur(subMo(r))} por mês.`)}
+  Store.put(o)}
+function closeSubMenu(){const mn=$("#subMenu");if(mn.hidden)return;mn.hidden=true;const b=document.querySelector(`[data-submenu="${CSS.escape(mn.dataset.sid||"")}"]`);if(b){b.setAttribute("aria-expanded","false");b.focus()}}
+function openSubMenu(btn){const r=S.items.get(btn.dataset.submenu);if(!r)return;const mn=$("#subMenu"),s=subSt(r);mn.dataset.sid=r.id;
+  const it=(a,l,cls="")=>`<button type="button" role="menuitem" data-suba="${a}" class="${cls}">${l}</button>`;
+  mn.innerHTML=it("edit","Editar")+(s==="ativa"?it("pause","Pausar")+it("cancel","Cancelar subscrição"):s==="pause"?it("resume","Retomar")+it("cancel","Cancelar subscrição"):it("react","Reativar"))+it("txs","Ver pagamentos")+it("del","Apagar","bad");
+  mn.hidden=false;const b=btn.getBoundingClientRect(),w=mn.offsetWidth,hh=mn.offsetHeight;
+  mn.style.left=Math.max(8,Math.min(innerWidth-w-8,b.right-w))+"px";mn.style.top=(b.bottom+hh+8>innerHeight?Math.max(8,b.top-hh-4):b.bottom+4)+"px";
+  btn.setAttribute("aria-expanded","true");mn.querySelector("button").focus()}
+$("#subMenu").addEventListener("click",e=>{const b=e.target.closest("[data-suba]");if(!b)return;const r=S.items.get($("#subMenu").dataset.sid);closeSubMenu();if(!r)return;const a=b.dataset.suba;
+  if(a==="edit")openSub(r);else if(a==="txs")movFilter({p:"all"},r.desc);
+  else if(a==="del"){if(confirm(`Apagar ${r.desc}?\n\nOs pagamentos já lançados ficam nas transações.`)){Store.del(r.id);toast("Subscrição apagada. Os pagamentos já lançados ficam.")}}
+  else subAct(r,a)});
+$("#subMenu").addEventListener("keydown",e=>{const L=[...$("#subMenu").querySelectorAll("button")],i=L.indexOf(document.activeElement);
+  if(e.key==="Escape"){e.preventDefault();closeSubMenu()}else if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();L[(i+(e.key==="ArrowDown"?1:-1)+L.length)%L.length].focus()}else if(e.key==="Tab")closeSubMenu()});
+document.addEventListener("click",e=>{if(!$("#subMenu").hidden&&!e.target.closest("#subMenu,[data-submenu]"))closeSubMenu()});
+addEventListener("scroll",()=>{if(!$("#subMenu").hidden)$("#subMenu").hidden=true},{passive:true});
+$("#tab-subscricoes").addEventListener("click",e=>{
+  const mb=e.target.closest("[data-submenu]");if(mb){e.stopPropagation();const open=!$("#subMenu").hidden&&$("#subMenu").dataset.sid===mb.dataset.submenu;closeSubMenu();if(!open)openSubMenu(mb);return}
+  const f=e.target.closest("[data-subf]");if(f){S.subF=f.dataset.subf;renderSubs();return}
+  const c=e.target.closest("[data-subcat]");if(c){const v=c.dataset.subcat;S.subCat=v&&S.subCat!==v?v:null;renderSubs();return}
+  if(e.target.closest("[data-subclear]")){S.subF="all";S.subCat=null;S.subQ="";$("#subQ").value="";renderSubs();return}
+  const sg=e.target.closest("[data-subsug]");if(sg){const u=(S.subSug||[])[+sg.dataset.subsug];if(!u)return;const r=u.rec&&S.items.get(u.rec);
+    if(r)openSub(r);else openSub(null,{desc:u.desc,amount:u.amount,acct:u.acct,card:u.card,cat:u.cat==="Subscrições"||!u.cat?"Subscrições":u.cat,start:u.date,every:u.every});return}
+  const dz=e.target.closest("[data-subdis]");if(dz){const u=(S.subSug||[])[+dz.dataset.subdis];if(!u)return;let d=[];try{d=JSON.parse(localStorage.getItem("caderneta.subDismiss")||"[]")}catch(x){}d.push(subNorm(u.desc));try{localStorage.setItem("caderneta.subDismiss",JSON.stringify(d.slice(-60)))}catch(x){}renderSubs();return}
+  const dy=e.target.closest("[data-subday]");if(dy){S.subDay=S.subDay===dy.dataset.subday?null:dy.dataset.subday;renderSubCal(subs());return}
+  const hb=e.target.closest("[data-subm]");if(hb){S.month=hb.dataset.subm;movFilter({p:"month",cat:"Subscrições"});render();return}
+  const tx=e.target.closest("[data-subtx]");if(tx){movFilter({p:"all"},tx.dataset.subtx);return}
+  const rw=e.target.closest("[data-sid]");if(rw){const r=S.items.get(rw.dataset.sid);if(r)openSub(r)}});
+$("#tab-subscricoes").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches(".sb-r[data-sid],[data-subm],[data-subtx]")){e.preventDefault();e.target.click()}});
+$("#subQ").addEventListener("input",e=>{S.subQ=e.target.value;renderSubs()});
+$("#subSort").addEventListener("change",e=>{S.subSort=e.target.value;try{localStorage.setItem("caderneta.subSort",S.subSort)}catch(x){}renderSubs()});
+$("#subTipGo").onclick=()=>{const r=S.items.get($("#subTipGo").dataset.sid);if(r)openSub(r)};
+$("#subTxAll").onclick=()=>movFilter({p:"all",cat:"Subscrições"});
+$("#subCsv").onclick=()=>{const R=subs();if(!R.length)return;const q=v=>{v=String(v??"");return /[";\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v},n=v=>String(Math.round((+v||0)*100)/100).replace(".",",");
+  const rows=[["Serviço","Plano","Tipo","Estado","Valor","Pagamento","Valor mensal","Próximo pagamento","Pago com","Categoria"]].concat(R.map(r=>{const s=subSt(r);return [r.desc,r.plan||"",r.scat||"Outros",SUB_ST[s][1],n(r.amount),SUB_EV[+r.every||1]||"",n(subMo(r)),s==="ativa"?recNextOf(r)||"":"",subPayName(r),r.cat||""]}));
+  const b=new Blob(["﻿"+rows.map(x=>x.map(q).join(";")).join("\n")],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="subscricoes-"+todayISO()+".csv";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);toast("Lista exportada")};
+
+/* dialog */
+$("#sbScat").innerHTML=SUB_CATS.map(([c])=>`<option>${esc(c)}</option>`).join("");
+$("#sbCat").innerHTML=OUT_CATS.map(([c])=>`<option>${esc(c)}</option>`).join("");
+$("#sbKnown").innerHTML=[...new Set(SUB_KNOWN.map(k=>k[1]))].map(n=>`<option value="${esc(n)}">`).join("");
+function subUse(v){S.subUse=v||null;document.querySelectorAll("#sbUse [data-use]").forEach(b=>{const on=b.dataset.use===S.subUse;b.setAttribute("aria-pressed",String(on));b.setAttribute("aria-checked",String(on))})}
+$("#sbUse").addEventListener("click",e=>{const b=e.target.closest("[data-use]");if(b){subUse(S.subUse===b.dataset.use?null:b.dataset.use);subPrev()}});
+function subForm(){const old=S.editSub&&S.items.get(S.editSub),v=parseNum($("#sbAmt").value),pay=$("#sbPay").value,k=pay.startsWith("c:")&&S.items.get(pay.slice(2));
+  let start=$("#sbStart").value;if(old&&start===S.subStart0&&old.start)start=old.start;
+  return Object.assign({},old||{},{type:"out",sub:true,desc:$("#sbName").value.trim(),plan:$("#sbPlan").value.trim()||undefined,amount:v>0?Math.round(v*100)/100:0,every:+$("#sbEvery").value||1,start,shown:$("#sbStart").value,
+    until:$("#sbUntil").value||undefined,scat:$("#sbScat").value,cat:$("#sbCat").value,acct:k?k.acct:pay.startsWith("a:")?pay.slice(2):undefined,card:k?k.id:undefined,use:S.subUse||undefined,trial:$("#sbTrial").checked||undefined,from:undefined,to:undefined})}
+function subPrev(){const r=subForm(),el=$("#sbPrev"),today=todayISO(),P=[];
+  $("#sbLogo").innerHTML=subLogo({desc:r.desc||"?",color:r.color});$("#sbPN").textContent=r.desc||"Serviço";$("#sbPS").textContent=[r.plan,r.amount?eur(r.amount)+" "+(SUB_EV[r.every]||"").toLowerCase():"",r.scat].filter(Boolean).join(" · ");
+  if(!r.shown){el.innerHTML="";return}
+  if(r.until&&r.until<r.shown.slice(0,7)){el.innerHTML=`<span style="color:var(--out)">O fim tem de ser depois do próximo pagamento.</span>`;return}
+  const D=r.paused?[]:recDue(r,today),nx=recNextOf(Object.assign({},r,{last:D.length?D[D.length-1]:r.last}));
+  if(r.cancelled)P.push("Está cancelada: não sai nada. Usa Reativar no menu ⋮ para voltar a ativá-la.");else if(r.paused)P.push("Está em pausa: não sai nada até a retomares.");
+  else if(D.length)P.push(D.length===1?`Ao ${S.editSub?"guardar":"adicionar"}, a app lança já o pagamento de <b>${esc(xDay(D[0]))}</b>.`:`Ao ${S.editSub?"guardar":"adicionar"}, a app lança já <b>${D.length} pagamentos</b> (${D.slice(0,4).map(d=>esc(xDay(d))).join(", ")}${D.length>4?"…":""}).`);
+  if(!r.paused&&nx)P.push(`${D.length?"Depois, o próximo":"O próximo"} é a <b>${esc(xDay(nx))}</b>${r.trial&&!D.length?" (o primeiro, quando acaba o período grátis)":""}. Aparece no sino 3 dias antes.`);
+  if(r.amount)P.push(`Custa <b>${esc(eur(r.amount/r.every))}/mês</b>, ${esc(eur(r.amount*12/r.every))} por ano.`);
+  // the same payment typed by hand: posting it again would count it twice
+  const nm=subNorm(r.desc),dupT=nm&&D.length&&txs().find(t=>t.type==="out"&&!t.rec&&subNorm(t.desc)===nm&&D.some(d=>Math.abs(subDays(d)-subDays(t.date))<=5));
+  if(dupT)P.push(`<span style="color:var(--warn)">Já registaste “${esc(dupT.desc)}” a ${esc(xDay(dupT.date))}. Se é o mesmo pagamento, escolhe a data do próximo para não ficar a dobrar.</span>`);
+  const dupS=nm&&subs().find(x=>x.id!==S.editSub&&subNorm(x.desc)===nm&&subSt(x)!=="cancel");if(dupS)P.push(`<span style="color:var(--warn)">Já tens uma subscrição com este nome.</span>`);
+  if(S.editSub)P.push("Mudar o valor ou a conta só afeta os próximos pagamentos.");
+  el.innerHTML=P.map(p=>`<span>${p}</span>`).join("")}
+["#sbAmt","#sbStart","#sbEvery","#sbUntil","#sbPlan","#sbPay","#sbScat","#sbTrial"].forEach(s=>$(s).addEventListener("input",subPrev));
+$("#sbName").addEventListener("input",()=>{const k=subKnown($("#sbName").value);if(k&&!S.editSub){$("#sbScat").value=k[2];if(k[2]==="Telecomunicações")$("#sbCat").value="Contas"}subPrev()});
+function openSub(r,pre){closeSubMenu();const A=accts(),K=cards().filter(k=>A.some(a=>a.id===k.acct)),p=r||pre||{},conv=r&&!r.sub;S.editSub=r?r.id:null;
+  $("#subTitle").textContent=conv?"Marcar como subscrição":r?"Editar subscrição":"Nova subscrição";$("#sbSubmit").textContent=conv?"Guardar como subscrição":r?"Guardar":"Adicionar";$("#sbDel").hidden=!r||conv;
+  $("#sbPay").innerHTML=`<option value="">Sem conta</option>`+A.map(a=>`<option value="a:${esc(a.id)}">${esc(a.name)}${a.type==="Cartão de crédito"?" (crédito)":a.inst?" · "+esc(a.inst):""}</option>`).join("")+K.map(k=>`<option value="c:${esc(k.id)}">${esc(cardName(k))} (débito)</option>`).join("");
+  $("#sbPayL").hidden=!A.length;let la="";try{la=localStorage.getItem("caderneta.acct")||""}catch(e){}
+  const kOk=p.card&&K.some(k=>k.id===p.card),aOk=p.acct&&A.some(a=>a.id===p.acct);$("#sbPay").value=kOk?"c:"+p.card:aOk?"a:"+p.acct:!r&&A.some(a=>a.id===la)?"a:"+la:"";
+  const k=subKnown(p.desc);$("#sbName").value=p.desc||"";$("#sbPlan").value=p.plan||"";$("#sbAmt").value=p.amount?numStr(p.amount):"";$("#sbEvery").value=String(p.every||1);$("#sbUntil").value=p.until||"";
+  $("#sbScat").value=p.scat||(k?k[2]:"Outros");$("#sbCat").value=p.cat&&OUT_CATS.some(c=>c[0]===p.cat)?p.cat:"Subscrições";$("#sbTrial").checked=!!p.trial;subUse(p.use);
+  const st=r?(recNextOf(r)||r.start):(p.start||todayISO());$("#sbStart").value=st;S.subStart0=r?st:null;$("#sbStartL").textContent=r||p.start?"Próximo pagamento":"Primeiro pagamento";
+  const b=$("#sbDel");delete b.dataset.sure;b.textContent="Apagar";subPrev();$("#subDlg").showModal();(r?$("#sbAmt"):$("#sbName")).focus()}
+document.addEventListener("click",e=>{if(e.target.closest("[data-subnew]"))openSub(null)});
+$("#subForm").addEventListener("submit",e=>{e.preventDefault();const r=subForm(),old=S.editSub&&S.items.get(S.editSub);
+  if(!r.desc){toast("Escreve o nome do serviço");return $("#sbName").focus()}
+  if(!(r.amount>0)){toast("Escreve um valor maior que zero");return $("#sbAmt").focus()}
+  if(!r.shown){toast("Escolhe a data do próximo pagamento");return $("#sbStart").focus()}
+  if(r.until&&r.until<r.shown.slice(0,7)){toast("O fim tem de ser depois do próximo pagamento");return $("#sbUntil").focus()}
+  const o=Object.assign(r,{id:old?old.id:newId("r"),kind:"rec",created:old?old.created:new Date().toISOString()});delete o.shown;
+  if(!old)o.last=null;
+  if(old&&old.amount&&+old.amount!==o.amount)o.hist=[...(old.hist||[]),{d:todayISO(),a:+old.amount}].slice(-12);
+  if(!o.color){const kk=subKnown(o.desc);if(!kk)o.color=subColor(o)}
+  Object.keys(o).forEach(k=>o[k]===undefined&&delete o[k]);
+  toast(!old?"Subscrição adicionada. A app lança cada pagamento sozinha.":!old.sub?"Marcada como subscrição":"Subscrição guardada");Store.put(o);$("#subDlg").close()});
+$("#sbDel").onclick=()=>{const r=S.items.get(S.editSub),b=$("#sbDel");if(!r)return;
+  if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar"},4000);return}
+  delete b.dataset.sure;b.textContent="Apagar";Store.del(r.id);$("#subDlg").close();toast("Subscrição apagada. Os pagamentos já lançados ficam.")};
+
+/* bell: renewals, yearly charges and free trials ending (source registry from the notifications feature, if present) */
+setTimeout(()=>{try{if(typeof NOTIF_SRC==="undefined"||NOTIF_SRC.some(x=>x.type==="sub"&&x.own))return;
+  NOTIF_SRC.push({type:"sub",own:true,label:"Subscrições a renovar",desc:"Pagamentos de subscrições nos próximos dias e fim de períodos grátis.",fn:()=>{const out=[];
+    subs().filter(r=>subSt(r)==="ativa").forEach(r=>{const d=recNextOf(r);if(!d)return;const n=subDays(d),ev=+r.every||1,tri=r.trial&&d===r.start;
+      if(tri?n<=7:ev>1?n<=14:n<=3)out.push({id:"sub:"+r.id+":"+d,lvl:tri||ev>1?"warn":"info",date:d,title:tri?`Acaba o período grátis de ${r.desc}`:`${r.desc} renova ${subWhen(d)}`,sub:tri?`1.º pagamento ${subWhen(d)}`:(SUB_EV[ev]||"")+(subPayName(r)?" · "+subPayName(r):""),amt:+r.amount,tile:subLogo(r,"mini-ic sb-logo"),go:"subscricoes"})});
+    return out}})}catch(e){}},0);
 
 /* ---------- budgets: settings.budgets = {category: monthly limit} ---------- */
 function renderBudgets(){
@@ -3597,8 +4032,10 @@ mk("PPR","PPR","PPR",1,2400,2635,ago(26),5),
   out.push(ac("Conta à ordem","Millennium bcp","Banco",2420.18,1),ac("Conta poupança","Banco CTT","Poupança",1000,2),ac("Conta corretora","XTB","Corretora",892.32,3),ac("Dinheiro físico","Carteira","Dinheiro",180,4),ac("Cartão de crédito","Santander","Cartão de crédito",-532.4,5));
   const lastOn=d=>{const x=iso(new Date(now.getFullYear(),now.getMonth(),d));return x<=today?x:iso(new Date(now.getFullYear(),now.getMonth()-1,d))};
   const rc=(k,type,amount,desc,cat,d,extra)=>Object.assign({id:"rec-demo-"+k,kind:"rec",type,amount,desc,cat,acct:"acct-demo-1",start:iso(new Date(now.getFullYear(),now.getMonth()-4,d)),every:1,last:lastOn(d),created:"2000-01-0"+k,demo:true},extra||{});
-  out.push(rc(1,"in",1650,"Salário","Salário",1),rc(2,"out",650,"Renda","Casa",2),rc(3,"out",32,"Ginásio","Subscrições",3),
-    rc(4,"xfer",150,"Poupança do mês",undefined,2,{acct:undefined,from:"acct-demo-1",to:"acct-demo-2"}));
+  out.push(rc(1,"in",1650,"Salário","Salário",1),rc(2,"out",650,"Renda","Casa",2),rc(3,"out",32,"Ginásio","Subscrições",3,{sub:true,scat:"Saúde e desporto",plan:"Mensalidade",use:"muito"}),
+    rc(4,"xfer",150,"Poupança do mês",undefined,2,{acct:undefined,from:"acct-demo-1",to:"acct-demo-2"}),
+    rc(5,"out",7.99,"Netflix","Subscrições",15,{sub:true,scat:"Entretenimento",plan:"Standard",use:"pouco"}),rc(6,"out",6.99,"Spotify","Subscrições",12,{sub:true,scat:"Música",plan:"Individual",use:"muito"}),
+    rc(7,"out",19.99,"Google One","Subscrições",20,{sub:true,scat:"Armazenamento",plan:"2 TB, anual",every:12,use:"muito"}));
   const st=settings(),hasB=st.budgets&&Object.keys(st.budgets).length;
   out.push(Object.assign({},st,{id:"settings",kind:"settings",opening:st.opening||4200,demoOpening:!st.opening},hasB?{}:{budgets:{Supermercado:400,"Restauração":150,Transportes:150,Lazer:90,Compras:120,"Subscrições":60},demoBudgets:true}));
   return out;
@@ -3753,7 +4190,7 @@ function render(){
   fillAccts();
   $("#demoBanner").hidden=![...S.items.values()].some(o=>o.demo);
   renderResumo();renderMov();renderInv();
-  const hasTx=txs().length>0;$("#relEmpty").hidden=hasTx||S.mode==="loading";$("#relBody").hidden=!hasTx;renderGoals();renderStays();renderAccts(txs());renderXfers();renderCards();renderBudgets();renderMonthSel();renderBell();renderRecs();if(hasTx)renderCompare();clearTimeout(S.recTm);S.recTm=setTimeout(runRecurring,60);
+  const hasTx=txs().length>0;$("#relEmpty").hidden=hasTx||S.mode==="loading";$("#relBody").hidden=!hasTx;renderGoals();renderStays();renderAccts(txs());renderXfers();renderCards();renderBudgets();renderMonthSel();renderBell();renderRecs();renderSubs();if(hasTx)renderCompare();clearTimeout(S.recTm);S.recTm=setTimeout(runRecurring,60);
   const demo=[...S.items.values()].some(o=>o.demo);
   document.querySelectorAll('[data-demo="load"]').forEach(b=>b.hidden=demo);document.querySelectorAll('[data-demo="clear"]').forEach(b=>b.hidden=!demo);
   $("#storeNote").textContent=S.mode==="local"?"Os teus dados ficam guardados só neste navegador, neste aparelho. Exporta uma cópia de vez em quando e guarda-a num sítio seguro (Google Drive, iCloud, email). É também assim que passas os dados para outro aparelho.":"A abrir…";renderBackupNote();
