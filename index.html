@@ -583,6 +583,19 @@ body:not([data-tab="movimentos"]):not([data-tab="orcamentos"]):not([data-tab="re
 .dmode{display:inline-flex;gap:2px;margin-left:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:2px;vertical-align:middle}
 .dmode button{border:0;background:transparent;border-radius:6px;padding:2px 8px;font-size:.74rem;font-weight:600;color:var(--ink-2);cursor:pointer}
 .dmode button[aria-checked="true"]{background:var(--surface);color:var(--accent);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.gauto{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:10px;background:var(--surface-2)}
+.gauto .gah{display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:700;font-size:.9rem}
+.gauto .gah label{display:flex;flex-direction:row;align-items:center;gap:8px;cursor:pointer;margin:0}
+.gauto [hidden]{display:none!important}
+.gauto .row3{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.gauto .gah input{width:18px;height:18px;accent-color:var(--accent)}
+.gauto .gest{margin:0;font-size:.84rem;color:var(--ink-2)}
+.gauto .gest b{color:var(--ink)}
+.glog{display:flex;flex-direction:column;gap:2px;max-height:180px;overflow-y:auto;margin:0;padding:0;list-style:none}
+.glog li{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;padding:5px 2px;border-bottom:1px solid var(--line)}
+.glog li span{color:var(--ink-2)}
+.glog li b{font-variant-numeric:tabular-nums}
+.glog li.skip b{color:var(--warn);font-weight:600}
 .gpaid-h{grid-column:1/-1;margin:14px 0 0;font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2)}
 .goal.paid .pbar i{background:var(--in)}
 .goal.paid .gp{color:var(--in);font-size:.8rem}
@@ -1704,6 +1717,7 @@ dialog.wrapdlg[open]{display:flex}
       <details><summary>O que é o lucro real e o lucro potencial?</summary><p>Lucro real é o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. Lucro potencial é a valorização do que ainda tens; só passa a real quando vendes.</p></details>
       <details><summary>Como funcionam as contas?</summary><p>Em Contas escreves o saldo de hoje de cada conta. Cada movimento que registares nessa conta soma ou tira ao saldo sozinho.</p></details>
       <details><summary>Como ligo uma meta a uma conta ou cartão?</summary><p>Ao criar ou editar uma meta, escolhe em “Onde está o dinheiro” a conta ou o cartão onde guardas esse dinheiro. Em Contas passas a ver o saldo total e o saldo disponível: cada valor que juntas à meta sai do disponível, mas o total fica igual, porque o dinheiro continua lá. Se tirares dinheiro da meta, volta ao disponível. Não dá para pôr numa meta mais do que o disponível.</p></details>
+      <details><summary>Como ponho uma meta a juntar sozinha?</summary><p>Ao criar ou editar a meta, liga “Juntar automaticamente” e escolhe por dia, por semana ou por mês. Em “Valor fixo” escreves quanto queres pôr de cada vez e a app diz quando chegas ao objetivo. Em “Calcular para chegar a tempo” a app divide o que falta pelo tempo até ao prazo e ajusta o valor se te atrasares ou juntares a mais. Quando chega ao objetivo, para sozinha. Se a conta da meta não tiver saldo disponível, salta essa entrega e avisa no sino. Podes pôr em pausa a qualquer momento. O histórico aparece quando tocas na meta.</p></details>
       <details><summary>Já comprei o que estava a juntar. E agora?</summary><p>Toca na meta e carrega em “✓ Paga”. Escreve quanto pagaste, a categoria, a data e com que conta. A app regista a despesa em Transações, o dinheiro da meta deixa de estar reservado e a meta passa para “Pagas”. Se te enganaste, abre a meta paga e carrega em “Desfazer pagamento”.</p></details>
       <details><summary>Porque não me deixa registar uma despesa?</summary><p>Uma conta não pode ficar com saldo negativo. Se a despesa ou a transferência passa do saldo disponível (o saldo menos o que está em metas), a app não a grava e diz quanto tens. Confirma o saldo da conta em Contas ou tira dinheiro de uma meta. Os cartões de crédito são a exceção: o saldo deles é o que deves.</p></details>
       <details><summary>Como controlo os gastos quando estou fora?</summary><p>Em Estadias cria uma estadia com o dia em que chegas, o dia em que voltas e, se quiseres, o dinheiro que puseste de parte. Todas as despesas desses dias contam sozinhas; se pagas a estadia com uma conta ou cartão próprio, escolhe essa conta para contar só essa. Num movimento que não tem nada a ver (a renda de cá, por exemplo) carrega em “Não contar”. Enquanto estás fora, o Dashboard mostra quanto já gastaste e quanto podes gastar por dia até voltares.</p></details>
@@ -1899,6 +1913,18 @@ dialog.wrapdlg[open]{display:flex}
     </div>
     <div id="gPayL" hidden><span class="flabel" id="gPayLbl">Onde está o dinheiro <span style="font-weight:500">(conta ou cartão)</span></span><div class="paypick" id="gPay" role="radiogroup" aria-labelledby="gPayLbl"></div><p class="note" style="margin:6px 0 0">O que pões na meta continua no saldo total da conta, mas deixa de contar no saldo disponível.</p></div>
     <p class="note" style="margin:0">A data é opcional e pode ser só o mês ou um dia certo. Com data, a app diz-te quanto tens de pôr de lado por mês. Sem data, estima quando lá chegas ao ritmo a que tens poupado.</p>
+    <div class="gauto" id="gAuto">
+      <div class="gah"><label for="gAutoOn"><input type="checkbox" id="gAutoOn">Juntar automaticamente</label><label for="gAutoPause" id="gAutoPauseL" style="font-weight:600;font-size:.82rem" hidden><input type="checkbox" id="gAutoPause">Em pausa</label></div>
+      <div id="gAutoBody" hidden style="flex-direction:column;gap:10px">
+        <div class="paypick" id="gAutoMode" role="radiogroup" aria-label="Como calcular o valor"><button type="button" role="radio" aria-checked="true" data-gam="fix" class="none">Valor fixo</button><button type="button" role="radio" aria-checked="false" data-gam="calc" class="none">Calcular para chegar a tempo</button></div>
+        <div class="row3">
+          <label for="gAutoAmt" id="gAutoAmtL">Quanto (€)<input id="gAutoAmt" inputmode="decimal" placeholder="0,00"></label>
+          <label for="gAutoEvery">De quanto em quanto<select id="gAutoEvery"><option value="d">Por dia</option><option value="w">Por semana</option><option value="m" selected>Por mês</option></select></label>
+          <label for="gAutoStart">A partir de<input id="gAutoStart" type="date"></label>
+        </div>
+        <p class="gest" id="gAutoEst" aria-live="polite"></p>
+      </div>
+    </div>
     <div class="actions"><button class="btn primary" type="submit" id="gSubmit">Criar meta</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="gUnpay" hidden>Desfazer pagamento</button><button class="btn ghost" type="button" id="gDel" style="margin-left:auto;color:var(--out)" hidden>Apagar meta</button></div>
   </form>
 </dialog>
@@ -2070,6 +2096,7 @@ dialog.wrapdlg[open]{display:flex}
     <p class="muted" id="gAddInfo" style="margin:0;font-size:.88rem"></p>
     <label for="gAddAmt">Valor (€)<input id="gAddAmt" inputmode="decimal" placeholder="0,00"></label>
     <p class="note" style="margin:0">Para tirar dinheiro da meta, escreve um valor negativo.</p>
+    <div id="gLogW" hidden><span class="flabel">Histórico</span><ul class="glog" id="gLog"></ul></div>
     <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="gAddPaid" style="margin-left:auto">✓ Paga</button><button class="btn ghost" type="button" id="gAddEdit">Editar meta</button></div>
   </form>
 </dialog>
@@ -2760,13 +2787,14 @@ function renderGoals(){
   if(!G.length){$("#goals").innerHTML=$("#goalsAll").innerHTML=`<p class="muted" style="margin:0">Dá um nome ao que queres juntar (uma viagem, o fundo de emergência, um carro) e acompanha aqui quanto falta.</p><div class="actions"><button class="btn" type="button" data-gnew>Criar a primeira meta</button></div>`;return}
   const row=g=>{const t=+g.target||0,sv=+g.saved||0,p=t?Math.min(1,sv/t):0,r=goalPlan(g,avg);
     const ga=goalAcct(g),gk=ga&&g.card&&S.items.get(g.card),where=ga?`<span class="gacc">${gk?cardTile("mini-ic"):""}${esc(gk&&gk.kind==="card"?cardName(gk):ga.name)}</span>`:"";
-    const side=(r.need?`${eur0(r.need)}/mês${avg>0&&r.need>avg*1.05?" "+chip("warn","acima do ritmo"):""}`:"")+(r.need&&where?" · ":"")+where;
+    const au=g.auto&&!g.auto.done&&!r.done?`<span title="${g.auto.paused?"Entregas automáticas em pausa":"Entregas automáticas"}">${g.auto.paused?"⏸ ":"↻ "}${g.auto.mode==="calc"?"a tempo":eur0(g.auto.amt)}${GA_EV[g.auto.every]}</span>`:"";
+    const side=[au||(r.need?`${eur0(r.need)}/mês${avg>0&&r.need>avg*1.05?" "+chip("warn","acima do ritmo"):""}`:""),where].filter(Boolean).join(" · ");
     return `<div class="goal" data-id="${esc(g.id)}" tabindex="0" role="button" title="Juntar dinheiro ou editar">${goalTile(g.icon)}<div class="gt"><b>${esc(g.name)}${g.demo?'<span class="demo-tag">exemplo</span>':""}</b><span class="amt">${eur0(sv)} / ${eur0(t)}</span></div><b class="gp">${Math.round(p*100)}%</b><span class="pbar"><i style="width:${p*100}%"></i></span><span class="gf"><span>${goalLeft(r)}${g.due&&g.due.length>7&&!r.done?" · até "+esc(g.due.split("-").reverse().join("/")):""}</span><span>${side}</span></span></div>`};
   $("#goals").innerHTML=G.slice(0,4).map(row).join("");$("#goalsAll").innerHTML=G.map(row).join("")+paidH;
 }
 function openGoal(g){S.editGoal=g?g.id:null;$("#goalTitle").textContent=g?(g.paid?"Meta paga":"Editar meta"):"Nova meta";$("#gUnpay").hidden=!(g&&g.paid);$("#gSubmit").textContent=g?"Guardar":"Criar meta";$("#gDel").hidden=!g;
   $("#gName").value=g?g.name:"";$("#gTarget").value=g?numStr(g.target):"";$("#gSaved").value=g&&+g.saved?numStr(g.saved):"";setDueMode(g&&g.due&&g.due.length>7?"d":"m",g&&g.due||"");
-  pickGoalIc(g?g.icon:"Emergência");S.gPay=g&&goalAcct(g)?(g.card&&S.items.get(g.card)&&S.items.get(g.card).acct===g.acct?"c:"+g.card:"a:"+g.acct):"";renderGPay();$("#goalDlg").showModal();$("#gName").focus()}
+  pickGoalIc(g?g.icon:"Emergência");S.gPay=g&&goalAcct(g)?(g.card&&S.items.get(g.card)&&S.items.get(g.card).acct===g.acct?"c:"+g.card:"a:"+g.acct):"";renderGPay();gaFill(g);$("#goalDlg").showModal();$("#gName").focus()}
 /* where the goal's money sits: an account (not credit cards) or a debit card (its account) */
 function renderGPay(){const A=accts().filter(a=>a.type!=="Cartão de crédito"),K=cards().filter(k=>A.some(a=>a.id===k.acct)),v=S.gPay||"";
   $("#gPayL").hidden=!A.length;
@@ -2776,10 +2804,73 @@ $("#gPay").addEventListener("click",e=>{const x=e.target.closest("[data-gpay]");
 function pickGoalIc(k){S.goalIc=k;$("#gIcons").innerHTML=GOAL_IC.map(([n,c,d])=>`<button type="button" role="radio" aria-checked="${n===k}" aria-label="${n}" title="${n}" data-gic="${n}" style="background:${c}">${SVG(d)}</button>`).join("")}
 $("#gIcons").addEventListener("click",e=>{const b=e.target.closest("[data-gic]");if(b)pickGoalIc(b.dataset.gic)});
 $("#goalNew").onclick=()=>openGoal(null);
-function openGAdd(g){S.addGoal=g.id;$("#gAddTitle").textContent="Juntar a "+g.name;const ga=goalAcct(g);$("#gAddInfo").innerHTML=`Já tens ${eur(g.saved)} de ${eur(g.target)}.`+(ga?` O dinheiro fica em <b>${esc(ga.name)}</b>, onde tens <b>${eur(acctAvail(ga,txs()))}</b> disponíveis.`:"");$("#gAddAmt").value="";$("#gAddDlg").showModal();$("#gAddAmt").focus()}
+function openGAdd(g){S.addGoal=g.id;$("#gAddTitle").textContent="Juntar a "+g.name;const ga=goalAcct(g);$("#gAddInfo").innerHTML=`Já tens ${eur(g.saved)} de ${eur(g.target)}.`+(ga?` O dinheiro fica em <b>${esc(ga.name)}</b>, onde tens <b>${eur(acctAvail(ga,txs()))}</b> disponíveis.`:"");$("#gAddAmt").value="";
+  {const L=(g.log||[]).slice(-30).reverse(),A=g.auto;$("#gLogW").hidden=!L.length&&!A;
+    $("#gLog").innerHTML=(A?`<li><span>${A.done?"Objetivo atingido a "+A.done.split("-").reverse().join("/")+". Entregas paradas.":A.paused?"Entregas automáticas em pausa":"Automático: "+(A.mode==="calc"?"calculado para chegar a tempo":eur(A.amt))+GA_EV[A.every]+(()=>{const e=gaEta(g,A,A.last||isoD(new Date(new Date(A.start+"T12:00:00")-864e5)));return e?" · acaba a "+e[0].split("-").reverse().join("/"):""})()}</span></li>`:"")+
+      L.map(x=>`<li class="${x.t==="skip"?"skip":""}"><span>${x.d.split("-").reverse().join("/")} · ${x.t==="auto"?"automático":x.t==="skip"?"automático sem saldo":"à mão"}</span><b>${x.t==="skip"?"não juntou "+eur(x.a):(x.a<0?"− ":"+ ")+eur(Math.abs(x.a))}</b></li>`).join("")}
+  $("#gAddDlg").showModal();$("#gAddAmt").focus()}
 ["#goals","#goalsAll"].forEach(sel=>{const go=e=>{const r=e.target.closest(".goal");if(!r)return;const g=S.items.get(r.dataset.id);if(g)(g.paid?openGoal:openGAdd)(g)};
   $(sel).addEventListener("click",go);$(sel).addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("goal")){e.preventDefault();go(e)}})});
 document.addEventListener("click",e=>{if(e.target.closest("[data-gnew]"))openGoal(null)});
+/* automatic contributions (goal.auto) */
+const GA_EV={d:"/dia",w:"/semana",m:"/mês"},GA_EVN={d:["dia","dias"],w:["semana","semanas"],m:["mês","meses"]};
+const isoD=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+/* k-th date (from 0) of a schedule starting at s; monthly keeps the start day, clamped to short months */
+function gaNth(s,ev,k){const[y,m,d]=s.split("-").map(Number);
+  if(ev==="m"){const L=new Date(y,m+k,0).getDate();return isoD(new Date(y,m-1+k,Math.min(d,L)))}
+  return isoD(new Date(y,m-1,d+(ev==="w"?7:1)*k))}
+/* dates after `after` up to `to` (inclusive) */
+function gaDates(A,after,to){const o=[];if(!A.start)return o;for(let k=0;k<5000;k++){const d=gaNth(A.start,A.every,k);if(d>to)break;if(d>after)o.push(d)}return o}
+const goalDueEnd=g=>!g.due?"":g.due.length>7?g.due:(()=>{const[y,m]=g.due.split("-").map(Number);return isoD(new Date(y,m,0))})();
+/* amount for one contribution on date d; calc mode spreads what's left over the dates left until the deadline */
+function gaAmt(g,A,d,rem){if(A.mode!=="calc")return Math.min(+A.amt||0,rem);
+  const end=goalDueEnd(g);if(!end||d>end)return rem;const k=Math.max(1,gaDates(A,isoD(new Date(new Date(d+"T12:00:00")-864e5)),end).length);
+  return Math.min(rem,Math.ceil(rem/k*100)/100)}
+/* when the target is reached at this pace: [date, count] */
+function gaEta(g,A,from){let rem=Math.round(((+g.target||0)-(+g.saved||0))*100)/100;if(rem<=0)return null;
+  let n=0;for(let k=0;k<5000;k++){const d=gaNth(A.start,A.every,k);if(d<=from)continue;const a=gaAmt(g,A,d,rem);if(!(a>0))return null;rem=Math.round((rem-a)*100)/100;n++;if(rem<=0)return[d,n,k];if(n>3000)return null}return null}
+function runGoalAuto(){if(S.mode==="loading"||S.gaBusy)return;
+  const today=todayISO(),ups=[],spent={},names=[],miss=[],fin=[];let n=0;
+  goalsList().forEach(g=>{const A=g.auto;if(!A||A.paused||A.done||g.demo||!A.start)return;if(A.mode!=="calc"&&!(+A.amt>0))return;
+    const D=gaDates(A,A.last||"",today);if(!D.length)return;
+    const ga=goalAcct(g),lim=ga&&noNeg(ga);let sv=+g.saved||0,last=A.last,done=null,ms=null,got=0;const log=(g.log||[]).slice();
+    for(const d of D){const rem=Math.round(((+g.target||0)-sv)*100)/100;if(rem<=.005){done=d;break}
+      const a=Math.round(gaAmt(g,A,d,rem)*100)/100;last=d;if(!(a>0))continue;
+      if(lim){const av=availRaw(ga,txs())-(spent[ga.id]||0);if(a>av+.005){ms=d;log.push({d,a,t:"skip"});continue}spent[ga.id]=(spent[ga.id]||0)+a}
+      sv=Math.round((sv+a)*100)/100;log.push({d,a,t:"auto"});got++;
+      if(sv>=(+g.target||0)-.005){done=d;break}}
+    const nA=Object.assign({},A,{last});if(done){nA.done=done;fin.push(g.name)}if(ms){nA.miss=ms;miss.push(g.name)}
+    ups.push(Object.assign({},g,{saved:sv,log:log.slice(-200),auto:nA}));if(got){n+=got;names.push(g.name)}});
+  if(!ups.length)return;
+  S.gaBusy=true;Promise.resolve(Store.putMany(ups)).finally(()=>{S.gaBusy=false});
+  if(fin.length)toast(`${fin[0]}: objetivo atingido! As entregas automáticas pararam.`);
+  else if(miss.length)toast(`Sem saldo disponível para a entrega automática de ${miss[0]}. Fica para a próxima.`);
+  else if(n)toast(n===1?`Juntado sozinho para ${names[0]}`:`${n} entregas automáticas para ${[...new Set(names)].join(", ")}`)}
+setInterval(()=>{if(!document.hidden)runGoalAuto()},30*60e3);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)runGoalAuto()});
+/* form */
+function gaMode(m){S.gaMode=m;document.querySelectorAll("#gAutoMode [data-gam]").forEach(b=>b.setAttribute("aria-checked",String(b.dataset.gam===m)));$("#gAutoAmtL").hidden=m==="calc";gaEst()}
+function gaOn(){const on=$("#gAutoOn").checked;$("#gAutoBody").hidden=!on;$("#gAutoBody").style.display=on?"flex":"none";$("#gAutoPauseL").hidden=!on||!S.editGoal;gaEst()}
+function gaForm(){const t=parseNum($("#gTarget").value),sv=$("#gSaved").value.trim()?parseNum($("#gSaved").value):0,due=$("#gDue").value;
+  return{g:{target:t,saved:sv,due},A:{mode:S.gaMode||"fix",amt:parseNum($("#gAutoAmt").value),every:$("#gAutoEvery").value,start:$("#gAutoStart").value||todayISO()}}}
+function gaEst(){if(!$("#gAutoOn").checked){$("#gAutoEst").innerHTML="";return}
+  const{g,A}=gaForm(),old=S.editGoal&&S.items.get(S.editGoal),from=old&&old.auto&&old.auto.last&&old.auto.start===A.start&&old.auto.every===A.every?old.auto.last:isoD(new Date(new Date(A.start+"T12:00:00")-864e5));
+  const el=$("#gAutoEst"),rem=(+g.target||0)-(+g.saved||0);
+  if(!(g.target>0)){el.textContent="Escreve primeiro o objetivo.";return}
+  if(rem<=0){el.textContent="Já chegaste ao objetivo.";return}
+  if(A.mode==="calc"){if(!g.due){el.innerHTML=`Escolhe <b>até quando</b> em cima para a app calcular quanto pôr de lado.`;return}
+    const end=goalDueEnd(g),k=gaDates(A,from,end).length;
+    if(!k){el.textContent="O prazo já passou ou acaba antes da primeira entrega. Muda a data.";return}
+    el.innerHTML=`Vais juntar cerca de <b>${eur(Math.ceil(rem/k*100)/100)}${GA_EV[A.every]}</b> (${k} ${k===1?"entrega":"entregas"} até ${end.split("-").reverse().join("/")}). Se te atrasares ou juntares a mais, o valor ajusta-se sozinho.`;return}
+  if(!(A.amt>0)){el.textContent="Escreve quanto queres juntar de cada vez.";return}
+  const e=gaEta(Object.assign({},g),A,from);
+  el.innerHTML=e?`Chegas ao objetivo a <b>${e[0].split("-").reverse().join("/")}</b> (${e[1]} ${e[1]===1?"entrega":"entregas"}). Depois para sozinho.`+(g.due&&e[0]>goalDueEnd(g)?` <span style="color:var(--warn)">Passa do prazo que escolheste.</span>`:""):""}
+$("#gAutoOn").addEventListener("change",gaOn);
+$("#gAutoMode").addEventListener("click",e=>{const b=e.target.closest("[data-gam]");if(b)gaMode(b.dataset.gam)});
+["#gAutoAmt","#gAutoEvery","#gAutoStart","#gTarget","#gSaved","#gDue"].forEach(s=>{$(s).addEventListener("input",gaEst);$(s).addEventListener("change",gaEst)});
+$("#gDueMode").addEventListener("click",()=>setTimeout(gaEst));
+function gaFill(g){const A=g&&g.auto&&!g.auto.done?g.auto:null;$("#gAutoOn").checked=!!A;$("#gAutoPause").checked=!!(A&&A.paused);
+  $("#gAutoAmt").value=A&&+A.amt?numStr(A.amt):"";$("#gAutoEvery").value=A?A.every:"m";$("#gAutoStart").value=A?A.start:todayISO();S.gaMode=A&&A.mode||"fix";gaMode(S.gaMode);gaOn()}
 /* goal deadline: month only (AAAA-MM, counts to the end of that month) or an exact day */
 function setDueMode(m,v){const i=$("#gDue");if(v===undefined){const c=i.value;v=!c?"":m==="d"?(c.length>7?c:(()=>{const[y,mo]=c.split("-").map(Number);return c+"-"+String(new Date(y,mo,0).getDate()).padStart(2,"0")})()):c.slice(0,7)}
   i.type=m==="d"?"date":"month";i.value=v;document.querySelectorAll("#gDueMode [data-dm]").forEach(b=>b.setAttribute("aria-checked",String(b.dataset.dm===m)))}
@@ -2818,8 +2909,17 @@ $("#goalForm").addEventListener("submit",e=>{e.preventDefault();
   const go=Object.assign({},old||{created:new Date().toISOString()},{id:old?old.id:newId("g"),kind:"goal",name,icon:S.goalIc,target:Math.round(t*100)/100,saved:Math.round(sv*100)/100});
   if($("#gDue").value)go.due=$("#gDue").value;else delete go.due;
   {const a=pa&&S.items.get(pa);if(noNeg(a)&&!go.paid){const av=availRaw(a,txs())+(old&&old.acct===a.id?+old.saved||0:0);if(go.saved>av+.005){toast(`Em ${a.name} só cabem ${eur(Math.max(0,av))} nesta meta: é o saldo disponível.`);return $("#gSaved").focus()}}}
+  if($("#gAutoOn").checked&&!go.paid){const{A}=gaForm(),oA=old&&old.auto;
+    if(A.mode==="fix"&&!(A.amt>0)){toast("Escreve quanto queres juntar de cada vez");return $("#gAutoAmt").focus()}
+    if(A.mode==="calc"&&!go.due){toast("Para calcular, escolhe até quando queres chegar ao objetivo");return $("#gDue").focus()}
+    const paused=$("#gAutoPause").checked,yest=isoD(new Date(Date.now()-864e5));
+    let last=oA&&!oA.done&&oA.last||"";
+    // resuming doesn't catch up the paused period; a new start date doesn't redo dates already counted
+    if(oA&&oA.paused&&!paused&&yest>last)last=yest;
+    go.auto={mode:A.mode,amt:A.mode==="fix"?Math.round(A.amt*100)/100:undefined,every:A.every,start:A.start,last:last||undefined,paused:paused||undefined};
+    if(go.saved>=go.target-.005)go.auto.done=todayISO()}else delete go.auto;
   if(pa&&S.items.get(pa)){go.acct=pa;if(pk)go.card=pk.id;else delete go.card}else{delete go.acct;delete go.card}
-  Store.put(go);
+  Store.put(go);setTimeout(runGoalAuto,50);
   $("#goalDlg").close();toast(old?"Meta guardada":"Meta criada")});
 $("#gDel").onclick=()=>{const g=S.items.get(S.editGoal),b=$("#gDel");if(!g)return;
   if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar meta"},4000);return}
@@ -2828,7 +2928,7 @@ $("#gAddForm").addEventListener("submit",e=>{e.preventDefault();const g=S.items.
   if(!g)return;if(!isFinite(v)||!v){toast("Escreve um valor");return $("#gAddAmt").focus()}
   const sv=Math.max(0,Math.round(((+g.saved||0)+v)*100)/100),ga=goalAcct(g);
   if(ga&&v>0&&v>availRaw(ga,txs())+.005){noMoney(ga,availRaw(ga,txs()));return $("#gAddAmt").focus()}
-  Store.put(Object.assign({},g,{saved:sv}));$("#gAddDlg").close();
+  Store.put(Object.assign({},g,{saved:sv,log:(g.log||[]).concat([{d:todayISO(),a:Math.round(v*100)/100,t:"man"}]).slice(-200)}));$("#gAddDlg").close();
   toast(sv>=+g.target?"Meta cumprida. Parabéns!":`Faltam ${eur0(+g.target-sv)} para ${g.name}`)});
 
 /* ---------- upcoming payments: expenses that repeat monthly on about the same day ---------- */
@@ -3352,7 +3452,10 @@ function notifList(h){
       else if(thr>0&&a.type==="Banco"&&av<thr)add({id:`low:${a.id}:thr:${M}`,type:"low",lvl:"warn",date:today,tile:acctIc(a,"mini-ic"),title:`Saldo baixo em ${a.name}`,
         sub:`${eur(Math.max(0,av))} disponíveis (avisas abaixo de ${eur0(thr)})`,go:"contas"})})}
   if(ntOn("goal")){const avg=avgSave(all);
-    goalsList().forEach(g=>{const r=goalPlan(g,avg);if(r.done)return;const tl=goalTile(g.icon).replace('class="ic"','class="mini-ic"');
+    goalsList().forEach(g=>{const r=goalPlan(g,avg),tl=goalTile(g.icon).replace('class="ic"','class="mini-ic"'),A=g.auto;
+      if(A&&A.done&&A.done>=plus(-14))add({id:`goal:${g.id}:done:${A.done}`,type:"goal",lvl:"good",date:A.done,tile:tl,title:`${g.name}: objetivo atingido`,sub:`Juntaste ${eur0(g.saved)}. As entregas automáticas pararam. Já podes marcar como paga.`,go:"poupancas"});
+      if(A&&!A.done&&A.miss&&A.miss>=plus(-7))add({id:`goal:${g.id}:miss:${A.miss}`,type:"goal",lvl:"warn",date:A.miss,tile:tl,title:`${g.name}: entrega automática sem saldo`,sub:`${ntWhen(A.miss)} não havia saldo disponível na conta da meta.`,go:"poupancas"});
+      if(r.done)return;
       if(r.late)add({id:`goal:${g.id}:late:${g.due}`,type:"goal",lvl:"bad",date:today,tile:tl,title:`${g.name}: o prazo passou`,sub:`Ainda faltam ${eur0(r.rem)}. Muda o prazo ou junta o que falta.`,go:"poupancas"});
       else if(r.left&&r.left<=2)add({id:`goal:${g.id}:end:${g.due}`,type:"goal",lvl:"warn",date:today,tile:tl,title:`${g.name}: o prazo ${r.left===1?"acaba este mês":"acaba no próximo mês"}`,sub:`Faltam ${eur0(r.rem)} · ${eur0(r.need)} por mês`,go:"poupancas"});
       else if(r.need&&avg>0&&r.need>avg*1.05)add({id:`goal:${g.id}:pace:${M}`,type:"goal",lvl:"info",date:today,tile:tl,title:`${g.name} pede mais do que juntas`,sub:`Precisas de ${eur0(r.need)} por mês e juntas em média ${eur0(avg)}`,go:"poupancas"})})}
@@ -5111,7 +5214,7 @@ function render(){
   fillAccts();
   $("#demoBanner").hidden=![...S.items.values()].some(o=>o.demo);
   renderResumo();renderMov();renderInv();
-  const hasTx=txs().length>0;$("#relEmpty").hidden=hasTx||S.mode==="loading";$("#relBody").hidden=!hasTx;renderGoals();renderStays();renderLoans();renderAccts(txs());renderXfers();renderCards();renderBudgets();renderMonthSel();renderBell();renderRecs();renderSubs();if(hasTx){renderCompare();renderWrapCard()}clearTimeout(S.recTm);S.recTm=setTimeout(()=>{runRecurring();runLoans()},60);
+  const hasTx=txs().length>0;$("#relEmpty").hidden=hasTx||S.mode==="loading";$("#relBody").hidden=!hasTx;renderGoals();renderStays();renderLoans();renderAccts(txs());renderXfers();renderCards();renderBudgets();renderMonthSel();renderBell();renderRecs();renderSubs();if(hasTx){renderCompare();renderWrapCard()}clearTimeout(S.recTm);S.recTm=setTimeout(()=>{runRecurring();runGoalAuto();runLoans()},60);
   const demo=[...S.items.values()].some(o=>o.demo);
   document.querySelectorAll('[data-demo="load"]').forEach(b=>b.hidden=demo);document.querySelectorAll('[data-demo="clear"]').forEach(b=>b.hidden=!demo);
   $("#storeNote").textContent=S.mode==="local"?"Os teus dados ficam guardados só neste navegador, neste aparelho. Exporta uma cópia de vez em quando e guarda-a num sítio seguro (Google Drive, iCloud, email). É também assim que passas os dados para outro aparelho.":"A abrir…";renderBackupNote();
