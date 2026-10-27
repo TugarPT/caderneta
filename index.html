@@ -290,6 +290,67 @@ body.privacy .big,body.privacy .kpi .v,body.privacy .tx .a,body.privacy .pos-h .
 .pos-f{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:10px}
 .pos-f .actions{gap:2px}
 .pos-f .del.edit:hover{background:var(--accent-soft);color:var(--accent)}
+/* investimentos: sub-abas, onde está o dinheiro, vendas */
+.isubs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:-4px 0 18px;overflow-x:auto;scrollbar-width:none}
+.isubs::-webkit-scrollbar{display:none}
+.isubs button{flex:none;border:0;background:transparent;padding:10px 14px 11px;font:inherit;font-weight:600;font-size:.9rem;color:var(--ink-2);cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:center;gap:7px;border-radius:8px 8px 0 0}
+.isubs button:hover{color:var(--ink);background:var(--surface-2)}
+.isubs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.isubs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.isubs .n{font-family:var(--f-mono);font-size:.7rem;font-weight:700;background:var(--surface-2);color:var(--ink-2);border-radius:99px;padding:1px 7px}
+.isubs .n:empty{display:none}
+.isubs button[aria-selected="true"] .n{background:var(--accent-soft);color:var(--accent)}
+#tab-investimentos[data-isub="resumo"] [data-isp]:not([data-isp~="resumo"]),
+#tab-investimentos[data-isub="xtb"] [data-isp]:not([data-isp~="xtb"]),
+#tab-investimentos[data-isub="caf"] [data-isp]:not([data-isp~="caf"]),
+#tab-investimentos[data-isub="outras"] [data-isp]:not([data-isp~="outras"]),
+#tab-investimentos[data-isub="vendas"] [data-isp]:not([data-isp~="vendas"]){display:none!important}
+.srcs{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.src{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:12px;align-items:center;width:100%;text-align:left;font:inherit;color:inherit;background:var(--surface-2);border:1px solid transparent;border-radius:12px;padding:11px 12px;cursor:pointer;transition:border-color .15s,background .15s}
+.src:hover{border-color:var(--accent);background:var(--accent-soft)}
+.src:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.src-ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff}
+.src-ic svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.src b{display:block;font-weight:700}
+.src small{display:block;font-size:.78rem;color:var(--ink-2);margin-top:1px}
+.src .r{text-align:right}
+.src .r b{font-family:var(--f-display);font-variant-numeric:tabular-nums}
+.src .chev{color:var(--ink-2);font-size:1.3rem;line-height:1}
+.srcbar{display:flex;height:8px;border-radius:99px;overflow:hidden;background:var(--surface-2);margin:10px 0 12px}
+.srcbar i{display:block;height:100%}
+details.more>summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--ink-2);border-bottom:2px solid var(--ink-2);transform:rotate(45deg);transition:transform .2s;flex:none;margin-right:4px}
+details.more[open]>summary::after{transform:rotate(-135deg)}
+details.more>summary b{display:block}
+details.more>summary small{display:block;color:var(--ink-2);font-size:.82rem;margin-top:2px}
+details.more>summary:hover b{color:var(--accent)}
+.sales{display:flex;flex-direction:column;margin-top:12px}
+.sale{display:grid;grid-template-columns:96px minmax(0,1fr) 150px 130px;gap:12px;align-items:center;padding:11px 6px;border-bottom:1px solid var(--line)}
+.sale:not(.sh):hover{background:var(--surface-2)}
+.sale.sh{font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-2);font-weight:700;padding-block:6px}
+.sale .r{text-align:right}
+.sale small{display:block;font-size:.78rem;color:var(--ink-2);margin-top:1px}
+.sale .sd{font-family:var(--f-mono);font-size:.84rem}
+.sale .sd.none{color:var(--ink-2);font-family:var(--f-body);font-style:italic}
+.sale .sn b{font-weight:700}
+.sale .tag{display:inline-block;font-size:.68rem;font-weight:700;border-radius:99px;padding:1px 7px;margin-right:4px;background:var(--surface-2);color:var(--ink-2);font-style:normal}
+.sale.legacy{background:repeating-linear-gradient(135deg,transparent 0 10px,var(--surface-2) 10px 11px)}
+@media (max-width:420px){.isubs .n{display:none}}
+@media (max-width:640px){
+  .src{grid-template-columns:auto minmax(0,1fr) auto}.src .chev{display:none}
+  .sale.sh{display:none}
+  .isubs{gap:0;margin-inline:-4px}.isubs button{flex:1 0 auto;justify-content:center;padding:10px 8px 11px;gap:5px;font-size:.88rem}.isubs .lg{display:none}
+  #slSum{grid-template-columns:1fr 1fr}
+  .sale{grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:12px 2px}
+  .sale .sd{grid-column:1;grid-row:1;font-size:.76rem;color:var(--ink-2)}
+  .sale .sn{grid-column:1;grid-row:2}
+  .sale .sg{grid-column:2;grid-row:1/3;align-self:center}
+  .sale .sv{grid-column:1/-1;grid-row:3;text-align:left}
+  .sale .sv small{display:inline;margin-left:6px}
+  .sale .sv .num{font-size:.82rem;color:var(--ink-2)}
+}
+body.privacy .src .r b,body.privacy .sale .num,body.privacy .sale small{filter:blur(8px)}
 details.closedgrp{margin-top:16px}
 details.closedgrp summary{cursor:pointer;font-weight:600;color:var(--ink-2);font-size:.88rem;margin-bottom:10px}
 dialog{border:0;border-radius:16px;padding:0;background:var(--surface);color:var(--ink);width:min(560px,calc(100% - 32px));max-height:calc(100% - 32px);box-shadow:var(--shadow)}
@@ -979,21 +1040,28 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
   </section>
 
   <!-- INVESTIMENTOS -->
-  <section id="tab-investimentos" class="panel" role="tabpanel" tabindex="-1" hidden>
+  <section id="tab-investimentos" class="panel" role="tabpanel" tabindex="-1" hidden data-isub="resumo">
+    <div class="isubs" id="isubs" role="tablist" aria-label="Secções de Investimentos">
+      <button type="button" role="tab" id="isub-resumo" data-isub="resumo" aria-selected="true">Resumo</button>
+      <button type="button" role="tab" id="isub-xtb" data-isub="xtb" aria-selected="false" tabindex="-1">XTB<span class="n"></span></button>
+      <button type="button" role="tab" id="isub-caf" data-isub="caf" aria-selected="false" tabindex="-1"><span class="lg">Certificados de </span>Aforro<span class="n"></span></button>
+      <button type="button" role="tab" id="isub-outras" data-isub="outras" aria-selected="false" tabindex="-1" hidden>Outras<span class="n"></span></button>
+      <button type="button" role="tab" id="isub-vendas" data-isub="vendas" aria-selected="false" tabindex="-1">Vendas<span class="n"></span></button>
+    </div>
     <div class="hero">
       <div>
-        <div class="eyebrow">Valor da carteira</div>
+        <div class="eyebrow" id="iEye">Valor da carteira</div>
         <div class="big" id="iVal">0 €</div>
         <div class="sub" id="iSub"></div>
       </div>
       <div class="hero-side">
-        <div class="actions" style="justify-content:flex-end"><button class="btn" type="button" id="pxBtn" hidden>Atualizar preços</button><button class="btn" type="button" id="xtbBtn">Importar extrato XTB</button><button class="btn primary" type="button" id="invNew">+ Nova posição</button></div>
+        <div class="actions" style="justify-content:flex-end"><button class="btn" type="button" id="pxBtn" hidden>Atualizar preços</button><button class="btn primary" type="button" id="xtbBtn" data-isp="xtb">Importar extrato XTB</button><button class="btn primary" type="button" id="invNew" data-isp="resumo outras">+ Nova posição</button></div>
         <input type="file" id="xtbFile" accept=".xlsx,.xls,.csv" hidden>
         <p class="note" id="iFresh"></p>
       </div>
     </div>
     <div class="card empty" id="invEmpty" hidden><h2>Junta a tua carteira</h2><p>Regista ações, ETFs, PPR ou cripto à mão, importa o extrato da XTB ou adiciona os teus Certificados de Aforro. A app acompanha o lucro real, o potencial e o esperado.</p><div class="actions"><button class="btn primary" type="button" data-click="#invNew">+ Nova posição</button><button class="btn" type="button" data-click="#xtbBtn">Importar extrato XTB</button><button class="btn" type="button" data-click="#cafNew">+ Certificados de Aforro</button></div></div>
-    <div id="invBody">
+    <div id="invBody" data-isp="resumo">
     <div class="card chart" style="margin-bottom:16px">
       <div class="cardhead"><div><h3>Evolução da carteira</h3><div class="ifoot" id="evoDelta" style="margin-top:4px"></div></div>
         <div class="segs" id="evoSeg"><button type="button" data-evo="1" aria-pressed="false">1M</button><button type="button" data-evo="3" aria-pressed="false">3M</button><button type="button" data-evo="6" aria-pressed="false">6M</button><button type="button" data-evo="12" aria-pressed="true">1A</button><button type="button" data-evo="60" aria-pressed="false">5A</button></div></div>
@@ -1004,24 +1072,46 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <div class="kpi"><span class="eyebrow">Investido</span><span class="v" id="iCost"></span><span class="foot" id="iCostF"></span></div>
       <div class="kpi" title="Só o que já está no bolso: dividendos e juros recebidos e o ganho das vendas"><span class="eyebrow">Lucro real (no bolso)</span><span class="v" id="iReal"></span><span class="foot" id="iRealF"></span></div>
       <div class="kpi" title="Valorização do que ainda tens. Só passa a lucro real quando vendes"><span class="eyebrow">Lucro potencial (por vender)</span><span class="v" id="iPot"></span><span class="foot" id="iPotF"></span></div>
-      <div class="kpi"><span class="eyebrow">Lucro esperado até hoje</span><span class="v" id="iExp"></span><span class="foot" id="iExpF"></span></div>
-      <div class="kpi"><span class="eyebrow">Retorno anual</span><span class="v" id="iCagr"></span><span class="foot" id="iCagrF"></span></div>
     </div>
     <div class="grid2">
-      <div class="card chart vs">
+      <div class="card">
+        <h3>Onde está o dinheiro</h3>
+        <div id="invSrcs"></div>
+      </div>
+      <div class="card">
+        <h3>Alocação</h3>
+        <div id="alloc"></div>
+      </div>
+    </div>
+    <details class="card more" id="invMore" style="margin-top:16px">
+      <summary><span><b>Mais análise</b><small>Lucro esperado, retorno anual, real vs esperado e máquina do tempo</small></span></summary>
+      <div class="kpis" style="margin-top:16px">
+        <div class="kpi"><span class="eyebrow">Lucro esperado até hoje</span><span class="v" id="iExp"></span><span class="foot" id="iExpF"></span></div>
+        <div class="kpi"><span class="eyebrow">Retorno anual</span><span class="v" id="iCagr"></span><span class="foot" id="iCagrF"></span></div>
+      </div>
+      <ul class="xray" id="invInsights" style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--line)"></ul>
+      <div class="card chart vs" style="margin-top:16px;background:var(--surface-2)">
         <h3>Real vs esperado</h3>
         <p class="muted" style="margin:-6px 0 12px;font-size:.85rem">O resultado de cada posição (lucro real + potencial), ao lado do que devia ter dado ao retorno que esperavas desde a data de compra.</p>
         <div id="vsChart"></div>
         <div class="legend"><span><i class="dot" style="background:var(--in)"></i>Real + potencial (ganho)</span><span><i class="dot" style="background:var(--out)"></i>Real + potencial (perda)</span><span><i class="dot" style="background:transparent;border:1.5px dashed var(--ink-2)"></i>Esperado</span></div>
       </div>
-      <div class="card">
-        <h3>Alocação</h3>
-        <div id="alloc"></div>
-        <ul class="xray" id="invInsights" style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--line)"></ul>
+    <div class="card chart" style="margin-top:16px;background:var(--surface-2)">
+      <h3>Máquina do tempo</h3>
+      <p class="muted" style="margin:-6px 0 14px;font-size:.88rem">Parte do valor atual da carteira e junta um reforço todos os meses. <button class="del edit" type="button" id="simUseMine" style="color:var(--accent)">Usar o meu retorno esperado</button></p>
+      <div class="sim-controls">
+        <label for="simMonthly">Reforço mensal <output id="oMonthly"></output><input id="simMonthly" type="range" min="0" max="2000" step="25" value="250"></label>
+        <label for="simRate">Retorno anual <output id="oRate"></output><input id="simRate" type="range" min="0" max="15" step="0.5" value="6"></label>
+        <label for="simYears">Anos <output id="oYears"></output><input id="simYears" type="range" min="1" max="40" step="1" value="20"></label>
       </div>
+      <div id="simChart"></div>
+      <div class="legend"><span><i class="dot" style="background:var(--accent)"></i>Valor projetado</span><span><i class="dot" style="background:var(--ink-2)"></i>Dinheiro que puseste</span></div>
+      <div class="sim-out" id="simOut"></div>
+      <p class="note">Simulação com retorno constante e sem impostos nem comissões. Os mercados reais sobem e descem.</p>
     </div>
+    </details>
     </div>
-    <div class="card caf" id="cafCard" style="margin-top:16px">
+    <div class="card caf" id="cafCard" data-isp="caf">
       <div class="cardhead"><div><h3>Certificados de Aforro</h3><p class="muted" style="margin:2px 0 0;font-size:.85rem">Juros pagos de 3 em 3 meses e somados ao capital, já sem os 28% de IRS.</p></div><button class="btn primary" type="button" id="cafNew">+ Subscrição</button></div>
       <div class="caf-top">
         <label for="cafBase">Taxa base deste trimestre (%)<input id="cafBase" inputmode="decimal" placeholder="2,00"></label>
@@ -1029,7 +1119,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       </div>
       <div class="caf-sum" id="cafSum"></div>
     </div>
-    <div class="card" style="margin-top:16px" id="invPos">
+    <div class="card" style="margin-top:16px" id="invPos" data-isp="xtb caf outras">
       <div class="listhead">
         <h3>Posições</h3>
         <div class="filters">
@@ -1046,20 +1136,25 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <div class="clsfilter" id="iCls"></div>
       <div class="poscards" id="invRows"></div>
       <div id="invClosed"></div>
-      <p class="note">O preço atual escreves diretamente no cartão de cada posição; os Certificados de Aforro calculam-se sozinhos. O lucro real é só o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. A valorização do que ainda tens é lucro potencial e só passa a real quando vendes. A comparação com o esperado usa os dois juntos.</p>
+      <p class="note" data-isp="xtb outras">O preço atual escreves diretamente no cartão de cada posição; os Certificados de Aforro calculam-se sozinhos. O lucro real é só o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. A valorização do que ainda tens é lucro potencial e só passa a real quando vendes. A comparação com o esperado usa os dois juntos.</p>
     </div>
-    <div class="card chart" style="margin-top:16px">
-      <h3>Máquina do tempo</h3>
-      <p class="muted" style="margin:-6px 0 14px;font-size:.88rem">Parte do valor atual da carteira e junta um reforço todos os meses. <button class="del edit" type="button" id="simUseMine" style="color:var(--accent)">Usar o meu retorno esperado</button></p>
-      <div class="sim-controls">
-        <label for="simMonthly">Reforço mensal <output id="oMonthly"></output><input id="simMonthly" type="range" min="0" max="2000" step="25" value="250"></label>
-        <label for="simRate">Retorno anual <output id="oRate"></output><input id="simRate" type="range" min="0" max="15" step="0.5" value="6"></label>
-        <label for="simYears">Anos <output id="oYears"></output><input id="simYears" type="range" min="1" max="40" step="1" value="20"></label>
+    <div class="card" id="salesCard" data-isp="vendas">
+      <div class="listhead">
+        <h3>O que vendeste</h3>
+        <div class="filters">
+          <select id="slYear" aria-label="Ano"></select>
+          <select id="slSort" aria-label="Ordenar">
+            <option value="date">Mais recentes</option>
+            <option value="gain">Mais lucro</option>
+            <option value="loss">Maior perda</option>
+            <option value="val">Maior valor</option>
+          </select>
+        </div>
       </div>
-      <div id="simChart"></div>
-      <div class="legend"><span><i class="dot" style="background:var(--accent)"></i>Valor projetado</span><span><i class="dot" style="background:var(--ink-2)"></i>Dinheiro que puseste</span></div>
-      <div class="sim-out" id="simOut"></div>
-      <p class="note">Simulação com retorno constante e sem impostos nem comissões. Os mercados reais sobem e descem.</p>
+      <div class="clsfilter" id="slSrc"></div>
+      <div class="caf-sum" id="slSum"></div>
+      <div class="sales" id="slRows"></div>
+      <p class="note" id="slNote" hidden></p>
     </div>
   </section>
 
@@ -1170,8 +1265,9 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <details><summary>Como funcionam as contas?</summary><p>Em Contas escreves o saldo de hoje de cada conta. Cada movimento que registares nessa conta soma ou tira ao saldo sozinho.</p></details>
       <details><summary>Como controlo os gastos quando estou fora?</summary><p>Em Estadias cria uma estadia com o dia em que chegas, o dia em que voltas e, se quiseres, o dinheiro que puseste de parte. Todas as despesas desses dias contam sozinhas; se pagas a estadia com uma conta ou cartão próprio, escolhe essa conta para contar só essa. Num movimento que não tem nada a ver (a renda de cá, por exemplo) carrega em “Não contar”. Enquanto estás fora, o Dashboard mostra quanto já gastaste e quanto podes gastar por dia até voltares.</p></details>
       <details><summary>Como uso os orçamentos?</summary><p>Em Orçamentos escreve um limite mensal ao lado de cada categoria. A barra fica amarela quando estás a gastar mais depressa do que o mês avança, e vermelha quando passas o limite.</p></details>
-      <details><summary>Como registo Certificados de Aforro?</summary><p>Em Investimentos, no cartão Certificados de Aforro, carrega em “+ Subscrição” e indica a série, a data e o montante de cada compra. A app soma os juros de 3 em 3 meses, com o prémio de permanência e já sem os 28% de IRS. Atualiza a taxa base quando o IGCP a mudar, ou escreve o valor que o AforroNet mostra para acertar as contas.</p></details>
-      <details><summary>Como importo o extrato da XTB?</summary><p>Em Investimentos carrega em “Importar extrato XTB” e escolhe o ficheiro Excel exportado no xStation.</p></details>
+      <details><summary>Como registo Certificados de Aforro?</summary><p>Em Investimentos, abre a aba Certificados de Aforro e carrega em “+ Subscrição” e indica a série, a data e o montante de cada compra. A app soma os juros de 3 em 3 meses, com o prémio de permanência e já sem os 28% de IRS. Atualiza a taxa base quando o IGCP a mudar, ou escreve o valor que o AforroNet mostra para acertar as contas.</p></details>
+      <details><summary>Como importo o extrato da XTB?</summary><p>Em Investimentos, abre a aba XTB, carrega em “Importar extrato XTB” e escolhe o ficheiro Excel exportado no xStation. As vendas do extrato aparecem na aba Vendas, cada uma com a data.</p></details>
+      <details><summary>Onde vejo o que vendi e quanto rendeu?</summary><p>Em Investimentos, na aba Vendas. Cada venda mostra a data, o valor que recebeste, quanto tinha custado e o lucro real. As vendas registadas antes desta lista existir aparecem como “sem data”, só com o total.</p></details>
       <details><summary>Como ponho a renda, o salário e as subscrições a lançar sozinhos?</summary><p>Em Transações, no cartão Movimentos recorrentes, carrega em “+ Novo”. Escolhe se é despesa, receita ou transferência entre contas, o valor, a conta e o dia da primeira vez. A partir daí a app lança-o sozinha nesse dia, todos os meses (ou de 3 em 3, de 6 em 6, uma vez por ano), e o saldo da conta acompanha. Se a app estiver fechada nesse dia, lança-o quando a abrires, com a data certa. Também podes marcar “Repetir todos os meses” ao registar um movimento. Mudar o valor só afeta os próximos; para parar, carrega em Pausar ou Apagar, e os que já foram lançados ficam.</p></details>
       <details><summary>Como passo dinheiro de uma conta para outra?</summary><p>Em Contas, carrega em “Transferir”, escolhe de onde sai e para onde vai o dinheiro, o valor e a data. Os dois saldos mudam logo, mas a transferência não conta como receita nem despesa, por isso não mexe nos totais do mês, nos orçamentos nem nos relatórios. Também serve para pagar o cartão de crédito a partir do banco.</p></details>
       <details><summary>Onde ficam os meus dados?</summary><p>Só neste navegador, neste aparelho. Nada sai daqui: não há conta nem servidor. Por isso, faz uma cópia de segurança de vez em quando em Definições → Cópia de segurança, e usa essa cópia para passar os dados para outro aparelho ou navegador.</p></details>
@@ -1271,6 +1367,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <label for="sellQty">Quantidade vendida<input id="sellQty" inputmode="decimal"></label>
       <label for="sellPrice">Preço de venda (€)<input id="sellPrice" inputmode="decimal"></label>
     </div>
+    <label for="sellDate">Data da venda<input id="sellDate" type="date"></label>
     <p class="note" id="sellPreview" style="margin:0"></p>
     <div class="actions"><button class="btn primary" type="submit">Registar venda</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
   </form>
@@ -1399,7 +1496,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
   <form id="cafSellForm" novalidate>
     <div class="dlg-h"><h3>Resgatar certificados</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
     <p class="muted" id="cafSellInfo" style="margin:0;font-size:.88rem"></p>
-    <label for="cafSellAmt">Valor a resgatar (€)<input id="cafSellAmt" inputmode="decimal"></label>
+    <div class="row2"><label for="cafSellAmt">Valor a resgatar (€)<input id="cafSellAmt" inputmode="decimal"></label><label for="cafSellDate">Data do resgate<input id="cafSellDate" type="date"></label></div>
     <p class="note" id="cafSellPrev" style="margin:0"></p>
     <div class="actions"><button class="btn primary" type="submit">Registar resgate</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
   </form>
@@ -1514,7 +1611,7 @@ function cafCalc(c,B){const d0=new Date(c.date+"T12:00:00"),now=new Date(),T=(c.
 const pct2=v=>v.toFixed(2).replace(".",",")+"%";
 function cafInv(c){const k=cafCalc(c,cafBase()),open=(+c.amount||0)>0;
   return{id:"caf:"+c.id,kind:"inv",caf:c.id,name:"Aforro · Série "+(c.serie||"F"),ticker:"",cls:"Certificados / Depósitos",qty:open?1:0,cost:+c.amount||0,price:open?Math.round(k.v*100)/100:0,
-    buyDate:c.date,expRet:Math.round(k.cur.gross*72)/100,income:0,realized:+c.realized||0,soldCost:+c.soldCost||0,demo:!!c.demo,updated:todayISO(),cafK:k}}
+    buyDate:c.date,expRet:Math.round(k.cur.gross*72)/100,income:0,realized:+c.realized||0,soldCost:+c.soldCost||0,sales:c.sales||[],demo:!!c.demo,updated:todayISO(),cafK:k}}
 const invs=()=>[...S.items.values()].filter(o=>o.kind==="inv").concat(cafs().map(cafInv));
 const settings=()=>Object.assign({goal:20,opening:0},S.items.get("settings")||{});
 const portValue=()=>invs().reduce((s,i)=>s+(+i.qty||0)*(+i.price||0),0);
@@ -2620,12 +2717,12 @@ $("#invForm").addEventListener("submit",e=>{e.preventDefault();
     buyDate:$("#invBuy").value||null,expRet:$("#invExp").value.trim()?er:null,income:inc>0?Math.round(inc*100)/100:0,demo:old?!!old.demo:false});
   if(old&&(old.ticker||"")!==o.ticker){o.qsym=null;o.qcur=null}
   if(!old||old.price!==price){o.updated=todayISO();o.pxSrc=null;o.chg=null}
-  Store.put(o);toast(old?"Posição atualizada":"Posição adicionada");$("#invDlg").close();
+  if(!old)S.isub="outras";Store.put(o);toast(old?"Posição atualizada":"Posição adicionada");$("#invDlg").close();
 });
 /* dialog: sell */
 function openSell(i){S.sellId=i.id;$("#sellTitle").textContent="Vender "+i.name;
   $("#sellInfo").textContent=`Tens ${NUM.format(i.qty)} a um preço médio de ${eur(i.cost)}.`;
-  $("#sellQty").value=numStr(i.qty);$("#sellPrice").value=numStr(i.price);sellPreview();$("#sellDlg").showModal();$("#sellQty").focus()}
+  $("#sellQty").value=numStr(i.qty);$("#sellPrice").value=numStr(i.price);$("#sellDate").value=todayISO();$("#sellDate").max=todayISO();sellPreview();$("#sellDlg").showModal();$("#sellQty").focus()}
 function sellPreview(){const i=S.items.get(S.sellId);if(!i)return;const q=parseNum($("#sellQty").value),p=parseNum($("#sellPrice").value);
   if(!(q>0)||!(p>=0)){$("#sellPreview").textContent="";return}
   const g=q*(p-(+i.cost));$("#sellPreview").innerHTML=`Recebes <b class="num">${eur(q*p)}</b> e realizas <b class="num" style="color:${g>=0?"var(--in)":"var(--out)"}">${seur(g)}</b> de lucro.`}
@@ -2634,8 +2731,10 @@ $("#sellForm").addEventListener("submit",e=>{e.preventDefault();const i=S.items.
   const q=parseNum($("#sellQty").value),p=parseNum($("#sellPrice").value);
   if(!(q>0)||q>+i.qty+1e-9){toast("A quantidade tem de estar entre 0 e "+NUM.format(i.qty)+".");$("#sellQty").focus();return}
   if(!(p>=0)){toast("Indica o preço de venda.");$("#sellPrice").focus();return}
-  const left=Math.max(0,Math.round((+i.qty-q)*1e8)/1e8),g=q*(p-(+i.cost));
-  Store.put(Object.assign({},i,{qty:left,realized:Math.round(((+i.realized||0)+g)*100)/100,soldCost:Math.round(((+i.soldCost||0)+q*(+i.cost))*100)/100,price:left?i.price:p,updated:todayISO()}));
+  const sd=$("#sellDate").value||todayISO();if(sd>todayISO()){toast("A data da venda não pode ser no futuro.");$("#sellDate").focus();return}
+  const left=Math.max(0,Math.round((+i.qty-q)*1e8)/1e8),g=q*(p-(+i.cost)),r2=v=>Math.round(v*100)/100;
+  Store.put(Object.assign({},i,{qty:left,realized:Math.round(((+i.realized||0)+g)*100)/100,soldCost:Math.round(((+i.soldCost||0)+q*(+i.cost))*100)/100,price:left?i.price:p,updated:todayISO(),
+    sales:[...(i.sales||[]),{d:sd,q,v:r2(q*p),c:r2(q*(+i.cost)),g:r2(g)}]}));
   $("#sellDlg").close();toast(left?"Venda registada":"Posição fechada e guardada no histórico");
 });
 
@@ -2768,18 +2867,19 @@ function renderInv(){
   $("#invInsights").hidden=!X.length;
 
   // class filter + cards
-  const classes=[...new Set(open.map(x=>x.i.cls))];
+  const inSub=x=>invSrc(x.i)===S.isub,openS=open.filter(inSub),closedS=closed.filter(inSub);
+  const classes=[...new Set(openS.map(x=>x.i.cls))];
   if(S.iCls!=="all"&&!classes.includes(S.iCls))S.iCls="all";
   $("#iCls").innerHTML=classes.length>1?[`<button type="button" data-cls="all" aria-pressed="${S.iCls==="all"}">Todas</button>`,...classes.map(c=>`<button type="button" data-cls="${esc(c)}" aria-pressed="${S.iCls===c}">${clsTile(c)}${esc(c)}</button>`)].join(""):"";
   const key={val:x=>-x.s.val,real:x=>-x.s.real,pot:x=>-x.s.unreal,gap:x=>-(x.s.gap??-1e15),pct:x=>-x.s.pct,name:x=>x.i.name.toLowerCase()}[S.iSort];
   const cmp=(a,b)=>{const ka=key(a),kb=key(b);return ka<kb?-1:ka>kb?1:0};
-  const shown=open.filter(x=>S.iCls==="all"||x.i.cls===S.iCls).sort(cmp);
-  $("#invRows").innerHTML=shown.length?shown.map(x=>posCard(x.i,x.s)).join(""):`<p class="muted" style="padding:12px 0">Sem posições ainda.</p>`;
-  $("#invClosed").innerHTML=closed.length?`<details class="closedgrp"><summary>Posições fechadas (${closed.length}) · lucro realizado ${seur0(closed.reduce((a,x)=>a+x.s.real,0))}</summary><div class="poscards">${closed.map(x=>posCard(x.i,x.s)).join("")}</div></details>`:"";
+  const shown=openS.filter(x=>S.iCls==="all"||x.i.cls===S.iCls).sort(cmp);
+  $("#invRows").innerHTML=shown.length?shown.map(x=>posCard(x.i,x.s)).join(""):`<p class="muted" style="padding:12px 0">${SUB_EMPTY[S.isub]||"Sem posições ainda."}</p>`;
+  $("#invClosed").innerHTML=closedS.length?`<details class="closedgrp"><summary>Posições fechadas (${closedS.length}) · lucro realizado ${seur0(closedS.reduce((a,x)=>a+x.s.real,0))}</summary><div class="poscards">${closedS.map(x=>posCard(x.i,x.s)).join("")}</div></details>`:"";
   renderEvo();renderCaf();
   const none=!all.length;$("#invEmpty").hidden=!none;$("#invBody").hidden=none;$("#invPos").hidden=none;document.querySelector("#tab-investimentos .hero").hidden=none;$("#cafCard").hidden=none&&!cafs().length;
   $("#vsChart").innerHTML=vsChart(all.filter(x=>x.s.exp!=null).sort((a,b)=>b.s.tot-a.s.tot).slice(0,10));
-  renderSim();
+  renderSim();renderIsub(all,P);
 }
 function renderCaf(){const L=cafs(),B=cafBase(),open=L.filter(c=>+c.amount>0);
   if(document.activeElement!==$("#cafBase"))$("#cafBase").value=numStr(B);
@@ -2798,21 +2898,106 @@ $("#cafForm").addEventListener("submit",e=>{e.preventDefault();const a=parseNum(
   if(!(ov>=0)){toast("O valor atual não é válido");return $("#cafOv").focus()}
   const old=S.editCaf&&S.items.get(S.editCaf),o=Object.assign({},old||{},{id:old?old.id:newId("c"),kind:"caf",serie:$("#cafSerie").value,date:d,amount:Math.round(a*100)/100});
   if(ov>0){if(!old||+old.override!==ov){o.override=Math.round(ov*100)/100;o.ovDate=todayISO()}}else{delete o.override;delete o.ovDate}
-  Store.put(o);$("#cafDlg").close();toast(old?"Subscrição guardada":"Subscrição adicionada")});
+  if(!old)S.isub="caf";Store.put(o);$("#cafDlg").close();toast(old?"Subscrição guardada":"Subscrição adicionada")});
 $("#cafDel").onclick=()=>{const c=S.items.get(S.editCaf),b=$("#cafDel");if(!c)return;
   if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar"},4000);return}
   delete b.dataset.sure;b.textContent="Apagar";Store.del(c.id);$("#cafDlg").close();toast("Subscrição apagada")};
 function openCafSell(c){const k=cafCalc(c,cafBase());if(k.n<1){toast("Só podes resgatar depois dos primeiros 3 meses");return}
-  S.cafSell=c.id;$("#cafSellInfo").textContent=`Valor atual ${eur(k.v)}: ${eur(+c.amount)} de capital e ${eur(k.v-c.amount)} de juros.`;$("#cafSellAmt").value=numStr(Math.round(k.v*100)/100);cafSellPrev();$("#cafSellDlg").showModal();$("#cafSellAmt").focus()}
+  S.cafSell=c.id;$("#cafSellInfo").textContent=`Valor atual ${eur(k.v)}: ${eur(+c.amount)} de capital e ${eur(k.v-c.amount)} de juros.`;$("#cafSellAmt").value=numStr(Math.round(k.v*100)/100);$("#cafSellDate").value=todayISO();$("#cafSellDate").max=todayISO();cafSellPrev();$("#cafSellDlg").showModal();$("#cafSellAmt").focus()}
 function cafSellPrev(){const c=S.items.get(S.cafSell);if(!c)return;const k=cafCalc(c,cafBase()),x=parseNum($("#cafSellAmt").value);
   if(!(x>0)){$("#cafSellPrev").textContent="";return}const f=Math.min(1,x/k.v);
   $("#cafSellPrev").innerHTML=`Recebes <b class="num">${eur(f*k.v)}</b>, dos quais <b class="num" style="color:var(--in)">${eur(f*(k.v-c.amount))}</b> são juros e passam a lucro real.`}
 $("#cafSellAmt").addEventListener("input",cafSellPrev);
 $("#cafSellForm").addEventListener("submit",e=>{e.preventDefault();const c=S.items.get(S.cafSell);if(!c)return;const k=cafCalc(c,cafBase()),x=parseNum($("#cafSellAmt").value);
   if(!(x>0)){toast("Indica o valor a resgatar");return}const f=Math.min(1,x/k.v),r2=v=>Math.round(v*100)/100;
-  const o=Object.assign({},c,{amount:f>=.9999?0:r2(c.amount*(1-f)),realized:r2((+c.realized||0)+f*(k.v-c.amount)),soldCost:r2((+c.soldCost||0)+f*c.amount)});
+  const sd=$("#cafSellDate").value||todayISO();if(sd>todayISO()){toast("A data do resgate não pode ser no futuro");return $("#cafSellDate").focus()}
+  const o=Object.assign({},c,{amount:f>=.9999?0:r2(c.amount*(1-f)),realized:r2((+c.realized||0)+f*(k.v-c.amount)),soldCost:r2((+c.soldCost||0)+f*c.amount),
+    sales:[...(c.sales||[]),{d:sd,v:r2(f*k.v),c:r2(f*c.amount),g:r2(f*(k.v-c.amount))}]});
   if(+c.override>0){if(f>=.9999){delete o.override;delete o.ovDate}else o.override=r2(c.override*(1-f))}
   Store.put(o);$("#cafSellDlg").close();toast(f>=.9999?"Resgate total registado":"Resgate registado")});
+/* ---------- Investimentos: sub-abas e vendas ---------- */
+S.isub=(()=>{try{return localStorage.getItem("caderneta.isub")||"resumo"}catch(e){return "resumo"}})();
+S.slSrc="all";S.slYear="all";S.slSort="date";
+const invSrc=i=>i.caf?"caf":i.source==="xtb"?"xtb":"outras";
+const SRC={xtb:{n:"XTB",c:"#e2342d",ic:'<path d="M4 17l5-5 4 4 7-7"/><path d="M15 9h5v5"/>'},caf:{n:"Certificados de Aforro",c:"#1f9d6b",ic:'<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/>'},outras:{n:"Outras posições",c:"#8a62d6",ic:'<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>'}};
+const srcTile=k=>`<span class="src-ic" style="background:${SRC[k].c}" aria-hidden="true"><svg viewBox="0 0 24 24">${SRC[k].ic}</svg></span>`;
+const SUB_EMPTY={xtb:"Ainda não há posições da XTB. Carrega em “Importar extrato XTB” e escolhe o ficheiro Excel do xStation.",caf:"Ainda sem certificados. Carrega em “+ Subscrição” para registar a primeira compra.",outras:"Sem outras posições."};
+const dmy=d=>d?d.split("-").reverse().join("/"):"";
+function setIsub(k,focus){S.isub=k;try{localStorage.setItem("caderneta.isub",k)}catch(e){}renderInv();
+  if(focus)$("#isub-"+k).focus();$("#isub-"+k).scrollIntoView({block:"nearest",inline:"nearest"});document.querySelector("#tab-investimentos .hero").scrollIntoView({block:"nearest"})}
+$("#isubs").addEventListener("click",e=>{const b=e.target.closest("[data-isub]");if(b)setIsub(b.dataset.isub)});
+$("#isubs").addEventListener("keydown",e=>{const B=[...$("#isubs").querySelectorAll("[data-isub]:not([hidden])")],ix=B.findIndex(b=>b.dataset.isub===S.isub);
+  let n=null;if(e.key==="ArrowRight")n=(ix+1)%B.length;else if(e.key==="ArrowLeft")n=(ix-1+B.length)%B.length;else if(e.key==="Home")n=0;else if(e.key==="End")n=B.length-1;
+  if(n!=null){e.preventDefault();setIsub(B[n].dataset.isub,true)}});
+$("#invSrcs").addEventListener("click",e=>{const b=e.target.closest("[data-goisub]");if(b)setIsub(b.dataset.goisub)});
+/* every sale: logged ones (manual, CAF redeem, XTB closed lots) plus one undated line for realized gains recorded before the log existed */
+function salesList(){const out=[];
+  invs().forEach(i=>{const src=invSrc(i),L=Array.isArray(i.sales)?i.sales:[];let g=0,c=0;
+    L.forEach(x=>{out.push({i,src,d:x.d||null,q:+x.q||null,v:+x.v||0,c:+x.c||0,g:+x.g||0});g+=+x.g||0;c+=+x.c||0});
+    const rg=(+i.realized||0)-g,rc=(+i.soldCost||0)-c;
+    if(Math.abs(rg)>=.05||rc>=.05)out.push({i,src,d:null,q:null,v:Math.max(0,rc)+rg,c:Math.max(0,rc),g:rg,legacy:true})});
+  return out}
+function renderIsub(all,P){const sec=$("#tab-investimentos"),SL=salesList(),cnt={xtb:0,caf:0,outras:0},has={xtb:0,caf:0,outras:0};
+  all.forEach(x=>{const k=invSrc(x.i);has[k]++;if(!x.s.closed)cnt[k]++});
+  if(S.isub==="outras"&&!has.outras)S.isub="resumo";
+  if(!SRC[S.isub]&&S.isub!=="vendas")S.isub="resumo";
+  sec.dataset.isub=all.length?S.isub:"resumo";$("#isubs").hidden=!all.length;
+  $("#isubs").querySelectorAll("[data-isub]").forEach(b=>{const k=b.dataset.isub,on=k===S.isub;b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1;
+    if(k==="outras")b.hidden=!has.outras;const n=b.querySelector(".n");if(n)n.textContent=(k==="vendas"?SL.length:cnt[k])||""});
+  // resumo: where the money is
+  const tot=P.val||0,ks=["xtb","caf","outras"].filter(k=>has[k]),sub=k=>portStats(all.filter(x=>invSrc(x.i)===k));
+  const SP=Object.fromEntries(ks.map(k=>[k,sub(k)]));
+  $("#invSrcs").innerHTML=ks.length?(tot>0?`<div class="srcbar" role="img" aria-label="${ks.map(k=>SRC[k].n+" "+pct(SP[k].val/tot)).join(", ")}">${ks.map(k=>`<i style="width:${SP[k].val/tot*100}%;background:${SRC[k].c}"></i>`).join("")}</div>`:"")+
+    `<div class="srcs">${ks.map(k=>{const s=SP[k];return `<button type="button" class="src" data-goisub="${k}" aria-label="Abrir ${SRC[k].n}">${srcTile(k)}<span><b>${SRC[k].n}</b><small>${cnt[k]} ${k==="caf"?(cnt[k]===1?"subscrição":"subscrições"):(cnt[k]===1?"posição":"posições")}${tot?" · "+pct(s.val/tot):""}</small></span><span class="r"><b class="num">${eur0(s.val)}</b><small>real <span style="color:${s.real>=0?"var(--in)":"var(--out)"}">${seur0(s.real)}</span> · pot. <span style="color:${s.unreal>=0?"var(--in)":"var(--out)"}">${seur0(s.unreal)}</span></small></span><span class="chev" aria-hidden="true">›</span></button>`}).join("")}`+
+    (SL.length?`<button type="button" class="src" data-goisub="vendas" aria-label="Abrir Vendas"><span class="src-ic" style="background:var(--ink-2)" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16M8 8l4-4 4 4"/></svg></span><span><b>Vendas</b><small>${SL.length} ${SL.length===1?"venda":"vendas"}</small></span><span class="r"><b class="num" style="color:${P.realized>=0?"var(--in)":"var(--out)"}">${seur0(P.realized)}</b><small>lucro das vendas</small></span><span class="chev" aria-hidden="true">›</span></button>`:"")+`</div>`
+    :`<p class="muted">Aparece quando adicionares posições.</p>`;
+  // hero for the other sub-tabs
+  const k=S.isub;
+  if(SRC[k]){const s=SP[k]||portStats([]),n=cnt[k];
+    $("#iEye").textContent={xtb:"Valor na XTB",caf:"Valor dos Certificados de Aforro",outras:"Valor das outras posições"}[k];
+    $("#iVal").textContent=eur0(s.val);
+    const un=k==="caf"?(n===1?"subscrição":"subscrições"):(n===1?"posição":"posições");
+    $("#iSub").innerHTML=n?`${n} ${un} · investido ${eur0(s.inv)} · lucro real <b class="num" style="color:${s.real>=0?"var(--in)":"var(--out)"}">${seur0(s.real)}</b> · potencial <b class="num" style="color:${s.unreal>=0?"var(--in)":"var(--out)"}">${seur0(s.unreal)}</b>`:k==="xtb"?"Ainda sem posições da XTB.":k==="caf"?"Ainda sem certificados.":"";
+    if(k==="xtb"){const d=all.filter(x=>x.i.source==="xtb"&&x.i.updated).map(x=>x.i.updated).sort().pop();$("#iFresh").textContent=d?"Último extrato importado a "+dmy(d)+". Importa outra vez para atualizar preços e vendas.":""}
+    else if(k==="caf")$("#iFresh").textContent=has.caf?"Calculado com a taxa base de "+pct2(cafBase())+".":"";
+  }else if(k==="vendas"){const g=SL.reduce((a,x)=>a+x.g,0);
+    $("#iEye").textContent="Lucro das vendas";$("#iVal").textContent=seur0(g);
+    $("#iSub").innerHTML=SL.length?`${SL.length} ${SL.length===1?"venda":"vendas"} · recebeste ${eur0(SL.reduce((a,x)=>a+x.v,0))}${P.income?` · + ${eur0(P.income)} em dividendos e juros = lucro real <b class="num" style="color:${P.real>=0?"var(--in)":"var(--out)"}">${seur0(P.real)}</b>`:""}`:"Ainda não vendeste nada.";
+    $("#iFresh").textContent="";
+  }else $("#iEye").textContent="Valor da carteira";
+  renderSales(SL,P);
+}
+function renderSales(SL,P){
+  const srcs=["xtb","caf","outras"].filter(k=>SL.some(x=>x.src===k));
+  if(S.slSrc!=="all"&&!srcs.includes(S.slSrc))S.slSrc="all";
+  $("#slSrc").innerHTML=srcs.length>1?[`<button type="button" data-sls="all" aria-pressed="${S.slSrc==="all"}">Todas</button>`,...srcs.map(k=>`<button type="button" data-sls="${k}" aria-pressed="${S.slSrc===k}"><i class="dot" style="background:${SRC[k].c};margin-left:4px"></i>${k==="caf"?"Certificados":SRC[k].n.replace(" posições","")}</button>`)].join(""):"";
+  const bySrc=SL.filter(x=>S.slSrc==="all"||x.src===S.slSrc);
+  const years=[...new Set(bySrc.map(x=>x.d&&x.d.slice(0,4)).filter(Boolean))].sort().reverse(),undated=bySrc.some(x=>!x.d);
+  if(S.slYear!=="all"&&!(years.includes(S.slYear)||S.slYear==="none"&&undated))S.slYear="all";
+  $("#slYear").innerHTML=`<option value="all">Todos os anos</option>`+years.map(y=>`<option value="${y}"${S.slYear===y?" selected":""}>${y}</option>`).join("")+(undated?`<option value="none"${S.slYear==="none"?" selected":""}>Sem data</option>`:"");
+  $("#slYear").hidden=!years.length;$("#slSort").value=S.slSort;
+  const L=bySrc.filter(x=>S.slYear==="all"||(S.slYear==="none"?!x.d:x.d&&x.d.startsWith(S.slYear)));
+  const key={date:x=>x.d?-Date.parse(x.d):1e15,gain:x=>-x.g,loss:x=>x.g,val:x=>-x.v}[S.slSort];
+  L.sort((a,b)=>key(a)-key(b)||a.i.name.localeCompare(b.i.name));
+  const v=L.reduce((a,x)=>a+x.v,0),c=L.reduce((a,x)=>a+x.c,0),g=L.reduce((a,x)=>a+x.g,0);
+  const inc=S.slYear==="all"?invs().filter(i=>S.slSrc==="all"||invSrc(i)===S.slSrc).reduce((a,i)=>a+(+i.income||0),0):0;
+  $("#slSum").hidden=!L.length;
+  $("#slSum").innerHTML=L.length?`<div><span>Recebeste</span><b>${eur(v)}</b><span>${L.length} ${L.length===1?"venda":"vendas"}</span></div><div><span>Tinha custado</span><b>${eur(c)}</b><span>preço de compra</span></div><div><span>Lucro das vendas</span><b style="color:${g>=0?"var(--in)":"var(--out)"}">${seur(g)}</b><span>${c?spct(g/c)+" sobre o custo":"lucro real"}</span></div>`+
+    (inc?`<div><span>Lucro real total</span><b style="color:${g+inc>=0?"var(--in)":"var(--out)"}">${seur(g+inc)}</b><span>com ${eur0(inc)} de dividendos e juros</span></div>`:""):"";
+  const row=x=>{const dem=x.i.demo?'<span class="demo-tag">exemplo</span>':"",what=x.legacy?"várias vendas, só o total":x.src==="caf"?"resgate":x.q?NUM.format(x.q)+" × "+eur(x.v/x.q):"";
+    return `<div class="sale${x.legacy?" legacy":""}"><div class="sd${x.d?"":" none"}"${x.legacy?' title="Venda registada antes de a app guardar cada venda: só há o total"':""}>${x.d?dmy(x.d):"sem data"}</div>
+      <div class="sn"><b>${esc(x.i.name)}</b>${dem}<small><span class="tag">${x.src==="caf"?"Aforro":SRC[x.src].n.replace(" posições","")}</span>${esc(what)}</small></div>
+      <div class="sv r"><span class="num">${eur(x.v)}</span><small>custou ${eur(x.c)}</small></div>
+      <div class="sg r"><b class="num" style="color:${x.g>=0?"var(--in)":"var(--out)"}">${seur(x.g)}</b><small>${x.c?spct(x.g/x.c):""}</small></div></div>`};
+  $("#slRows").innerHTML=L.length?`<div class="sale sh" aria-hidden="true"><div>Data</div><div>Investimento</div><div class="r">Valor da venda</div><div class="r">Lucro real</div></div>`+L.map(row).join("")
+    :`<div class="empty" style="padding:22px 4px"><p class="muted" style="margin:0">${SL.length?"Nenhuma venda com estes filtros.":"Ainda não vendeste nada. Quando carregares em “Vender” numa posição, resgatares Certificados de Aforro ou importares um extrato da XTB com posições fechadas, cada venda aparece aqui com a data, o valor e o lucro."}</p></div>`;
+  const leg=L.filter(x=>x.legacy);
+  $("#slNote").hidden=!leg.length;
+  $("#slNote").textContent=leg.length?"As linhas “sem data” são vendas registadas antes desta lista existir: a app só tinha guardado o total."+(leg.some(x=>x.src==="xtb")?" Para as da XTB, importa de novo o extrato e cada venda aparece com a sua data.":""):"";
+}
+$("#slSrc").addEventListener("click",e=>{const b=e.target.closest("[data-sls]");if(b){S.slSrc=b.dataset.sls;renderInv()}});
+$("#slYear").addEventListener("change",e=>{S.slYear=e.target.value;renderInv()});
+$("#slSort").addEventListener("change",e=>{S.slSort=e.target.value;renderInv()});
 $("#iSort").addEventListener("change",e=>{S.iSort=e.target.value;renderInv()});
 $("#iCls").addEventListener("click",e=>{const b=e.target.closest("[data-cls]");if(b){S.iCls=b.dataset.cls;renderInv()}});
 function onPosClick(e){
@@ -2915,7 +3100,7 @@ function xtbClass(sym,cat){const c=xnorm(cat);if(/etf|etc/.test(c))return "ETF";
   return sym.includes(".")?"Ações":"Outro"}
 const xtbSymIn=t=>{const m=String(t||"").match(/\b([A-Z0-9]{1,12}\.[A-Z]{2,3})\b/);return m?m[1]:""};
 /* turn the three tables into one summary per symbol, all amounts in the account currency */
-function xtbBuild(T){const N=T.names||{},C=T.cats||{};const P={},get=sym=>P[sym]=P[sym]||{sym,qty:0,purch:0,val:0,first:null,cFirst:null,cQty:0,cPurch:0,cSale:0,realized:0,income:0,div:0,tax:0,lots:0};
+function xtbBuild(T){const N=T.names||{},C=T.cats||{};const P={},get=sym=>P[sym]=P[sym]||{sym,qty:0,purch:0,val:0,first:null,cFirst:null,cQty:0,cPurch:0,cSale:0,realized:0,income:0,div:0,tax:0,lots:0,sales:[]};
   const isBuy=t=>{const x=xnorm(t);return !x||/buy|compra|kupno|long/.test(x)};const early=(a,b)=>!a?b:!b?a:a<b?a:b;let shorts=0;
   T.open.forEach(o=>{if(!isBuy(o.type)){shorts++;return}const p=get(String(o.sym).trim()),v=xNum(o.vol),g=xNum(o.gross),cv=xNum(o.value);let pu=xNum(o.purch);
     /* newer exports give the current value and the profit in the account currency, but no purchase value */
@@ -2923,7 +3108,7 @@ function xtbBuild(T){const N=T.names||{},C=T.cats||{};const P={},get=sym=>P[sym]
     const val=isFinite(cv)?cv:isFinite(g)?pu+g:v*xNum(o.mprice);p.qty+=v;p.purch+=pu;p.val+=isFinite(val)?val:pu;p.first=early(p.first,xDate(o.otime));p.lots++});
   T.closed.forEach(o=>{if(!isBuy(o.type)){shorts++;return}const p=get(String(o.sym).trim()),v=xNum(o.vol);let pu=xNum(o.purch);if(!isFinite(pu))pu=v*xNum(o.oprice);
     let sa=xNum(o.sale),g=xNum(o.gross);if(!isFinite(sa))sa=isFinite(g)?pu+g:v*xNum(o.cprice);if(!isFinite(g))g=sa-pu;
-    p.cQty+=v;p.cPurch+=pu;p.cSale+=sa;p.realized+=g;p.cFirst=early(p.cFirst,xDate(o.otime))});
+    p.cQty+=v;p.cPurch+=pu;p.cSale+=sa;p.realized+=g;p.cFirst=early(p.cFirst,xDate(o.otime));p.sales.push({d:xDate(o.ctime),q:v,v:sa,c:pu,g})});
   const cash={dep:0,wd:0,interest:0,orphanDiv:0};
   T.cash.forEach(o=>{const t=xnorm(o.type),a=xNum(o.amount),sym=String(o.sym||"").trim()||xtbSymIn(o.comment);
     if(/interest|juro|odsetk/.test(t))cash.interest+=a;
@@ -2934,7 +3119,7 @@ function xtbBuild(T){const N=T.names||{},C=T.cats||{};const P={},get=sym=>P[sym]
   const rows=Object.values(P).filter(p=>p.qty>0||p.cQty>0).map(p=>{const open=p.qty>0;
     return{sym:p.sym,ticker:p.sym.split(".")[0].toUpperCase(),name:N[p.sym]||"",cls:xtbClass(p.sym,C[p.sym]),qty:Math.round(p.qty*1e8)/1e8,
       cost:open?r4(p.purch/p.qty):r4(p.cPurch/p.cQty),price:open?r4(p.val/p.qty):r4(p.cSale/p.cQty),
-      buyDate:(open?p.first:p.cFirst)||p.cFirst,income:r2(p.income),div:r2(p.div),tax:r2(p.tax),realized:r2(p.realized),soldCost:r2(p.cPurch),val:r2(p.val),purch:r2(p.purch),lots:p.lots}}).sort((a,b)=>b.val-a.val||a.sym.localeCompare(b.sym));
+      buyDate:(open?p.first:p.cFirst)||p.cFirst,income:r2(p.income),div:r2(p.div),tax:r2(p.tax),realized:r2(p.realized),soldCost:r2(p.cPurch),val:r2(p.val),purch:r2(p.purch),lots:p.lots,sales:p.sales.map(x=>({d:x.d,q:Math.round(x.q*1e8)/1e8,v:r2(x.v),c:r2(x.c),g:r2(x.g)})).sort((a,b)=>(b.d||"").localeCompare(a.d||""))}}).sort((a,b)=>b.val-a.val||a.sym.localeCompare(b.sym));
   return{rows,cash,shorts,counts:{open:T.open.length,closed:T.closed.length,cash:T.cash.length}}}
 function xtbMatch(r){const live=invs().filter(i=>!i.demo);
   return live.find(i=>i.xtbSym===r.sym)||live.find(i=>{const t=String(i.ticker||"").toUpperCase();return t&&(t===r.sym.toUpperCase()||t===r.ticker)})||null}
@@ -2987,9 +3172,9 @@ $("#xtbBody").addEventListener("change",e=>{if(!xtbData)return;const on=e.target
 $("#xtbForm").addEventListener("submit",e=>{e.preventDefault();if(!xtbData)return;const t=todayISO();
   const objs=xtbData.rows.filter(r=>r.on).map(r=>{const m=r.match;
     const base=m?Object.assign({},m):{id:"ixtb-"+r.sym.replace(/[^A-Za-z0-9]/g,"_"),kind:"inv",name:r.name||r.ticker,ticker:r.ticker,expRet:null,demo:false};
-    return Object.assign(base,{cls:r.cls,qty:r.qty,cost:r.cost,price:r.price,buyDate:r.buyDate||base.buyDate||null,income:r.income,realized:r.realized,soldCost:r.soldCost,updated:t,source:"xtb",xtbSym:r.sym,pxSrc:null,chg:null,qsym:base.xtbSym===r.sym?base.qsym||null:null,qcur:base.xtbSym===r.sym?base.qcur||null:null})});
+    return Object.assign(base,{cls:r.cls,qty:r.qty,cost:r.cost,price:r.price,buyDate:r.buyDate||base.buyDate||null,income:r.income,realized:r.realized,soldCost:r.soldCost,sales:r.sales||[],updated:t,source:"xtb",xtbSym:r.sym,pxSrc:null,chg:null,qsym:base.xtbSym===r.sym?base.qsym||null:null,qcur:base.xtbSym===r.sym?base.qcur||null:null})});
   const dels=xtbData.stale.filter(x=>x.on).map(x=>x.i.id);if(!objs.length&&!dels.length)return;
-  const nNew=objs.filter(o=>!S.items.has(o.id)).length;if(objs.length)Store.putMany(objs);if(dels.length)Store.delMany(dels);$("#xtbDlg").close();xtbData=null;
+  const nNew=objs.filter(o=>!S.items.has(o.id)).length;if(objs.length){S.isub="xtb";Store.putMany(objs)}if(dels.length)Store.delMany(dels);$("#xtbDlg").close();xtbData=null;
   toast(`Extrato importado: ${nNew} ${nNew===1?"nova":"novas"}, ${objs.length-nNew} ${objs.length-nNew===1?"atualizada":"atualizadas"}${dels.length?`, ${dels.length} ${dels.length===1?"apagada":"apagadas"}`:""}`)});
 
 /* ---------- market prices (public APIs: Alpha Vantage for stocks/ETFs with the user's free key, CoinGecko for crypto, Frankfurter/ECB for FX) ---------- */
