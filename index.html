@@ -634,7 +634,26 @@ body:not([data-tab="movimentos"]):not([data-tab="orcamentos"]):not([data-tab="re
 .stxl .tx.off .a{text-decoration:line-through}
 .stxl .tog{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer;border-radius:8px;padding:4px 8px;font-size:.76rem;font-weight:600;white-space:nowrap}
 .stxl .tog:hover{border-color:var(--ink-2);color:var(--ink)}
-body.privacy .stayd .sd-h b,body.privacy .skpis b,body.privacy .stay .st-v,body.privacy .scat .v{filter:blur(8px)}
+.sgrp{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}
+.sgrp>span{font-size:.8rem;color:var(--ink-2);margin-right:2px}
+.sgrp button{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;min-height:34px}
+.sgrp button small{font-size:.72rem;font-weight:700;color:var(--ink-2);background:var(--surface-2);border-radius:999px;padding:1px 7px}
+.sgrp button:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.sgrp button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.sgrp button[aria-pressed="true"] small{background:var(--accent);color:#fff}
+.sgrp button:focus-visible,.sgl:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sgls{display:flex;flex-direction:column;gap:6px}
+.sgl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:var(--surface-2);color:inherit;font:inherit;border-radius:10px;padding:10px 12px;cursor:pointer}
+.sgl:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.sgl .nm{display:flex;gap:8px;align-items:center;min-width:0}
+.sgl .nm b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sgl .v{font-family:var(--f-body);font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.sgl small{font-size:.76rem;color:var(--ink-2)}
+.sgl .nm small{display:block}
+.sgl .pbar{grid-column:1/-1;height:6px}
+.sgl .ft{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.scat .avg{grid-column:2/-1;font-size:.74rem;color:var(--ink-2);margin-top:-2px}
+body.privacy .stayd .sd-h b,body.privacy .skpis b,body.privacy .stay .st-v,body.privacy .scat .v,body.privacy .sgl .v,body.privacy .scat .avg,body.privacy .sgl .ft{filter:blur(8px)}
 @media (max-width:560px){.stxl .tx{grid-template-columns:auto minmax(0,1fr) auto}.stxl .tog{grid-column:2/-1;justify-self:start}}
 .phead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding:4px 0 18px}
 .phead h1{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;letter-spacing:-.03em}
@@ -3511,6 +3530,43 @@ function stayLeftTxt(k){if(!k.B)return k.st==="now"?`${eur0(k.perDay)} por dia`:
   if(k.left<0)return "passaste "+eur0(-k.left);
   return k.st==="now"?`sobram ${eur0(k.left)} · ${eur0(k.canDay)}/dia até ao fim`:k.st==="plan"?`${eur0(k.B/k.total)} por dia`:"sobraram "+eur0(k.left)}
 function stayDayTxt(k){return k.st==="now"?`dia ${k.el} de ${k.total}`:k.st==="plan"?(()=>{const n=dDiff(todayISO(),k.from);return n===1?"começa amanhã":`começa daqui a ${n} dias`})():`${k.total} ${k.total===1?"dia":"dias"}`}
+/* estadias com o mesmo nome (sem contar maiúsculas, acentos e espaços) formam um grupo */
+const stayKey=s=>String(s.name||"").trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\s+/g," ");
+function stayGroups(L){const G=new Map();L.forEach(s=>{const k=stayKey(s);if(!k)return;if(!G.has(k))G.set(k,[]);G.get(k).push(s)});
+  for(const [k,v] of G)if(v.length<2)G.delete(k);return G}
+function stayGrpBar(G){if(!G.size)return "";
+  return `<div class="sgrp" role="group" aria-label="Juntar estadias com o mesmo nome"><span>Juntar por nome:</span>${[...G].map(([key,v])=>`<button type="button" data-sgrp="${esc(key)}" aria-pressed="${S.stayGrp===key}" title="Ver juntas as ${v.length} estadias “${esc(v[0].name)}”">${esc(v[0].name)} <small>${v.length}</small></button>`).join("")}${S.stayGrp?`<button type="button" data-sgrp="" title="Voltar a uma estadia de cada vez">× Separar</button>`:""}</div>`}
+function stayGroupHtml(M,ks){
+  const Q=M.map(s=>({s,k:ks.get(s.id)})),on=Q.filter(q=>q.k.st!=="plan"),done=Q.filter(q=>q.k.st==="done"),nowN=Q.filter(q=>q.k.st==="now").length,plan=Q.length-on.length;
+  const days=on.reduce((a,q)=>a+q.k.el,0),spent=on.reduce((a,q)=>a+q.k.spent,0),got=on.reduce((a,q)=>a+q.k.got,0);
+  const wB=Q.filter(q=>q.k.B),avgB=wB.length?wB.reduce((a,q)=>a+q.k.B,0)/wB.length:0,dB=done.filter(q=>q.k.B),avgLeft=dB.length?dB.reduce((a,q)=>a+q.k.left,0)/dB.length:0;
+  const by={};on.forEach(q=>Object.entries(q.k.by).forEach(([c,v])=>by[c]=(by[c]||0)+v));
+  if(S.stayGrpCat&&!by[S.stayGrpCat])S.stayGrpCat=null;
+  const cats=Object.entries(by).sort((a,b)=>b[1]-a[1]),mx=cats.length?cats[0][1]:1,C=S.stayGrpCat;
+  const val=q=>C?(q.k.by[C]||0):q.k.spent,mv=Math.max(1,...on.map(val)),first=M[M.length-1],last=M[0];
+  const parts=[done.length?done.length+(done.length===1?" terminada":" terminadas"):"",nowN?nowN+" a decorrer":"",plan?plan+(plan===1?" planeada":" planeadas"):""].filter(Boolean).join(" · ");
+  const kp=[["Estadias",String(M.length),parts],
+    ["Dias fora",days+(days===1?" dia":" dias"),on.length?`em média ${Math.round(days/on.length)} por estadia`:"ainda nenhuma começou"],
+    on.length?["Gasto total",eur(spent),nowN?"inclui a que está a decorrer":`em ${on.length} estadias`]:null,
+    on.length?["Média por estadia",eur(spent/on.length),`gasto médio em cada uma`]:null,
+    days?["Média por dia",eur(spent/days),`em ${days} dias fora`]:null,
+    wB.length?["Posto de parte",eur(avgB),`em média, em ${wB.length} ${wB.length===1?"estadia":"estadias"}`]:null,
+    dB.length?[avgLeft<0?"Passaste em média":"Sobrou em média",eur(Math.abs(avgLeft)),`${Math.round(Math.abs(avgLeft)/(dB.reduce((a,q)=>a+q.k.B,0)/dB.length)*100)}% do posto de parte · ${dB.length} ${dB.length===1?"terminada":"terminadas"}`]:null,
+    got?["Recebeste",eur(got),"entradas nesses períodos"]:null].filter(Boolean);
+  const rows=Q.map(q=>{const v=val(q),k=q.k;return `<button type="button" class="sgl" data-sid="${esc(q.s.id)}" title="Abrir esta estadia">
+      <span class="nm"><span style="min-width:0"><b>${dRange(q.s.from,q.s.to)}</b><small>${esc(q.s.place||q.s.name)} · ${k.total} ${k.total===1?"dia":"dias"}</small></span>${stayChip(k)}</span>
+      <span class="v">${k.st==="plan"?"—":eur(v)}</span>
+      ${k.st==="plan"?"":`<span class="pbar"><i style="width:${v/mv*100}%;background:${C?catColor("out",C):lvlCol(stayLvl(k))}"></i></span>`}
+      <span class="ft"><small>${k.st==="plan"?"ainda não começou":C?`${eur0(k.el?v/k.el:0)} por dia em ${esc(C)}`:`${eur0(k.perDay)} por dia`}</small><small>${k.B&&!C?stayLeftTxt(k)||"posto de parte "+eur0(k.B):""}</small></span></button>`}).join("");
+  return `<div class="card sdet">
+      <div class="cardhead" style="margin:0;align-items:flex-start"><div><h2>${esc(last.name)} ${chip("neutral",M.length+" estadias")}</h2><p>Todas juntas · de ${dRange(first.from,last.to)}</p></div><button class="btn" type="button" data-sgrp="">Separar</button></div>
+      <div class="skpis">${kp.map(([a,b,c])=>`<div><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join("")}</div>
+      <div class="sgrid">
+        <div><h3 style="margin-bottom:6px">Por categoria</h3>${cats.length?`<div role="group" aria-label="Ver uma categoria em cada estadia">${cats.map(([c,v])=>`<button type="button" class="scat" data-sgcat="${esc(c)}" aria-pressed="${C===c}" title="Ver ${esc(c)} em cada estadia">${catTile("out",c)}<span class="nm">${esc(c)}</span><span class="v">${eur(v)}</span><span class="pbar"><i style="width:${v/mx*100}%;background:${catColor("out",c)}"></i></span><span class="avg">${eur0(v/on.length)} por estadia · ${eur0(days?v/days:0)} por dia</span></button>`).join("")}</div>`
+          :`<p class="muted" style="margin:0">${on.length?"Ainda não há despesas nestas estadias.":"Nenhuma destas estadias começou."}</p>`}</div>
+        <div><div class="cardhead" style="margin-bottom:4px"><h3>${C?esc(C)+" em cada estadia":"Cada estadia"}</h3>${C?`<button class="link" type="button" data-sgcat="">Ver tudo</button>`:""}</div>
+          <div class="sgls">${rows}</div></div>
+      </div></div>`}
 function renderStays(){
   const L=staysList(),all=txs(),body=$("#stayBody");
   const cur=L.find(s=>s.from<=todayISO()&&s.to>=todayISO());
@@ -3526,7 +3582,9 @@ function renderStays(){
   const ks=new Map(L.map(s=>[s.id,stayCalc(s,all)])),done=L.filter(s=>ks.get(s.id).st==="done");
   const avg=done.length?done.reduce((a,s)=>a+ks.get(s.id).perDay,0)/done.length:0;
   $("#staySub").textContent=`${L.length} ${L.length===1?"estadia":"estadias"}${done.length?` · em média gastas ${eur0(avg)} por dia quando estás fora`:""}. Toca numa estadia para ver o detalhe.`;
-  const s=S.items.get(S.stay),k=ks.get(s.id);
+  const G=stayGroups(L);if(S.stayGrp&&!G.has(S.stayGrp))S.stayGrp=null;
+  if(S.stayGrp){body.innerHTML=stayGrpBar(G)+stayGroupHtml(G.get(S.stayGrp),ks);return}
+  const s=S.items.get(S.stay),k=ks.get(s.id),sg=G.get(stayKey(s));
   const cats=Object.entries(k.by).sort((a,b)=>b[1]-a[1]),mx=cats.length?cats[0][1]:1;
   if(S.stayCat&&!k.by[S.stayCat])S.stayCat=null;
   const rowsAll=k.list.filter(t=>!S.stayCat||(t.type==="out"&&t.cat===S.stayCat)),rows=S.stayAll?rowsAll:rowsAll.slice(0,12);
@@ -3541,8 +3599,8 @@ function renderStays(){
       <span class="st-h"><span style="min-width:0"><b>${esc(x.name)}</b><small>${dRange(x.from,x.to)}</small></span>${stayChip(q)}</span>
       <span class="st-v">${eur(q.spent)}${q.B?` <small class="muted">de ${eur0(q.B)}</small>`:""}</span>${stayMeter(q)}
       <span class="st-f"><span>${q.st==="plan"?q.total+" dias":eur0(q.perDay)+" por dia"}</span><span>${q.B?stayLeftTxt(q):""}</span></span></button>`}).join("")}</div>`:"";
-  body.innerHTML=pick+`<div class="card sdet">
-      <div class="cardhead" style="margin:0;align-items:flex-start"><div><h2>${esc(s.name)} ${stayChip(k)}</h2><p>${esc(s.place?s.place+" · ":"")}${dRange(s.from,s.to)} · ${stayDayTxt(k)}${acc?" · só "+esc(acc.name):""}</p></div><button class="btn" type="button" data-sedit="${esc(s.id)}">Editar</button></div>
+  body.innerHTML=stayGrpBar(G)+pick+`<div class="card sdet">
+      <div class="cardhead" style="margin:0;align-items:flex-start"><div><h2>${esc(s.name)} ${stayChip(k)}</h2><p>${esc(s.place?s.place+" · ":"")}${dRange(s.from,s.to)} · ${stayDayTxt(k)}${acc?" · só "+esc(acc.name):""}</p></div><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">${sg?`<button class="btn" type="button" data-sgrp="${esc(stayKey(s))}" title="Juntar as ${sg.length} estadias com este nome">Ver as ${sg.length} juntas</button>`:""}<button class="btn" type="button" data-sedit="${esc(s.id)}">Editar</button></div></div>
       ${stayMeter(k)}
       <div class="skpis">${kp.map(([a,b,c])=>`<div><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join("")}</div>
       <div class="sgrid">
@@ -3557,13 +3615,16 @@ $("#stayBody").addEventListener("click",e=>{
   const x=e.target.closest("[data-sx]");if(x){const s=S.items.get(S.stay);if(!s)return;const ex=new Set(s.excl||[]),id=x.dataset.sx,off=!ex.has(id);
     off?ex.add(id):ex.delete(id);Store.put(Object.assign({},s,{excl:[...ex]}));toast(off?"Este movimento já não conta para a estadia":"O movimento volta a contar");return}
   if(e.target.closest("[data-sall]")){S.stayAll=!S.stayAll;renderStays();return}
+  const gb=e.target.closest("[data-sgrp]");if(gb){const g=gb.dataset.sgrp||null;S.stayGrp=S.stayGrp===g?null:g;S.stayGrpCat=null;renderStays();return}
+  const gc=e.target.closest("[data-sgcat]");if(gc){S.stayGrpCat=gc.dataset.sgcat||null;renderStays();return}
+  const gl=e.target.closest(".sgl[data-sid]");if(gl){S.stay=gl.dataset.sid;S.stayGrp=null;S.stayCat=null;S.stayAll=false;renderStays();return}
   const c=e.target.closest("[data-scat]");if(c){S.stayCat=c.dataset.scat||null;renderStays();return}
   const p=e.target.closest(".stay[data-sid]");if(p){S.stay=p.dataset.sid;S.stayCat=null;S.stayAll=false;renderStays();return}
   const ed=e.target.closest("[data-sedit]");if(ed){openStay(S.items.get(ed.dataset.sedit));return}
   if(e.target.closest("[data-sadd]")){const s=S.items.get(S.stay);setTab("movimentos");resetTxForm();setTxType("out");
     const t=todayISO();$("#txDate").value=s&&t>s.to?s.to:s&&t<s.from?s.from:t;if(s&&s.acct&&S.items.get(s.acct)){$("#txAcct").value=s.acct;S.acctTouched=true;S.txCard=null;renderPay()}
     $("#txForm").scrollIntoView({block:"start",behavior:"smooth"});$("#txAmount").focus({preventScroll:true})}});
-document.addEventListener("click",e=>{if(e.target.closest("[data-snew]"))openStay(null);const g=e.target.closest('[data-go="estadias"][data-sid]');if(g){S.stay=g.dataset.sid;S.stayCat=null;renderStays()}});
+document.addEventListener("click",e=>{if(e.target.closest("[data-snew]"))openStay(null);const g=e.target.closest('[data-go="estadias"][data-sid]');if(g){S.stay=g.dataset.sid;S.stayCat=null;S.stayGrp=null;renderStays()}});
 function openStay(s){S.editStay=s?s.id:null;$("#stayTitle").textContent=s?"Editar estadia":"Nova estadia";$("#sSubmit").textContent=s?"Guardar":"Criar estadia";$("#sDel").hidden=!s;
   const A=accts();$("#sAcctL").hidden=!A.length;$("#sAcct").innerHTML=`<option value="">Todas as contas</option>`+A.map(a=>`<option value="${esc(a.id)}">Só ${esc(a.name)}${a.inst?" · "+esc(a.inst):""}</option>`).join("");
   const last=staysList()[0];
@@ -3579,7 +3640,7 @@ $("#stayForm").addEventListener("submit",e=>{e.preventDefault();
   if(!(b>=0)){toast("O valor posto de parte não é válido");return $("#sBudget").focus()}
   if(!name)name=(place||"Estadia")+" — "+MONTHS[+from.slice(5,7)-1];
   const old=S.editStay&&S.items.get(S.editStay),o=Object.assign({},old||{created:new Date().toISOString(),excl:[]},{id:old?old.id:newId("s"),kind:"stay",name,place,from,to,budget:Math.round(b*100)/100,acct:$("#sAcct").value||""});
-  S.stay=o.id;S.stayCat=null;Store.put(o);$("#stayDlg").close();toast(old?"Estadia guardada":"Estadia criada");if(!old)setTab("estadias")});
+  S.stay=o.id;S.stayCat=null;S.stayGrp=null;Store.put(o);$("#stayDlg").close();toast(old?"Estadia guardada":"Estadia criada");if(!old)setTab("estadias")});
 $("#sDel").onclick=()=>{const s=S.items.get(S.editStay),b=$("#sDel");if(!s)return;
   if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar estadia"},4000);return}
   delete b.dataset.sure;b.textContent="Apagar estadia";S.stay=null;Store.del(s.id);$("#stayDlg").close();toast("Estadia apagada (os movimentos ficam)")};
