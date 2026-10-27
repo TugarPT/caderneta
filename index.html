@@ -1078,7 +1078,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <button type="button" role="tab" id="isub-xtb" data-isub="xtb" aria-selected="false" tabindex="-1">XTB<span class="n"></span></button>
       <button type="button" role="tab" id="isub-caf" data-isub="caf" aria-selected="false" tabindex="-1"><span><span class="lg">Certificados de </span>Aforro</span><span class="n"></span></button>
       <button type="button" role="tab" id="isub-outras" data-isub="outras" aria-selected="false" tabindex="-1" hidden>Outras<span class="n"></span></button>
-      <button type="button" role="tab" id="isub-vendas" data-isub="vendas" aria-selected="false" tabindex="-1">Vendas<span class="n"></span></button>
+      <button type="button" role="tab" id="isub-vendas" data-isub="vendas" aria-selected="false" tabindex="-1" hidden>Vendas<span class="n"></span></button>
     </div>
     <div class="hero">
       <div>
@@ -1173,7 +1173,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <p class="note" data-isp="xtb outras">O preço atual escreves diretamente no cartão de cada posição; os Certificados de Aforro calculam-se sozinhos. O lucro real é só o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. A valorização do que ainda tens é lucro potencial e só passa a real quando vendes. A comparação com o esperado usa os dois juntos.</p>
     </div>
     <div class="card" id="subSales" data-isp="xtb caf outras" style="margin-top:16px" hidden>
-      <div class="listhead"><h3 id="subSalesT">Vendas</h3><button class="btn ghost" type="button" id="subSalesAll">Ver na aba Vendas</button></div>
+      <div class="listhead"><h3 id="subSalesT">Vendas</h3><button class="btn ghost" type="button" id="subSalesAll" aria-controls="subSalesRows" hidden>Ver todas</button></div>
       <div class="caf-sum" id="subSalesSum" style="margin-top:8px"></div>
       <div class="sales" id="subSalesRows"></div>
     </div>
@@ -1306,8 +1306,8 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <details><summary>Como controlo os gastos quando estou fora?</summary><p>Em Estadias cria uma estadia com o dia em que chegas, o dia em que voltas e, se quiseres, o dinheiro que puseste de parte. Todas as despesas desses dias contam sozinhas; se pagas a estadia com uma conta ou cartão próprio, escolhe essa conta para contar só essa. Num movimento que não tem nada a ver (a renda de cá, por exemplo) carrega em “Não contar”. Enquanto estás fora, o Dashboard mostra quanto já gastaste e quanto podes gastar por dia até voltares.</p></details>
       <details><summary>Como uso os orçamentos?</summary><p>Em Orçamentos escreve um limite mensal ao lado de cada categoria. A barra fica amarela quando estás a gastar mais depressa do que o mês avança, e vermelha quando passas o limite.</p></details>
       <details><summary>Como registo Certificados de Aforro?</summary><p>Em Investimentos, abre a aba Certificados de Aforro e carrega em “+ Subscrição” e indica a série, a data e o montante de cada compra. A app soma os juros de 3 em 3 meses, com o prémio de permanência e já sem os 28% de IRS. Atualiza a taxa base quando o IGCP a mudar, ou escreve o valor que o AforroNet mostra para acertar as contas.</p></details>
-      <details><summary>Como importo o extrato da XTB?</summary><p>Em Investimentos, abre a aba XTB, carrega em “Importar extrato XTB” e escolhe o ficheiro Excel exportado no xStation. As vendas do extrato aparecem na aba Vendas, cada uma com a data.</p></details>
-      <details><summary>Onde vejo o que vendi e quanto rendeu?</summary><p>Em Investimentos, na aba Vendas. Cada venda mostra a data, o valor que recebeste, quanto tinha custado e o lucro real. As vendas registadas antes desta lista existir aparecem como “sem data”, só com o total.</p></details>
+      <details><summary>Como importo o extrato da XTB?</summary><p>Em Investimentos, abre a aba XTB, carrega em “Importar extrato XTB” e escolhe o ficheiro Excel exportado no xStation. As vendas do extrato aparecem na mesma aba, por baixo das posições, cada uma com a data.</p></details>
+      <details><summary>Onde vejo o que vendi e quanto rendeu?</summary><p>Em Investimentos, na aba onde vendeste (XTB, Certificados de Aforro ou Outras), por baixo das posições. Cada venda mostra a data, o valor que recebeste, quanto tinha custado e o lucro real. As vendas registadas antes desta lista existir aparecem como “sem data”, só com o total.</p></details>
       <details><summary>Como ponho a renda, o salário e as subscrições a lançar sozinhos?</summary><p>Em Transações, no cartão Movimentos recorrentes, carrega em “+ Novo”. Escolhe se é despesa, receita ou transferência entre contas, o valor, a conta e o dia da primeira vez. A partir daí a app lança-o sozinha nesse dia, todos os meses (ou de 3 em 3, de 6 em 6, uma vez por ano), e o saldo da conta acompanha. Se a app estiver fechada nesse dia, lança-o quando a abrires, com a data certa. Também podes marcar “Repetir todos os meses” ao registar um movimento. Mudar o valor só afeta os próximos; para parar, carrega em Pausar ou Apagar, e os que já foram lançados ficam.</p></details>
       <details><summary>Como passo dinheiro de uma conta para outra?</summary><p>Em Contas, carrega em “Transferir”, escolhe de onde sai e para onde vai o dinheiro, o valor e a data. Os dois saldos mudam logo, mas a transferência não conta como receita nem despesa, por isso não mexe nos totais do mês, nos orçamentos nem nos relatórios. Também serve para pagar o cartão de crédito a partir do banco.</p></details>
       <details><summary>Onde ficam os meus dados?</summary><p>Só neste navegador, neste aparelho. Nada sai daqui: não há conta nem servidor. Por isso, faz uma cópia de segurança de vez em quando em Definições → Cópia de segurança, e usa essa cópia para passar os dados para outro aparelho ou navegador.</p></details>
@@ -2995,7 +2995,7 @@ function salesList(){const out=[];
 function renderIsub(all,P){const sec=$("#tab-investimentos"),SL=salesList(),cnt={xtb:0,caf:0,outras:0},has={xtb:0,caf:0,outras:0};
   all.forEach(x=>{const k=invSrc(x.i);has[k]++;if(!x.s.closed)cnt[k]++});
   if(S.isub==="outras"&&!has.outras)S.isub="resumo";
-  if(!SRC[S.isub]&&S.isub!=="vendas")S.isub="resumo";
+  if(!SRC[S.isub])S.isub="resumo";
   sec.dataset.isub=all.length?S.isub:"resumo";$("#isubs").hidden=!all.length;
   $("#isubs").querySelectorAll("[data-isub]").forEach(b=>{const k=b.dataset.isub,on=k===S.isub;b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1;
     if(k==="outras")b.hidden=!has.outras;const n=b.querySelector(".n");if(n)n.textContent=(k==="vendas"?SL.length:cnt[k])||""});
@@ -3024,7 +3024,7 @@ function renderIsub(all,P){const sec=$("#tab-investimentos"),SL=salesList(),cnt=
     $("#subSales").hidden=!L.length;
     if(L.length){$("#subSalesT").textContent=k==="caf"?"Resgates":k==="xtb"?"Vendas na XTB":"Vendas";
       $("#subSalesSum").innerHTML=`<div><span>Recebeste</span><b>${eur(L.reduce((a,x)=>a+x.v,0))}</b><span>${L.length} ${k==="caf"?(L.length===1?"resgate":"resgates"):(L.length===1?"venda":"vendas")}</span></div><div><span>${k==="caf"?"Juros recebidos":"Lucro das vendas"}</span><b style="color:${g>=0?"var(--in)":"var(--out)"}">${seur(g)}</b><span>lucro real</span></div>`;
-      $("#subSalesRows").innerHTML=SALE_HEAD+L.slice(0,8).map(saleRow).join("")+(L.length>8?`<p class="muted" style="margin:10px 0 0;font-size:.85rem">Mais ${L.length-8} na aba Vendas.</p>`:"")}}
+      $("#subSalesRows").innerHTML=SALE_HEAD+(S.subAll?L:L.slice(0,8)).map(saleRow).join("");$("#subSalesAll").hidden=L.length<=8;$("#subSalesAll").textContent=S.subAll?"Ver menos":`Ver todas (${L.length})`;$("#subSalesAll").setAttribute("aria-expanded",!!S.subAll)}}
   else $("#subSales").hidden=true;
   renderCafMini(all);
   renderSales(SL,P);
@@ -3074,7 +3074,7 @@ function renderSales(SL,P){
   $("#slNote").hidden=!leg.length;
   $("#slNote").textContent=leg.length?"As linhas “sem data” são vendas registadas antes desta lista existir: a app só tinha guardado o total."+(leg.some(x=>x.src==="xtb")?" Para as da XTB, importa de novo o extrato e cada venda aparece com a sua data.":""):"";
 }
-$("#subSalesAll").onclick=()=>{S.slSrc=S.isub;S.slYear="all";setIsub("vendas")};
+S.subAll=false;$("#subSalesAll").onclick=()=>{S.subAll=!S.subAll;renderInv()};
 $("#slSrc").addEventListener("click",e=>{const b=e.target.closest("[data-sls]");if(b){S.slSrc=b.dataset.sls;renderInv()}});
 $("#slYear").addEventListener("change",e=>{S.slYear=e.target.value;renderInv()});
 $("#slSort").addEventListener("change",e=>{S.slSort=e.target.value;renderInv()});
