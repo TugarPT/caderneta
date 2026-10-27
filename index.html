@@ -1155,6 +1155,74 @@ body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
 .nt-types .ntc{margin-left:auto;align-self:center}
 #ntLowL{max-width:220px}
 @media (max-width:560px){.bellpop{position:fixed;left:12px;right:12px;top:64px;width:auto;max-height:calc(100dvh - 150px)}}
+/* dividendos previstos */
+.divtax{flex-direction:row;align-items:center;gap:6px;white-space:nowrap}
+.divtax input{width:64px;text-align:right}
+#divChart{margin-top:14px}
+#divChart .dvb[tabindex]{cursor:pointer;outline:none}
+#divChart .dvb[tabindex]:hover rect:last-of-type,#divChart .dvb[tabindex]:focus-visible rect:last-of-type{filter:brightness(1.12)}
+#divChart .dvb[tabindex]:focus-visible rect:first-of-type{fill:var(--accent-soft)!important}
+.dvm{margin-top:10px;padding:12px 14px;border-radius:12px;background:var(--surface-2)}
+.dvml{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--line);font-size:.9rem}
+.dvml:first-of-type{margin-top:8px}
+.dvml small{display:block;font-size:.75rem;color:var(--ink-2);text-align:right}
+#divRows{margin-top:14px}
+.dvr{display:grid;grid-template-columns:minmax(0,1fr) 150px auto;gap:12px;align-items:center;padding:11px 4px;border-bottom:1px solid var(--line)}
+.dvr .dn small{display:block;font-size:.78rem;color:var(--ink-2);margin-top:2px}
+.dvr .dv small{display:block;font-size:.75rem;color:var(--ink-2)}
+.dvr.off .dn b,.dvr.off .dv{opacity:.55}
+@media (max-width:560px){.dvr{grid-template-columns:minmax(0,1fr) auto}.dvr .dv{grid-column:1;grid-row:2;text-align:left}.dvr .da{grid-row:1/3;grid-column:2}}
+.dvmonths{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.dvmonths button{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:8px 0;font-weight:600;color:var(--ink-2);cursor:pointer;text-transform:capitalize}
+.dvmonths button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.dvmonths button:focus-visible,#divFreq button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#divFreq{grid-template-columns:repeat(4,minmax(0,1fr))}
+#divFreq button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+/* resumo do ano */
+.wrapc{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 18px;align-items:center;margin-bottom:16px;
+  background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface) 70%);border-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
+.wrapc h3{margin:0}
+.wrapc .caf-sum{grid-column:1/-1}
+.wrapc .caf-sum>div{background:color-mix(in srgb,var(--surface) 70%,transparent)}
+.wrapc .acts{display:flex;gap:8px;align-items:center}
+@media (max-width:560px){.wrapc{grid-template-columns:1fr}.wrapc .acts{justify-content:space-between}}
+dialog.wrapdlg{width:min(460px,calc(100% - 32px));height:min(720px,calc(100% - 32px));overflow:hidden;display:none;flex-direction:column;padding:0;background:var(--bg)}
+dialog.wrapdlg[open]{display:flex}
+@media (max-width:640px){dialog.wrapdlg{width:100%;height:100%;max-width:none;max-height:none;border-radius:0;margin:0}}
+.wtop{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px 6px}
+.wdots{display:flex;gap:5px;flex:1}
+.wdots button{flex:1;height:4px;border:0;border-radius:4px;background:var(--line);padding:0;cursor:pointer;min-width:6px}
+.wdots button[aria-current="step"]{background:var(--accent)}
+.wtrack{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.wtrack::-webkit-scrollbar{display:none}
+.wslide{flex:0 0 100%;scroll-snap-align:start;padding:8px 14px 14px;display:flex;min-width:0}
+.wslide .wc{flex:1;border-radius:20px;padding:26px 22px;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:auto;min-width:0;
+  --wc:var(--accent);background:radial-gradient(120% 70% at 100% 0%,color-mix(in srgb,var(--wc) 30%,transparent),transparent 70%),linear-gradient(170deg,color-mix(in srgb,var(--wc) 14%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--wc) 28%,var(--line))}
+.wslide[data-wc="in"] .wc{--wc:var(--in)}.wslide[data-wc="out"] .wc{--wc:var(--out)}.wslide[data-wc="warn"] .wc{--wc:var(--warn)}
+.wc .weye{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-2);font-weight:600}
+.wc h2{font-family:var(--f-display);font-size:1.75rem;line-height:1.1;margin:0 0 6px}
+.wbig{font-family:var(--f-display);font-size:clamp(2.2rem,11vw,3.2rem);font-weight:700;line-height:1;margin:6px 0 2px;letter-spacing:-.02em}
+.wlead{margin:0;font-size:1rem;color:var(--ink)}
+.wnote{margin:4px 0 0;font-size:.82rem;color:var(--ink-2)}
+.wrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:10px 0;border-top:1px solid color-mix(in srgb,var(--wc) 20%,var(--line))}
+.wrow span{color:var(--ink-2);font-size:.88rem}.wrow b{text-align:right;font-size:1.05rem}
+.wrow small{grid-column:1/-1;font-size:.8rem;color:var(--ink-2)}
+.wcats{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.wcat{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 10px;align-items:center}
+.wcat .pbar{grid-column:2/-1;height:6px;border-radius:6px;background:color-mix(in srgb,var(--ink) 8%,transparent);overflow:hidden}
+.wcat .pbar i{display:block;height:100%;border-radius:6px}
+.wcat .nm{font-weight:600}.wcat .v{font-weight:700}
+.wbars{display:flex;align-items:flex-end;gap:5px;height:130px;margin:6px 0 10px}
+.wbars span{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px;min-width:0}
+.wbars i{display:block;width:100%;max-width:26px;min-height:2px;border-radius:5px 5px 2px 2px;background:color-mix(in srgb,var(--wc) 45%,transparent)}
+.wbars .hi i{background:var(--out)}
+.wbars small{font-size:.68rem;color:var(--ink-2)}
+.wfin{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.wfin>div{background:color-mix(in srgb,var(--surface) 75%,transparent);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.wfin span{font-size:.75rem;color:var(--ink-2)}.wfin b{font-size:1.05rem;overflow-wrap:anywhere}
+.wnav{display:flex;justify-content:space-between;gap:10px;padding:0 14px calc(14px + env(safe-area-inset-bottom,0px))}
+.wnav .btn{flex:1}
+@media (max-width:560px){#divSum,#wrapMini{grid-template-columns:1fr 1fr}#divSum>div,#wrapMini>div{min-width:0}}
 </style>
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -1423,6 +1491,15 @@ body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
       <div class="caf-sum" id="subSalesSum" style="margin-top:8px"></div>
       <div class="sales" id="subSalesRows"></div>
     </div>
+    <div class="card" id="divCard" data-isp="resumo xtb outras" style="margin-top:16px" hidden>
+      <div class="cardhead"><div><h3>Dividendos previstos</h3><p class="note" id="divSub" style="margin:2px 0 0"></p></div>
+        <label class="divtax" for="divTax">IRS<input id="divTax" inputmode="decimal" aria-label="IRS sobre os dividendos, em %">%</label></div>
+      <div class="caf-sum" id="divSum" style="margin-top:12px"></div>
+      <div class="chart" id="divChart"></div>
+      <div id="divMonth" aria-live="polite"></div>
+      <div id="divRows"></div>
+      <p class="note" id="divNote"></p>
+    </div>
     <div class="card" id="salesCard" data-isp="vendas">
       <div class="listhead">
         <h3>O que vendeste</h3>
@@ -1523,6 +1600,11 @@ body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
     <div class="phead"><div><h1>Relatórios</h1><p>Mais detalhe sobre o mês escolhido em cima.</p></div><div class="actions"><button class="btn primary" type="button" id="rptBtn"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:17px;height:17px;vertical-align:-3px;margin-right:6px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 6 20V4a.5.5 0 0 1 .5-.5z"/><path d="M14 3.5V8h4M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg>Relatório PDF</button></div></div>
     <div class="card empty" id="relEmpty" hidden><h2>Ainda não há nada para analisar</h2><p>Os relatórios aparecem assim que registares movimentos: gastos por dia, por categoria, os últimos 6 meses e o raio-x do mês.</p><div class="actions"><button class="btn primary" type="button" data-go="movimentos">Registar um movimento</button><button class="btn" type="button" data-demo="load">Ver com dados de exemplo</button></div></div>
     <div id="relBody">
+    <div class="card wrapc" id="wrapCard" hidden>
+      <div><span class="eyebrow">Resumo do ano</span><h3 id="wrapT">O teu ano</h3></div>
+      <div class="acts"><select id="wrapYear" aria-label="Ano"></select><button class="btn primary" type="button" id="wrapOpen">Ver o resumo</button></div>
+      <div class="caf-sum" id="wrapMini"></div>
+    </div>
     <div class="grid2" style="margin-top:0">
         <div class="card chart">
           <div class="cardhead"><h3>Despesas</h3><div class="segs" id="spSeg"><button type="button" data-sp="week" aria-pressed="false">Semana</button><button type="button" data-sp="month" aria-pressed="true">Mês</button><button type="button" data-sp="year" aria-pressed="false">Ano</button></div></div>
@@ -1716,6 +1798,26 @@ body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
     <p class="note" id="sellPreview" style="margin:0"></p>
     <div class="actions"><button class="btn primary" type="submit">Registar venda</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
   </form>
+</dialog>
+<dialog id="divDlg" aria-labelledby="divTitle">
+  <form id="divForm" novalidate>
+    <div class="dlg-h"><h3 id="divTitle">Dividendos</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <p class="muted" id="divInfo" style="margin:0;font-size:.88rem"></p>
+    <label class="chk"><input type="checkbox" id="divNone"><span>Não paga dividendos (por exemplo, um ETF de acumulação)</span></label>
+    <div id="divFields" style="display:flex;flex-direction:column;gap:12px">
+      <label for="divPs">Dividendo por ação, em cada pagamento (€, antes de impostos)<input id="divPs" inputmode="decimal" placeholder="0,00" autocomplete="off"></label>
+      <div><span class="flabel">Quantas vezes por ano</span><div class="segs" id="divFreq" role="group" aria-label="Frequência" style="display:grid"><button type="button" data-dvf="1" aria-pressed="false">Mensal</button><button type="button" data-dvf="3" aria-pressed="false">Trimestral</button><button type="button" data-dvf="6" aria-pressed="false">Semestral</button><button type="button" data-dvf="12" aria-pressed="false">Anual</button></div></div>
+      <div><span class="flabel" id="divMl">Meses em que paga</span><div class="dvmonths" id="divMonths" role="group" aria-labelledby="divMl"></div></div>
+    </div>
+    <p class="note" id="divPrev" aria-live="polite" style="margin:0"></p>
+    <p class="note" id="divHist" style="margin:0"></p>
+    <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="divClear" style="margin-left:auto" hidden>Apagar</button></div>
+  </form>
+</dialog>
+<dialog id="wrapDlg" class="wrapdlg" aria-label="Resumo do ano">
+  <div class="wtop"><div class="wdots" id="wrapDots"></div><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+  <div class="wtrack" id="wrapTrack"></div>
+  <div class="wnav"><button class="btn" type="button" id="wrapPrev">Anterior</button><button class="btn primary" type="button" id="wrapNext">Seguinte</button></div>
 </dialog>
 <dialog id="xtbDlg">
   <form id="xtbForm" novalidate>
@@ -3912,7 +4014,7 @@ function renderIsub(all,P){const sec=$("#tab-investimentos"),SL=salesList(),cnt=
       $("#subSalesSum").innerHTML=`<div><span>Recebeste</span><b>${eur(L.reduce((a,x)=>a+x.v,0))}</b><span>${L.length} ${k==="caf"?(L.length===1?"resgate":"resgates"):(L.length===1?"venda":"vendas")}</span></div><div><span>${k==="caf"?"Juros recebidos":"Lucro das vendas"}</span><b style="color:${g>=0?"var(--in)":"var(--out)"}">${seur(g)}</b><span>lucro real</span></div>`;
       $("#subSalesRows").innerHTML=SALE_HEAD+(S.subAll?L:L.slice(0,8)).map(saleRow).join("");$("#subSalesAll").hidden=L.length<=8;$("#subSalesAll").textContent=S.subAll?"Ver menos":`Ver todas (${L.length})`;$("#subSalesAll").setAttribute("aria-expanded",!!S.subAll)}}
   else $("#subSales").hidden=true;
-  renderCafMini(all);
+  renderCafMini(all);renderDiv(all);
   renderSales(SL,P);
 }
 const saleRow=x=>{const dem=x.i.demo?'<span class="demo-tag">exemplo</span>':"",what=x.legacy?"várias vendas, só o total":x.src==="caf"?"resgate":x.q?NUM.format(x.q)+" × "+eur(x.v/x.q):"";
@@ -4079,7 +4181,7 @@ function xtbClass(sym,cat){const c=xnorm(cat);if(/etf|etc/.test(c))return "ETF";
   return sym.includes(".")?"Ações":"Outro"}
 const xtbSymIn=t=>{const m=String(t||"").match(/\b([A-Z0-9]{1,12}\.[A-Z]{2,3})\b/);return m?m[1]:""};
 /* turn the three tables into one summary per symbol, all amounts in the account currency */
-function xtbBuild(T){const N=T.names||{},C=T.cats||{};const P={},get=sym=>P[sym]=P[sym]||{sym,qty:0,purch:0,val:0,first:null,cFirst:null,cQty:0,cPurch:0,cSale:0,realized:0,income:0,div:0,tax:0,lots:0,sales:[]};
+function xtbBuild(T){const N=T.names||{},C=T.cats||{};const P={},get=sym=>P[sym]=P[sym]||{sym,qty:0,purch:0,val:0,first:null,cFirst:null,cQty:0,cPurch:0,cSale:0,realized:0,income:0,div:0,tax:0,lots:0,sales:[],divs:[]};
   const isBuy=t=>{const x=xnorm(t);return !x||/buy|compra|kupno|long/.test(x)};const early=(a,b)=>!a?b:!b?a:a<b?a:b;let shorts=0;
   T.open.forEach(o=>{if(!isBuy(o.type)){shorts++;return}const p=get(String(o.sym).trim()),v=xNum(o.vol),g=xNum(o.gross),cv=xNum(o.value);let pu=xNum(o.purch);
     /* newer exports give the current value and the profit in the account currency, but no purchase value */
@@ -4091,14 +4193,14 @@ function xtbBuild(T){const N=T.names||{},C=T.cats||{};const P={},get=sym=>P[sym]
   const cash={dep:0,wd:0,interest:0,orphanDiv:0};
   T.cash.forEach(o=>{const t=xnorm(o.type),a=xNum(o.amount),sym=String(o.sym||"").trim()||xtbSymIn(o.comment);
     if(/interest|juro|odsetk/.test(t))cash.interest+=a;
-    else if(/divid/.test(t)||/tax|impost|podatek|withhold|retenc/.test(t)){if(sym&&P[sym]){P[sym].income+=a;/divid/.test(t)?P[sym].div+=a:P[sym].tax+=a}else if(sym){const p=get(sym);p.income+=a;/divid/.test(t)?p.div+=a:p.tax+=a}else cash.orphanDiv+=a}
+    else if(/divid/.test(t)||/tax|impost|podatek|withhold|retenc/.test(t)){if(sym){const p=P[sym]||get(sym);p.income+=a;if(/divid/.test(t)){p.div+=a;const d=xDate(o.time);if(d&&a)p.divs.push({d,a})}else p.tax+=a}else cash.orphanDiv+=a}
     else if(/deposit|deposito|wplata/.test(t))cash.dep+=a;
     else if(/withdraw|levantamento|wyplata/.test(t))cash.wd+=a});
   const r2=v=>Math.round(v*100)/100,r4=v=>Math.round(v*1e4)/1e4;
   const rows=Object.values(P).filter(p=>p.qty>0||p.cQty>0).map(p=>{const open=p.qty>0;
     return{sym:p.sym,ticker:p.sym.split(".")[0].toUpperCase(),name:N[p.sym]||"",cls:xtbClass(p.sym,C[p.sym]),qty:Math.round(p.qty*1e8)/1e8,
       cost:open?r4(p.purch/p.qty):r4(p.cPurch/p.cQty),price:open?r4(p.val/p.qty):r4(p.cSale/p.cQty),
-      buyDate:(open?p.first:p.cFirst)||p.cFirst,income:r2(p.income),div:r2(p.div),tax:r2(p.tax),realized:r2(p.realized),soldCost:r2(p.cPurch),val:r2(p.val),purch:r2(p.purch),lots:p.lots,sales:p.sales.map(x=>({d:x.d,q:Math.round(x.q*1e8)/1e8,v:r2(x.v),c:r2(x.c),g:r2(x.g)})).sort((a,b)=>(b.d||"").localeCompare(a.d||""))}}).sort((a,b)=>b.val-a.val||a.sym.localeCompare(b.sym));
+      buyDate:(open?p.first:p.cFirst)||p.cFirst,income:r2(p.income),div:r2(p.div),tax:r2(p.tax),realized:r2(p.realized),soldCost:r2(p.cPurch),val:r2(p.val),purch:r2(p.purch),lots:p.lots,sales:p.sales.map(x=>({d:x.d,q:Math.round(x.q*1e8)/1e8,v:r2(x.v),c:r2(x.c),g:r2(x.g)})).sort((a,b)=>(b.d||"").localeCompare(a.d||"")),divs:Object.entries(p.divs.reduce((m,x)=>(m[x.d]=(m[x.d]||0)+x.a,m),{})).map(([d,a])=>({d,a:r2(a)})).sort((a,b)=>b.d.localeCompare(a.d))}}).sort((a,b)=>b.val-a.val||a.sym.localeCompare(b.sym));
   return{rows,cash,shorts,counts:{open:T.open.length,closed:T.closed.length,cash:T.cash.length}}}
 function xtbMatch(r){const live=invs().filter(i=>!i.demo);
   return live.find(i=>i.xtbSym===r.sym)||live.find(i=>{const t=String(i.ticker||"").toUpperCase();return t&&(t===r.sym.toUpperCase()||t===r.ticker)})||null}
@@ -4151,7 +4253,7 @@ $("#xtbBody").addEventListener("change",e=>{if(!xtbData)return;const on=e.target
 $("#xtbForm").addEventListener("submit",e=>{e.preventDefault();if(!xtbData)return;const t=todayISO();
   const objs=xtbData.rows.filter(r=>r.on).map(r=>{const m=r.match;
     const base=m?Object.assign({},m):{id:"ixtb-"+r.sym.replace(/[^A-Za-z0-9]/g,"_"),kind:"inv",name:r.name||r.ticker,ticker:r.ticker,expRet:null,demo:false};
-    return Object.assign(base,{cls:r.cls,qty:r.qty,cost:r.cost,price:r.price,buyDate:r.buyDate||base.buyDate||null,income:r.income,realized:r.realized,soldCost:r.soldCost,sales:r.sales||[],updated:t,source:"xtb",xtbSym:r.sym,pxSrc:null,chg:null,qsym:base.xtbSym===r.sym?base.qsym||null:null,qcur:base.xtbSym===r.sym?base.qcur||null:null})});
+    return Object.assign(base,{cls:r.cls,qty:r.qty,cost:r.cost,price:r.price,buyDate:r.buyDate||base.buyDate||null,income:r.income,realized:r.realized,soldCost:r.soldCost,sales:r.sales||[],divs:r.divs&&r.divs.length?r.divs:base.divs||[],updated:t,source:"xtb",xtbSym:r.sym,pxSrc:null,chg:null,qsym:base.xtbSym===r.sym?base.qsym||null:null,qcur:base.xtbSym===r.sym?base.qcur||null:null})});
   const dels=xtbData.stale.filter(x=>x.on).map(x=>x.i.id);if(!objs.length&&!dels.length)return;
   const nNew=objs.filter(o=>!S.items.has(o.id)).length;if(objs.length){S.isub="xtb";Store.putMany(objs)}if(dels.length)Store.delMany(dels);$("#xtbDlg").close();xtbData=null;
   toast(`Extrato importado: ${nNew} ${nNew===1?"nova":"novas"}, ${objs.length-nNew} ${objs.length-nNew===1?"atualizada":"atualizadas"}${dels.length?`, ${dels.length} ${dels.length===1?"apagada":"apagadas"}`:""}`)});
@@ -4400,7 +4502,7 @@ function buildDemo(){
     mk=(name,ticker,cls,qty,cost,price,buyDate,expRet,income,extra)=>Object.assign({id:newId("i"),kind:"inv",name,ticker,cls,qty,cost,price,buyDate,expRet,income:income||0,updated:t,demo:true},extra||{});
   out.push(mk("ETF mundial acumulação","VWCE","ETF",38,101.2,134.6,ago(30),7),mk("ETF mercados emergentes","EIMI","ETF",60,29.1,33.4,ago(20),8),
 mk("PPR","PPR","PPR",1,2400,2635,ago(26),5),
-    mk("Bitcoin","BTC","Cripto",0.025,52000,61000,ago(9),15),mk("EDP","EDP","Ações",250,4.1,3.72,ago(16),6,52.5),
+    mk("Bitcoin","BTC","Cripto",0.025,52000,61000,ago(9),15),mk("EDP","EDP","Ações",250,4.1,3.72,ago(16),6,52.5,{dv:{ps:.195,m:[5]}}),
     mk("Galp","GALP","Ações",0,11.4,16.2,ago(28),6,31,{realized:192,soldCost:456}));
   // ~30 months of fortnightly portfolio snapshots that end at today's demo values
   const pos=out.filter(o=>o.kind==="inv"),V=pos.reduce((a,i)=>a+i.qty*i.price,0)+6578,C=pos.reduce((a,i)=>a+i.qty*i.cost,0)+6500,N=65;
@@ -4914,12 +5016,186 @@ function render(){
   fillAccts();
   $("#demoBanner").hidden=![...S.items.values()].some(o=>o.demo);
   renderResumo();renderMov();renderInv();
-  const hasTx=txs().length>0;$("#relEmpty").hidden=hasTx||S.mode==="loading";$("#relBody").hidden=!hasTx;renderGoals();renderStays();renderLoans();renderAccts(txs());renderXfers();renderCards();renderBudgets();renderMonthSel();renderBell();renderRecs();renderSubs();if(hasTx)renderCompare();clearTimeout(S.recTm);S.recTm=setTimeout(()=>{runRecurring();runLoans()},60);
+  const hasTx=txs().length>0;$("#relEmpty").hidden=hasTx||S.mode==="loading";$("#relBody").hidden=!hasTx;renderGoals();renderStays();renderLoans();renderAccts(txs());renderXfers();renderCards();renderBudgets();renderMonthSel();renderBell();renderRecs();renderSubs();if(hasTx){renderCompare();renderWrapCard()}clearTimeout(S.recTm);S.recTm=setTimeout(()=>{runRecurring();runLoans()},60);
   const demo=[...S.items.values()].some(o=>o.demo);
   document.querySelectorAll('[data-demo="load"]').forEach(b=>b.hidden=demo);document.querySelectorAll('[data-demo="clear"]').forEach(b=>b.hidden=!demo);
   $("#storeNote").textContent=S.mode==="local"?"Os teus dados ficam guardados só neste navegador, neste aparelho. Exporta uma cópia de vez em quando e guarda-a num sítio seguro (Google Drive, iCloud, email). É também assim que passas os dados para outro aparelho.":"A abrir…";renderBackupNote();
   $("#openingNote").hidden=$("#openingL").hidden;
 }
+
+/* ---------- dividendos previstos (per position: what the user wrote, else the last 12 months of the XTB statement) ---------- */
+const divTax=()=>{const v=settings().divTax;return v!=null&&v!==""&&isFinite(+v)?Math.min(100,Math.max(0,+v)):28};
+const DV_FREQ={1:"Mensal",3:"Trimestral",6:"Semestral",12:"Anual"};
+const eurPs=v=>"€ "+new Intl.NumberFormat("pt-PT",{minimumFractionDigits:2,maximumFractionDigits:4}).format(v);
+const mList=m=>m.length===12?"todos os meses":m.map(x=>MSHORT[x-1]).join(", ");
+const dvFreqOf=m=>{const n=m.length;return n===12?"Mensal":n===4?"Trimestral":n===2?"Semestral":n===1?"Anual":n+" vezes por ano"};
+/* dividends of the last 12 months in the statement, grouped by month of the year */
+function divHist(i){const cut=iso(new Date(Date.now()-365*864e5)),by={};let n=0;
+  (Array.isArray(i.divs)?i.divs:[]).forEach(x=>{if(x&&x.d&&x.d>cut&&+x.a>0){const m=+x.d.slice(5,7);by[m]=(by[m]||0)+ +x.a;n++}});
+  const m=Object.keys(by).map(Number).sort((a,b)=>a-b);return{m,by,n,tot:m.reduce((a,k)=>a+by[k],0)}}
+/* {src: user|hist|none|unknown, pays:[{m,g}] gross per month} for an open position that is not Aforro */
+function divPlan(i,s){const q=s.qty;
+  if(i.dv){if(i.dv.none)return{src:"none",pays:[],m:[]};const ps=+i.dv.ps||0,m=(i.dv.m||[]).filter(x=>x>=1&&x<=12).sort((a,b)=>a-b);return{src:"user",ps,m,pays:m.map(x=>({m:x,g:q*ps}))}}
+  const h=divHist(i);if(h.m.length)return{src:"hist",m:h.m,ps:q?h.tot/h.m.length/q:0,pays:h.m.map(x=>({m:x,g:h.by[x]}))};
+  return{src:"unknown",pays:[],m:[]}}
+const divEligible=x=>!x.i.caf&&!x.s.closed;
+S.divSel=null;
+function divWindow(){const d=new Date();return Array.from({length:12},(_,k)=>{const x=new Date(d.getFullYear(),d.getMonth()+1+k,1);return{key:ym(x),m:x.getMonth()+1,y:x.getFullYear()}})}
+function renderDiv(all){const card=$("#divCard");if(!card)return;
+  const k=S.isub,inSub=x=>k==="resumo"||invSrc(x.i)===k,L=all.filter(x=>divEligible(x)&&inSub(x)).map(x=>Object.assign({},x,{p:divPlan(x.i,x.s)}));
+  card.hidden=!L.length||k==="caf";if(card.hidden)return;
+  const tax=divTax(),net=g=>g*(1-tax/100),W=divWindow();
+  W.forEach(w=>{w.g=0;w.L=[];L.forEach(x=>x.p.pays.forEach(p=>{if(p.m===w.m&&p.g>0){w.g+=p.g;w.L.push({x,g:p.g})}}))});
+  const gross=W.reduce((a,w)=>a+w.g,0),val=L.reduce((a,x)=>a+x.s.val,0),payVal=L.filter(x=>x.p.pays.length).reduce((a,x)=>a+x.s.val,0);
+  const unk=L.filter(x=>x.p.src==="unknown"),y=String(new Date().getFullYear());
+  const rec=L.reduce((a,x)=>a+(Array.isArray(x.i.divs)?x.i.divs:[]).filter(d=>d&&d.d&&d.d.startsWith(y)).reduce((b,d)=>b+(+d.a||0),0),0);
+  $("#divTax").value=numStr(tax);
+  $("#divSub").textContent=`Próximos 12 meses, de ${MSHORT[W[0].m-1]} ${W[0].y} a ${MSHORT[W[11].m-1]} ${W[11].y}${k==="xtb"?", posições da XTB":k==="outras"?", outras posições":""}.`;
+  const nxt=W.find(w=>w.g>0);
+  $("#divSum").innerHTML=gross?`<div><span>Líquido em 12 meses</span><b style="color:var(--in)">${eur(net(gross))}</b><span>${eur(gross)} brutos − ${numStr(tax)}% de IRS</span></div>
+    <div><span>Média por mês</span><b>${eur(net(gross)/12)}</b><span>líquidos</span></div>
+    <div><span>Rendimento da carteira</span><b>${val?pct(gross/val):"—"}</b><span>${payVal&&payVal<val?pct(gross/payVal)+" só nas que pagam":"bruto, sobre o valor de hoje"}</span></div>
+    <div><span>Próximo</span><b>${nxt?cap(MONTHS[nxt.m-1]):"—"}</b><span>${nxt?eur(net(nxt.g))+" líquidos":""}</span></div>`
+    +(rec?`<div><span>Recebido em ${y}</span><b>${eur(rec)}</b><span>brutos, no extrato XTB</span></div>`:"")
+    :`<div><span>Ainda sem previsão</span><b>—</b><span>${unk.length?`escreve o dividendo de ${unk.length===1?"1 posição":unk.length+" posições"} em baixo`:"nenhuma posição paga dividendos"}</span></div>`;
+  if(S.divSel&&!W.some(w=>w.key===S.divSel&&w.g))S.divSel=null;
+  /* bars: solid = net, faded top = IRS */
+  const Wd=chartW("#divChart"),H=170,Lp=46,R=6,T=10,B=24,iw=Wd-Lp-R,ih=H-T-B,max=niceMax(Math.max(1,...W.map(w=>w.g))),gw=iw/12,bw=Math.max(8,Math.min(34,gw*.62));
+  let g=`<svg viewBox="0 0 ${Wd} ${H}" role="group" aria-label="Dividendos previstos por mês">`;
+  for(let j=0;j<=2;j++){const yy=T+ih-ih*j/2;g+=`<line x1="${Lp}" x2="${Wd-R}" y1="${yy}" y2="${yy}" style="stroke:var(--line)"/><text x="${Lp-8}" y="${yy+4}" text-anchor="end">${COMPACT.format(max*j/2)}</text>`}
+  W.forEach((w,j)=>{const h=ih*w.g/max,hn=ih*net(w.g)/max,x=Lp+gw*j+(gw-bw)/2,on=S.divSel===w.key,dim=S.divSel&&!on;
+    const lab=`${cap(MONTHS[w.m-1])} ${w.y}: ${w.g?eur(net(w.g))+" líquidos ("+eur(w.g)+" brutos)":"sem dividendos"}`;
+    g+=`<g class="dvb${w.g?"":" z"}" data-dm="${w.key}"${w.g?` tabindex="0" role="button" aria-pressed="${on}"`:""} aria-label="${esc(lab)}"><title>${esc(lab)}</title><rect x="${Lp+gw*j}" y="${T}" width="${gw}" height="${ih}" style="fill:transparent"/>`+
+      (w.g?`<rect x="${x}" y="${T+ih-h}" width="${bw}" height="${Math.max(2,h-hn)}" rx="${Math.min(4,bw/2)}" style="fill:var(--in);opacity:${dim?.15:.3}"/><rect x="${x}" y="${T+ih-hn}" width="${bw}" height="${Math.max(2,hn)}" rx="${Math.min(4,bw/2)}" style="fill:var(--in);opacity:${dim?.35:1}"/>`:"")+
+      `<text x="${Lp+gw*j+gw/2}" y="${H-6}" text-anchor="middle" style="${on?"fill:var(--ink);font-weight:600":""}">${gw<34?MSHORT[w.m-1].charAt(0).toUpperCase():MSHORT[w.m-1]}</text></g>`});
+  $("#divChart").innerHTML=g+"</svg>";
+  const sel=W.find(w=>w.key===S.divSel);
+  $("#divMonth").innerHTML=sel?`<div class="dvm"><div class="cardhead" style="margin:0"><b>${cap(MONTHS[sel.m-1])} ${sel.y} · ${eur(net(sel.g))} líquidos</b><button class="link" type="button" data-dm="">Fechar</button></div>
+    ${sel.L.sort((a,b)=>b.g-a.g).map(({x,g})=>`<div class="dvml"><span>${esc(x.i.name)}${x.i.demo?'<span class="demo-tag">exemplo</span>':""}</span><span class="num">${eur(net(g))}<small>${eur(g)} brutos</small></span></div>`).join("")}</div>`:"";
+  const ord={user:0,hist:0,unknown:1,none:2},yr=x=>x.p.pays.reduce((a,p)=>a+p.g,0);
+  $("#divRows").innerHTML=L.sort((a,b)=>ord[a.p.src]-ord[b.p.src]||yr(b)-yr(a)||a.i.name.localeCompare(b.i.name)).map(x=>{const p=x.p,ya=yr(x),id=esc(x.i.id);
+    const what=p.src==="none"?"Não paga dividendos":p.src==="unknown"?"Sem dados de dividendos":`${dvFreqOf(p.m)} · ${mList(p.m)}${p.ps?` · ${eurPs(p.ps)} por ação`:""}`;
+    const tag=p.src==="user"?chip("neutral","escrito por ti"):p.src==="hist"?chip("good","do extrato"):"";
+    return `<div class="dvr${p.src==="none"?" off":""}"><div class="dn"><b>${esc(x.i.name)}${x.i.demo?'<span class="demo-tag">exemplo</span>':""}</b><small>${esc(x.i.ticker||x.i.xtbSym||"")}${x.i.ticker||x.i.xtbSym?" · ":""}${NUM.format(x.s.qty)} ${x.s.qty===1?"unidade":"unidades"}</small><small>${what} ${tag}</small></div>
+      <div class="dv r">${ya?`<b class="num" style="color:var(--in)">${eur(net(ya))}</b><small>${eur(ya)} brutos por ano</small>`:""}</div>
+      <div class="da"><button class="btn" type="button" data-dved="${id}">${p.src==="unknown"?"Definir":"Editar"}</button></div></div>`}).join("");
+  $("#divNote").textContent=(L.some(x=>x.p.src==="hist")?"“Do extrato” repete o que recebeste nos últimos 12 meses, nos mesmos meses. ":"")+`Em Portugal os dividendos pagam ${numStr(tax)}% de IRS; se a empresa é estrangeira, parte é retida lá fora e o resto cá, mas no total fica nos ${numStr(tax)}%. As empresas podem mudar o dividendo; isto é uma previsão.`}
+$("#divChart").addEventListener("click",e=>{const b=e.target.closest("[data-dm]");if(!b||b.classList.contains("z"))return;S.divSel=S.divSel===b.dataset.dm?null:b.dataset.dm;renderInv()});
+$("#divChart").addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;const b=e.target.closest("[data-dm]");if(!b||b.classList.contains("z"))return;e.preventDefault();
+  S.divSel=S.divSel===b.dataset.dm?null:b.dataset.dm;const k=b.dataset.dm;renderInv();const n=$(`#divChart [data-dm="${k}"]`);if(n)n.focus()});
+$("#divMonth").addEventListener("click",e=>{if(e.target.closest("[data-dm]")){S.divSel=null;renderInv()}});
+$("#divTax").addEventListener("change",()=>{const v=parseNum($("#divTax").value);if(!(v>=0&&v<=100)){toast("O IRS tem de estar entre 0 e 100%.");$("#divTax").value=numStr(divTax());return}
+  Store.put(Object.assign({},settings(),{id:"settings",kind:"settings",divTax:Math.round(v*100)/100}));toast("Taxa de IRS dos dividendos guardada")});
+$("#divRows").addEventListener("click",e=>{const b=e.target.closest("[data-dved]");if(b)openDiv(b.dataset.dved)});
+/* dialog */
+S.dvM=new Set();
+function dvMonthsUI(){$("#divMonths").innerHTML=MSHORT.map((m,k)=>`<button type="button" data-dvm="${k+1}" aria-pressed="${S.dvM.has(k+1)}">${m}</button>`).join("");
+  const m=[...S.dvM].sort((a,b)=>a-b),f=m.length===12?1:m.length===4?3:m.length===2?6:m.length===1?12:0;
+  document.querySelectorAll("#divFreq [data-dvf]").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.dvf===f)));dvPrev()}
+function dvPrev(){const i=S.items.get(S.dvId);if(!i)return;const none=$("#divNone").checked;$("#divFields").hidden=none;
+  const ps=parseNum($("#divPs").value),n=S.dvM.size,q=+i.qty||0,tax=divTax();
+  $("#divPrev").innerHTML=none?"Esta posição fica de fora da previsão.":ps>0&&n?`${NUM.format(q)} × ${eurPs(ps)} × ${n} ${n===1?"pagamento":"pagamentos"} = <b>${eur(q*ps*n)}</b> brutos por ano · <b style="color:var(--in)">${eur(q*ps*n*(1-tax/100))}</b> líquidos`:"Escreve o valor por ação e escolhe os meses em que paga."}
+function openDiv(id){const i=S.items.get(id);if(!i)return;S.dvId=id;const s=posStats(i),h=divHist(i),dv=i.dv||null;
+  $("#divTitle").textContent="Dividendos · "+(i.name||i.ticker);
+  $("#divInfo").textContent=`${i.ticker||i.xtbSym||i.cls} · ${NUM.format(s.qty)} ${s.qty===1?"unidade":"unidades"} · valor ${eur(s.val)}`;
+  $("#divNone").checked=!!(dv&&dv.none);
+  const use=dv&&!dv.none?dv:null;S.dvM=new Set(use?use.m||[]:h.m);
+  $("#divPs").value=use?numStr(use.ps):h.m.length&&s.qty?numStr(Math.round(h.tot/h.m.length/s.qty*1e4)/1e4):"";
+  $("#divHist").innerHTML=h.n?`No extrato da XTB recebeste <b>${eur(h.tot)}</b> brutos em ${h.n} ${h.n===1?"pagamento":"pagamentos"} nos últimos 12 meses (${mList(h.m)}).${use?"":" Já está preenchido com isso; ajusta se o dividendo mudou."}`
+    :i.source==="xtb"?"O extrato não tem dividendos desta posição nos últimos 12 meses. Vê o dividendo por ação no site da empresa ou do ETF.":"Vê o dividendo por ação e os meses de pagamento no site da empresa ou do ETF.";
+  $("#divClear").hidden=!dv;$("#divClear").textContent=h.n?"Voltar ao extrato":"Apagar";
+  dvMonthsUI();$("#divDlg").showModal();(dv&&dv.none?$("#divNone"):$("#divPs")).focus()}
+$("#divMonths").addEventListener("click",e=>{const b=e.target.closest("[data-dvm]");if(!b)return;const m=+b.dataset.dvm;S.dvM.has(m)?S.dvM.delete(m):S.dvM.add(m);dvMonthsUI()});
+$("#divFreq").addEventListener("click",e=>{const b=e.target.closest("[data-dvf]");if(!b)return;const f=+b.dataset.dvf,s=S.dvM.size?Math.min(...S.dvM):f===12?new Date().getMonth()+1:f===1?1:3;
+  S.dvM=new Set();for(let k=0;k<12/f;k++)S.dvM.add((s-1+k*f)%12+1);dvMonthsUI()});
+$("#divPs").addEventListener("input",dvPrev);$("#divNone").addEventListener("change",dvPrev);
+$("#divClear").onclick=()=>{const i=S.items.get(S.dvId);if(!i)return;const o=Object.assign({},i);delete o.dv;Store.put(o);$("#divDlg").close();toast(divHist(i).n?"Volta a usar o extrato":"Dividendo apagado")};
+$("#divForm").addEventListener("submit",e=>{e.preventDefault();const i=S.items.get(S.dvId);if(!i)return;
+  if($("#divNone").checked){Store.put(Object.assign({},i,{dv:{none:true}}));$("#divDlg").close();toast("Fica de fora da previsão");return}
+  const ps=parseNum($("#divPs").value);if(!(ps>0)){toast("Escreve o dividendo por ação.");$("#divPs").focus();return}
+  if(!S.dvM.size){toast("Escolhe pelo menos um mês.");return}
+  Store.put(Object.assign({},i,{dv:{ps:Math.round(ps*1e6)/1e6,m:[...S.dvM].sort((a,b)=>a-b)}}));$("#divDlg").close();toast("Dividendo guardado")});
+
+/* ---------- resumo do ano (cartões que se deslizam) ---------- */
+function wrapYears(){const Y=new Set(txs().filter(t=>t.date&&t.date<=todayISO()).map(t=>t.date.slice(0,4)));return [...Y].sort().reverse()}
+function wrapCalc(y){const today=todayISO(),cur=y===today.slice(0,4),end=cur?today:y+"-12-31";
+  const T=txs().filter(t=>t.date&&t.date.startsWith(y)&&t.date<=today);if(!T.length)return null;
+  const outs=T.filter(isOut),ins=T.filter(t=>t.type==="in"),invs_=T.filter(isInvOut);
+  const inS=sum(ins),outS=sum(outs),invS=S.invExp?0:sum(invs_),save=inS-outS;
+  const lastM=cur?+today.slice(5,7):12,M=Array.from({length:lastM},(_,k)=>{const key=y+"-"+pad(k+1),o=outs.filter(t=>t.date.startsWith(key)),n=ins.filter(t=>t.date.startsWith(key));return{k,key,out:sum(o),in:sum(n),save:sum(n)-sum(o),n:o.length+n.length}});
+  const act=M.filter(m=>m.n),best=act.length>1?act.reduce((a,m)=>m.save>a.save?m:a):null,dear=act.length>1?act.reduce((a,m)=>m.out>a.out?m:a):null;
+  const by={};outs.forEach(t=>by[t.cat]=(by[t.cat]||0)+ +t.amount);const cats=Object.entries(by).sort((a,b)=>b[1]-a[1]);
+  const big=outs.slice().sort((a,b)=>b.amount-a.amount)[0]||null;
+  const day={};outs.forEach(t=>day[t.date]=(day[t.date]||0)+ +t.amount);const dTop=Object.entries(day).sort((a,b)=>b[1]-a[1])[0]||null;
+  const wd=Array(7).fill(0);outs.forEach(t=>wd[new Date(t.date+"T12:00:00").getDay()]+=+t.amount);const wTop=outs.length?wd.indexOf(Math.max(...wd)):-1;
+  const pl={};outs.forEach(t=>{const k=String(t.desc||"").trim().toLowerCase();if(k){pl[k]=pl[k]||{n:0,v:0,name:t.desc.trim()};pl[k].n++;pl[k].v+=+t.amount}});
+  const fav=Object.values(pl).filter(p=>p.n>1).sort((a,b)=>b.n-a.n||b.v-a.v)[0]||null;
+  const first=T.reduce((a,t)=>t.date<a?t.date:a,"9999"),from=first>y+"-01-01"?first:y+"-01-01",span=dDiff(from,end)+1,free=span-Object.keys(day).filter(d=>d>=from).length;
+  const subs=sum(outs.filter(t=>t.cat==="Subscrições"));
+  /* stays (Estadias) that touch the year: only the days inside it */
+  const st=staysList().filter(s=>s.from<=end&&s.to>=y+"-01-01"&&s.from<=today).map(s=>{const k=stayCalc(s,txs());const a=s.from<y+"-01-01"?y+"-01-01":s.from,b=s.to>end?end:s.to;return{s,k,days:Math.max(0,dDiff(a,b)+1)}});
+  const stay=st.length?{n:st.length,days:st.reduce((a,x)=>a+x.days,0),spent:st.reduce((a,x)=>a+x.k.spent,0),got:st.reduce((a,x)=>a+x.k.got,0)}:null;
+  /* investments: money sent, dividends in the statement, sales with a date in the year */
+  const all=invs().map(i=>({i,s:posStats(i)}));let dv=0,sl=0,sg=0,sv=0;
+  all.forEach(({i})=>{(Array.isArray(i.divs)?i.divs:[]).forEach(d=>{if(d&&d.d&&d.d.startsWith(y))dv+=+d.a||0});
+    (Array.isArray(i.sales)?i.sales:[]).forEach(x=>{if(x&&x.d&&x.d.startsWith(y)){sl++;sg+=+x.g||0;sv+=+x.v||0}})});
+  const dvTx=sum(ins.filter(t=>t.cat==="Dividendos"));
+  const port=cur?portValue():null;
+  const inv=sum(invs_)||dv||sl||dvTx||port?{put:sum(invs_),dv,dvTx,sl,sg,sv,port}:null;
+  /* património from the day before the year (or the first record) to the end */
+  let nw=null;try{const C=nwCtx(txs(),settings()),f=nwFirst(C),a=f>y+"-01-01"?f:iso(new Date(+y,0,0)),A=nwAt(a,C),B2=nwAt(end,C),tA=A.liq+A.port+(A.loan||0),tB=B2.liq+B2.port+(B2.loan||0);
+    if(a<end)nw={from:a,a:tA,b:tB,fromFirst:f>y+"-01-01"}}catch(e){}
+  return{y,cur,end,T,n:T.length,first,from,inS,outS,invS,save,rate:inS?save/inS:null,M,best,dear,cats,big,dTop,wd,wTop,fav,span,free,subs,stay,inv,nw,demo:T.some(t=>t.demo)}}
+function wrapSlides(w){const S2=[],yl=w.cur?`${w.y} até agora`:w.y,big=(v,c)=>`<div class="wbig num"${c?` style="color:${c}"`:""}>${v}</div>`;
+  const row=(a,b,c)=>`<div class="wrow"><span>${a}</span><b${/^[+−€\d]/.test(b)?' class="num"':""}>${b}</b>${c?`<small>${c}</small>`:""}</div>`;
+  S2.push(["accent","O teu ano",`<h2>O teu ${esc(w.y)}</h2>${big(String(w.n))}<p class="wlead">movimentos registados ${w.cur?"até hoje":"no ano"}, de ${dshort(w.first)} a ${dshort(w.T.reduce((a,t)=>t.date>a?t.date:a,""))}.</p>${w.demo?`<p class="wnote">Inclui dados de exemplo.</p>`:""}<p class="wnote">Desliza para o lado para veres o resto.</p>`]);
+  S2.push([w.save>=0?"in":"out","Entrou e saiu",`<h2>Entrou e saiu</h2>${row("Entrou",eur(w.inS))}${row("Gastaste",eur(w.outS))}${big((w.save>=0?"+ ":"− ")+eur(Math.abs(w.save)),w.save>=0?"var(--in)":"var(--out)")}
+    <p class="wlead">${w.save>=0?"ficou do teu lado":"gastaste mais do que entrou"}${w.rate!=null?` · ${w.save>=0?"poupaste":"faltou"} <b>${Math.round(Math.abs(w.rate)*100)}%</b> do que entrou`:""}.</p>${w.invS?`<p class="wnote">Mandaste ${eur(w.invS)} para investimentos; isso não conta como gasto.</p>`:""}`]);
+  if(w.cats.length){const mx=w.cats[0][1];S2.push(["out","Onde foi o dinheiro",`<h2>Onde foi o dinheiro</h2><p class="wlead">${esc(w.cats[0][0])} levou mais: <b>${eur(w.cats[0][1])}</b>, ${Math.round(w.cats[0][1]/w.outS*100)}% de tudo.</p>
+    <div class="wcats">${w.cats.slice(0,5).map(([c,v],k)=>`<div class="wcat">${catTile("out",c)}<span class="nm">${k+1}. ${esc(c)}</span><span class="v num">${eur0(v)}</span><span class="pbar"><i style="width:${v/mx*100}%;background:${catColor("out",c)}"></i></span></div>`).join("")}</div>${w.cats.length>5?`<p class="wnote">E mais ${w.cats.length-5} ${w.cats.length-5===1?"categoria":"categorias"}.</p>`:""}`])}
+  if(w.best){const mx=Math.max(1,...w.M.map(m=>Math.max(m.out,m.in)));S2.push(["accent","Mês a mês",`<h2>Mês a mês</h2>
+    <div class="wbars" role="img" aria-label="Gastos por mês">${w.M.map(m=>`<span class="${m===w.dear?"hi":""}" title="${cap(MONTHS[m.k])}: gastaste ${eur(m.out)}"><i style="height:${m.out/mx*100}%"></i><small>${MSHORT[m.k].slice(0,1).toUpperCase()}</small></span>`).join("")}</div>
+    ${row("Melhor mês",cap(MONTHS[w.best.k]),`${w.best.save>=0?"poupaste":"faltou"} ${eur(Math.abs(w.best.save))}`)}${row("Mês mais caro",cap(MONTHS[w.dear.k]),`gastaste ${eur(w.dear.out)}`)}`])}
+  const rec=[];if(w.big)rec.push(row("Maior despesa",eur(w.big.amount),`${esc(w.big.desc||w.big.cat)} · ${dshort(w.big.date)}`));
+  if(w.dTop)rec.push(row("Dia mais caro",dshort(w.dTop[0]),`${eur(w.dTop[1])} num só dia`));
+  if(w.fav)rec.push(row("Onde foste mais vezes",esc(w.fav.name),`${w.fav.n} vezes · ${eur(w.fav.v)}`));
+  if(w.wTop>-1)rec.push(row("Dia da semana com mais gastos",cap(WD[w.wTop]),eur(w.wd[w.wTop])));
+  rec.push(row("Dias sem gastar",String(w.free),`em ${w.span} ${w.span===1?"dia":"dias"}${w.from>w.y+"-01-01"?" desde o 1.º registo":""}`));
+  if(w.subs)rec.push(row("Subscrições",eur(w.subs),"no ano"));
+  S2.push(["warn","Os recordes",`<h2>Os recordes</h2>${rec.join("")}`]);
+  if(w.stay)S2.push(["accent","Estadias",`<h2>Estadias</h2>${big(w.stay.days+(w.stay.days===1?" dia":" dias"))}<p class="wlead">fora, em ${w.stay.n} ${w.stay.n===1?"estadia":"estadias"}.</p>${row("Gastaste lá",eur(w.stay.spent),w.stay.days?eur(w.stay.spent/w.stay.days)+" por dia":"")}${w.stay.got?row("Recebeste",eur(w.stay.got),"nesses períodos"):""}`]);
+  if(w.inv){const v=w.inv;S2.push(["in","Investimentos",`<h2>Investimentos</h2>${v.put?row("Puseste a investir",eur(v.put),"categoria Investimento"):""}${v.dv?row("Dividendos recebidos",eur(v.dv),"brutos, no extrato XTB"):v.dvTx?row("Dividendos recebidos",eur(v.dvTx),"registados em Movimentos"):""}
+    ${v.sl?row("Vendas",`${v.sl} · ${seur(v.sg)}`,`recebeste ${eur(v.sv)}`):""}${v.dv||v.sg?row("Lucro real do ano",seur((v.dv||v.dvTx)+v.sg),"dividendos + ganho das vendas"):""}${v.port!=null&&v.port?row("Carteira hoje",eur(v.port),"inclui lucro potencial"):""}`])}
+  if(w.nw){const d=w.nw.b-w.nw.a;S2.push([d>=0?"in":"out","Património",`<h2>Património</h2>${big((d>=0?"+ ":"− ")+eur(Math.abs(d)),d>=0?"var(--in)":"var(--out)")}<p class="wlead">${w.nw.fromFirst?"desde o 1.º registo, a "+dshort(w.nw.from):"desde o início do ano"}.</p>${row(w.nw.fromFirst?"No início":"A 31 dez "+(+w.y-1),eur(w.nw.a))}${row(w.cur?"Hoje":"A 31 dez "+w.y,eur(w.nw.b))}`])}
+  S2.push(["accent","Em resumo",`<h2>${esc(yl)} em resumo</h2><div class="wfin">
+    <div><span>Entrou</span><b class="num">${eur0(w.inS)}</b></div><div><span>Gastaste</span><b class="num">${eur0(w.outS)}</b></div>
+    <div><span>${w.save>=0?"Poupaste":"Faltou"}</span><b class="num" style="color:${w.save>=0?"var(--in)":"var(--out)"}">${eur0(Math.abs(w.save))}</b></div>
+    ${w.cats.length?`<div><span>Maior gasto</span><b>${esc(w.cats[0][0])}</b></div>`:""}${w.best?`<div><span>Melhor mês</span><b>${cap(MONTHS[w.best.k])}</b></div>`:""}${w.nw?`<div><span>Património</span><b class="num" style="color:${w.nw.b>=w.nw.a?"var(--in)":"var(--out)"}">${seur0(w.nw.b-w.nw.a)}</b></div>`:""}</div>
+    <div class="actions" style="justify-content:center;margin-top:18px"><button class="btn primary" type="button" data-wgo="0">Ver outra vez</button><button class="btn" type="button" data-close>Fechar</button></div>`]);
+  return S2}
+S.wy=null;
+function renderWrapCard(){const el=$("#wrapCard");if(!el)return;const Y=wrapYears();el.hidden=!Y.length;if(!Y.length)return;
+  if(!S.wy||!Y.includes(S.wy)){const now=new Date();S.wy=now.getMonth()===0&&Y.includes(String(now.getFullYear()-1))?String(now.getFullYear()-1):Y[0]}
+  $("#wrapYear").innerHTML=Y.map(y=>`<option${y===S.wy?" selected":""}>${y}</option>`).join("");$("#wrapYear").hidden=Y.length<2;
+  const w=wrapCalc(S.wy);if(!w){$("#wrapMini").innerHTML="";return}
+  $("#wrapT").textContent=`O teu ${w.y}${w.cur?" até agora":""}`;
+  $("#wrapMini").innerHTML=`<div><span>Poupaste</span><b style="color:${w.save>=0?"var(--in)":"var(--out)"}">${w.save>=0?"":"− "}${eur0(Math.abs(w.save))}</b><span>${w.rate!=null?Math.round(w.rate*100)+"% do que entrou":""}</span></div>
+    ${w.cats.length?`<div><span>Onde gastaste mais</span><b>${esc(w.cats[0][0])}</b><span>${eur0(w.cats[0][1])}</span></div>`:""}
+    ${w.best?`<div><span>Melhor mês</span><b>${cap(MONTHS[w.best.k])}</b><span>${w.best.save>=0?"poupaste":"faltou"} ${eur0(Math.abs(w.best.save))}</span></div>`:""}`}
+$("#wrapYear").addEventListener("change",e=>{S.wy=e.target.value;renderWrapCard()});
+function openWrap(){const w=wrapCalc(S.wy);if(!w)return;const L=wrapSlides(w);
+  $("#wrapTrack").innerHTML=L.map(([c,t,h],k)=>`<section class="wslide" data-wc="${c}" role="group" aria-roledescription="cartão" aria-label="${k+1} de ${L.length}: ${esc(t)}"><div class="wc"><span class="weye">${esc(w.cur?w.y+" até agora":w.y)} · ${k+1}/${L.length}</span>${h}</div></section>`).join("");
+  $("#wrapDots").innerHTML=L.map((x,k)=>`<button type="button" data-wgo="${k}" aria-label="Cartão ${k+1}: ${esc(x[1])}"></button>`).join("");
+  S.wk=0;$("#wrapDlg").showModal();$("#wrapTrack").scrollLeft=0;wrapSync();$("#wrapNext").focus()}
+function wrapGo(k){const tr=$("#wrapTrack"),n=tr.children.length;k=Math.max(0,Math.min(n-1,k));
+  tr.scrollTo({left:k*tr.clientWidth,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});S.wk=k;wrapSync()}
+function wrapSync(){const n=$("#wrapTrack").children.length;$("#wrapDots").querySelectorAll("button").forEach((b,k)=>b.setAttribute("aria-current",k===S.wk?"step":"false"));
+  $("#wrapPrev").disabled=S.wk<=0;$("#wrapNext").disabled=S.wk>=n-1}
+$("#wrapOpen").onclick=openWrap;
+$("#wrapPrev").onclick=()=>wrapGo(S.wk-1);$("#wrapNext").onclick=()=>wrapGo(S.wk+1);
+$("#wrapDlg").addEventListener("click",e=>{const b=e.target.closest("[data-wgo]");if(b)wrapGo(+b.dataset.wgo)});
+$("#wrapDlg").addEventListener("keydown",e=>{if(e.target.closest("input,select,textarea"))return;if(e.key==="ArrowRight"){e.preventDefault();wrapGo(S.wk+1)}else if(e.key==="ArrowLeft"){e.preventDefault();wrapGo(S.wk-1)}});
+let wrapST;$("#wrapTrack").addEventListener("scroll",()=>{clearTimeout(wrapST);wrapST=setTimeout(()=>{const tr=$("#wrapTrack"),k=Math.round(tr.scrollLeft/Math.max(1,tr.clientWidth));if(k!==S.wk){S.wk=k;wrapSync()}},60)},{passive:true});
 
 /* boot */
 $("#txDate").value=todayISO();setTxType("out");
