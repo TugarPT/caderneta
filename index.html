@@ -1044,7 +1044,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
     <div class="isubs" id="isubs" role="tablist" aria-label="Secções de Investimentos">
       <button type="button" role="tab" id="isub-resumo" data-isub="resumo" aria-selected="true">Resumo</button>
       <button type="button" role="tab" id="isub-xtb" data-isub="xtb" aria-selected="false" tabindex="-1">XTB<span class="n"></span></button>
-      <button type="button" role="tab" id="isub-caf" data-isub="caf" aria-selected="false" tabindex="-1"><span class="lg">Certificados de </span>Aforro<span class="n"></span></button>
+      <button type="button" role="tab" id="isub-caf" data-isub="caf" aria-selected="false" tabindex="-1"><span><span class="lg">Certificados de </span>Aforro</span><span class="n"></span></button>
       <button type="button" role="tab" id="isub-outras" data-isub="outras" aria-selected="false" tabindex="-1" hidden>Outras<span class="n"></span></button>
       <button type="button" role="tab" id="isub-vendas" data-isub="vendas" aria-selected="false" tabindex="-1">Vendas<span class="n"></span></button>
     </div>
@@ -1137,6 +1137,11 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <div class="poscards" id="invRows"></div>
       <div id="invClosed"></div>
       <p class="note" data-isp="xtb outras">O preço atual escreves diretamente no cartão de cada posição; os Certificados de Aforro calculam-se sozinhos. O lucro real é só o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. A valorização do que ainda tens é lucro potencial e só passa a real quando vendes. A comparação com o esperado usa os dois juntos.</p>
+    </div>
+    <div class="card" id="subSales" data-isp="xtb caf outras" style="margin-top:16px" hidden>
+      <div class="listhead"><h3 id="subSalesT">Vendas</h3><button class="btn ghost" type="button" id="subSalesAll">Ver na aba Vendas</button></div>
+      <div class="caf-sum" id="subSalesSum" style="margin-top:8px"></div>
+      <div class="sales" id="subSalesRows"></div>
     </div>
     <div class="card" id="salesCard" data-isp="vendas">
       <div class="listhead">
@@ -2965,8 +2970,20 @@ function renderIsub(all,P){const sec=$("#tab-investimentos"),SL=salesList(),cnt=
     $("#iSub").innerHTML=SL.length?`${SL.length} ${SL.length===1?"venda":"vendas"} · recebeste ${eur0(SL.reduce((a,x)=>a+x.v,0))}${P.income?` · + ${eur0(P.income)} em dividendos e juros = lucro real <b class="num" style="color:${P.real>=0?"var(--in)":"var(--out)"}">${seur0(P.real)}</b>`:""}`:"Ainda não vendeste nada.";
     $("#iFresh").textContent="";
   }else $("#iEye").textContent="Valor da carteira";
+  if(SRC[k]){const L=SL.filter(x=>x.src===k).sort((a,b)=>(a.d?-Date.parse(a.d):1e15)-(b.d?-Date.parse(b.d):1e15)),g=L.reduce((a,x)=>a+x.g,0);
+    $("#subSales").hidden=!L.length;
+    if(L.length){$("#subSalesT").textContent=k==="caf"?"Resgates":k==="xtb"?"Vendas na XTB":"Vendas";
+      $("#subSalesSum").innerHTML=`<div><span>Recebeste</span><b>${eur(L.reduce((a,x)=>a+x.v,0))}</b><span>${L.length} ${k==="caf"?(L.length===1?"resgate":"resgates"):(L.length===1?"venda":"vendas")}</span></div><div><span>${k==="caf"?"Juros recebidos":"Lucro das vendas"}</span><b style="color:${g>=0?"var(--in)":"var(--out)"}">${seur(g)}</b><span>lucro real</span></div>`;
+      $("#subSalesRows").innerHTML=SALE_HEAD+L.slice(0,8).map(saleRow).join("")+(L.length>8?`<p class="muted" style="margin:10px 0 0;font-size:.85rem">Mais ${L.length-8} na aba Vendas.</p>`:"")}}
+  else $("#subSales").hidden=true;
   renderSales(SL,P);
 }
+const saleRow=x=>{const dem=x.i.demo?'<span class="demo-tag">exemplo</span>':"",what=x.legacy?"várias vendas, só o total":x.src==="caf"?"resgate":x.q?NUM.format(x.q)+" × "+eur(x.v/x.q):"";
+    return `<div class="sale${x.legacy?" legacy":""}"><div class="sd${x.d?"":" none"}"${x.legacy?' title="Venda registada antes de a app guardar cada venda: só há o total"':""}>${x.d?dmy(x.d):"sem data"}</div>
+      <div class="sn"><b>${esc(x.i.name)}</b>${dem}<small><span class="tag">${x.src==="caf"?"Aforro":SRC[x.src].n.replace(" posições","")}</span>${esc(what)}</small></div>
+      <div class="sv r"><span class="num">${eur(x.v)}</span><small>custou ${eur(x.c)}</small></div>
+      <div class="sg r"><b class="num" style="color:${x.g>=0?"var(--in)":"var(--out)"}">${seur(x.g)}</b><small>${x.c?spct(x.g/x.c):""}</small></div></div>`};
+const SALE_HEAD=`<div class="sale sh" aria-hidden="true"><div>Data</div><div>Investimento</div><div class="r">Valor da venda</div><div class="r">Lucro real</div></div>`;
 function renderSales(SL,P){
   const srcs=["xtb","caf","outras"].filter(k=>SL.some(x=>x.src===k));
   if(S.slSrc!=="all"&&!srcs.includes(S.slSrc))S.slSrc="all";
@@ -2984,17 +3001,14 @@ function renderSales(SL,P){
   $("#slSum").hidden=!L.length;
   $("#slSum").innerHTML=L.length?`<div><span>Recebeste</span><b>${eur(v)}</b><span>${L.length} ${L.length===1?"venda":"vendas"}</span></div><div><span>Tinha custado</span><b>${eur(c)}</b><span>preço de compra</span></div><div><span>Lucro das vendas</span><b style="color:${g>=0?"var(--in)":"var(--out)"}">${seur(g)}</b><span>${c?spct(g/c)+" sobre o custo":"lucro real"}</span></div>`+
     (inc?`<div><span>Lucro real total</span><b style="color:${g+inc>=0?"var(--in)":"var(--out)"}">${seur(g+inc)}</b><span>com ${eur0(inc)} de dividendos e juros</span></div>`:""):"";
-  const row=x=>{const dem=x.i.demo?'<span class="demo-tag">exemplo</span>':"",what=x.legacy?"várias vendas, só o total":x.src==="caf"?"resgate":x.q?NUM.format(x.q)+" × "+eur(x.v/x.q):"";
-    return `<div class="sale${x.legacy?" legacy":""}"><div class="sd${x.d?"":" none"}"${x.legacy?' title="Venda registada antes de a app guardar cada venda: só há o total"':""}>${x.d?dmy(x.d):"sem data"}</div>
-      <div class="sn"><b>${esc(x.i.name)}</b>${dem}<small><span class="tag">${x.src==="caf"?"Aforro":SRC[x.src].n.replace(" posições","")}</span>${esc(what)}</small></div>
-      <div class="sv r"><span class="num">${eur(x.v)}</span><small>custou ${eur(x.c)}</small></div>
-      <div class="sg r"><b class="num" style="color:${x.g>=0?"var(--in)":"var(--out)"}">${seur(x.g)}</b><small>${x.c?spct(x.g/x.c):""}</small></div></div>`};
-  $("#slRows").innerHTML=L.length?`<div class="sale sh" aria-hidden="true"><div>Data</div><div>Investimento</div><div class="r">Valor da venda</div><div class="r">Lucro real</div></div>`+L.map(row).join("")
+  const row=saleRow;
+  $("#slRows").innerHTML=L.length?SALE_HEAD+L.map(row).join("")
     :`<div class="empty" style="padding:22px 4px"><p class="muted" style="margin:0">${SL.length?"Nenhuma venda com estes filtros.":"Ainda não vendeste nada. Quando carregares em “Vender” numa posição, resgatares Certificados de Aforro ou importares um extrato da XTB com posições fechadas, cada venda aparece aqui com a data, o valor e o lucro."}</p></div>`;
   const leg=L.filter(x=>x.legacy);
   $("#slNote").hidden=!leg.length;
   $("#slNote").textContent=leg.length?"As linhas “sem data” são vendas registadas antes desta lista existir: a app só tinha guardado o total."+(leg.some(x=>x.src==="xtb")?" Para as da XTB, importa de novo o extrato e cada venda aparece com a sua data.":""):"";
 }
+$("#subSalesAll").onclick=()=>{S.slSrc=S.isub;S.slYear="all";setIsub("vendas")};
 $("#slSrc").addEventListener("click",e=>{const b=e.target.closest("[data-sls]");if(b){S.slSrc=b.dataset.sls;renderInv()}});
 $("#slYear").addEventListener("change",e=>{S.slYear=e.target.value;renderInv()});
 $("#slSort").addEventListener("change",e=>{S.slSort=e.target.value;renderInv()});
