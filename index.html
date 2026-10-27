@@ -356,6 +356,8 @@ details.more>summary:hover b{color:var(--accent)}
 body.privacy .src .r b,body.privacy .sale .num,body.privacy .sale small{filter:blur(8px)}
 #cafMini .sale{grid-template-columns:96px minmax(0,1fr) 140px 170px}
 #cafMini .soon b{color:var(--accent)}
+#xtbMini .sale{grid-template-columns:minmax(0,1fr) 140px 150px 130px}
+@media (max-width:640px){#xtbMini .sale{grid-template-columns:minmax(0,1fr) auto}#xtbMini .sale .sx{display:none}#xtbMini .sale .sv{grid-column:1;grid-row:2;text-align:left}#xtbMini .sale .sn{grid-row:1}#xtbMini .sale .sg{grid-row:1/3}}
 #cafMinBtn[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
 @media (max-width:640px){#cafMini .sale{grid-template-columns:minmax(0,1fr) auto}#cafMini .sale .sv small{display:block;margin-left:0}}
 details.closedgrp{margin-top:16px}
@@ -1155,7 +1157,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <div class="listhead">
         <h3>Posições</h3>
         <div class="filters">
-          <button class="btn ghost" type="button" id="cafMinBtn" data-isp="caf" aria-pressed="false" aria-controls="invRows cafMini">Minimizar</button>
+          <button class="btn ghost" type="button" id="cafMinBtn" data-isp="caf xtb" aria-pressed="false" aria-controls="invRows cafMini xtbMini">Minimizar</button>
           <select id="iSort" aria-label="Ordenar">
             <option value="val">Maior valor</option>
             <option value="real">Mais lucro real</option>
@@ -1168,6 +1170,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       </div>
       <div class="clsfilter" id="iCls"></div>
       <div class="sales" id="cafMini" hidden></div>
+      <div class="sales" id="xtbMini" hidden></div>
       <div class="poscards" id="invRows"></div>
       <div id="invClosed"></div>
       <p class="note" data-isp="xtb outras">O preço atual escreves diretamente no cartão de cada posição; os Certificados de Aforro calculam-se sozinhos. O lucro real é só o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. A valorização do que ainda tens é lucro potencial e só passa a real quando vendes. A comparação com o esperado usa os dois juntos.</p>
@@ -3035,12 +3038,25 @@ const saleRow=x=>{const dem=x.i.demo?'<span class="demo-tag">exemplo</span>':"",
       <div class="sv r"><span class="num">${eur(x.v)}</span><small>custou ${eur(x.c)}</small></div>
       <div class="sg r"><b class="num" style="color:${x.g>=0?"var(--in)":"var(--out)"}">${seur(x.g)}</b><small>${x.c?spct(x.g/x.c):""}</small></div></div>`};
 const SALE_HEAD=`<div class="sale sh" aria-hidden="true"><div>Data</div><div>Investimento</div><div class="r">Valor da venda</div><div class="r">Lucro real</div></div>`;
+S.xtbMin=(()=>{try{return localStorage.getItem("caderneta.xtbMin")==="1"}catch(e){return false}})();
+/* compact XTB list (one line per open position) + the shared Minimizar button state */
+function renderXtbMini(all){const on=S.isub==="xtb"&&S.xtbMin,any=S.isub==="caf"?S.cafMin:on,b=$("#cafMinBtn");
+  b.setAttribute("aria-pressed",any);b.textContent=any?"Ver cartões":"Minimizar";
+  $("#invRows").hidden=any;if(any)$("#iCls").innerHTML="";$("#xtbMini").hidden=!on;if(!on)return;
+  const key={val:x=>-x.s.val,real:x=>-x.s.real,pot:x=>-x.s.unreal,gap:x=>-(x.s.gap??-1e15),pct:x=>-x.s.pct,name:x=>x.i.name.toLowerCase()}[S.iSort];
+  const L=all.filter(x=>x.i.source==="xtb"&&!x.s.closed).sort((a,b)=>{const ka=key(a),kb=key(b);return ka<kb?-1:ka>kb?1:0});
+  const col=v=>v>0?"var(--in)":v<0?"var(--out)":"inherit";
+  $("#xtbMini").innerHTML=L.length?`<div class="sale sh" aria-hidden="true"><div>Posição</div><div class="r">Valor</div><div class="r">Lucro potencial</div><div class="r">Lucro real</div></div>`+L.map(({i,s})=>
+    `<div class="sale"><div class="sn"><b>${esc(i.name)}</b>${i.demo?'<span class="demo-tag">exemplo</span>':""}<small>${esc(i.ticker||i.xtbSym||"")} · ${NUM.format(s.qty)} × ${eur(s.price)}</small></div>
+      <div class="sv r"><span class="num">${eur(s.val)}</span><small>investido ${eur0(s.inv)}</small></div>
+      <div class="sg r"><b class="num" style="color:${col(s.unreal)}">${seur(s.unreal)}</b><small>${spct(s.upct)}</small></div>
+      <div class="sx r"><span class="num" style="color:${col(s.real)}">${seur(s.real)}</span><small>no bolso</small></div></div>`).join("")
+    :`<p class="muted" style="padding:12px 0">${SUB_EMPTY.xtb}</p>`}
 S.cafMin=(()=>{try{return localStorage.getItem("caderneta.cafMin")==="1"}catch(e){return false}})();
 function inDays(d){const n=Math.round((Date.parse(d+"T12:00:00")-Date.parse(todayISO()+"T12:00:00"))/864e5);return n<=0?"hoje":n===1?"amanhã":"daqui a "+n+" dias"}
 /* compact list of the open certificates, soonest interest payment first */
-function renderCafMini(all){const on=S.isub==="caf"&&S.cafMin,b=$("#cafMinBtn");
-  b.setAttribute("aria-pressed",on);b.textContent=on?"Ver cartões":"Minimizar";
-  $("#cafMini").hidden=!on;$("#invRows").hidden=on;if(on)$("#iCls").innerHTML="";
+function renderCafMini(all){const on=S.isub==="caf"&&S.cafMin;renderXtbMini(all);
+  $("#cafMini").hidden=!on;
   if(!on)return;
   const L=all.filter(x=>x.i.caf&&!x.s.closed).sort((a,b)=>(a.i.cafK.next||"9999").localeCompare(b.i.cafK.next||"9999"));
   $("#cafMini").innerHTML=L.length?`<div class="sale sh" aria-hidden="true"><div>Subscrito</div><div>Certificado</div><div class="r">Valor atual</div><div class="r">Próximo pagamento</div></div>`+L.map((x,k)=>{const K=x.i.cafK;
@@ -3049,7 +3065,7 @@ function renderCafMini(all){const on=S.isub==="caf"&&S.cafMin,b=$("#cafMinBtn");
       <div class="sv r"><span class="num">${eur(x.s.val)}</span><small>juros ${seur(x.s.unreal)}</small></div>
       <div class="sg r">${K.next?`<b class="num">+ ${eur(K.nextNet)}</b><small>${dmy(K.next)} · ${inDays(K.next)}</small>`:`<b>—</b><small>chegou ao fim do prazo</small>`}</div></div>`}).join("")
     :`<p class="muted" style="padding:12px 0">${SUB_EMPTY.caf}</p>`}
-$("#cafMinBtn").onclick=()=>{S.cafMin=!S.cafMin;try{localStorage.setItem("caderneta.cafMin",S.cafMin?"1":"0")}catch(e){}renderInv()};
+$("#cafMinBtn").onclick=()=>{const k=S.isub==="xtb"?"xtbMin":"cafMin";S[k]=!S[k];try{localStorage.setItem("caderneta."+k,S[k]?"1":"0")}catch(e){}renderInv()};
 function renderSales(SL,P){
   const srcs=["xtb","caf","outras"].filter(k=>SL.some(x=>x.src===k));
   if(S.slSrc!=="all"&&!srcs.includes(S.slSrc))S.slSrc="all";
