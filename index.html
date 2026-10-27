@@ -885,6 +885,13 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
 .paypick button[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
 .paypick .mini-ic{width:22px;height:22px;border-radius:50%}
 .paypick .none{padding-left:12px}
+/* metas ligadas a contas: saldo total e disponível */
+.tx .a .av{display:block;font-size:.72rem;font-weight:600;color:var(--ink-2);text-align:right;white-space:nowrap}
+.acct-tot.av{padding-top:4px;font-weight:600;color:var(--ink-2)}
+.acct-tot.av b{color:var(--ink)}
+.acct-tot small{display:block;font-weight:500;font-size:.76rem;color:var(--ink-2)}
+.goal .gf .gacc{display:inline-flex;align-items:center;gap:4px}
+#gAddInfo b{color:var(--ink)}
 .ic.card-ic,.mini-ic.card-ic{background:linear-gradient(135deg,#334155,#64748b)}
 /* relatório */
 #rpt{display:none}
@@ -1226,7 +1233,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
     <div class="card"><div class="recent" id="acctsAll"></div></div>
     <div class="card" style="margin-top:16px"><div class="cardhead" style="margin-bottom:4px"><h3>Cartões</h3><button class="link" type="button" data-knew>+ Novo cartão</button></div><p class="note" style="margin:0 0 6px">Junta os teus cartões de débito para escolheres em cada movimento com qual pagaste. O dinheiro sai da conta a que o cartão está ligado. Os cartões de crédito criam-se como conta (+ Nova conta → Cartão), porque têm saldo próprio: o que deves.</p><div class="recent" id="cardList"></div></div>
     <div class="card" style="margin-top:16px"><div class="cardhead" style="margin-bottom:4px"><h3>Transferências</h3><button class="link" type="button" data-xnew hidden>+ Nova transferência</button></div><p class="note xf-help">Dinheiro que passa de uma conta tua para outra. Muda os dois saldos, mas não conta como receita nem despesa.</p><div class="recent" id="xferList"></div></div>
-    <p class="note">O saldo disponível no Dashboard soma bancos, poupanças e dinheiro. Corretoras e cartões de crédito entram no património.</p>
+    <p class="note">Saldo total: o que está em cada conta. Saldo disponível: o total menos o dinheiro que já puseste nas metas ligadas a essa conta. O saldo disponível no Dashboard soma bancos, poupanças e dinheiro (menos o que está em metas). Corretoras e cartões de crédito entram no património.</p>
   </section>
 
   <!-- RELATÓRIOS -->
@@ -1306,6 +1313,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <details open><summary>Como registo uma despesa ou receita?</summary><p>Vai a Transações e preenche o formulário, ou carrega no botão + no telemóvel.</p></details>
       <details><summary>O que é o lucro real e o lucro potencial?</summary><p>Lucro real é o que já está no bolso: dividendos e juros recebidos e o ganho das vendas. Lucro potencial é a valorização do que ainda tens; só passa a real quando vendes.</p></details>
       <details><summary>Como funcionam as contas?</summary><p>Em Contas escreves o saldo de hoje de cada conta. Cada movimento que registares nessa conta soma ou tira ao saldo sozinho.</p></details>
+      <details><summary>Como ligo uma meta a uma conta ou cartão?</summary><p>Ao criar ou editar uma meta, escolhe em “Onde está o dinheiro” a conta ou o cartão onde guardas esse dinheiro. Em Contas passas a ver o saldo total e o saldo disponível: cada valor que juntas à meta sai do disponível, mas o total fica igual, porque o dinheiro continua lá. Se tirares dinheiro da meta, volta ao disponível.</p></details>
       <details><summary>Como controlo os gastos quando estou fora?</summary><p>Em Estadias cria uma estadia com o dia em que chegas, o dia em que voltas e, se quiseres, o dinheiro que puseste de parte. Todas as despesas desses dias contam sozinhas; se pagas a estadia com uma conta ou cartão próprio, escolhe essa conta para contar só essa. Num movimento que não tem nada a ver (a renda de cá, por exemplo) carrega em “Não contar”. Enquanto estás fora, o Dashboard mostra quanto já gastaste e quanto podes gastar por dia até voltares.</p></details>
       <details><summary>Como uso os orçamentos?</summary><p>Em Orçamentos escreve um limite mensal ao lado de cada categoria. A barra fica amarela quando estás a gastar mais depressa do que o mês avança, e vermelha quando passas o limite.</p></details>
       <details><summary>Como registo Certificados de Aforro?</summary><p>Em Investimentos, abre a aba Certificados de Aforro e carrega em “+ Subscrição” e indica a série, a data e o montante de cada compra. A app soma os juros de 3 em 3 meses, com o prémio de permanência e já sem os 28% de IRS. Atualiza a taxa base quando o IGCP a mudar, ou escreve o valor que o AforroNet mostra para acertar as contas.</p></details>
@@ -1475,6 +1483,7 @@ form.card.editing{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-s
       <label for="gSaved">Já juntaste (€)<input id="gSaved" inputmode="decimal" placeholder="0,00"></label>
       <label for="gDue">Até quando<input id="gDue" type="month"></label>
     </div>
+    <div id="gPayL" hidden><span class="flabel" id="gPayLbl">Onde está o dinheiro <span style="font-weight:500">(conta ou cartão)</span></span><div class="paypick" id="gPay" role="radiogroup" aria-labelledby="gPayLbl"></div><p class="note" style="margin:6px 0 0">O que pões na meta continua no saldo total da conta, mas deixa de contar no saldo disponível.</p></div>
     <p class="note" style="margin:0">A data é opcional. Com data, a app diz-te quanto tens de pôr de lado por mês. Sem data, estima quando lá chegas ao ritmo a que tens poupado.</p>
     <div class="actions"><button class="btn primary" type="submit" id="gSubmit">Criar meta</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost" type="button" id="gDel" style="margin-left:auto;color:var(--out)" hidden>Apagar meta</button></div>
   </form>
@@ -1796,7 +1805,7 @@ function renderResumo(){
   {const kc=$("#kNet").closest(".kc");kc.dataset.nwt=`${eur(liq)} em contas + ${eur(pv)} em investimentos`;kc.title=document.body.matches(".nwhide,.privacy")?"":kc.dataset.nwt;}
   renderSpark(NW,m);
   const A=accts();
-  if(A.length){const av=A.filter(x=>AVAIL.includes(x.type)).reduce((t,x)=>t+acctBal(x,all),0);$("#kAvail").textContent=eur(av);$("#kAvailF").innerHTML=`<button class="link" type="button" data-go="contas">Contas e dinheiro ›</button>`}
+  if(A.length){const AV=A.filter(x=>AVAIL.includes(x.type)),av=AV.reduce((t,x)=>t+acctAvail(x,all),0),ig=AV.reduce((t,x)=>t+goalMoney(x),0);$("#kAvail").textContent=eur(av);$("#kAvailF").innerHTML=(ig?`<span>${eur0(ig)} em metas ·</span>`:"")+`<button class="link" type="button" data-go="contas">Contas e dinheiro ›</button>`}
   else{$("#kAvail").textContent=eur(liq);$("#kAvailF").innerHTML=`<span>Calculado dos movimentos ·</span><button class="link" type="button" data-anew>juntar contas</button>`}
   $("#openingL").hidden=!!A.length;
   $("#kIn").textContent=eur(cur.inS);$("#kInF").innerHTML=deltaChip(cur.inS,prev.inS,true)+"<span>vs. mês anterior</span>";
@@ -2018,12 +2027,18 @@ const accts=()=>[...S.items.values()].filter(o=>o.kind==="acct").sort((a,b)=>ACC
 /* transfers (kind "xfer"): move money between two accounts; never income or expense, so txs() doesn't see them */
 const xfers=()=>[...S.items.values()].filter(o=>o.kind==="xfer").sort((a,b)=>(b.date||"").localeCompare(a.date||"")||(b.at||0)-(a.at||0));
 const xferFx=(a,skip)=>xfers().filter(x=>x.id!==skip&&(x.from===a.id||x.to===a.id)&&(x.at||0)>(a.baseAt||0)).reduce((s,x)=>s+(x.to===a.id?+x.amount:-x.amount),0);
+/* savings goals linked to an account (goal.acct, optional goal.card): that money stays in the balance but leaves "disponível" */
+const goalAcct=g=>{const a=g&&g.acct&&S.items.get(g.acct);return a&&a.kind==="acct"?a:null};
+const goalsIn=a=>[...S.items.values()].filter(g=>g.kind==="goal"&&g.acct===a.id);
+const goalMoney=a=>Math.max(0,goalsIn(a).reduce((s,g)=>s+(+g.saved||0),0));
+const acctAvail=(a,all)=>acctBal(a,all)-goalMoney(a);
 function acctBal(a,all,skip){return (+a.base||0)+all.filter(t=>t.acct===a.id&&(t.at?t.at>(a.baseAt||0):t.date>(a.baseDate||""))).reduce((s,t)=>s+(t.type==="in"?+t.amount:-t.amount),0)+xferFx(a,skip)}
 function renderAccts(all){const A=accts();
   const out=h=>{$("#accts").innerHTML=$("#acctsAll").innerHTML=h};
   if(!A.length){out(`<p class="muted" style="margin:4px 0 12px;font-size:.88rem">Junta as tuas contas (banco, poupança, XTB, dinheiro, cartão) com o saldo de hoje. Cada movimento que registares numa conta atualiza o saldo sozinho.</p><div class="actions"><button class="btn" type="button" data-anew>Adicionar conta</button></div>`);return}
-  const tot=A.reduce((t,a)=>t+acctBal(a,all),0);
-  out(A.map(a=>{const b=acctBal(a,all);return `<div class="tx" data-aid="${esc(a.id)}" tabindex="0" title="Editar conta">${acctIc(a)}<span class="d"><b>${esc(a.name)}${a.demo?'<span class="demo-tag">exemplo</span>':""}</b><span>${esc(a.inst||a.type)}</span></span><span class="a${b<0?" out":""}" style="${b<0?"color:var(--out)":""}">${eur(b)}</span><span class="chev" aria-hidden="true">›</span></div>`}).join("")+`<div class="acct-tot"><span>Total de contas</span><b>${eur(tot)}</b></div>`)}
+  const tot=A.reduce((t,a)=>t+acctBal(a,all),0),inG=A.reduce((t,a)=>t+goalMoney(a),0);
+  out(A.map(a=>{const b=acctBal(a,all),g=goalMoney(a),n=goalsIn(a).length;return `<div class="tx" data-aid="${esc(a.id)}" tabindex="0" title="Editar conta">${acctIc(a)}<span class="d"><b>${esc(a.name)}${a.demo?'<span class="demo-tag">exemplo</span>':""}</b><span>${esc(a.inst||a.type)}${g?` · ${eur(g)} em ${n===1?"1 meta":n+" metas"}`:""}</span></span><span class="a${b<0?" out":""}" style="${b<0?"color:var(--out)":""}">${eur(b)}${g?`<small class="av">disponível ${eur(b-g)}</small>`:""}</span><span class="chev" aria-hidden="true">›</span></div>`}).join("")+
+    `<div class="acct-tot"><span>Saldo total</span><b>${eur(tot)}</b></div><div class="acct-tot av"><span>Saldo disponível${inG?`<small>${eur(inG)} guardados em metas</small>`:""}</span><b>${eur(tot-inG)}</b></div>`)}
 function fillAccts(reset){if(reset)S.acctTouched=false;const A=accts(),sel=$("#txAcct"),auto=!S.acctTouched,cur=auto?(()=>{try{return localStorage.getItem("caderneta.acct")||""}catch(e){return ""}})():sel.value;reset=auto;
   $("#txAcctL").hidden=!A.length;
   sel.innerHTML=`<option value="">Sem conta</option>`+A.map(a=>`<option value="${esc(a.id)}">${esc(a.name)}${a.inst?" · "+esc(a.inst):""}</option>`).join("");
@@ -2069,10 +2084,10 @@ $("#cardForm").addEventListener("submit",e=>{e.preventDefault();const name=$("#k
   const o=Object.assign({},old||{id:newId("k"),kind:"card",created:new Date().toISOString()},{name:name.slice(0,40),acct});if(last4)o.last4=last4;else delete o.last4;
   const ups=[o];
   // movements paid with this card follow it when it moves to another account
-  if(old&&old.acct!==acct)txs().filter(t=>t.card===old.id).forEach(t=>ups.push(Object.assign({},t,{acct})));
+  if(old&&old.acct!==acct){txs().filter(t=>t.card===old.id).forEach(t=>ups.push(Object.assign({},t,{acct})));goalsList().filter(g=>g.card===old.id).forEach(g=>ups.push(Object.assign({},g,{acct})))}
   Store.putMany(ups);$("#cardDlg").close();toast(old?"Cartão guardado":"Cartão adicionado. Escolhe-o em “Pago com” quando registares um movimento.")});
 $("#kDel").onclick=()=>{const k=S.items.get(S.editCard);if(!k)return;armDelete($("#kDel"),()=>{
-  const ups=txs().filter(t=>t.card===k.id).map(t=>{const c=Object.assign({},t);delete c.card;return c});
+  const ups=[...txs(),...goalsList()].filter(t=>t.card===k.id).map(t=>{const c=Object.assign({},t);delete c.card;return c});
   if(ups.length)Store.putMany(ups);Store.del(k.id);$("#cardDlg").close();toast("Cartão apagado. Os movimentos ficam na mesma conta.")})};
 
 function pickLogo(k){S.acctLogo=k=BANK_LOGOS[k]||k==="none"?k:"auto";const det=logoAuto($("#aName").value,$("#aInst").value),t=acctTile(S.acctT||"Banco","mini-ic");
@@ -2099,7 +2114,7 @@ $("#acctForm").addEventListener("submit",e=>{e.preventDefault();
   $("#acctDlg").close();toast(old?"Conta guardada":"Conta adicionada")});
 $("#aDel").onclick=()=>{const a=S.items.get(S.editAcct),b=$("#aDel");if(!a)return;
   if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar conta"},4000);return}
-  delete b.dataset.sure;b.textContent="Apagar conta";Store.del(a.id);$("#acctDlg").close();toast("Conta apagada. Os movimentos ficam.")};
+  delete b.dataset.sure;b.textContent="Apagar conta";{const ups=goalsList().filter(g=>g.acct===a.id).map(g=>{const c=Object.assign({},g);delete c.acct;delete c.card;return c});if(ups.length)Store.putMany(ups)}Store.del(a.id);$("#acctDlg").close();toast("Conta apagada. Os movimentos ficam.")};
 const XF_IC='<path d="M4 8h14l-4-4M20 16H6l4 4"/>';
 const xDay=d=>d?dshort(d)+(d.slice(0,4)===todayISO().slice(0,4)?"":" "+d.slice(0,4)):"";
 function renderXfers(){const X=xfers(),ok=accts().length>1,el=$("#xferList");
@@ -2173,17 +2188,24 @@ function renderGoals(){
   $("#poupSub").textContent=G.length?`Já juntaste ${eur0(sv)} de ${eur0(tg)} em ${G.length} ${G.length===1?"meta":"metas"}. Toca numa meta para juntar dinheiro ou a editar.`:"As tuas metas e quanto falta para cada uma.";
   if(!G.length){$("#goals").innerHTML=$("#goalsAll").innerHTML=`<p class="muted" style="margin:0">Dá um nome ao que queres juntar (uma viagem, o fundo de emergência, um carro) e acompanha aqui quanto falta.</p><div class="actions"><button class="btn" type="button" data-gnew>Criar a primeira meta</button></div>`;return}
   const row=g=>{const t=+g.target||0,sv=+g.saved||0,p=t?Math.min(1,sv/t):0,r=goalPlan(g,avg);
-    const side=r.need?`${eur0(r.need)}/mês${avg>0&&r.need>avg*1.05?" "+chip("warn","acima do ritmo"):""}`:"";
+    const ga=goalAcct(g),gk=ga&&g.card&&S.items.get(g.card),where=ga?`<span class="gacc">${gk?cardTile("mini-ic"):""}${esc(gk&&gk.kind==="card"?cardName(gk):ga.name)}</span>`:"";
+    const side=(r.need?`${eur0(r.need)}/mês${avg>0&&r.need>avg*1.05?" "+chip("warn","acima do ritmo"):""}`:"")+(r.need&&where?" · ":"")+where;
     return `<div class="goal" data-id="${esc(g.id)}" tabindex="0" role="button" title="Juntar dinheiro ou editar">${goalTile(g.icon)}<div class="gt"><b>${esc(g.name)}${g.demo?'<span class="demo-tag">exemplo</span>':""}</b><span class="amt">${eur0(sv)} / ${eur0(t)}</span></div><b class="gp">${Math.round(p*100)}%</b><span class="pbar"><i style="width:${p*100}%"></i></span><span class="gf"><span>${goalLeft(r)}</span><span>${side}</span></span></div>`};
   $("#goals").innerHTML=G.slice(0,4).map(row).join("");$("#goalsAll").innerHTML=G.map(row).join("");
 }
 function openGoal(g){S.editGoal=g?g.id:null;$("#goalTitle").textContent=g?"Editar meta":"Nova meta";$("#gSubmit").textContent=g?"Guardar":"Criar meta";$("#gDel").hidden=!g;
   $("#gName").value=g?g.name:"";$("#gTarget").value=g?numStr(g.target):"";$("#gSaved").value=g&&+g.saved?numStr(g.saved):"";$("#gDue").value=g&&g.due||"";
-  pickGoalIc(g?g.icon:"Emergência");$("#goalDlg").showModal();$("#gName").focus()}
+  pickGoalIc(g?g.icon:"Emergência");S.gPay=g&&goalAcct(g)?(g.card&&S.items.get(g.card)&&S.items.get(g.card).acct===g.acct?"c:"+g.card:"a:"+g.acct):"";renderGPay();$("#goalDlg").showModal();$("#gName").focus()}
+/* where the goal's money sits: an account (not credit cards) or a debit card (its account) */
+function renderGPay(){const A=accts().filter(a=>a.type!=="Cartão de crédito"),K=cards().filter(k=>A.some(a=>a.id===k.acct)),v=S.gPay||"";
+  $("#gPayL").hidden=!A.length;
+  const b=(val,tile,t,sub,cls="")=>`<button type="button" role="radio" class="${cls}" aria-checked="${val===v}" data-gpay="${esc(val)}">${tile}<span class="t">${esc(t)}${sub?` <small>${esc(sub)}</small>`:""}</span></button>`;
+  $("#gPay").innerHTML=A.map(a=>b("a:"+a.id,acctIc(a,"mini-ic"),a.name,"")).join("")+K.map(k=>b("c:"+k.id,cardTile("mini-ic"),cardName(k),"débito")).join("")+b("","","Sem conta","","none")}
+$("#gPay").addEventListener("click",e=>{const x=e.target.closest("[data-gpay]");if(!x)return;S.gPay=x.dataset.gpay;renderGPay()});
 function pickGoalIc(k){S.goalIc=k;$("#gIcons").innerHTML=GOAL_IC.map(([n,c,d])=>`<button type="button" role="radio" aria-checked="${n===k}" aria-label="${n}" title="${n}" data-gic="${n}" style="background:${c}">${SVG(d)}</button>`).join("")}
 $("#gIcons").addEventListener("click",e=>{const b=e.target.closest("[data-gic]");if(b)pickGoalIc(b.dataset.gic)});
 $("#goalNew").onclick=()=>openGoal(null);
-function openGAdd(g){S.addGoal=g.id;$("#gAddTitle").textContent="Juntar a "+g.name;$("#gAddInfo").textContent=`Já tens ${eur(g.saved)} de ${eur(g.target)}.`;$("#gAddAmt").value="";$("#gAddDlg").showModal();$("#gAddAmt").focus()}
+function openGAdd(g){S.addGoal=g.id;$("#gAddTitle").textContent="Juntar a "+g.name;const ga=goalAcct(g);$("#gAddInfo").innerHTML=`Já tens ${eur(g.saved)} de ${eur(g.target)}.`+(ga?` O dinheiro fica em <b>${esc(ga.name)}</b>, onde tens <b>${eur(acctAvail(ga,txs()))}</b> disponíveis.`:"");$("#gAddAmt").value="";delete $("#gAddAmt").dataset.ok;$("#gAddDlg").showModal();$("#gAddAmt").focus()}
 ["#goals","#goalsAll"].forEach(sel=>{const go=e=>{const r=e.target.closest(".goal");if(!r)return;const g=S.items.get(r.dataset.id);if(g)openGAdd(g)};
   $(sel).addEventListener("click",go);$(sel).addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("goal")){e.preventDefault();go(e)}})});
 document.addEventListener("click",e=>{if(e.target.closest("[data-gnew]"))openGoal(null)});
@@ -2194,15 +2216,21 @@ $("#goalForm").addEventListener("submit",e=>{e.preventDefault();
   if(!(t>0)){toast("Escreve o valor que queres juntar");return $("#gTarget").focus()}
   if(!(sv>=0)){toast("O valor já junto não é válido");return $("#gSaved").focus()}
   const old=S.editGoal&&S.items.get(S.editGoal);
-  Store.put(Object.assign({},old||{created:new Date().toISOString()},{id:old?old.id:newId("g"),kind:"goal",name,icon:S.goalIc,target:Math.round(t*100)/100,saved:Math.round(sv*100)/100,due:$("#gDue").value||undefined}));
-  if(old&&!$("#gDue").value&&old.due){const o=S.items.get(old.id);delete o.due;Store.put(o)}
+  const pv=S.gPay||"",pk=pv.startsWith("c:")&&S.items.get(pv.slice(2)),pa=pk?pk.acct:pv.startsWith("a:")?pv.slice(2):"";
+  const go=Object.assign({},old||{created:new Date().toISOString()},{id:old?old.id:newId("g"),kind:"goal",name,icon:S.goalIc,target:Math.round(t*100)/100,saved:Math.round(sv*100)/100});
+  if($("#gDue").value)go.due=$("#gDue").value;else delete go.due;
+  if(pa&&S.items.get(pa)){go.acct=pa;if(pk)go.card=pk.id;else delete go.card}else{delete go.acct;delete go.card}
+  Store.put(go);
   $("#goalDlg").close();toast(old?"Meta guardada":"Meta criada")});
 $("#gDel").onclick=()=>{const g=S.items.get(S.editGoal),b=$("#gDel");if(!g)return;
   if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar meta"},4000);return}
   delete b.dataset.sure;b.textContent="Apagar meta";Store.del(g.id);$("#goalDlg").close();toast("Meta apagada")};
+$("#gAddAmt").addEventListener("input",e=>delete e.target.dataset.ok);
 $("#gAddForm").addEventListener("submit",e=>{e.preventDefault();const g=S.items.get(S.addGoal),v=parseNum($("#gAddAmt").value);
   if(!g)return;if(!isFinite(v)||!v){toast("Escreve um valor");return $("#gAddAmt").focus()}
-  const sv=Math.max(0,Math.round(((+g.saved||0)+v)*100)/100);Store.put(Object.assign({},g,{saved:sv}));$("#gAddDlg").close();
+  const sv=Math.max(0,Math.round(((+g.saved||0)+v)*100)/100),ga=goalAcct(g);
+  if(ga&&v>0&&v>acctAvail(ga,txs())+.005&&!$("#gAddAmt").dataset.ok){$("#gAddAmt").dataset.ok="1";toast(`Em ${ga.name} só tens ${eur(Math.max(0,acctAvail(ga,txs())))} disponíveis. Carrega outra vez em Guardar para juntar na mesma.`);return}
+  delete $("#gAddAmt").dataset.ok;Store.put(Object.assign({},g,{saved:sv}));$("#gAddDlg").close();
   toast(sv>=+g.target?"Meta cumprida. Parabéns!":`Faltam ${eur0(+g.target-sv)} para ${g.name}`)});
 
 /* ---------- upcoming payments: expenses that repeat monthly on about the same day ---------- */
@@ -3527,7 +3555,7 @@ mk("PPR","PPR","PPR",1,2400,2635,ago(26),5),
   out.push({id:newId("c"),kind:"caf",serie:"F",date:ago(14,3),amount:5000,created:"2000-01-01",demo:true},{id:newId("c"),kind:"caf",serie:"F",date:ago(5,20),amount:1500,created:"2000-01-02",demo:true});
   const due=k=>ym(new Date(now.getFullYear(),now.getMonth()+k,1));
   out.push({id:newId("g"),kind:"goal",name:"Fundo de emergência",icon:"Emergência",target:6000,saved:4200,created:"2000-01-01",demo:true},
-    {id:newId("g"),kind:"goal",name:"Viagem ao Japão",icon:"Viagem",target:3500,saved:1250,due:due(9),created:"2000-01-02",demo:true},
+    {id:newId("g"),kind:"goal",name:"Viagem ao Japão",icon:"Viagem",target:3500,saved:1250,due:due(9),acct:"acct-demo-1",created:"2000-01-02",demo:true},
     {id:newId("g"),kind:"goal",name:"Carro novo",icon:"Carro",target:12000,saved:2800,created:"2000-01-03",demo:true});
   const at=Date.now(),ac=(name,inst,type,base,k)=>({id:"acct-demo-"+k,kind:"acct",name,inst,type,base,baseAt:at,baseDate:today,created:"2000-01-0"+k,demo:true});
   out.push(ac("Conta à ordem","Millennium bcp","Banco",2420.18,1),ac("Conta poupança","Banco CTT","Poupança",1000,2),ac("Conta corretora","XTB","Corretora",892.32,3),ac("Dinheiro físico","Carteira","Dinheiro",180,4),ac("Cartão de crédito","Santander","Cartão de crédito",-532.4,5));
