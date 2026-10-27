@@ -1117,6 +1117,44 @@ body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
   .sb-donut{grid-template-columns:120px minmax(0,1fr)}
 }
 @media (max-width:420px){.sb-kpi .kc{padding:12px 10px}.sb-kpi .kround{width:28px;height:28px}.sb-kpi .kh2{font-size:.74rem}}
+
+/* avisos do sino */
+.bell .bdot{top:1px;right:-3px;width:auto;height:auto;min-width:19px;padding:1px 5px;border-radius:10px;font:700 .66rem/14px var(--f-body);font-style:normal;color:#fff;text-align:center}
+.bellpop{max-height:min(74vh,560px);overflow:hidden;padding:12px 6px 8px}
+.bp-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 6px 4px}
+.bp-top .bp-h{margin:0}
+.bp-acts{display:flex;align-items:center;gap:4px}
+.bp-acts .iconbtn{width:32px;height:32px}
+.bp-acts .iconbtn svg{width:17px;height:17px}
+.bp-list{overflow:auto;display:flex;flex-direction:column;gap:2px;padding:0 4px;overscroll-behavior:contain}
+.bp-sec{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin:8px 6px 2px}
+.bp-i{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border-radius:10px}
+.bp-i:hover,.bp-i:focus-within{background:var(--surface-2)}
+.bp-i .bp-r{background:transparent!important;padding-left:10px}
+.bp-i::before{content:"";position:absolute;left:2px;top:10px;bottom:10px;width:3px;border-radius:2px;background:transparent}
+.bp-i.bad::before{background:var(--out)}.bp-i.warn::before{background:var(--warn)}.bp-i.good::before{background:var(--in)}
+.bp-r>.mini-ic,.bp-r>.ic{position:relative}
+.bp-i.new .bp-r>.mini-ic::after{content:"";position:absolute;top:-4px;right:-4px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid var(--surface)}
+.bp-i.new .bp-r b{font-weight:800}
+.bp-i:not(.new) .bp-r b{font-weight:600}
+.bp-r .num.in{color:var(--in)}.bp-r .num{font-size:.82rem;font-weight:700;white-space:nowrap}
+.bp-x{border:0;background:transparent;color:var(--ink-2);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1.1rem;line-height:1;margin-right:2px;opacity:.55}
+.bp-x:hover,.bp-x:focus-visible{opacity:1;background:var(--surface)}
+.bp-r:focus-visible,.bp-x:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.bp-foot{display:flex;justify-content:space-between;gap:8px;padding:6px 8px 0;border-top:1px solid var(--line);margin-top:4px}
+.bp-empty{padding:14px 8px 8px;text-align:center}
+.bp-empty b{display:block;font-family:var(--f-display);margin:6px 0 2px}
+.bp-empty p{margin:0;font-size:.82rem;color:var(--ink-2)}
+.bp-empty .ok{width:40px;height:40px;border-radius:50%;display:inline-grid;place-items:center;background:var(--in-soft);color:var(--in)}
+.bp-empty .ok svg{width:22px;height:22px}
+#ntCard{grid-column:1/-1}
+.nt-types{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));column-gap:28px}
+.nt-types label.chk{align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)}
+.nt-types label.chk input{margin-top:3px}
+.nt-types small{display:block;color:var(--ink-2);font-weight:400;font-size:.78rem;margin-top:1px}
+.nt-types .ntc{margin-left:auto;align-self:center}
+#ntLowL{max-width:220px}
+@media (max-width:560px){.bellpop{position:fixed;left:12px;right:12px;top:64px;width:auto;max-height:calc(100dvh - 150px)}}
 </style>
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -1533,6 +1571,14 @@ body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
         <div class="setrow"><span><b>Investimentos nas despesas</b><small>O dinheiro que vai para a XTB, Aforro ou outro investimento (categoria Investimento) não conta nas despesas, orçamentos e relatórios, mas continua a sair do saldo da conta. Também podes usar o filtro no cartão Despesas do mês.</small></span><button class="btn" type="button" id="invExpSet" aria-pressed="false">Contar</button></div>
         <div class="setrow"><span><b>Esconder património</b><small>Esconde só o valor do património e o gráfico da evolução. Também podes tocar no olho do cartão Património.</small></span><button class="btn" type="button" id="nwHideBtn" aria-pressed="false">Esconder</button></div>
       </div>
+      <div class="card" id="ntCard">
+        <h3>Avisos</h3>
+        <p class="muted" style="margin:0 0 6px;font-size:.88rem">O sino no topo junta o que precisa da tua atenção. Escolhe o que queres ver.</p>
+        <div class="nt-types" id="ntTypes"></div>
+        <div class="setrow"><span><b>Avisar pagamentos</b><small>Quantos dias antes de saírem ou entrarem.</small></span><div class="segs" id="ntDays" role="group" aria-label="Dias de antecedência"><button type="button" data-d="1">1 dia</button><button type="button" data-d="3">3 dias</button><button type="button" data-d="7">7 dias</button></div></div>
+        <div class="setrow"><label for="ntLow" id="ntLowL">Saldo baixo numa conta abaixo de (€)<input id="ntLow" inputmode="decimal" placeholder="100"></label><small class="muted" style="flex:1;min-width:160px;font-size:.78rem">Conta o saldo disponível das contas bancárias (sem o dinheiro das metas). 0 desliga.</small></div>
+        <div class="setrow"><span><b>Notificações no telemóvel</b><small id="ntPushNote"></small></span><button class="btn" type="button" id="ntPush" aria-pressed="false">Ativar</button></div>
+      </div>
       <div class="card">
         <h3>Cópia de segurança</h3>
         <p class="muted" id="storeNote" style="margin:0 0 6px"></p>
@@ -1562,6 +1608,7 @@ body.privacy .sb-r .sb-val,body.privacy .sb-donut text{filter:blur(8px)}
       <details><summary>Porque não me deixa registar uma despesa?</summary><p>Uma conta não pode ficar com saldo negativo. Se a despesa ou a transferência passa do saldo disponível (o saldo menos o que está em metas), a app não a grava e diz quanto tens. Confirma o saldo da conta em Contas ou tira dinheiro de uma meta. Os cartões de crédito são a exceção: o saldo deles é o que deves.</p></details>
       <details><summary>Como controlo os gastos quando estou fora?</summary><p>Em Estadias cria uma estadia com o dia em que chegas, o dia em que voltas e, se quiseres, o dinheiro que puseste de parte. Todas as despesas desses dias contam sozinhas; se pagas a estadia com uma conta ou cartão próprio, escolhe essa conta para contar só essa. Num movimento que não tem nada a ver (a renda de cá, por exemplo) carrega em “Não contar”. Enquanto estás fora, o Dashboard mostra quanto já gastaste e quanto podes gastar por dia até voltares.</p></details>
       <details><summary>Como registo um crédito ou dinheiro emprestado?</summary><p>Em Empréstimos carrega em “+ Novo crédito” e escreve o montante, a TAN, o prazo em meses e a data da 1.ª prestação. A app faz o plano de pagamentos, mostra quanto ainda deves, os juros já pagos e os que faltam, e simula quanto poupas se amortizares. Se escolheres a conta das prestações, a app pode lançá-las sozinha todos os meses: os juros e encargos contam como despesa (categoria Créditos) e o capital só tira o dinheiro da conta, sem contar como despesa. Para dinheiro emprestado a alguém (ou que te emprestaram) usa “+ Com uma pessoa” e vai registando o que é devolvido. Tudo o que deves entra no património como dívida.</p></details>
+      <details><summary>O que aparece no sino?</summary><p>O sino junta os avisos: orçamentos a 80% e acima do limite, pagamentos e entradas dos próximos dias, subscrições a renovar, prestações dos empréstimos, juros dos Certificados de Aforro, saldo baixo, prazos das metas, estadias, preços por atualizar e a cópia de segurança. O número mostra os avisos que ainda não viste. Toca num aviso para ir ao sítio certo, ou no × para o dispensar. Em Definições → Avisos escolhes o que queres ver e podes ligar as notificações do telemóvel.</p></details>
       <details><summary>Como uso os orçamentos?</summary><p>Em Orçamentos escreve um limite mensal ao lado de cada categoria. A barra fica amarela quando estás a gastar mais depressa do que o mês avança, e vermelha quando passas o limite.</p></details>
       <details><summary>Como registo Certificados de Aforro?</summary><p>Em Investimentos, abre a aba Certificados de Aforro e carrega em “+ Subscrição” e indica a série, a data e o montante de cada compra. A app soma os juros de 3 em 3 meses, com o prémio de permanência e já sem os 28% de IRS. Atualiza a taxa base quando o IGCP a mudar, ou escreve o valor que o AforroNet mostra para acertar as contas.</p></details>
       <details><summary>Como importo o extrato da XTB?</summary><p>Em Investimentos, abre a aba XTB, carrega em “Importar extrato XTB” e escolhe o ficheiro Excel exportado no xStation. As vendas do extrato aparecem na mesma aba, por baixo das posições, cada uma com a data.</p></details>
@@ -2065,11 +2112,17 @@ $(".side-brand").innerHTML=$(".top .brand").innerHTML.replace(' id="modeNote"',"
 $("#moreList").innerHTML=[...document.querySelectorAll(".tabs button[data-tab]")].filter(b=>!["resumo","movimentos","investimentos"].includes(b.dataset.tab)).map(b=>`<button type="button" data-tab="${b.dataset.tab}">${b.innerHTML}</button>`).join("");
 $("#moreBtn").onclick=()=>$("#moreDlg").showModal();
 $("#moreList").addEventListener("click",e=>{const b=e.target.closest("[data-tab]");if(b){$("#moreDlg").close();setTab(b.dataset.tab);window.scrollTo({top:0})}});
-$("#bellBtn").onclick=e=>{e.stopPropagation();const open=$("#bellPop").hidden;$("#bellPop").hidden=!open;$("#bellBtn").setAttribute("aria-expanded",String(open))};
-document.addEventListener("click",e=>{if(!$("#bellPop").hidden&&!e.target.closest(".bellwrap")){$("#bellPop").hidden=true;$("#bellBtn").setAttribute("aria-expanded","false")}});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#bellPop").hidden){$("#bellPop").hidden=true;$("#bellBtn").setAttribute("aria-expanded","false");$("#bellBtn").focus()}});
-$("#bellPop").addEventListener("click",e=>{const r=e.target.closest("[data-bgo]");if(!r)return;$("#bellPop").hidden=true;$("#bellBtn").setAttribute("aria-expanded","false");
-  if(r.dataset.bgo==="upc"){setTab("resumo");$("#upcCard").scrollIntoView({block:"center",behavior:"smooth"})}else{S.month=ym(new Date());setTab("orcamentos");render();window.scrollTo({top:0})}});
+$("#bellBtn").onclick=e=>{e.stopPropagation();if($("#bellPop").hidden){renderBell();$("#bellPop").hidden=false;$("#bellBtn").setAttribute("aria-expanded","true")}else ntClose()};
+document.addEventListener("click",e=>{if(!$("#bellPop").hidden&&!e.target.closest(".bellwrap"))ntClose()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#bellPop").hidden){ntClose();$("#bellBtn").focus()}});
+$("#bellPop").addEventListener("click",e=>{const t=e.target.closest("[data-nid],[data-ngone],[data-nact]");if(!t)return;e.stopPropagation();const N=S.nt,now=Date.now(),L=S.ntL||[];
+  if(t.dataset.ngone){const id=t.dataset.ngone,k=L.findIndex(o=>o.id===id);N.gone[id]=N.seen[id]=now;ntSave();renderBell();
+    const xs=document.querySelectorAll("#bellPop .bp-x");(xs[Math.min(k,xs.length-1)]||$("#bellBtn")).focus();return}
+  const a=t.dataset.nact;
+  if(a==="read"){L.forEach(o=>N.seen[o.id]=now);ntSave();renderBell();$("#bellBtn").focus();return}
+  if(a==="clear"){L.forEach(o=>N.gone[o.id]=N.seen[o.id]=now);ntSave();renderBell();toast(L.length===1?"Aviso dispensado":`${L.length} avisos dispensados`);$("#bellBtn").focus();return}
+  if(a==="set"){ntClose();setTab("definicoes");$("#ntCard").scrollIntoView({block:"start",behavior:"smooth"});return}
+  const o=L.find(x=>x.id===t.dataset.nid);N.seen[t.dataset.nid]=now;ntClose();if(o)ntGo(o.go)});
 $("#fab").onclick=()=>{setTab("movimentos");resetTxForm();$("#txForm").scrollIntoView({block:"start",behavior:"smooth"});$("#txAmount").focus({preventScroll:true})};
 /* privacy + theme (per-viewer conveniences) */
 const EYE='<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>%</svg>';
@@ -3025,16 +3078,191 @@ $("#buds").addEventListener("change",e=>{const c=e.target.dataset.bud;if(!c)retu
 function budgetAlerts(){const B=settings().budgets||{},m=ym(new Date()),by={};
   txs().filter(t=>isOut(t)&&t.date&&t.date.startsWith(m)).forEach(t=>by[t.cat]=(by[t.cat]||0)+ +t.amount);
   return Object.keys(B).filter(c=>+B[c]>0&&(by[c]||0)>=.8*B[c]).map(c=>({c,v:by[c]||0,l:+B[c],over:(by[c]||0)>+B[c]})).sort((a,b)=>b.v/b.l-a.v/a.l)}
-function renderBell(){const all=txs(),today=todayISO(),soon=upcomingList(all).filter(u=>u.date<=iso(new Date(Date.now()+3*864e5))),A=budgetAlerts(),n=soon.length+A.length;
-  $("#bellBtn .bdot").hidden=!n;$("#bellBtn").title=n?`${n} ${n===1?"aviso":"avisos"}`:"Sem avisos";
-  const when=d=>d<today?"já devia ter saído":d===today?"hoje":dshort(d);
-  $("#bellPop").innerHTML=`<b class="bp-h">Avisos</b>`+(n?A.map(a=>`<button type="button" class="bp-r" data-bgo="bud">${catTile("out",a.c)}<span><b>${esc(a.c)} ${a.over?"passou o limite":"chegou a "+Math.round(a.v/a.l*100)+"%"}</b><small>${eur(a.v)} de ${eur0(a.l)} este mês</small></span>${chip(a.over?"bad":"warn",a.over?"+"+eur0(a.v-a.l):Math.round(a.v/a.l*100)+"%")}</button>`).join("")+
-    soon.map(u=>`<button type="button" class="bp-r" data-bgo="upc">${catTile("out",u.cat)}<span><b>${esc(u.desc)}</b><small>${when(u.date)}</small></span><span class="num">− ${eur(u.amount)}</span></button>`).join("")
-    :`<p class="muted" style="margin:6px 0 2px;font-size:.85rem">Sem avisos. A app avisa aqui quando uma categoria chega a 80% do orçamento e quando há pagamentos nos próximos 3 dias.</p>`);
-  // tell once per session when a category crosses 80% or 100%
-  const lv={};A.forEach(a=>lv[a.c]=a.over?2:1);
+/* ---------- avisos do sino: cada fonte devolve itens {id,type,lvl:bad|warn|info|good,date,title,sub,amt,right,tile,go,day}; lido/dispensado fica neste aparelho ---------- */
+var NOTIF_SRC=NOTIF_SRC||[];  // outras funcionalidades juntam aqui {type,label,desc,fn}
+const NT_TYPES=[
+  ["bud","Orçamentos","Quando uma categoria chega a 80% e quando passa o limite do mês."],
+  ["pay","Pagamentos a sair","Despesas que se repetem, movimentos recorrentes e prestações, uns dias antes."],
+  ["sub","Subscrições a renovar","Renovações da semana (anuais e semestrais com 14 dias de antecedência)."],
+  ["inc","Dinheiro a entrar","Salário e outras entradas previstas."],
+  ["auto","Lançados sozinhos","Movimentos recorrentes que a app registou por ti nos últimos dias."],
+  ["low","Saldo baixo","Quando uma conta fica abaixo do limite ou não chega para os pagamentos da semana."],
+  ["goal","Prazos das metas","Prazo a acabar, prazo passado ou a precisar de mais do que juntas por mês."],
+  ["caf","Certificados de Aforro","Próximo pagamento de juros e fim do prazo."],
+  ["loan","Empréstimos","Prestações dos créditos e dinheiro emprestado com o prazo a chegar."],
+  ["stay","Estadias","Quando uma estadia começa, acaba ou o dinheiro posto de parte não chega."],
+  ["px","Preços por atualizar","Posições com o preço escrito há mais de 30 dias."],
+  ["bk","Cópia de segurança","Lembrete para exportar uma cópia de 2 em 2 semanas."]];
+const NT_LV={bad:0,warn:1,info:2,good:3};
+const NT_IC={
+  low:'<path d="M3 7h18v12H3z"/><path d="M3 11h18M7 15h3"/><path d="M16 4 12 7 8 4"/>',
+  goal:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8"/>',
+  stay:'<path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
+  bk:'<path d="M12 3v11M7.5 9.5 12 14l4.5-4.5"/><path d="M4 15v4.5h16V15"/>',
+  px:'<path d="M3 17.5l6-6 4 4 8-8"/><circle cx="18.5" cy="17.5" r="2.5"/><path d="M18.5 16.3v1.3l.9.6"/>',
+  auto:'<path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4.5v4h-4"/><path d="m9 12 2 2 4-4"/>',
+  loan:'<path d="M3 10 12 4l9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20.5h18"/>',
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+  ok:'<path d="m5 12.5 4.5 4.5L19 7.5"/>'};
+const ntTile=(k,col)=>`<span class="mini-ic" style="background:${col}">${SVG(NT_IC[k])}</span>`;
+function ntLoad(){let o={};try{o=JSON.parse(localStorage.getItem("caderneta.notif")||"{}")||{}}catch(e){}
+  return Object.assign({off:[],days:3,low:100,push:false},o,{seen:o.seen||{},gone:o.gone||{},pushed:o.pushed||{}})}
+S.nt=ntLoad();
+function ntSave(){try{localStorage.setItem("caderneta.notif",JSON.stringify(S.nt))}catch(e){}}
+const ntOn=t=>!S.nt.off.includes(t);
+const ntIn=d=>dDiff(todayISO(),d);
+const ntWhen=d=>{const n=ntIn(d);return n<-1?`há ${-n} dias`:n===-1?"ontem":n===0?"hoje":n===1?"amanhã":`a ${dshort(d)}`};
+const ntRel=d=>{const n=ntIn(d);return n>1?`daqui a ${n} dias · `:""};
+const ntAmt=v=>`<span class="num${v>0?" in":""}">${v<0?"− ":"+ "}${eur(Math.abs(v))}</span>`;
+/* h = dias à frente para pagamentos/entradas (o sino usa as definições; o calendário do Android usa 14) */
+function notifList(h){
+  if(S.mode==="loading")return[];
+  const all=txs(),today=todayISO(),N=S.nt,L=[],add=o=>L.push(o),plus=k=>iso(new Date(Date.now()+k*864e5)),M=ym(new Date());
+  const days=h||+N.days||3,ext=new Set(NOTIF_SRC.map(s=>s.type)),recOf=u=>u.rec&&S.items.get(u.rec)||{};
+  const isSubU=u=>u.cat==="Subscrições"||!!recOf(u).sub;
+  const tabSub=!!$("#tab-subscricoes"),tabLoan=!!$("#tab-emprestimos");
+  if(ntOn("bud"))budgetAlerts().forEach(a=>add({id:`bud:${a.c}:${M}:${a.over?2:1}`,type:"bud",lvl:a.over?"bad":"warn",date:today,tile:catTile("out",a.c),
+    title:`${a.c} ${a.over?"passou o limite":"chegou a "+Math.round(a.v/a.l*100)+"%"}`,sub:`${eur(a.v)} de ${eur0(a.l)} este mês`,
+    right:chip(a.over?"bad":"warn",a.over?"+"+eur0(a.v-a.l):Math.round(a.v/a.l*100)+"%"),go:"bud"}));
+  const UP=upcomingList(all),near=UP.filter(u=>u.date<=plus(days));
+  near.forEach(u=>{
+    if(u.loan){if(!ntOn("loan"))return;
+      add({id:`loan:${u.loan}:${u.date}`,type:"loan",lvl:u.date<=today?"warn":"info",date:u.date,tile:ntTile("loan","#5a7fa8"),title:`Prestação: ${u.desc}`,sub:u.date<today?"já devia ter saído":"sai "+ntWhen(u.date),amt:-u.amount,go:"loan:"+u.loan,
+        day:{t:`Prestação: ${u.desc}`,b:`Sai hoje: − ${eur(u.amount)}`}});return}
+    if(ext.has("sub")?!!recOf(u).sub:isSubU(u))return;  // subscrições: secção própria
+    if(!ntOn("pay"))return;
+    add({id:`pay:${u.rec||u.k}:${u.date}`,type:"pay",lvl:u.date<=today?"warn":"info",date:u.date,tile:catTile("out",u.cat),title:u.desc,
+      sub:u.date<today?"já devia ter saído · toca para registar":(u.rec?"sai sozinho ":"sai ")+ntWhen(u.date),amt:-u.amount,go:u.rec?"rec":"upc",
+      day:{t:u.desc,b:`Sai hoje: − ${eur(u.amount)}`}})});
+  if(ntOn("sub")&&!ext.has("sub")){
+    recs().filter(r=>r.type==="out"&&!r.paused&&!r.cancelled&&(r.cat==="Subscrições"||r.sub)).forEach(r=>{const d=recNextOf(r),long=(+r.every||1)>=6;
+      if(!d||d>plus(h?14:long?14:7))return;
+      add({id:`sub:${r.id}:${d}`,type:"sub",lvl:long?"warn":"info",date:d,tile:catTile("out","Subscrições"),title:`${r.desc||r.cat} renova ${ntWhen(d)}`,sub:ntRel(d)+recFreq(r),amt:-(+r.amount||0),go:tabSub?"subscricoes":"rec",
+        day:{t:r.desc||r.cat,b:`Renova hoje: − ${eur(r.amount)}`}})});
+    UP.filter(u=>!u.rec&&!u.loan&&u.cat==="Subscrições"&&u.date<=plus(h||7)).forEach(u=>add({id:`sub:${u.k}:${u.date}`,type:"sub",lvl:u.date<=today?"warn":"info",date:u.date,tile:catTile("out",u.cat),
+      title:`${u.desc} renova ${ntWhen(u.date)}`,sub:u.date<today?"já devia ter saído · toca para registar":"todos os meses, por volta do dia "+u.day,amt:-u.amount,go:"upc",day:{t:u.desc,b:`Renova hoje: − ${eur(u.amount)}`}}))}
+  if(ntOn("inc"))upcomingList(all,"in").filter(u=>u.date<=plus(days)).forEach(u=>add({id:`inc:${u.rec||u.k}:${u.date}`,type:"inc",lvl:"info",date:u.date,tile:catTile("in",u.cat),
+    title:u.desc,sub:u.date<today?"devia já ter entrado":(u.rec?"entra sozinho ":"entra ")+ntWhen(u.date),amt:+u.amount,go:u.rec?"rec":"movimentos",day:{t:u.desc,b:`Entra hoje: + ${eur(u.amount)}`}}));
+  if(ntOn("auto")){const fr=plus(-2);
+    all.filter(t=>t.rec&&t.date>=fr&&t.date<=today).forEach(t=>add({id:"auto:"+t.id,type:"auto",lvl:"info",date:t.date,tile:catTile(t.type,t.cat),title:`Lançado sozinho: ${t.desc||t.cat}`,
+      sub:`${t.date===today?"hoje":ntWhen(t.date)}${recAcctName(t.acct)?" · "+recAcctName(t.acct):""}`,amt:t.type==="in"?+t.amount:-t.amount,go:"movimentos"}));
+    xfers().filter(x=>x.rec&&x.date>=fr&&x.date<=today).forEach(x=>add({id:"auto:"+x.id,type:"auto",lvl:"info",date:x.date,tile:ntTile("auto","#3a9dc0"),title:`Transferência automática${x.note?": "+x.note:""}`,
+      sub:`${recAcctName(x.from)||"?"} → ${recAcctName(x.to)||"?"} · ${x.date===today?"hoje":ntWhen(x.date)}`,right:`<span class="num">${eur(x.amount)}</span>`,go:"contas"}))}
+  if(ntOn("low")){const thr=+N.low||0,wk=plus(7),acOf=u=>u.loan?(S.items.get(u.loan)||{}).acct:u.rec?recOf(u).acct:u.acct;
+    accts().filter(a=>AVAIL.includes(a.type)).forEach(a=>{const av=availRaw(a,all),need=UP.filter(u=>u.date<=wk&&acOf(u)===a.id).reduce((s,u)=>s+u.amount,0);
+      if(need>0&&need>av)add({id:`low:${a.id}:pay:${M}`,type:"low",lvl:"bad",date:today,tile:acctIc(a,"mini-ic"),title:`${a.name}: o saldo não chega`,
+        sub:`Saem ${eur0(need)} até ${dshort(wk)} e tens ${eur0(Math.max(0,av))} disponíveis`,go:"contas"});
+      else if(thr>0&&a.type==="Banco"&&av<thr)add({id:`low:${a.id}:thr:${M}`,type:"low",lvl:"warn",date:today,tile:acctIc(a,"mini-ic"),title:`Saldo baixo em ${a.name}`,
+        sub:`${eur(Math.max(0,av))} disponíveis (avisas abaixo de ${eur0(thr)})`,go:"contas"})})}
+  if(ntOn("goal")){const avg=avgSave(all);
+    goalsList().forEach(g=>{const r=goalPlan(g,avg);if(r.done)return;const tl=goalTile(g.icon).replace('class="ic"','class="mini-ic"');
+      if(r.late)add({id:`goal:${g.id}:late:${g.due}`,type:"goal",lvl:"bad",date:today,tile:tl,title:`${g.name}: o prazo passou`,sub:`Ainda faltam ${eur0(r.rem)}. Muda o prazo ou junta o que falta.`,go:"poupancas"});
+      else if(r.left&&r.left<=2)add({id:`goal:${g.id}:end:${g.due}`,type:"goal",lvl:"warn",date:today,tile:tl,title:`${g.name}: o prazo ${r.left===1?"acaba este mês":"acaba no próximo mês"}`,sub:`Faltam ${eur0(r.rem)} · ${eur0(r.need)} por mês`,go:"poupancas"});
+      else if(r.need&&avg>0&&r.need>avg*1.05)add({id:`goal:${g.id}:pace:${M}`,type:"goal",lvl:"info",date:today,tile:tl,title:`${g.name} pede mais do que juntas`,sub:`Precisas de ${eur0(r.need)} por mês e juntas em média ${eur0(avg)}`,go:"poupancas"})})}
+  if(ntOn("caf"))cafs().filter(c=>+c.amount>0).forEach(c=>{const k=cafCalc(c,cafBase()),nm="Aforro série "+(c.serie||"F"),tl=clsTile("Certificados / Depósitos");
+    if(k.matured)add({id:`caf:${c.id}:end`,type:"caf",lvl:"warn",date:today,tile:tl,title:`${nm} chegou ao fim do prazo`,sub:`Vale ${eur(k.v)}. Já não rende juros: regista o resgate.`,go:"caf"});
+    else{if(k.next&&k.next<=plus(h||7))add({id:`caf:${c.id}:${k.next}`,type:"caf",lvl:"info",date:k.next,tile:tl,title:`Juros do ${nm} ${ntWhen(k.next)}`,sub:`${ntRel(k.next)}líquido de IRS`,amt:k.nextNet,go:"caf",day:{t:`Juros do ${nm}`,b:`Pagos hoje: + ${eur(k.nextNet)}`}});
+      if(k.n>0){const d0=new Date(c.date+"T12:00:00"),ld=iso(new Date(d0.getFullYear(),d0.getMonth()+3*k.n,d0.getDate(),12));
+        if(ld>=plus(-3)&&ld<=today)add({id:`caf:${c.id}:paid:${ld}`,type:"caf",lvl:"good",date:ld,tile:tl,title:`Juros do ${nm} pagos`,sub:`${ntWhen(ld)} · o valor já está atualizado`,go:"caf"})}}});
+  if(ntOn("loan")&&typeof loans==="function"&&typeof lnInfo==="function"){try{
+    loans().filter(l=>l.lt==="pessoa"&&l.due).forEach(l=>{const I=lnInfo(l)||{};if(I.done)return;const n=ntIn(l.due),lent=l.dir==="lent";if(n>7)return;
+      add({id:`loanp:${l.id}:${l.due}`,type:"loan",lvl:n<0?"bad":"warn",date:l.due,tile:ntTile("loan","#5a7fa8"),title:lent?`${l.who||"Alguém"} devia devolver-te ${n<0?"desde "+dshort(l.due):ntWhen(l.due)}`:`Tens de devolver a ${l.who||"alguém"} ${n<0?"desde "+dshort(l.due):ntWhen(l.due)}`,
+        sub:I.bal!=null?`Falta ${eur(Math.abs(+I.bal||0))}`:"",go:"loan:"+l.id})})}catch(e){}}
+  if(ntOn("stay"))staysList().forEach(s=>{const k=stayCalc(s,all),nm=s.name||"Estadia",tl=ntTile("stay","#8a62d6");
+    if(k.st==="plan"&&ntIn(s.from)<=3)add({id:`stay:${s.id}:start:${s.from}`,type:"stay",lvl:"info",date:s.from,tile:tl,title:`${nm} começa ${ntWhen(s.from)}`,sub:k.B?`Puseste de parte ${eur0(k.B)} · ${eur0(k.B/k.total)} por dia`:(s.place||`${k.total} dias`),go:"estadias",day:{t:nm,b:"A estadia começa hoje"}});
+    if(k.st!=="now")return;
+    if(k.B&&k.spent>k.B)add({id:`stay:${s.id}:over`,type:"stay",lvl:"bad",date:today,tile:tl,title:`${nm}: passaste o dinheiro posto de parte`,sub:`Gastaste ${eur0(k.spent)} de ${eur0(k.B)}`,go:"estadias"});
+    else if(k.B&&k.fc>k.B*1.02)add({id:`stay:${s.id}:pace`,type:"stay",lvl:"warn",date:today,tile:tl,title:`${nm}: ao ritmo atual não chega`,sub:`Vais gastar ${eur0(k.fc)} de ${eur0(k.B)} · ${eur0(k.canDay)} por dia até ao fim`,go:"estadias"});
+    if(ntIn(s.to)<=2)add({id:`stay:${s.id}:end:${s.to}`,type:"stay",lvl:"info",date:s.to,tile:tl,title:`${nm} acaba ${ntWhen(s.to)}`,sub:stayLeftTxt(k)||`dia ${k.el} de ${k.total}`,go:"estadias"})});
+  if(ntOn("px")){const old=plus(-30),P=invs().filter(i=>!i.caf&&!i.demo&&(+i.qty||0)>0&&(!i.updated||i.updated<old));
+    if(P.length)add({id:"px:"+M,type:"px",lvl:"info",date:today,tile:ntTile("px","#0f8b8d"),title:`${P.length} ${P.length===1?"posição com o preço":"posições com o preço"} de há mais de 30 dias`,sub:P.slice(0,3).map(i=>i.name).join(", ")+(P.length>3?"…":""),go:"inv"})}
+  if(ntOn("bk")&&S.mode==="local"&&[...S.items.values()].some(o=>!o.demo&&o.kind&&o.kind!=="settings")){let t="";try{t=localStorage.getItem("caderneta.backupAt")||""}catch(e){}
+    const age=t?(Date.now()-Date.parse(t))/864e5:Infinity;
+    if(age>14)add({id:"bk:"+Math.floor(Date.now()/(7*864e5)),type:"bk",lvl:age>30?"warn":"info",date:today,tile:ntTile("bk","#7c8597"),title:t?`A última cópia foi há ${Math.floor(age)} dias`:"Ainda não exportaste nenhuma cópia",sub:"Os teus dados estão só neste aparelho. Exporta uma cópia.",go:"bk"})}
+  NOTIF_SRC.forEach(s=>{if(!s||!ntOn(s.type)||typeof s.fn!=="function")return;let r=[];try{r=s.fn()||[]}catch(e){}
+    r.forEach(o=>{if(!o||!o.id)return;o=Object.assign({type:s.type,lvl:"info",date:today,title:"",sub:""},o);if(o.amt!=null&&!o.in)o.amt=-Math.abs(+o.amt);add(o)})});  // amt das fontes = dinheiro a sair, salvo in:true
+  if(h)return L.filter(o=>o.day&&o.date>=today);
+  const seen=new Set();
+  return L.filter(o=>!seen.has(o.id)&&seen.add(o.id)).sort((a,b)=>(NT_LV[a.lvl]??2)-(NT_LV[b.lvl]??2)||String(a.date).localeCompare(String(b.date)));
+}
+function ntRow(o,N){return `<div class="bp-i ${o.lvl}${N.seen[o.id]?"":" new"}" role="listitem"><button type="button" class="bp-r" data-nid="${esc(o.id)}">${o.tile||ntTile("ok","#7c8597")}<span><b>${esc(o.title)}</b>${o.sub?`<small>${esc(o.sub)}</small>`:""}</span>${o.right||(o.amt!=null&&isFinite(o.amt)?ntAmt(o.amt):"")}</button><button type="button" class="bp-x" data-ngone="${esc(o.id)}" aria-label="Dispensar: ${esc(o.title)}" title="Dispensar">×</button></div>`}
+function renderBell(){
+  const N=S.nt,all=notifList(),L=all.filter(o=>!N.gone[o.id]),un=L.filter(o=>!N.seen[o.id]).length;S.ntL=L;
+  const d=$("#bellBtn .bdot");d.hidden=!un;d.textContent=un>9?"9+":String(un);
+  $("#bellBtn").title=L.length?`${L.length} ${L.length===1?"aviso":"avisos"}${un?`, ${un} ${un===1?"novo":"novos"}`:""}`:"Sem avisos";
+  $("#bellBtn").setAttribute("aria-label",un?`Avisos: ${un} ${un===1?"novo":"novos"}`:"Avisos");
+  const urg=L.filter(o=>o.lvl==="bad"||o.lvl==="warn"),rest=L.filter(o=>!(o.lvl==="bad"||o.lvl==="warn"));
+  $("#bellPop").innerHTML=`<div class="bp-top"><b class="bp-h">Avisos${L.length?` <span class="muted" style="font-weight:500;font-size:.8rem">· ${L.length}</span>`:""}</b><span class="bp-acts">${un?`<button type="button" class="link" data-nact="read">Marcar como lidos</button>`:""}<button type="button" class="iconbtn" data-nact="set" aria-label="Escolher os avisos" title="Escolher os avisos">${SVG(NT_IC.gear)}</button></span></div>`+
+    (L.length?`<div class="bp-list" role="list">${urg.length&&rest.length?`<div class="bp-sec">Precisa de atenção</div>`:""}${urg.map(o=>ntRow(o,N)).join("")}${urg.length&&rest.length?`<div class="bp-sec">Para saberes</div>`:""}${rest.map(o=>ntRow(o,N)).join("")}</div>
+      <div class="bp-foot"><button type="button" class="link" data-nact="clear">Dispensar todos</button><button type="button" class="link" data-nact="set">Escolher avisos</button></div>`
+    :`<div class="bp-empty"><span class="ok">${SVG(NT_IC.ok)}</span><b>Está tudo em dia</b><p>${S.mode==="loading"?"A abrir…":all.length?"Dispensaste os avisos que havia. Voltam a aparecer se a situação mudar.":"Avisamos aqui de orçamentos, pagamentos, subscrições, prestações, juros do Aforro, saldos, metas e estadias."}</p></div>`);
+  // diz uma vez por sessão quando uma categoria passa de 80% ou de 100%
+  const A=ntOn("bud")?budgetAlerts():[],lv={};A.forEach(a=>lv[a.c]=a.over?2:1);
   if(S.alertLv&&S.mode!=="loading"){const up=A.find(a=>(lv[a.c]||0)>(S.alertLv[a.c]||0));if(up)setTimeout(()=>toast(up.over?`${up.c} passou o orçamento do mês (${eur0(up.v)} de ${eur0(up.l)})`:`${up.c} já vai em ${Math.round(up.v/up.l*100)}% do orçamento do mês`),1800)}
-  if(S.mode!=="loading")S.alertLv=lv}
+  if(S.mode!=="loading"){S.alertLv=lv;ntPush(L);ntSched()}
+  renderNtSet();
+}
+function ntClose(){if($("#bellPop").hidden)return;$("#bellPop").hidden=true;$("#bellBtn").setAttribute("aria-expanded","false");
+  const now=Date.now();let ch=false;(S.ntL||[]).forEach(o=>{if(!S.nt.seen[o.id]){S.nt.seen[o.id]=now;ch=true}});if(ch){ntPrune();ntSave()}renderBell()}
+/* esquece ids antigos que já não aparecem */
+function ntPrune(){const act=new Set((S.ntL||[]).map(o=>o.id)),old=Date.now()-120*864e5;["seen","gone","pushed"].forEach(k=>{const m=S.nt[k];for(const id in m)if(m[id]<old&&!act.has(id))delete m[id]})}
+function ntGo(g){g=String(g||"");window.scrollTo({top:0});
+  if(g==="upc"){setTab("resumo");$("#upcCard").scrollIntoView({block:"center",behavior:"smooth"});return}
+  if(g==="bud"){S.month=ym(new Date());setTab("orcamentos");render();return}
+  if(g==="rec"){setTab("movimentos");const c=$("#recList").closest(".card")||$("#recList");c.scrollIntoView({block:"start",behavior:"smooth"});return}
+  if(g==="caf"||g==="inv"){setTab("investimentos");if(g==="caf")setIsub("caf");return}
+  if(g==="bk"){setTab("definicoes");$("#bkExport").scrollIntoView({block:"center",behavior:"smooth"});return}
+  if(g.startsWith("loan:")){S.loan=g.slice(5);if($("#tab-emprestimos")){setTab("emprestimos");render()}return}
+  if(g&&$("#tab-"+g))setTab(g)}
+/* ---------- notificações do telemóvel (só com autorização) ---------- */
+const ntCan=()=>typeof Notification!=="undefined";
+const ntReal=()=>[...S.items.values()].some(o=>!o.demo&&o.kind&&o.kind!=="settings");
+const ntPriv=s=>document.body.classList.contains("privacy")?String(s).replace(/[−+]?\s?€\s?[\d.,]+|\d+%/g,"•••"):s;
+async function ntShow(title,body,tag,go){const opt={body,tag,icon:"icon-192.png",badge:"icon-192.png",data:{go:go||""}};
+  try{const r=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(r&&r.active){await r.showNotification(title,opt);return true}}catch(e){}
+  try{const n=new Notification(title,opt);n.onclick=()=>{window.focus();ntGo(go);n.close()};return true}catch(e){return false}}
+/* com a app aberta mas em segundo plano: mostra os avisos que apareceram desde a última vez */
+function ntPush(L){const N=S.nt,prev=S.ntPrev;S.ntPrev=new Set(L.map(o=>o.id));
+  if(!N.push||!ntCan()||Notification.permission!=="granted"||!prev||!document.hidden||!ntReal())return;
+  const fr=L.filter(o=>!prev.has(o.id)&&!N.seen[o.id]&&!N.pushed[o.id]);if(!fr.length)return;
+  const now=Date.now();fr.forEach(o=>N.pushed[o.id]=now);ntSave();
+  if(fr.length<=2)fr.forEach(o=>ntShow(ntPriv(o.title),ntPriv(o.sub||""),"cad-"+o.id,o.go));
+  else ntShow(`${fr.length} avisos novos na Caderneta`,fr.slice(0,4).map(o=>"• "+ntPriv(o.title)).join("\n"),"cad-varios","")}
+/* com a app fechada: a app deixa ao service worker a lista do que acontece nos próximos 14 dias, e o Android acorda-o (periodic sync) para avisar no próprio dia */
+async function ntSched(force){const N=S.nt;if(typeof caches==="undefined"||!navigator.serviceWorker)return;
+  const items=N.push&&ntReal()?notifList(14).filter(o=>!N.gone[o.id]).map(o=>({id:o.id,date:o.date,t:ntPriv(o.day.t),b:ntPriv(o.day.b),go:o.go})):[];
+  const js=JSON.stringify(items);if(!force&&js===S.ntSchedJs)return;S.ntSchedJs=js;
+  try{const c=await caches.open("caderneta-notif"),r=await c.match("./__avisos.json"),old=r?await r.json():{};
+    await c.put("./__avisos.json",new Response(JSON.stringify({items,shown:old.shown||{}}),{headers:{"content-type":"application/json"}}))}catch(e){}}
+async function ntPeriodic(on){try{const r=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(!r||!r.periodicSync)return false;
+  if(!on){await r.periodicSync.unregister("caderneta-avisos");return false}
+  const st=await navigator.permissions.query({name:"periodic-background-sync"});if(st.state!=="granted")return false;
+  await r.periodicSync.register("caderneta-avisos",{minInterval:12*36e5});return true}catch(e){return false}}
+if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.type==="go")ntGo(e.data.go)});
+setInterval(()=>{if(S.mode!=="loading")renderBell()},20*60e3);
+document.addEventListener("visibilitychange",()=>{if(S.mode!=="loading")renderBell()});
+/* ---------- Definições → Avisos ---------- */
+function renderNtSet(){const N=S.nt,ex=new Map(NOTIF_SRC.filter(s=>s&&s.type).map(s=>[s.type,s])),T=NT_TYPES.map(t=>ex.has(t[0])?[t[0],ex.get(t[0]).label||t[1],ex.get(t[0]).desc||t[2]]:t);
+  ex.forEach((s,k)=>{if(!T.some(t=>t[0]===k))T.push([k,s.label||k,s.desc||""])});
+  const cnt={};(S.ntL||[]).forEach(o=>cnt[o.type]=(cnt[o.type]||0)+1);
+  const box=$("#ntTypes");if(box&&!box.contains(document.activeElement))box.innerHTML=T.map(t=>`<label class="chk"><input type="checkbox" data-nt="${t[0]}"${ntOn(t[0])?" checked":""}><span><b>${esc(t[1])}</b><small>${esc(t[2])}</small></span>${cnt[t[0]]?`<span class="ntc">${chip("neutral",String(cnt[t[0]]))}</span>`:""}</label>`).join("");
+  document.querySelectorAll("#ntDays button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.d===(+N.days||3))));
+  if(document.activeElement!==$("#ntLow"))$("#ntLow").value=numStr(N.low);
+  const p=ntCan()?Notification.permission:"none",on=N.push&&p==="granted",b=$("#ntPush");
+  b.textContent=on?"Desligar":"Ativar";b.setAttribute("aria-pressed",String(on));b.disabled=p==="none";
+  $("#ntPushNote").textContent=p==="none"?"Este navegador não deixa mostrar notificações.":p==="denied"?"Bloqueaste as notificações deste site. No Chrome: ⋮ → Definições → Definições de sites → Notificações, e permite este site.":
+    on?(S.ntPer?"Ligadas. Com a app instalada, o Android avisa-te no dia dos pagamentos mesmo com a app fechada (é o Android que escolhe a hora, mais ou menos uma vez por dia).":"Ligadas. Aparecem enquanto a app está aberta ou em segundo plano. Para avisos com a app fechada, instala a app no telemóvel (Chrome ⋮ → Instalar app)."):
+    "Mostra os avisos novos na barra do telemóvel. Só pede autorização quando carregas em Ativar."}
+$("#ntTypes").addEventListener("change",e=>{const c=e.target.closest("[data-nt]");if(!c)return;const N=S.nt,t=c.dataset.nt;N.off=N.off.filter(x=>x!==t);if(!c.checked)N.off.push(t);ntSave();renderBell()});
+$("#ntDays").addEventListener("click",e=>{const b=e.target.closest("[data-d]");if(!b)return;S.nt.days=+b.dataset.d;ntSave();renderBell();toast(`Avisa os pagamentos com ${b.dataset.d} ${b.dataset.d==="1"?"dia":"dias"} de antecedência`)});
+$("#ntLow").addEventListener("change",e=>{const v=parseNum(e.target.value||"0");if(!isFinite(v)||v<0){toast("Escreve um valor válido");return}S.nt.low=Math.round(v*100)/100;ntSave();setTimeout(()=>{renderBell();toast(v?`Avisa quando uma conta ficar abaixo de ${eur0(v)}`:"Aviso de saldo baixo desligado")},0)});
+$("#ntPush").onclick=async()=>{const N=S.nt;if(!ntCan())return;
+  if(N.push&&Notification.permission==="granted"){N.push=false;ntSave();ntPeriodic(false);S.ntPer=false;ntSched(true);renderNtSet();toast("Notificações desligadas");return}
+  let p=Notification.permission;if(p==="default"){try{p=await Notification.requestPermission()}catch(e){}}
+  if(p!=="granted"){renderNtSet();toast("Sem autorização para notificações");return}
+  N.push=true;const now=Date.now();(S.ntL||[]).forEach(o=>N.pushed[o.id]=now);ntSave();S.ntPer=await ntPeriodic(true);ntSched(true);renderNtSet();
+  ntShow("Notificações ligadas","Os avisos novos da Caderneta vão aparecer aqui.","cad-teste","")};
+(async()=>{if(S.nt.push&&ntCan()&&Notification.permission==="granted"){S.ntPer=await ntPeriodic(true);renderNtSet()}})();
 /* end-of-month forecast at the current pace: fixed payments still to come + variable spending per day so far */
 function forecast(all){const m=ym(new Date()),d=new Date().getDate(),n=dim(m),rem=n-d,cur=monthTotals(m,all),U=upcomingList(all),keys=new Set(U.map(u=>u.k));
   const capLeft=U.filter(u=>u.loan&&u.date.slice(0,7)===m).reduce((a,u)=>a+u.amount-u.exp,0),fixedLeft=U.filter(u=>u.date.slice(0,7)===m&&(S.invExp||u.cat!==INV_CAT)).reduce((a,u)=>a+(u.exp??u.amount),0),inLeft=upcomingList(all,"in").filter(u=>u.date.slice(0,7)===m).reduce((a,u)=>a+u.amount,0);
@@ -4698,6 +4926,7 @@ $("#txDate").value=todayISO();setTxType("out");
 try{const t=location.hash.slice(1)||localStorage.getItem("caderneta.tab");if(t&&$("#tab-"+t))setTab(t)}catch(e){}
 render();
 Store.init();
+{const g=(location.hash.match(/^#go-(.+)$/)||[])[1];if(g){history.replaceState(null,"",location.pathname+location.search);setTimeout(()=>ntGo(decodeURIComponent(g)),400)}}
 /* ---------- this version runs without Claude: name, backup, market-price key ---------- */
 try{const n=localStorage.getItem("caderneta.name")||"";if(n){S.me={name:n,av:""};$("#meName").value=n;renderResumo()}}catch(e){}
 $("#nameForm").addEventListener("submit",e=>{e.preventDefault();const n=$("#meName").value.trim().slice(0,40);S.me=n?{name:n,av:""}:null;try{localStorage.setItem("caderneta.name",n)}catch(e){}renderResumo();toast(n?"Olá, "+n.split(" ")[0]+"!":"Nome apagado")});
