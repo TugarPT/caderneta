@@ -1452,6 +1452,14 @@ dialog.sy-dlg{width:min(520px,calc(100% - 24px))}
 .sy-help summary{cursor:pointer;font-size:.85rem;color:var(--ink-2)}.sy-help p{font-size:.85rem;margin:6px 0 0;line-height:1.45}
 @media (max-width:600px){.sy-dlg .actions .btn{flex:1 1 auto}.sy-row .segs{width:100%}}
 .sy-opt input[type=radio]{width:auto;flex:0 0 auto;padding:0;min-height:0;height:auto}
+.syl-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;counter-reset:s}
+.syl-steps li{counter-increment:s;font-size:.74rem;color:var(--ink-2);text-align:center;padding-top:8px;border-top:3px solid var(--line)}
+.syl-steps li::before{content:counter(s) ". "}
+.syl-steps li.done{border-color:var(--in);color:var(--ink)}.syl-steps li.now{border-color:var(--accent);color:var(--ink);font-weight:600}
+.syl-qr{display:flex;flex-direction:column;gap:12px}
+.syl-qr .sy-qrbox{width:min(100%,320px)}
+.syl-msg{margin:0;font-size:.92rem;font-weight:600}.syl-msg.err{color:var(--out);font-weight:600;padding:10px 12px;border-radius:10px;background:var(--out-soft)}
+.syl-pct{font-size:.85rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
 </style>
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -2036,9 +2044,10 @@ dialog.sy-dlg{width:min(520px,calc(100% - 24px))}
       </div>
       <div class="card" id="syCard">
         <h3>Sincronizar telemóvel e computador</h3>
-        <p class="muted" style="margin:0 0 6px;font-size:.88rem">Passa os teus dados de um aparelho para o outro com um código QR animado: um mostra, o outro lê com a câmara. Não precisa de internet nem de contas, e nada passa por servidores.</p>
+        <p class="muted" style="margin:0 0 6px;font-size:.88rem">No computador, carrega em <b>Mostrar código</b>. No telemóvel, carrega em <b>Ler código</b> e aponta a câmara. Os dois trocam os dados nos dois sentidos de uma vez e cada um mostra o que vai mudar antes de juntar. Sem contas e sem pagar.</p>
         <p class="note" id="syLast" style="margin:0 0 12px"></p>
-        <div class="actions"><button class="btn primary" type="button" id="syGoSend">Enviar daqui</button><button class="btn" type="button" id="syGoRecv">Receber aqui</button><button class="btn ghost" type="button" id="syUndoCard" hidden>Desfazer a última</button></div>
+        <div class="actions"><button class="btn primary" type="button" id="syGoLink">Mostrar código</button><button class="btn" type="button" id="syGoRecv">Ler código</button><button class="btn ghost" type="button" id="syUndoCard" hidden>Desfazer a última</button></div>
+        <div class="setrow" style="margin-top:14px"><span><b>Sem internet?</b><small>QR animado: um aparelho mostra, o outro lê. Vai num sentido de cada vez.</small></span><button class="btn" type="button" id="syGoSend">Enviar por QR animado</button></div>
       </div>
       <div class="card">
         <h3>Cópia de segurança</h3>
@@ -2078,7 +2087,7 @@ dialog.sy-dlg{width:min(520px,calc(100% - 24px))}
       <details><summary>Onde vejo o que vendi e quanto rendeu?</summary><p>Em Investimentos, na aba onde vendeste (XTB, Certificados de Aforro ou Outras), por baixo das posições. Cada venda mostra a data, o valor que recebeste, quanto tinha custado e o lucro real. As vendas registadas antes desta lista existir aparecem como “sem data”, só com o total.</p></details>
       <details><summary>Como ponho a renda, o salário e as subscrições a lançar sozinhos?</summary><p>Em Transações, no cartão Movimentos recorrentes, carrega em “+ Novo”. Escolhe se é despesa, receita ou transferência entre contas, o valor, a conta e o dia da primeira vez. A partir daí a app lança-o sozinha nesse dia, todos os meses (ou de 3 em 3, de 6 em 6, uma vez por ano), e o saldo da conta acompanha. Se a app estiver fechada nesse dia, lança-o quando a abrires, com a data certa. Também podes marcar “Repetir todos os meses” ao registar um movimento. Mudar o valor só afeta os próximos; para parar, carrega em Pausar ou Apagar, e os que já foram lançados ficam.</p></details>
       <details><summary>Como passo dinheiro de uma conta para outra?</summary><p>Em Contas, carrega em “Transferir”, escolhe de onde sai e para onde vai o dinheiro, o valor e a data. Os dois saldos mudam logo, mas a transferência não conta como receita nem despesa, por isso não mexe nos totais do mês, nos orçamentos nem nos relatórios. Também serve para pagar o cartão de crédito a partir do banco.</p></details>
-      <details><summary>Como passo os dados entre o telemóvel e o computador?</summary><p>Abre a Caderneta nos dois. Num deles vai a Definições → Sincronizar e carrega em “Enviar daqui”: aparece um código QR que vai mudando. No outro, carrega em “Receber aqui” e aponta a câmara até chegar aos 100%. Antes de mudar alguma coisa, a app mostra o que entra, o que muda e o que é apagado, e deixa escolher entre juntar (recomendado) ou substituir tudo. Depois carrega em “Enviar de volta” para os dois ficarem iguais. Não usa internet nem contas. As fotos dos talões não vão no QR; para essas usa a Cópia de segurança.</p></details>
+      <details><summary>Como passo os dados entre o telemóvel e o computador?</summary><p>Abre a Caderneta nos dois. No computador vai a Definições → Sincronizar e carrega em “Mostrar código”. No telemóvel carrega em “Ler código” e aponta a câmara (só o telemóvel precisa de câmara). Os dois trocam os dados nos dois sentidos de uma vez. Antes de mudar alguma coisa, cada um mostra o que entra, o que muda e o que é apagado, e deixa escolher entre juntar (recomendado) ou substituir tudo: confirma nos dois. Precisa de internet só para combinar a ligação; os dados vão diretos entre os aparelhos. Sem internet, usa “Enviar por QR animado”: um mostra, o outro lê, um sentido de cada vez. Não há contas nem pagamentos. As fotos dos talões não vão no QR; para essas usa a Cópia de segurança.</p></details>
       <details><summary>Onde ficam os meus dados?</summary><p>Só neste navegador, neste aparelho. Nada sai daqui: não há conta nem servidor. Por isso, faz uma cópia de segurança de vez em quando em Definições → Cópia de segurança, e usa essa cópia para passar os dados para outro aparelho ou navegador.</p></details>
       <details><summary>Como atualizo os preços?</summary><p>Em Investimentos, escreve o preço atual no cartão de cada posição. A app recalcula logo o valor e os lucros. Os Certificados de Aforro calculam-se sozinhos, e o extrato da XTB traz os preços do dia em que o exportaste.</p></details>
       <details><summary>Passei os dados da versão do Claude. E agora?</summary><p>Na versão do Claude, em Definições, carrega em “Exportar cópia” e copia o texto. Aqui, em Definições → Cópia de segurança, carrega em “Importar cópia” e cola esse texto (ou escolhe o ficheiro). Os registos entram com os mesmos dados, e importar duas vezes não duplica nada.</p></details>
@@ -2604,20 +2613,31 @@ dialog.sy-dlg{width:min(520px,calc(100% - 24px))}
   <form method="dialog" id="syForm" onsubmit="return false">
     <div class="dlg-h"><h3 id="syTitle">Sincronizar</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
     <div id="sySend" hidden>
-      <p class="sy-lead">No outro aparelho, abre a Caderneta → Definições → <b>Receber aqui</b>, e aponta a câmara para este código até chegar aos 100%.</p>
+      <p class="sy-lead">No outro aparelho, abre a Caderneta → Definições → <b>Ler código</b>, e aponta a câmara para este código até chegar aos 100%.</p>
       <div class="sy-qrbox"><canvas id="syQr" width="8" height="8" role="img" aria-label="Código QR animado com os teus dados"></canvas></div>
       <div class="sy-row"><span class="sy-info"><b id="syInfo"></b><small id="syPart"></small></span>
         <div class="segs" id="sySpeed" role="group" aria-label="Velocidade"><button type="button" data-fps="3" aria-pressed="false">Lento</button><button type="button" data-fps="6" aria-pressed="true">Normal</button><button type="button" data-fps="10" aria-pressed="false">Rápido</button></div></div>
       <p class="note" id="syEta" style="margin:0"></p>
       <p class="note" id="syRcNote" hidden style="margin:0">As fotos dos talões ficam neste aparelho (são grandes demais para o QR). Para as levar, usa a Cópia de segurança.</p>
-      <details class="sy-help"><summary>O outro aparelho não tem câmara?</summary><p>Carrega em “Enviar como ficheiro”. No telemóvel abre a partilha do Android (por exemplo Quick Share, email para ti ou cabo USB); no computador o ficheiro vai para as Transferências. No outro aparelho: Receber aqui → Abrir ficheiro.</p></details>
+      <details class="sy-help"><summary>O outro aparelho não tem câmara?</summary><p>Carrega em “Enviar como ficheiro”. No telemóvel abre a partilha do Android (por exemplo Quick Share, email para ti ou cabo USB); no computador o ficheiro vai para as Transferências. No outro aparelho: Ler código → Abrir ficheiro.</p></details>
       <div class="actions"><button class="btn" type="button" id="syFile">Enviar como ficheiro</button><button class="btn ghost" type="button" data-close>Fechar</button></div>
     </div>
     <div id="syRecv" hidden>
-      <p class="sy-lead">No outro aparelho, carrega em <b>Enviar daqui</b> e aponta esta câmara para o código. Mantém-na parada; as partes que falharem voltam a passar.</p>
+      <p class="sy-lead">Aponta a câmara para o código que aparece no outro aparelho. Se for um QR animado, mantém-na parada até aos 100%: as partes que falharem voltam a passar.</p>
       <div class="sy-cam"><video id="syVid" playsinline muted autoplay></video><span class="sy-aim" aria-hidden="true"></span><p class="sy-cammsg" id="syCamMsg" role="alert" hidden></p></div>
       <div class="sy-prog"><div class="sy-bar" id="syProgBox" role="progressbar" aria-label="Recebido" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="syBar"></i></div><span id="syPct" role="status" aria-live="polite"></span></div>
       <div class="actions"><button class="btn" type="button" id="syCamSw" hidden>Trocar câmara</button><button class="btn" type="button" id="syOpen">Abrir ficheiro</button><input type="file" id="syFileIn" accept=".json,application/json,text/plain" hidden><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+    </div>
+    <div id="syLink" hidden>
+      <ol class="syl-steps" id="sylSteps" aria-label="Passos"><li>Mostrar código</li><li>Ligar</li><li>Trocar dados</li><li>Rever</li></ol>
+      <div id="sylQrBox" class="syl-qr">
+        <p class="sy-lead">No telemóvel, abre a Caderneta → Definições → <b>Ler código</b> e aponta a câmara para aqui. Também dá com a câmara normal do Android: toca no link que aparece.</p>
+        <div class="sy-qrbox"><canvas id="sylQr" width="8" height="8" role="img" aria-label="Código QR para ligar o outro aparelho"></canvas></div>
+      </div>
+      <p class="syl-msg" id="sylMsg" role="status" aria-live="polite"></p>
+      <div class="sy-prog"><div class="sy-bar"><i id="sylBar"></i></div><span id="sylPct" class="syl-pct"></span></div>
+      <p class="note" style="margin:0">Precisa de internet só para combinar a ligação (mensagens cifradas, através do serviço gratuito ntfy.sh). Os teus dados vão diretos de um aparelho para o outro.</p>
+      <div class="actions"><button class="btn" type="button" id="sylAlt" hidden>Usar o QR animado (sem internet)</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
     </div>
     <div id="syRev" hidden>
       <p class="sy-lead" id="syRevHead"></p>
@@ -2633,7 +2653,7 @@ dialog.sy-dlg{width:min(520px,calc(100% - 24px))}
     <div id="syDone" hidden>
       <div class="sy-ok" aria-hidden="true">✓</div>
       <p class="sy-lead" id="syDoneMsg" style="text-align:center"></p>
-      <p class="note" style="margin:0;text-align:center">Para os dois aparelhos ficarem iguais, envia agora daqui para o outro (lá, carrega em Receber aqui).</p>
+      <p class="note" id="syDoneNote" style="margin:0;text-align:center"></p>
       <div class="actions sy-center"><button class="btn primary" type="button" id="syBack">Enviar de volta</button><button class="btn" type="button" id="syUndo">Desfazer</button><button class="btn ghost" type="button" data-close>Fechar</button></div>
     </div>
   </form>
@@ -6699,12 +6719,14 @@ function Decoder(){let st=null;
    Regras: ganha a alteração mais recente; em empate (registos de antes da sincronização, sem data) ganha o que chega,
    para que "enviar e depois enviar de volta" deixe os dois aparelhos iguais. */
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
-function plan(local,lmeta,inc,imeta,mode){const L=new Map(local.map(o=>[o.id,o])),lm=lmeta.mod||{},ld=lmeta.del||{},im=imeta.mod||{},idl=imeta.del||{};
+/* tie: "incoming" (envio num só sentido) ou "stable" (troca nos dois sentidos ao mesmo tempo: os dois lados escolhem o mesmo) */
+function plan(local,lmeta,inc,imeta,mode,tie){const L=new Map(local.map(o=>[o.id,o])),lm=lmeta.mod||{},ld=lmeta.del||{},im=imeta.mod||{},idl=imeta.del||{};
   const add=[],upd=[],del=[],keep=[],sameN={n:0},inIds=new Set();
   for(const o of inc){inIds.add(o.id);const l=L.get(o.id),tI=+im[o.id]||0;
-    if(!l){if(mode!=="replace"&&(+ld[o.id]||0)>tI){keep.push(o.id);continue}add.push(o);continue}
+    if(!l){if(mode!=="replace"&&ld[o.id]!=null&&(+ld[o.id]||0)>=tI){keep.push(o.id);continue}add.push(o);continue}
     if(same(l,o)){sameN.n++;continue}
-    if(mode==="replace"||tI>=(+lm[o.id]||0))upd.push(o);else keep.push(o.id)}
+    const tL=+lm[o.id]||0;
+    if(mode==="replace"||tI>tL||tI===tL&&(tie!=="stable"||JSON.stringify(o)>JSON.stringify(l)))upd.push(o);else keep.push(o.id)}
   if(mode==="replace"){for(const l of local)if(!inIds.has(l.id))del.push(l.id)}
   else for(const id in idl){if(inIds.has(id))continue;const l=L.get(id);if(l&&(+idl[id]||0)>=(+lm[id]||0))del.push(id)}
   return{add,upd,del,keep,same:sameN.n}}
@@ -6731,7 +6753,7 @@ try{const f=+localStorage.getItem("caderneta.syFps");if([3,6,10].includes(f))SY.
   Store.delMany=function(ids){if(!SY.quiet){const t=Date.now();for(const id of ids){if(!S.items.has(id))continue;SY.meta.del[id]=t;delete SY.meta.mod[id]}SY.save()}return dm.call(this,ids)};
 })(Store.putMany,Store.delMany);
 
-const syShow=w=>["sySend","syRecv","syRev","syDone"].forEach(id=>$("#"+id).hidden=id!==w);
+const syShow=w=>["sySend","syRecv","syRev","syDone","syLink"].forEach(id=>$("#"+id).hidden=id!==w);
 async function syWake(on){try{if(on&&!SY.lock&&navigator.wakeLock)SY.lock=await navigator.wakeLock.request("screen");else if(!on&&SY.lock){await SY.lock.release();SY.lock=null}}catch(e){SY.lock=null}}
 function syStop(){clearInterval(SY.tmr);SY.tmr=0;SY.run=false;if(SY.stream){SY.stream.getTracks().forEach(t=>t.stop());SY.stream=null}const v=$("#syVid");if(v)v.srcObject=null;syWake(false)}
 
@@ -6793,7 +6815,7 @@ async function syLoop(){if(!SY.run)return;const v=$("#syVid");let txt=null;
     if(SY.det){try{const r=await SY.det.detect(v);const h=r.find(x=>/^CAD1:/i.test(x.rawValue||""))||r[0];txt=h?h.rawValue:null}catch(e){SY.det=false}}
     else{const w=v.videoWidth,h=v.videoHeight,s=Math.min(w,h),k=Math.min(1,720/s),D=Math.round(s*k);if(syCv.width!==D){syCv.width=syCv.height=D}
       syG.drawImage(v,(w-s)/2,(h-s)/2,s,s,0,0,D,D);const im=syG.getImageData(0,0,D,D),r=jsQR(im.data,D,D,{inversionAttempts:"dontInvert"});txt=r?r.data:null}}
-  if(txt){const f=SYQ.parse(txt);if(!f){if(++syBad>8){syMsg("Este código não é da Caderneta. No outro aparelho, carrega em Enviar.");syBad=0}}
+  if(txt){const L=sylParse(txt);if(L){syStop();sylGuest(L.topic,L.k);return}const f=SYQ.parse(txt);if(!f){if(++syBad>8){syMsg("Este código não é da Caderneta. No outro aparelho, carrega em Mostrar código.");syBad=0}}
     else{syBad=0;syMsg("");const r=SY.dec.add(f);syProg();if(r==="done"){SY.run=false;await syGot()}}}
   if(SY.run)(SY.det?requestAnimationFrame:f=>setTimeout(f,15))(syLoop)}
 async function syGot(){const u=SY.dec.result();try{navigator.vibrate&&navigator.vibrate(60)}catch(e){}
@@ -6814,7 +6836,7 @@ function syReview(j){const inc=syCheck(j);$("#syTitle").textContent="Juntar os d
   syStop();SY.inc=inc;syShow("syRev");
   $("#syRevHead").textContent=`Chegaram ${syN(inc.items.length,"registo","registos")}`+(inc.at?` (enviados ${agoT(inc.at)})`:"")+". Antes de mudar alguma coisa, vê o que acontece:";
   document.querySelector('input[name="syMode"][value="merge"]').checked=true;syPlanShow()}
-function syPlanShow(){const inc=SY.inc;if(!inc)return;const mode=document.querySelector('input[name="syMode"]:checked').value,p=SYQ.plan([...S.items.values()],SY.meta,inc.items,inc.meta,mode);SY.plan=p;
+function syPlanShow(){const inc=SY.inc;if(!inc)return;const mode=document.querySelector('input[name="syMode"]:checked').value,p=SYQ.plan([...S.items.values()],SY.meta,inc.items,inc.meta,mode,SY.link?"stable":"incoming");SY.plan=p;
   const L=[[p.add.length,"novo","novos","in"],[p.upd.length,"atualizado","atualizados","acc"],[p.del.length,"apagado","apagados","out"],[p.keep.length,"fica como está (o daqui é mais recente)","ficam como estão (os daqui são mais recentes)",""],[p.same,"já igual","já iguais",""]];
   $("#sySum").innerHTML=L.filter(x=>x[0]).map(x=>`<li class="${x[3]}"><b>${x[0]}</b> ${esc(x[0]===1?x[1]:x[2])}</li>`).join("")||"<li>Nada muda: os dois aparelhos já têm os mesmos dados.</li>";
   const w=$("#syWarn");w.hidden=!(mode==="replace"&&p.del.length);w.textContent=mode==="replace"?`Atenção: ${syN(p.del.length,"registo que só existe neste aparelho vai ser apagado","registos que só existem neste aparelho vão ser apagados")}. Podes desfazer logo a seguir.`:"";
@@ -6829,7 +6851,7 @@ $("#syApply").onclick=()=>{const p=SY.plan,inc=SY.inc;if(!p||!inc)return;
   try{localStorage.setItem("caderneta.syncAt",new Date().toISOString())}catch(e){}
   render();if(p.add.concat(p.upd).some(o=>o.kind==="inv"))queueSnap();
   const parts=[[p.add.length,"novo","novos"],[p.upd.length,"atualizado","atualizados"],[p.del.length,"apagado","apagados"]].filter(x=>x[0]).map(x=>syN(x[0],x[1],x[2]));
-  $("#syDoneMsg").textContent="Pronto: "+parts.join(", ")+".";$("#syUndo").hidden=!saved;$("#syTitle").textContent="Dados juntos";syShow("syDone");SY.inc=null;syCard();
+  $("#syDoneMsg").textContent="Pronto: "+parts.join(", ")+".";$("#syUndo").hidden=!saved;$("#syBack").hidden=!!SY.link;$("#syDoneNote").textContent=SY.link?"O outro aparelho também recebeu os teus dados: confirma lá em “Juntar” para os dois ficarem iguais.":"Para os dois aparelhos ficarem iguais, envia agora daqui para o outro (lá, carrega em Ler código).";$("#syTitle").textContent="Dados juntos";syShow("syDone");SY.inc=null;syCard();
   toast("Dados sincronizados")};
 function syUndo(){let s;try{s=JSON.parse(localStorage.getItem("caderneta.preSync")||"null")}catch(e){}if(!s||!Array.isArray(s.items)){toast("Não há nada para desfazer");return}
   if(!confirm("Repor os dados como estavam antes da última sincronização ("+agoT(new Date(s.at).toISOString())+")?"))return;
@@ -6845,6 +6867,89 @@ function syCard(){let t="",u=null;try{t=localStorage.getItem("caderneta.syncAt")
   $("#syLast").textContent=t?"Última sincronização neste aparelho: "+agoT(t)+".":"Ainda não sincronizaste este aparelho.";$("#syUndoCard").hidden=!u;$("#syGoSend").disabled=!S.items.size}
 syCard();
 (f=>{render=function(){f();try{if(S.tab==="definicoes")syCard()}catch(e){console.error(e)}}})(render);
+
+/* ---------- ligação direta: só o telemóvel lê um QR e os dados vão nos dois sentidos ----------
+   Um aparelho mostra um QR com um endereço de encontro e uma chave. O outro lê-o e os dois combinam a ligação
+   (WebRTC) através de um serviço público grátis e sem conta (ntfy.sh), com mensagens cifradas (AES-GCM) com a
+   chave do QR: o serviço só vê texto ilegível. Os dados vão diretos de aparelho para aparelho, cifrados (DTLS). */
+const SYL={relay:"https://ntfy.sh/",ice:[{urls:"stun:stun.l.google.com:19302"},{urls:"stun:stun.cloudflare.com:3478"}],
+  pc:null,dc:null,off:null,key:null,topic:null,me:"",role:"",seen:new Set(),tmo:0,rx:null,txDone:false,rxDone:false,closing:0};
+const syB64={enc(u){let s="";for(let i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")},
+  dec(s){s=String(s).replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";const b=atob(s),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u}};
+/* serviço de encontro (só para combinar a ligação; nos testes é trocado por um falso) */
+const SYRelay={
+  send(topic,msg){return fetch(SYL.relay+topic,{method:"POST",body:msg,cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("relay "+r.status)})},
+  listen(topic,cb,err){const es=new EventSource(SYL.relay+topic+"/sse?since=5m");let ok=false;
+    es.onopen=()=>{ok=true};es.onmessage=e=>{try{const j=JSON.parse(e.data);if(j&&j.event==="message"&&j.message)cb(j.message)}catch(x){}};
+    es.onerror=()=>{if(!ok&&es.readyState===2)err&&err()};return()=>es.close()}};
+async function sylSeal(o){const iv=crypto.getRandomValues(new Uint8Array(12)),z=await syZip(JSON.stringify(o)),
+  c=new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM",iv},SYL.key,z)),u=new Uint8Array(12+c.length);u.set(iv);u.set(c,12);return syB64.enc(u)}
+async function sylOpen(s){const u=syB64.dec(s),p=new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:u.subarray(0,12)},SYL.key,u.subarray(12)));return JSON.parse(await syUnzip(p))}
+const sylRand=n=>{const a="abcdefghijkmnpqrstuvwxyz23456789",u=crypto.getRandomValues(new Uint8Array(n));let s="";for(const b of u)s+=a[b%a.length];return s};
+function sylMsg(t,err){const m=$("#sylMsg");m.textContent=t||"";m.classList.toggle("err",!!err)}
+function sylStep(n){document.querySelectorAll("#sylSteps li").forEach((li,i)=>{li.classList.toggle("done",i<n);li.classList.toggle("now",i===n)})}
+function sylProg(){const tx=SYL.txN?SYL.txS/SYL.txN:0,rx=SYL.rx&&SYL.rx.len?SYL.rx.got/SYL.rx.len:0;
+  $("#sylBar").style.width=((tx+rx)*50).toFixed(1)+"%";$("#sylPct").textContent=`A enviar ${Math.floor(tx*100)}% · a receber ${Math.floor(rx*100)}%`}
+function sylClose(now){clearTimeout(SYL.tmo);if(SYL.off){SYL.off();SYL.off=null}
+  const go=()=>{try{SYL.dc&&SYL.dc.close()}catch(e){}try{SYL.pc&&SYL.pc.close()}catch(e){}SYL.pc=SYL.dc=null};
+  /* se ainda estamos a enviar, espera um pouco para o outro lado receber tudo */
+  if(!now&&SYL.dc&&SYL.dc.readyState==="open"&&(!SYL.txDone||SYL.dc.bufferedAmount>0)){let k=0;const w=()=>{if(++k>120||!SYL.dc||SYL.dc.bufferedAmount===0&&SYL.txDone)go();else SYL.closing=setTimeout(w,250)};w()}else go()}
+function sylFail(t){clearTimeout(SYL.tmo);sylMsg(t,1);$("#sylAlt").hidden=false;sylClose(true)}
+function sylPC(){const pc=new RTCPeerConnection({iceServers:SYL.ice});SYL.pc=pc;
+  pc.onconnectionstatechange=()=>{if(pc!==SYL.pc)return;if(pc.connectionState==="failed")sylFail("Não consegui ligar os dois aparelhos diretamente. Liga os dois à mesma rede Wi-Fi e tenta outra vez, ou usa o QR animado.");
+    else if(pc.connectionState==="disconnected"&&!SYL.rxDone)sylMsg("A ligação caiu. A tentar de novo…")};return pc}
+const sylGather=pc=>new Promise(res=>{if(pc.iceGatheringState==="complete")return res();const t=setTimeout(res,4000);pc.addEventListener("icegatheringstatechange",()=>{if(pc.iceGatheringState==="complete"){clearTimeout(t);res()}})});
+async function sylPost(o){o.f=SYL.me;await SYRelay.send(SYL.topic,await sylSeal(o))}
+function sylListen(on){SYL.off=SYRelay.listen(SYL.topic,async m=>{if(SYL.seen.has(m))return;SYL.seen.add(m);let o;try{o=await sylOpen(m)}catch(e){return}if(!o||o.f===SYL.me)return;on(o)},
+  ()=>sylFail("Este aparelho não conseguiu chegar ao serviço de ligação. Precisa de internet só para combinar a ligação. Sem internet, usa o QR animado."))}
+function sylChan(dc){SYL.dc=dc;dc.binaryType="arraybuffer";
+  dc.onopen=()=>{clearTimeout(SYL.tmo);sylStep(2);sylMsg("Ligados. A trocar os dados…");try{navigator.vibrate&&navigator.vibrate(40)}catch(e){}sylSendData()};
+  dc.onmessage=e=>{if(typeof e.data==="string"){let j;try{j=JSON.parse(e.data)}catch(x){return}
+      if(j.t==="hdr"){SYL.rx={len:j.len,got:0,parts:[]};sylProg()}
+      else if(j.t==="end"&&SYL.rx)sylGotData()}
+    else if(SYL.rx){SYL.rx.parts.push(new Uint8Array(e.data));SYL.rx.got+=e.data.byteLength;sylProg()}};
+  dc.onclose=()=>{if(!SYL.rxDone&&$("#syDlg").open&&!$("#syLink").hidden)sylFail("A ligação fechou antes do fim. Tenta outra vez.")}}
+async function sylSendData(){const dc=SYL.dc,u=await syZip(JSON.stringify(syPayload())),C=16384;SYL.txN=u.length;SYL.txS=0;SYL.txDone=false;
+  dc.send(JSON.stringify({t:"hdr",len:u.length}));
+  for(let i=0;i<u.length;i+=C){while(dc.readyState==="open"&&dc.bufferedAmount>1048576)await new Promise(r=>setTimeout(r,30));if(dc.readyState!=="open")return;
+    dc.send(u.slice(i,i+C));SYL.txS=Math.min(u.length,i+C);sylProg()}
+  dc.send(JSON.stringify({t:"end"}));SYL.txDone=true;sylProg();if(SYL.rxDone)sylReview()}
+async function sylGotData(){const r=SYL.rx,u=new Uint8Array(r.got);let o=0;for(const p of r.parts){u.set(p,o);o+=p.length}
+  try{SYL.inJ=JSON.parse(await syUnzip(u))}catch(e){sylFail("Os dados chegaram estragados. Tenta outra vez.");return}
+  SYL.rxDone=true;if(SYL.txDone)sylReview();else sylMsg("Recebido. A acabar de enviar os teus dados…")}
+function sylReview(){sylStep(3);SY.link=true;syReview(SYL.inJ)}
+function sylReset(role){syStop();sylClose(true);clearTimeout(SYL.closing);Object.assign(SYL,{role,me:sylRand(6),seen:new Set(),rx:null,txDone:false,rxDone:false,inJ:null,txN:0,txS:0});SY.link=false;
+  $("#syTitle").textContent="Sincronizar nos dois sentidos";syShow("syLink");if(!$("#syDlg").open)$("#syDlg").showModal();
+  $("#sylAlt").hidden=true;$("#sylBar").style.width="0";$("#sylPct").textContent="";sylMsg("");$("#sylQrBox").hidden=role!=="host";sylStep(role==="host"?0:1)}
+const sylOK=()=>typeof RTCPeerConnection!=="undefined"&&window.crypto&&crypto.subtle&&typeof EventSource!=="undefined";
+/* computador (ou qualquer aparelho): mostra o QR e espera */
+async function sylHost(){sylReset("host");if(!sylOK()){sylFail("Este navegador não faz ligações diretas. Usa o QR animado.");return}
+  const raw=crypto.getRandomValues(new Uint8Array(16));SYL.key=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["encrypt","decrypt"]);SYL.topic="cad-"+sylRand(22);
+  const url=(/^https?:/.test(location.protocol)?location.origin+location.pathname:"https://tugarpt.github.io/caderneta/")+"#sy="+SYL.topic+"."+syB64.enc(raw);
+  const q=qrcode(0,"M");q.addData(url,"Byte");q.make();const n=q.getModuleCount(),m=4,c=$("#sylQr"),cell=Math.max(4,Math.floor(420/(n+2*m))),W=(n+2*m)*cell;c.width=c.height=W;
+  const g=c.getContext("2d");g.fillStyle="#fff";g.fillRect(0,0,W,W);g.fillStyle="#000";for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(q.isDark(y,x))g.fillRect((x+m)*cell,(y+m)*cell,cell,cell);
+  sylMsg("À espera do outro aparelho…");syWake(true);
+  sylListen(async o=>{if(o.t!=="offer"||SYL.pc)return;sylStep(1);sylMsg("O telemóvel leu o código. A ligar…");$("#sylQrBox").hidden=true;
+    try{const pc=sylPC();pc.ondatachannel=e=>sylChan(e.channel);await pc.setRemoteDescription({type:"offer",sdp:o.sdp});await pc.setLocalDescription(await pc.createAnswer());
+      await sylGather(pc);await sylPost({t:"answer",sdp:pc.localDescription.sdp});
+      SYL.tmo=setTimeout(()=>{if(!SYL.dc||SYL.dc.readyState!=="open")sylFail("Não consegui ligar os dois aparelhos diretamente. Liga os dois à mesma rede Wi-Fi e tenta outra vez, ou usa o QR animado.")},30000)}
+    catch(e){sylFail("Não consegui responder ao outro aparelho ("+(e&&e.message||"erro")+"). Tenta outra vez.")}})}
+/* telemóvel: leu o QR (na app ou com a câmara do Android, que abre o endereço) */
+async function sylGuest(topic,k){sylReset("guest");if(!sylOK()){sylFail("Este navegador não faz ligações diretas. Usa o QR animado.");return}
+  try{SYL.key=await crypto.subtle.importKey("raw",syB64.dec(k),"AES-GCM",false,["encrypt","decrypt"])}catch(e){sylFail("Este código não é válido. Mostra um código novo no outro aparelho.");return}
+  SYL.topic=topic;sylMsg("A ligar ao outro aparelho…");syWake(true);
+  sylListen(async o=>{if(o.t!=="answer"||!SYL.pc||SYL.pc.remoteDescription)return;try{await SYL.pc.setRemoteDescription({type:"answer",sdp:o.sdp})}catch(e){sylFail("Não consegui ligar ("+(e&&e.message||"erro")+").")}});
+  try{const pc=sylPC();sylChan(pc.createDataChannel("sync",{ordered:true}));await pc.setLocalDescription(await pc.createOffer());await sylGather(pc);
+    await sylPost({t:"offer",sdp:pc.localDescription.sdp})}
+  catch(e){sylFail("Não consegui chegar ao serviço de ligação. Precisa de internet só para combinar a ligação. Sem internet, usa o QR animado.");return}
+  SYL.tmo=setTimeout(()=>{if(!SYL.dc||SYL.dc.readyState!=="open")sylFail(SYL.pc&&SYL.pc.remoteDescription?"Não consegui ligar os dois aparelhos diretamente. Liga os dois à mesma rede Wi-Fi e tenta outra vez, ou usa o QR animado."
+    :"O outro aparelho não respondeu. Confirma que ainda está a mostrar o código (e que tem internet) e lê-o outra vez.")},35000)}
+const sylParse=t=>{const m=String(t||"").match(/#sy=(cad-[a-z0-9]{10,40})\.([A-Za-z0-9_-]{20,24})/);return m?{topic:m[1],k:m[2]}:null};
+$("#syGoLink").onclick=sylHost;
+$("#sylAlt").onclick=()=>{sylClose(true);syOpenSend()};
+$("#syDlg").addEventListener("close",()=>{sylClose(false);SY.link=false});
+/* aberto pela câmara do Android: caderneta/#sy=... */
+{const L=sylParse(location.hash);if(L){history.replaceState(null,"",location.pathname+location.search);setTimeout(()=>{setTab("definicoes");sylGuest(L.topic,L.k)},300)}}
 
 /* ask the browser to keep this data even when space runs low */
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}

@@ -93,4 +93,18 @@ test("enviar e depois enviar de volta deixa os dois iguais",()=>{
   assert.equal(k(A),k(B));assert.equal(k(A),k([o("a",10),o("b",2),o("s",7)])); // c foi apagado em A depois de existir em B
 });
 
+test("troca nos dois sentidos ao mesmo tempo (ligação direta) deixa os dois iguais",()=>{
+  for(let k=0;k<200;k++){let a=k*7919+13;const R=()=>((a=(a*1664525+1013904223)>>>0)/4294967296);
+    const ids="abcdefgh".split(""),A=[],B=[],mA={mod:{},del:{}},mB={mod:{},del:{}};
+    for(const id of ids){const r=R();const t=()=>R()<.4?0:1+Math.floor(R()*3);
+      if(r<.3){A.push(o(id,Math.floor(R()*3)));B.push(o(id,Math.floor(R()*3)));const ta=t(),tb=t();if(ta)mA.mod[id]=ta;if(tb)mB.mod[id]=tb}
+      else if(r<.5){A.push(o(id,1));const ta=t();if(ta)mA.mod[id]=ta;if(R()<.5)mB.del[id]=1+Math.floor(R()*3)}
+      else if(r<.7){B.push(o(id,2));const tb=t();if(tb)mB.mod[id]=tb;if(R()<.5)mA.del[id]=1+Math.floor(R()*3)}}
+    const apply=(L,p)=>{const m=new Map(L.map(x=>[x.id,x]));p.add.concat(p.upd).forEach(x=>m.set(x.id,x));p.del.forEach(id=>m.delete(id));return[...m.values()]};
+    const pA=SYQ.plan(A,mA,B,mB,"merge","stable"),pB=SYQ.plan(B,mB,A,mA,"merge","stable");
+    const k2=L=>JSON.stringify(L.slice().sort((x,y)=>x.id<y.id?-1:1));
+    assert.equal(k2(apply(A,pA)),k2(apply(B,pB)),"caso "+k);
+  }
+});
+
 test("limpar apagados antigos",()=>{assert.deepEqual(SYQ.pruneDel({a:1,b:1e12},1e12+1000,180),{b:1e12})});

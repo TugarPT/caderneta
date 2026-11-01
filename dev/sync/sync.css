@@ -28,3 +28,11 @@ dialog.sy-dlg{width:min(520px,calc(100% - 24px))}
 .sy-help summary{cursor:pointer;font-size:.85rem;color:var(--ink-2)}.sy-help p{font-size:.85rem;margin:6px 0 0;line-height:1.45}
 @media (max-width:600px){.sy-dlg .actions .btn{flex:1 1 auto}.sy-row .segs{width:100%}}
 .sy-opt input[type=radio]{width:auto;flex:0 0 auto;padding:0;min-height:0;height:auto}
+.syl-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;counter-reset:s}
+.syl-steps li{counter-increment:s;font-size:.74rem;color:var(--ink-2);text-align:center;padding-top:8px;border-top:3px solid var(--line)}
+.syl-steps li::before{content:counter(s) ". "}
+.syl-steps li.done{border-color:var(--in);color:var(--ink)}.syl-steps li.now{border-color:var(--accent);color:var(--ink);font-weight:600}
+.syl-qr{display:flex;flex-direction:column;gap:12px}
+.syl-qr .sy-qrbox{width:min(100%,320px)}
+.syl-msg{margin:0;font-size:.92rem;font-weight:600}.syl-msg.err{color:var(--out);font-weight:600;padding:10px 12px;border-radius:10px;background:var(--out-soft)}
+.syl-pct{font-size:.85rem;color:var(--ink-2);font-variant-numeric:tabular-nums}

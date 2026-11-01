@@ -23,3 +23,12 @@ node --test dev/sync/*.test.js
 - **Segurança**: o ecrã de revisão mostra novos/atualizados/apagados antes de mudar; antes de aplicar guarda `caderneta.preSync` para **Desfazer**.
 - Fotos dos talões não vão no QR (ficam no aparelho; usar a Cópia de segurança).
 - Sem câmara: "Enviar como ficheiro" (partilha do Android ou transferência) e "Abrir ficheiro" no outro lado, com a mesma junção.
+
+## Ligação direta (só o telemóvel lê um QR, nos dois sentidos)
+`sync_link.js`. "Mostrar código" (computador) mostra um QR com `…/caderneta/#sy=<tópico>.<chave>` (chave AES-GCM de 128 bits).
+O telemóvel lê-o (na app, ou com a câmara do Android, que abre o endereço) e os dois combinam uma ligação WebRTC
+trocando oferta/resposta por um tópico do **ntfy.sh** (grátis, sem conta), cifradas com a chave do QR: o serviço só vê texto ilegível.
+STUN: Google e Cloudflare (grátis). Os dados vão por um DataChannel (DTLS), direto entre aparelhos, nos dois sentidos ao mesmo tempo;
+cada lado revê e junta com desempate estável (`plan(..., "stable")`), por isso ficam iguais.
+Precisa de internet só para combinar a ligação. Funciona melhor com os dois na mesma rede Wi-Fi.
+O teste ponta a ponta troca o ntfy por um falso (Playwright, dois contextos, WebRTC real).

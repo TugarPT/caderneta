@@ -57,12 +57,14 @@ function Decoder(){let st=null;
    Regras: ganha a alteração mais recente; em empate (registos de antes da sincronização, sem data) ganha o que chega,
    para que "enviar e depois enviar de volta" deixe os dois aparelhos iguais. */
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
-function plan(local,lmeta,inc,imeta,mode){const L=new Map(local.map(o=>[o.id,o])),lm=lmeta.mod||{},ld=lmeta.del||{},im=imeta.mod||{},idl=imeta.del||{};
+/* tie: "incoming" (envio num só sentido) ou "stable" (troca nos dois sentidos ao mesmo tempo: os dois lados escolhem o mesmo) */
+function plan(local,lmeta,inc,imeta,mode,tie){const L=new Map(local.map(o=>[o.id,o])),lm=lmeta.mod||{},ld=lmeta.del||{},im=imeta.mod||{},idl=imeta.del||{};
   const add=[],upd=[],del=[],keep=[],sameN={n:0},inIds=new Set();
   for(const o of inc){inIds.add(o.id);const l=L.get(o.id),tI=+im[o.id]||0;
-    if(!l){if(mode!=="replace"&&(+ld[o.id]||0)>tI){keep.push(o.id);continue}add.push(o);continue}
+    if(!l){if(mode!=="replace"&&ld[o.id]!=null&&(+ld[o.id]||0)>=tI){keep.push(o.id);continue}add.push(o);continue}
     if(same(l,o)){sameN.n++;continue}
-    if(mode==="replace"||tI>=(+lm[o.id]||0))upd.push(o);else keep.push(o.id)}
+    const tL=+lm[o.id]||0;
+    if(mode==="replace"||tI>tL||tI===tL&&(tie!=="stable"||JSON.stringify(o)>JSON.stringify(l)))upd.push(o);else keep.push(o.id)}
   if(mode==="replace"){for(const l of local)if(!inIds.has(l.id))del.push(l.id)}
   else for(const id in idl){if(inIds.has(id))continue;const l=L.get(id);if(l&&(+idl[id]||0)>=(+lm[id]||0))del.push(id)}
   return{add,upd,del,keep,same:sameN.n}}

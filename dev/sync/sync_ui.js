@@ -12,7 +12,7 @@ try{const f=+localStorage.getItem("caderneta.syFps");if([3,6,10].includes(f))SY.
   Store.delMany=function(ids){if(!SY.quiet){const t=Date.now();for(const id of ids){if(!S.items.has(id))continue;SY.meta.del[id]=t;delete SY.meta.mod[id]}SY.save()}return dm.call(this,ids)};
 })(Store.putMany,Store.delMany);
 
-const syShow=w=>["sySend","syRecv","syRev","syDone"].forEach(id=>$("#"+id).hidden=id!==w);
+const syShow=w=>["sySend","syRecv","syRev","syDone","syLink"].forEach(id=>$("#"+id).hidden=id!==w);
 async function syWake(on){try{if(on&&!SY.lock&&navigator.wakeLock)SY.lock=await navigator.wakeLock.request("screen");else if(!on&&SY.lock){await SY.lock.release();SY.lock=null}}catch(e){SY.lock=null}}
 function syStop(){clearInterval(SY.tmr);SY.tmr=0;SY.run=false;if(SY.stream){SY.stream.getTracks().forEach(t=>t.stop());SY.stream=null}const v=$("#syVid");if(v)v.srcObject=null;syWake(false)}
 
@@ -74,7 +74,7 @@ async function syLoop(){if(!SY.run)return;const v=$("#syVid");let txt=null;
     if(SY.det){try{const r=await SY.det.detect(v);const h=r.find(x=>/^CAD1:/i.test(x.rawValue||""))||r[0];txt=h?h.rawValue:null}catch(e){SY.det=false}}
     else{const w=v.videoWidth,h=v.videoHeight,s=Math.min(w,h),k=Math.min(1,720/s),D=Math.round(s*k);if(syCv.width!==D){syCv.width=syCv.height=D}
       syG.drawImage(v,(w-s)/2,(h-s)/2,s,s,0,0,D,D);const im=syG.getImageData(0,0,D,D),r=jsQR(im.data,D,D,{inversionAttempts:"dontInvert"});txt=r?r.data:null}}
-  if(txt){const f=SYQ.parse(txt);if(!f){if(++syBad>8){syMsg("Este código não é da Caderneta. No outro aparelho, carrega em Enviar.");syBad=0}}
+  if(txt){const L=sylParse(txt);if(L){syStop();sylGuest(L.topic,L.k);return}const f=SYQ.parse(txt);if(!f){if(++syBad>8){syMsg("Este código não é da Caderneta. No outro aparelho, carrega em Mostrar código.");syBad=0}}
     else{syBad=0;syMsg("");const r=SY.dec.add(f);syProg();if(r==="done"){SY.run=false;await syGot()}}}
   if(SY.run)(SY.det?requestAnimationFrame:f=>setTimeout(f,15))(syLoop)}
 async function syGot(){const u=SY.dec.result();try{navigator.vibrate&&navigator.vibrate(60)}catch(e){}
@@ -95,7 +95,7 @@ function syReview(j){const inc=syCheck(j);$("#syTitle").textContent="Juntar os d
   syStop();SY.inc=inc;syShow("syRev");
   $("#syRevHead").textContent=`Chegaram ${syN(inc.items.length,"registo","registos")}`+(inc.at?` (enviados ${agoT(inc.at)})`:"")+". Antes de mudar alguma coisa, vê o que acontece:";
   document.querySelector('input[name="syMode"][value="merge"]').checked=true;syPlanShow()}
-function syPlanShow(){const inc=SY.inc;if(!inc)return;const mode=document.querySelector('input[name="syMode"]:checked').value,p=SYQ.plan([...S.items.values()],SY.meta,inc.items,inc.meta,mode);SY.plan=p;
+function syPlanShow(){const inc=SY.inc;if(!inc)return;const mode=document.querySelector('input[name="syMode"]:checked').value,p=SYQ.plan([...S.items.values()],SY.meta,inc.items,inc.meta,mode,SY.link?"stable":"incoming");SY.plan=p;
   const L=[[p.add.length,"novo","novos","in"],[p.upd.length,"atualizado","atualizados","acc"],[p.del.length,"apagado","apagados","out"],[p.keep.length,"fica como está (o daqui é mais recente)","ficam como estão (os daqui são mais recentes)",""],[p.same,"já igual","já iguais",""]];
   $("#sySum").innerHTML=L.filter(x=>x[0]).map(x=>`<li class="${x[3]}"><b>${x[0]}</b> ${esc(x[0]===1?x[1]:x[2])}</li>`).join("")||"<li>Nada muda: os dois aparelhos já têm os mesmos dados.</li>";
   const w=$("#syWarn");w.hidden=!(mode==="replace"&&p.del.length);w.textContent=mode==="replace"?`Atenção: ${syN(p.del.length,"registo que só existe neste aparelho vai ser apagado","registos que só existem neste aparelho vão ser apagados")}. Podes desfazer logo a seguir.`:"";
@@ -110,7 +110,7 @@ $("#syApply").onclick=()=>{const p=SY.plan,inc=SY.inc;if(!p||!inc)return;
   try{localStorage.setItem("caderneta.syncAt",new Date().toISOString())}catch(e){}
   render();if(p.add.concat(p.upd).some(o=>o.kind==="inv"))queueSnap();
   const parts=[[p.add.length,"novo","novos"],[p.upd.length,"atualizado","atualizados"],[p.del.length,"apagado","apagados"]].filter(x=>x[0]).map(x=>syN(x[0],x[1],x[2]));
-  $("#syDoneMsg").textContent="Pronto: "+parts.join(", ")+".";$("#syUndo").hidden=!saved;$("#syTitle").textContent="Dados juntos";syShow("syDone");SY.inc=null;syCard();
+  $("#syDoneMsg").textContent="Pronto: "+parts.join(", ")+".";$("#syUndo").hidden=!saved;$("#syBack").hidden=!!SY.link;$("#syDoneNote").textContent=SY.link?"O outro aparelho também recebeu os teus dados: confirma lá em “Juntar” para os dois ficarem iguais.":"Para os dois aparelhos ficarem iguais, envia agora daqui para o outro (lá, carrega em Ler código).";$("#syTitle").textContent="Dados juntos";syShow("syDone");SY.inc=null;syCard();
   toast("Dados sincronizados")};
 function syUndo(){let s;try{s=JSON.parse(localStorage.getItem("caderneta.preSync")||"null")}catch(e){}if(!s||!Array.isArray(s.items)){toast("Não há nada para desfazer");return}
   if(!confirm("Repor os dados como estavam antes da última sincronização ("+agoT(new Date(s.at).toISOString())+")?"))return;
