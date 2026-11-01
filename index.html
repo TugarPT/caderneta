@@ -1268,6 +1268,160 @@ dialog.wrapdlg[open]{display:flex}
 .wnav{display:flex;justify-content:space-between;gap:10px;padding:0 14px calc(14px + env(safe-area-inset-bottom,0px))}
 .wnav .btn{flex:1}
 @media (max-width:560px){#divSum,#wrapMini{grid-template-columns:1fr 1fr}#divSum>div,#wrapMini>div{min-width:0}}
+/* ---------- Poupanças (produtos de aforro) ---------- */
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+#tab-poupancas .psp{animation:svIn .22s ease-out}
+#tab-poupancas .psp>.card+.card,#tab-poupancas .psp>.card+.sv-2col,#tab-poupancas .psp>.sv-2col+.card,#tab-poupancas .sv-sim+.card,#tab-poupancas .sv-legend4+.card{margin-top:16px}
+@keyframes svIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#tab-poupancas .psp{animation:none}.sv-li,.sv-pc{transition:none!important}}
+.sv-empty .sv-emic{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;background:var(--in-soft);color:var(--in)}
+.sv-empty .sv-emic svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sv-emacts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.sv-hero{padding-top:0}
+.sv-hero .big{background:linear-gradient(90deg,var(--ink),color-mix(in srgb,var(--in) 70%,var(--ink)));-webkit-background-clip:text;background-clip:text;color:transparent}
+body.privacy .sv-hero .big{filter:blur(10px)}
+.sv-rb{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:6px 8px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:.82rem}
+.sv-rb span{color:var(--ink-2)}.sv-rb b{font-size:1rem}
+.sv-rb small{flex-basis:100%;text-align:right;color:var(--ink-2)}
+.sv-rb.warn{border-color:color-mix(in srgb,var(--warn) 45%,var(--line));background:color-mix(in srgb,var(--warn-soft) 55%,var(--surface))}
+@media (max-width:600px){.sv-rb{justify-content:flex-start}.sv-rb small{text-align:left}}
+.sv-kpis{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));margin-bottom:16px}
+.sv-kpis .kpi{transition:border-color .15s,transform .15s}
+.sv-kpis .kpi:hover{border-color:color-mix(in srgb,var(--in) 40%,var(--line))}
+.sv-kpis .kpi .v{font-size:1.25rem}
+.sv-chartcard .cardhead{align-items:flex-start}
+.sv-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.76rem;color:var(--ink-2);margin:-4px 0 6px}
+.sv-legend span{display:inline-flex;align-items:center;gap:6px}
+.sv-legend i{display:inline-block;width:18px;height:0;border-top:2.5px solid var(--in)}
+.sv-legend i.l-proj{border-top-style:dashed}.sv-legend i.l-inv{border-top:1.5px dashed var(--ink-2)}
+.sv-chart{position:relative;min-height:60px}
+.sv-chart svg{width:100%;height:auto;display:block;touch-action:pan-y;border-radius:8px}
+.sv-chart svg:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.sv-chart text{font-family:var(--f-mono);font-size:11px;fill:var(--ink-2)}
+.sv-tt{position:absolute;top:8px;z-index:3;pointer-events:none;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:10px;padding:8px 10px;font-size:.78rem;display:flex;flex-direction:column;gap:3px;min-width:150px}
+.sv-tt span{display:flex;align-items:center;gap:6px;color:var(--ink-2)}
+.sv-tt i{width:8px;height:8px;border-radius:50%;flex:none}
+.sv-tt em{font-style:normal;margin-left:auto;font-family:var(--f-mono);color:var(--ink);font-weight:600}
+body.privacy .sv-tt em{filter:blur(6px)}
+.sv-cempty{margin:8px 0}
+.sv-2col{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin-top:16px}
+.sv-list{display:flex;flex-direction:column}
+.sv-li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 6px;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;color:inherit;font:inherit;width:100%;cursor:pointer;border-radius:8px;transition:background .15s}
+.sv-li:last-child{border-bottom:0}
+.sv-li:hover{background:var(--surface-2)}.sv-li.st{cursor:default}.sv-li.st:hover{background:none}
+.sv-li:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.sv-dt{display:flex;flex-direction:column;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;background:var(--in-soft);color:var(--in);line-height:1}
+.sv-dt b{font-family:var(--f-mono);font-size:1rem}.sv-dt small{font-size:.66rem;text-transform:uppercase;font-weight:700;letter-spacing:.05em;margin-top:2px}
+.sv-n{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sv-n b{font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sv-n small,.sv-a small{font-size:.76rem;color:var(--ink-2)}
+.sv-a{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
+.sv-a b{color:var(--in);font-weight:650}
+.sv-k{font-size:.64rem;padding:1px 6px;vertical-align:1px}
+.sv-mixbar{display:flex;height:12px;border-radius:99px;overflow:hidden;background:var(--surface-2);gap:2px;margin:4px 0 12px}
+.sv-mixbar i{display:block;height:100%}
+.sv-mix{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sv-mix li{display:grid;grid-template-columns:10px minmax(0,1fr) auto 52px;gap:10px;align-items:center;font-size:.88rem}
+.sv-mix li i{width:10px;height:10px;border-radius:3px}.sv-mix small{color:var(--ink-2);text-align:right;font-family:var(--f-mono)}
+/* produtos */
+.sv-grp+.sv-grp,.sv-grp+.sv-add2{margin-top:16px}
+.sv-gh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sv-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;flex:none}
+.sv-ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sv-ic.sm{width:12px;height:12px;border-radius:4px}
+.sv-gt{flex:1 1 200px;min-width:0}.sv-gt h3{font-size:1.1rem}.sv-gt p{margin:2px 0 0;color:var(--ink-2);font-size:.82rem}
+.sv-gv{display:flex;flex-direction:column;align-items:flex-end}.sv-gv b{font-family:var(--f-display);font-size:1.35rem;font-weight:800}.sv-gv small{color:var(--in);font-size:.78rem;font-family:var(--f-mono)}
+body.privacy .sv-gv b{filter:blur(8px)}
+.sv-gs{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 4px;padding:10px 12px;border-radius:10px;background:var(--surface-2);font-size:.8rem;color:var(--ink-2)}
+.sv-gs b{color:var(--ink);margin-left:4px}
+.sv-tablewrap{overflow-x:auto;margin-top:6px}
+.sv-table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:0}
+.sv-det{min-width:640px}.sv-cmp{min-width:0}
+.sv-table th{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-2);font-weight:700;text-align:left;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sv-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.sv-table tbody tr{transition:background .12s}.sv-table tbody tr:hover{background:var(--surface-2)}
+.sv-table .r{text-align:right}.sv-table small{display:block;color:var(--ink-2);font-size:.74rem;margin-top:2px}
+.sv-table tr.closed{opacity:.6}.sv-table tr.fut td{color:var(--ink-2)}.sv-table tr.fut td b{color:var(--ink-2);font-weight:600}
+.sv-table .sv-acts{white-space:nowrap;text-align:right}
+.sv-acts .link+.link{margin-left:8px}
+.sv-del{color:var(--out)!important}
+.sv-qe{font-size:.72rem;padding:0 2px;margin-left:4px;opacity:.75}.sv-qe:hover{opacity:1}
+.sv-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:12px;margin-top:12px}
+.sv-pc{border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--surface);transition:border-color .15s,box-shadow .15s}
+.sv-pc:hover{border-color:color-mix(in srgb,var(--accent) 35%,var(--line));box-shadow:var(--shadow)}
+.sv-pc.closed{opacity:.7;background:var(--surface-2)}
+.sv-pch{display:flex;gap:10px;align-items:center}.sv-pch div{display:flex;flex-direction:column;min-width:0}.sv-pch small{color:var(--ink-2);font-size:.76rem}
+.sv-pcv b{font-family:var(--f-display);font-weight:800;font-size:1.4rem;display:block}.sv-pcv small{color:var(--ink-2);font-size:.78rem}
+.sv-dl{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin:0;font-size:.8rem}
+.sv-dl dt{color:var(--ink-2);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}.sv-dl dd{margin:0;font-family:var(--f-mono)}
+.sv-add2{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px}.sv-add2 p{margin:0;color:var(--ink-2)}
+/* calendário */
+.sv-cal{display:flex;flex-direction:column;gap:14px}
+.sv-cmh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;padding:4px 6px;border-bottom:1px solid var(--line)}
+.sv-cmh h4{text-transform:capitalize;font-size:.95rem}.sv-cmh span{color:var(--in);font-weight:600;font-size:.9rem}.sv-cmh small{color:var(--ink-2);font-weight:400;font-size:.74rem}
+.sv-inline{flex-direction:row;align-items:center;gap:8px}.sv-inline select{width:auto;max-width:260px;padding:6px 8px}
+.sv-chk{font-weight:600}.sv-chk input{width:auto}
+/* simulador */
+.sv-sim{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.sv-sim{grid-template-columns:1fr}}
+.sv-simf{display:flex;flex-direction:column;gap:12px}
+.sv-err{margin:0;color:var(--out);font-size:.82rem;font-weight:600}
+.sv-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:8px;margin-bottom:12px}
+.sv-tile{background:var(--surface-2);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.sv-tile span{font-size:.72rem;color:var(--ink-2);font-weight:600}.sv-tile b{font-size:1.02rem;font-weight:650}
+.sv-tile.good b{color:var(--in)}.sv-tile.bad b{color:var(--out)}
+.sv-tile.fin{background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line))}.sv-tile.fin b{font-size:1.2rem}
+.sv-cmp th[scope=col]{font-size:.72rem;text-transform:none;letter-spacing:0;white-space:normal;min-width:150px;vertical-align:top}
+.sv-cmp th[scope=row]{font-size:.8rem;text-transform:none;letter-spacing:0;color:var(--ink-2);font-weight:600}
+.sv-cdot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:0}
+.sv-cx{display:block;font-size:.72rem;padding:2px 0;color:var(--out)}
+.sv-best{color:var(--in);font-weight:700}
+/* taxas */
+.sv-legend4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px}
+.sv-legend4 div{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);display:flex;flex-direction:column;gap:2px}
+.sv-legend4 b{font-size:.86rem}.sv-legend4 span{font-size:.76rem;color:var(--ink-2)}
+.sv-legend4 div:nth-child(1){border-left:4px solid var(--accent)}.sv-legend4 div:nth-child(2){border-left:4px solid var(--in)}.sv-legend4 div:nth-child(3){border-left:4px solid var(--warn)}.sv-legend4 div:nth-child(4){border-left:4px solid var(--ink-2)}
+.sv-rtacts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}.sv-rtacts a.btn{text-decoration:none;color:inherit}
+.sv-rnow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:var(--surface-2);margin:10px 0 4px;font-size:.86rem}
+.sv-rnow b{font-size:1.05rem}.sv-rnow small{color:var(--ink-2);flex-basis:100%}
+.sv-rnow.warn{background:color-mix(in srgb,var(--warn-soft) 60%,var(--surface))}
+.sv-rules td{font-size:.8rem}.sv-rules a{color:var(--accent)}
+/* diálogos */
+.sv-dlg textarea{resize:vertical;font-family:inherit}
+.sv-dlg input:disabled{opacity:.65}
+dialog.sv-wide{width:min(980px,calc(100% - 24px))}
+.sv-detw{display:flex;flex-direction:column;gap:12px;padding:20px}
+.sv-detw .actions{display:flex;flex-wrap:wrap;gap:8px}
+.sv-det{font-size:.8rem}.sv-det td{padding:7px 8px}
+.sv-types{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.sv-types button{border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:9px 6px;font-weight:600;font-size:.8rem;cursor:pointer;color:var(--ink-2)}
+.sv-types button[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+.sv-types button:focus-visible,.sv-li:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:520px){.sv-types{grid-template-columns:1fr 1fr}}
+.sv-prev{font-size:.86rem;padding:10px 12px;border-radius:10px;background:var(--surface-2)}.sv-prev:empty{display:none}
+#svRKind,#svRtHow{display:grid;grid-auto-flow:column}
+/* telemóvel: tabelas passam a cartões */
+@media (max-width:700px){
+  #tab-poupancas .phead .actions{width:100%}
+  .sv-tablewrap:has(.sv-table:not(.sv-cmp):not(.sv-det)){overflow-x:visible}
+  .sv-table:not(.sv-cmp):not(.sv-det) thead{display:none}
+  .sv-table:not(.sv-cmp):not(.sv-det),.sv-table:not(.sv-cmp):not(.sv-det) tbody,.sv-table:not(.sv-cmp):not(.sv-det) tr{display:block;min-width:0!important;width:100%}
+  .sv-table:not(.sv-cmp):not(.sv-det) tr{border:1px solid var(--line);border-radius:12px;padding:6px 10px;margin-bottom:10px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px}
+  .sv-table:not(.sv-cmp):not(.sv-det) td{border:0;padding:6px 0;text-align:left!important;min-width:0;overflow-wrap:anywhere}
+  .sv-table:not(.sv-cmp):not(.sv-det) td[data-l]::before{content:attr(data-l);display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);font-weight:700;margin-bottom:1px}
+  .sv-table:not(.sv-cmp):not(.sv-det) td.sv-acts{grid-column:1/-1;border-top:1px solid var(--line);padding-top:8px;text-align:left!important}
+  .sv-rules td[colspan]{grid-column:1/-1}
+  .sv-li{grid-template-columns:40px minmax(0,1fr);}
+  .sv-li .sv-a{grid-column:2;align-items:flex-start;text-align:left}
+  .sv-dt{width:40px;height:40px}
+  .sv-gv{align-items:flex-start}
+  .sv-gh .btn{width:100%}
+  .sv-mix li{grid-template-columns:10px minmax(0,1fr) auto}.sv-mix li small{display:none}
+}
+.sv-info{justify-content:space-between;margin-bottom:16px;text-align:left}.sv-info span{color:var(--ink)!important;flex:1 1 300px}
+#svRange,#svCalN{max-width:100%;overflow-x:auto}#svRange button,#svCalN button{white-space:nowrap}
+@media (max-width:700px){.sv-kpis{grid-template-columns:1fr 1fr;gap:8px}.sv-kpis .kpi{padding:11px 12px;gap:4px}.sv-kpis .kpi .v{font-size:1rem}.sv-kpis .kpi .foot{font-size:.7rem}.sv-kpis .eyebrow{font-size:.62rem;letter-spacing:.06em}
+  .sv-chartcard .cardhead>.segs{width:100%}}
 </style>
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
@@ -1575,8 +1729,152 @@ dialog.wrapdlg[open]{display:flex}
 
   <!-- POUPANÇAS -->
   <section id="tab-poupancas" class="panel" role="tabpanel" tabindex="-1" hidden>
-    <div class="phead"><div><h1>Poupanças</h1><p id="poupSub">As tuas metas e quanto falta para cada uma.</p></div><button class="btn primary" type="button" data-gnew>+ Nova meta</button></div>
-    <div class="goals ggrid" id="goalsAll"></div>
+    <div class="phead"><div><h1>Poupanças</h1><p id="poupSub">As tuas metas e quanto falta para cada uma.</p></div><div class="actions"><span class="actions" id="svActs"><button class="btn" type="button" data-svnew="sav">+ Outro produto</button><button class="btn primary" type="button" data-svnew="caf">+ Certificados de Aforro</button></span><button class="btn primary" type="button" data-gnew>+ Nova meta</button></div></div>
+    <div class="isubs" id="psubs" role="tablist" aria-label="Secções de Poupanças">
+      <button type="button" role="tab" id="psub-resumo" data-psub="resumo" aria-controls="psp-resumo" aria-selected="true">Resumo</button>
+      <button type="button" role="tab" id="psub-produtos" data-psub="produtos" aria-controls="psp-produtos" aria-selected="false" tabindex="-1">Produtos<span class="n" id="psN"></span></button>
+      <button type="button" role="tab" id="psub-calendario" data-psub="calendario" aria-controls="psp-calendario" aria-selected="false" tabindex="-1">Calendário</button>
+      <button type="button" role="tab" id="psub-simulador" data-psub="simulador" aria-controls="psp-simulador" aria-selected="false" tabindex="-1">Simulador</button>
+      <button type="button" role="tab" id="psub-taxas" data-psub="taxas" aria-controls="psp-taxas" aria-selected="false" tabindex="-1"><span>Taxas<span class="lg"> e impostos</span></span></button>
+      <button type="button" role="tab" id="psub-metas" data-psub="metas" aria-controls="psp-metas" aria-selected="false" tabindex="-1">Metas<span class="n" id="pgN"></span></button>
+    </div>
+
+    <!-- Resumo -->
+    <div class="psp" id="psp-resumo" data-psp="resumo" role="tabpanel" aria-labelledby="psub-resumo" tabindex="-1">
+      <div class="card empty sv-empty" id="svEmpty" hidden>
+        <span class="sv-emic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 11a7 6 0 0 1 12.4-3.6L20 7v4l-1.6.8A7 6 0 0 1 16 15.5V19h-3v-2h-3v2H7v-3.2A6 6 0 0 1 5 11z"/><path d="M14.5 10h.01"/></svg></span>
+        <h2>Junta aqui as tuas poupanças</h2>
+        <p>Regista os Certificados de Aforro (cada subscrição com a sua data), Certificados do Tesouro, contas poupança e depósitos a prazo. A app calcula os juros de cada vencimento, o IRS retido e o capital acumulado.</p>
+        <div class="actions sv-emacts"><button class="btn primary" type="button" data-svnew="caf">+ Certificados de Aforro</button><button class="btn" type="button" data-svnew="sav">+ Outro produto</button><button class="btn ghost" type="button" data-psgo="simulador">Experimentar o simulador</button></div>
+      </div>
+      <div id="svDash" hidden>
+        <div class="hero sv-hero">
+          <div>
+            <div class="eyebrow">Capital atual</div>
+            <div class="big num" id="svCap">€ 0,00</div>
+            <div class="sub" id="svCapSub"></div>
+          </div>
+          <div class="hero-side" id="svRateNote"></div>
+        </div>
+        <div class="kpis sv-kpis" id="svKpis"></div>
+        <div class="card chart sv-chartcard">
+          <div class="cardhead">
+            <div><h3>Evolução do capital</h3><p class="note" id="svChNote" style="margin:2px 0 0"></p></div>
+            <div class="segs" id="svRange" role="group" aria-label="Período do gráfico">
+              <button type="button" data-svr="1" aria-pressed="false">1 ano</button><button type="button" data-svr="3" aria-pressed="false">3 anos</button><button type="button" data-svr="5" aria-pressed="true">5 anos</button><button type="button" data-svr="10" aria-pressed="false">10 anos</button><button type="button" data-svr="15" aria-pressed="false">15 anos</button>
+            </div>
+          </div>
+          <div class="sv-legend" aria-hidden="true"><span><i class="l-cap"></i>Capital (calculado)</span><span><i class="l-proj"></i>Previsão (hipotética)</span><span><i class="l-inv"></i>Capital investido</span></div>
+          <div class="sv-chart" id="svChart"></div>
+        </div>
+        <div class="sv-2col">
+          <div class="card"><div class="cardhead"><h3>Próximos vencimentos</h3><button class="link" type="button" data-psgo="calendario">Ver calendário →</button></div><div id="svNext"></div></div>
+          <div class="card"><div class="cardhead"><h3>Onde está o dinheiro</h3><button class="link" type="button" data-psgo="produtos">Ver produtos →</button></div><div id="svMix"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produtos -->
+    <div class="psp" id="psp-produtos" data-psp="produtos" role="tabpanel" aria-labelledby="psub-produtos" tabindex="-1" hidden>
+      <div id="svProds"></div>
+    </div>
+
+    <!-- Calendário -->
+    <div class="psp" id="psp-calendario" data-psp="calendario" role="tabpanel" aria-labelledby="psub-calendario" tabindex="-1" hidden>
+      <div class="card">
+        <div class="cardhead"><div><h3>Calendário de vencimentos</h3><p class="note" style="margin:2px 0 0">Juros que ainda vão vencer. Os valores usam a taxa de cada trimestre: oficial quando já é conhecida, senão a do cenário (hipotética).</p></div>
+          <div class="segs" id="svCalN" role="group" aria-label="Período"><button type="button" data-svc="3" aria-pressed="false">3 meses</button><button type="button" data-svc="12" aria-pressed="true">12 meses</button><button type="button" data-svc="36" aria-pressed="false">3 anos</button></div></div>
+        <div id="svCal"></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Histórico de capitalizações</h3><p class="note" style="margin:2px 0 0">Cada vencimento já passado: juros brutos, IRS retido, juros líquidos e capital depois.</p></div>
+          <label class="sv-inline" for="svHistF">Produto<select id="svHistF"></select></label></div>
+        <div id="svHist"></div>
+      </div>
+      <div class="sv-2col">
+        <div class="card"><div class="cardhead"><div><h3>Juros por ano</h3><p class="note" style="margin:2px 0 0">Para a declaração de IRS (anexo E / englobamento).</p></div></div><div id="svYears"></div></div>
+        <div class="card"><div class="cardhead"><h3>Resgates e transferências</h3></div><div id="svReds"></div></div>
+      </div>
+    </div>
+
+    <!-- Simulador -->
+    <div class="psp" id="psp-simulador" data-psp="simulador" role="tabpanel" aria-labelledby="psub-simulador" tabindex="-1" hidden>
+      <div class="sv-sim">
+        <form class="card sv-simf" id="svSimForm" novalidate>
+          <div class="cardhead" style="margin-bottom:4px"><h3>Cenário</h3><span class="chip warn">hipotético</span></div>
+          <label for="svSimMode">Produto<select id="svSimMode"><option value="cafF">Certificados de Aforro Série F (cada reforço é uma subscrição)</option><option value="rate">Taxa fixa (conta poupança, depósito…)</option></select></label>
+          <div class="row2">
+            <label for="svSimP0">Capital inicial (€)<input id="svSimP0" inputmode="decimal" value="5000"></label>
+            <label for="svSimM">Reforço mensal (€)<input id="svSimM" inputmode="decimal" value="200"></label>
+          </div>
+          <div class="row2">
+            <label for="svSimR" id="svSimRL">Taxa base hipotética (%)<input id="svSimR" inputmode="decimal" value="2,5"></label>
+            <label for="svSimIrs">IRS (%)<input id="svSimIrs" inputmode="decimal" value="28"></label>
+          </div>
+          <div class="row2">
+            <label for="svSimY">Duração (anos)<input id="svSimY" type="number" min="1" max="40" step="1" value="10"></label>
+            <label for="svSimStart">Início<input id="svSimStart" type="date"></label>
+          </div>
+          <label for="svSimC" id="svSimCL" hidden>Os juros são creditados<select id="svSimC"><option value="1">todos os meses</option><option value="3" selected>de 3 em 3 meses</option><option value="6">de 6 em 6 meses</option><option value="12">uma vez por ano</option></select></label>
+          <p class="note" id="svSimHelp" style="margin:0"></p>
+          <p class="sv-err" id="svSimErr" role="alert" hidden></p>
+          <div class="actions"><button class="btn primary" type="submit">Guardar para comparar</button><button class="btn ghost" type="button" id="svSimReset">Repor exemplo</button></div>
+        </form>
+        <div class="card sv-simr">
+          <div class="cardhead" style="margin-bottom:6px"><h3>Resultado</h3><span class="note" id="svSimEnd" style="margin:0"></span></div>
+          <div class="sv-tiles" id="svSimOut"></div>
+          <div class="sv-legend" aria-hidden="true"><span><i style="border-top-color:var(--accent)"></i>Valor simulado</span><span><i class="l-inv"></i>Dinheiro investido</span></div>
+          <div class="sv-chart" id="svSimChart"></div>
+        </div>
+      </div>
+      <div class="card" id="svCmpCard" hidden>
+        <div class="cardhead"><div><h3>Comparar cenários</h3><p class="note" style="margin:2px 0 0">Até 6 cenários guardados, lado a lado. São simulações, não previsões.</p></div></div>
+        <div class="sv-chart" id="svCmpChart"></div>
+        <div class="sv-tablewrap"><table class="sv-table sv-cmp" id="svCmp"></table></div>
+      </div>
+    </div>
+
+    <!-- Taxas e impostos -->
+    <div class="psp" id="psp-taxas" data-psp="taxas" role="tabpanel" aria-labelledby="psub-taxas" tabindex="-1" hidden>
+      <div class="sv-legend4" aria-label="Como a app separa os dados">
+        <div><b>Dados teus</b><span>subscrições, depósitos, resgates, taxas que indicas</span></div>
+        <div><b>Taxas oficiais</b><span>tabela abaixo, com fonte e data</span></div>
+        <div><b>Hipóteses</b><span>cenário para os meses sem taxa conhecida e simulador</span></div>
+        <div><b>Resultados</b><span>calculados na hora, nunca guardados</span></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Taxa base dos Certificados de Aforro</h3><p class="note" style="margin:2px 0 0" id="svRtHelp"></p></div>
+          <div class="segs" id="svRtSerie" role="group" aria-label="Série"><button type="button" data-svs="F" aria-pressed="true">Série F</button><button type="button" data-svs="E" aria-pressed="false">Série E</button></div></div>
+        <div class="actions sv-rtacts"><button class="btn primary" type="button" id="svRtAdd">+ Registar taxa</button><button class="btn" type="button" id="svRtFetch">Atualizar do IGCP</button><a class="btn ghost" href="https://www.igcp.pt/pt/aforristas/produtos-de-aforro/certificados-de-aforro" target="_blank" rel="noopener">Abrir página do IGCP ↗</a></div>
+        <p class="note" id="svRtMsg" role="status" style="margin:4px 0 0"></p>
+        <div id="svRtTable"></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Cenário para o futuro</h3><p class="note" style="margin:2px 0 0">Ninguém sabe a taxa base dos próximos anos. Escolhe a que queres usar nas previsões. Estes valores aparecem sempre marcados como hipotéticos.</p></div><span class="chip warn">hipotético</span></div>
+        <div class="row2">
+          <label for="svProjF">Série F: taxa base futura (%)<input id="svProjF" inputmode="decimal" placeholder="repete a última conhecida"></label>
+          <label for="svProjE">Série E: taxa base futura (%)<input id="svProjE" inputmode="decimal" placeholder="repete a última conhecida"></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Impostos</h3><p class="note" style="margin:2px 0 0">Os juros pagam IRS em cada vencimento. A taxa aqui é a usada quando a subscrição não tem uma própria.</p></div></div>
+        <div class="row3">
+          <label for="svTaxRate">Taxa de retenção de IRS (%)<input id="svTaxRate" inputmode="decimal" placeholder="28"></label>
+          <label for="svTaxReg">Regime<select id="svTaxReg"><option value="lib">Taxa liberatória (definitiva)</option><option value="eng">Englobamento (retenção por conta)</option><option value="isento">Sem retenção / outra taxa</option></select></label>
+          <label for="svTaxMarg" id="svTaxMargL">Taxa marginal do teu escalão (%)<input id="svTaxMarg" inputmode="decimal" placeholder="ex.: 13"></label>
+        </div>
+        <p class="note" id="svTaxNote"></p>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Regras de cada produto</h3><p class="note" style="margin:2px 0 0">Estão numa tabela própria no código: quando uma regra muda, muda-se só aí.</p></div></div>
+        <div id="svRules"></div>
+      </div>
+    </div>
+
+    <!-- Metas -->
+    <div class="psp" id="psp-metas" data-psp="metas" role="tabpanel" aria-labelledby="psub-metas" tabindex="-1" hidden>
+      <div class="goals ggrid" id="goalsAll"></div>
+    </div>
   </section>
 
   <!-- ESTADIAS -->
@@ -2083,6 +2381,129 @@ dialog.wrapdlg[open]{display:flex}
     <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
   </form>
 </dialog>
+<dialog id="svCafDlg" class="sv-dlg">
+  <form id="svCafForm" novalidate>
+    <div class="dlg-h"><h3 id="svCafTitle">Nova subscrição</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="row2">
+      <label for="svCName">Nome do investimento<input id="svCName" list="svCNames" autocomplete="off" placeholder="Ex.: Aforro dos miúdos"></label>
+      <label for="svCSerie">Série<select id="svCSerie"><option value="F">Série F (desde junho de 2023)</option><option value="E">Série E (2017 a 2023)</option><option value="D">Série D</option><option value="C">Série C</option><option value="B">Série B</option><option value="A">Série A</option></select></label>
+    </div>
+    <datalist id="svCNames"></datalist>
+    <div class="row3">
+      <label for="svCAmt">Capital inicial (€)<input id="svCAmt" inputmode="decimal" placeholder="0,00"></label>
+      <label for="svCDate">Data da subscrição<input id="svCDate" type="date"></label>
+      <label for="svCRate0" id="svCRate0L">Taxa inicial (%, bruta)<input id="svCRate0" inputmode="decimal" placeholder="da tabela"></label>
+    </div>
+    <div class="row2" id="svCManW" hidden>
+      <label for="svCRateM">Taxa bruta atual (%)<input id="svCRateM" inputmode="decimal" placeholder="vês no AforroNet"></label>
+      <label for="svCTerm">Prazo (anos, opcional)<input id="svCTerm" type="number" min="1" max="40" step="1" placeholder="sem prazo"></label>
+    </div>
+    <div class="row3">
+      <label for="svCIrs">Taxa de IRS (%)<input id="svCIrs" inputmode="decimal" placeholder="28"></label>
+      <label for="svCInst">Instituição ou entidade<input id="svCInst" list="svInsts" autocomplete="off" placeholder="IGCP · AforroNet"></label>
+      <label for="svCAcct">Conta associada<select id="svCAcct"></select></label>
+    </div>
+    <label for="svCOv">Valor atual no AforroNet (€, opcional)<input id="svCOv" inputmode="decimal" placeholder="a app calcula sozinha"></label>
+    <label for="svCNote">Observações<textarea id="svCNote" rows="2" placeholder="Opcional"></textarea></label>
+    <p class="note" id="svCHelp" style="margin:0"></p>
+    <p class="sv-err" id="svCErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit" id="svCSubmit">Adicionar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost sv-del" type="button" id="svCDel" hidden>Apagar</button></div>
+  </form>
+</dialog>
+<datalist id="svInsts"><option value="IGCP · AforroNet"><option value="CTT"><option value="Espaço Cidadão"><option value="Caixa Geral de Depósitos"><option value="Millennium bcp"><option value="Novo Banco"><option value="Santander"><option value="BPI"></datalist>
+<dialog id="svProdDlg" class="sv-dlg">
+  <form id="svProdForm" novalidate>
+    <div class="dlg-h"><h3 id="svPTitle">Novo produto de poupança</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="sv-types" id="svPTypes" role="radiogroup" aria-label="Tipo de produto">
+      <button type="button" role="radio" data-svt="conta" aria-checked="true">Conta poupança</button>
+      <button type="button" role="radio" data-svt="dp" aria-checked="false">Depósito a prazo</button>
+      <button type="button" role="radio" data-svt="ct" aria-checked="false">Certificados do Tesouro</button>
+      <button type="button" role="radio" data-svt="outro" aria-checked="false">Outro</button>
+    </div>
+    <div class="row2">
+      <label for="svPName">Nome<input id="svPName" autocomplete="off" placeholder="Ex.: Poupança férias"></label>
+      <label for="svPInst">Instituição<input id="svPInst" list="svInsts" autocomplete="off" placeholder="Ex.: Banco"></label>
+    </div>
+    <div class="row2">
+      <label for="svPAmt">Montante inicial (€)<input id="svPAmt" inputmode="decimal" placeholder="0,00"></label>
+      <label for="svPDate">Data de início<input id="svPDate" type="date"></label>
+    </div>
+    <div class="row2" id="svPRateW">
+      <label for="svPRate" id="svPRateL">TANB (%, bruta)<input id="svPRate" inputmode="decimal" placeholder="Ex.: 2,25"></label>
+      <label for="svPTerm" id="svPTermL">Prazo (meses)<input id="svPTerm" type="number" min="1" max="600" step="1" placeholder="sem prazo"></label>
+    </div>
+    <label for="svPSched" id="svPSchedL" hidden>Taxa bruta de cada ano (%, separadas por ponto e vírgula)<input id="svPSched" autocomplete="off" placeholder="Ex.: 2,5; 2,75; 3; 3,25; 3,5"></label>
+    <div class="row3">
+      <label for="svPPer">Os juros vencem<select id="svPPer"><option value="1">todos os meses</option><option value="3">de 3 em 3 meses</option><option value="6">de 6 em 6 meses</option><option value="12">uma vez por ano</option><option value="0">no fim do prazo</option></select></label>
+      <label for="svPCap">E depois<select id="svPCap"><option value="1">juntam-se ao capital</option><option value="0">são pagos à conta</option></select></label>
+      <label for="svPBasis">Contagem<select id="svPBasis"><option value="365">dias reais / 365</option><option value="360">dias reais / 360</option><option value="per">taxa ÷ nº de períodos</option></select></label>
+    </div>
+    <div class="row3">
+      <label for="svPEarly">Se levantares antes do fim<select id="svPEarly"><option value="keep">mantém os juros</option><option value="lose">perde os juros do período</option></select></label>
+      <label for="svPIrs">Taxa de IRS (%)<input id="svPIrs" inputmode="decimal" placeholder="28"></label>
+      <label for="svPAcct">Conta associada<select id="svPAcct"></select></label>
+    </div>
+    <label for="svPNote">Observações<textarea id="svPNote" rows="2" placeholder="Opcional"></textarea></label>
+    <p class="note" id="svPHelp" style="margin:0"></p>
+    <p class="sv-err" id="svPErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit" id="svPSubmit">Adicionar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost sv-del" type="button" id="svPDel" hidden>Apagar</button></div>
+  </form>
+</dialog>
+<dialog id="svRedDlg" class="sv-dlg">
+  <form id="svRedForm" novalidate>
+    <div class="dlg-h"><h3 id="svRTitle">Resgatar</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <p class="muted" id="svRInfo" style="margin:0;font-size:.88rem"></p>
+    <div class="segs" id="svRKind" role="group" aria-label="Tipo de movimento"><button type="button" data-svk="part" aria-pressed="true">Resgate parcial</button><button type="button" data-svk="total" aria-pressed="false">Resgate total</button><button type="button" data-svk="dep" aria-pressed="false" hidden>Depósito</button></div>
+    <div class="row2">
+      <label for="svRAmt" id="svRAmtL">Valor (€)<input id="svRAmt" inputmode="decimal" placeholder="0,00"></label>
+      <label for="svRDate">Data<input id="svRDate" type="date"></label>
+    </div>
+    <label for="svRAcct" id="svRAcctL">Transferir para a conta<select id="svRAcct"></select></label>
+    <div class="sv-prev" id="svRPrev" aria-live="polite"></div>
+    <p class="sv-err" id="svRErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit" id="svRSubmit">Registar resgate</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+  </form>
+</dialog>
+<dialog id="svDetDlg" class="sv-dlg sv-wide">
+  <div class="sv-detw">
+    <div class="dlg-h"><div><h3 id="svDTitle"></h3><p class="note" id="svDSub" style="margin:2px 0 0"></p></div><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="sv-tiles" id="svDTiles"></div>
+    <div class="actions" id="svDActs"></div>
+    <div class="sv-chart" id="svDChart"></div>
+    <div class="cardhead" style="margin:6px 0 0"><h4>Calendário de capitalização</h4><label class="sv-inline sv-chk"><input type="checkbox" id="svDFut" checked> mostrar previsão</label></div>
+    <div class="sv-tablewrap" id="svDTable"></div>
+  </div>
+</dialog>
+<dialog id="svQDlg" class="sv-dlg">
+  <form id="svQForm" novalidate>
+    <div class="dlg-h"><h3>Taxa deste trimestre</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <p class="muted" id="svQInfo" style="margin:0;font-size:.88rem"></p>
+    <label for="svQRate">Taxa bruta anual (%)<input id="svQRate" inputmode="decimal" placeholder="Ex.: 2,25"></label>
+    <p class="note" style="margin:0">Usa a taxa que aparece no extrato do AforroNet para este vencimento. Fica só nesta subscrição e passa à frente da tabela.</p>
+    <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost sv-del" type="button" id="svQDel">Usar a tabela</button></div>
+  </form>
+</dialog>
+<dialog id="svRtDlg" class="sv-dlg">
+  <form id="svRtForm" novalidate>
+    <div class="dlg-h"><h3 id="svRtTitle">Registar taxa base</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="segs" id="svRtHow" role="group" aria-label="Como queres indicar a taxa"><button type="button" data-svh="v" aria-pressed="true">Valor</button><button type="button" data-svh="eur" aria-pressed="false">Da Euribor</button><button type="button" data-svh="paste" aria-pressed="false">Colar do IGCP</button></div>
+    <div class="row2">
+      <label for="svRtSer">Série<select id="svRtSer"><option value="F">Série F</option><option value="E">Série E</option></select></label>
+      <label for="svRtMonth">Mês em que se aplica<input id="svRtMonth" type="month"></label>
+    </div>
+    <div data-svhp="v"><label for="svRtVal">Taxa base (%)<input id="svRtVal" inputmode="decimal" placeholder="Ex.: 2,500"></label></div>
+    <div data-svhp="eur" hidden>
+      <label for="svRtEur">Euribor a 3 meses dos 10 dias úteis anteriores (%, uma por linha ou separadas por ponto e vírgula)<textarea id="svRtEur" rows="4" placeholder="2,031&#10;2,029&#10;…"></textarea></label>
+    </div>
+    <div data-svhp="paste" hidden>
+      <label for="svRtPaste">Texto da página do IGCP<textarea id="svRtPaste" rows="4" placeholder="Ex.: A taxa de juro bruta para novas subscrições de Certificados de Aforro, Série F, em setembro de 2026 foi fixada em 2,500%."></textarea></label>
+    </div>
+    <label for="svRtSrc">Fonte<input id="svRtSrc" autocomplete="off" placeholder="Ex.: igcp.pt, consultado hoje"></label>
+    <div class="sv-prev" id="svRtPrev" aria-live="polite"></div>
+    <p class="sv-err" id="svRtErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+  </form>
+</dialog>
 <dialog id="cafDlg">
   <form id="cafForm" novalidate>
     <div class="dlg-h"><h3 id="cafTitle">Nova subscrição</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
@@ -2226,15 +2647,14 @@ const S={items:new Map(),mode:"loading",month:ym(new Date()),tab:"resumo",txType
 const txs=()=>[...S.items.values()].filter(o=>o.kind==="tx");
 /* Certificados de Aforro (kind "caf", one doc per subscription) show up as positions through cafInv() */
 const cafs=()=>[...S.items.values()].filter(o=>o.kind==="caf").sort((a,b)=>(a.date||"").localeCompare(b.date||""));
-const cafBase=()=>{const b=settings().cafBase;return b!=null&&isFinite(+b)?+b:2};
+const cafBase=()=>{const v=svBaseNow("F");if(v!=null)return v;const b=settings().cafBase;return b!=null&&isFinite(+b)?+b:2};
 function cafRate(serie,B,y){const F=serie!=="E",base=Math.min(Math.max(F?B:B+1,0),F?2.5:3.5);
   const prem=F?(y<=1?0:y<=5?.25:y<=9?.5:y<=11?1:y<=13?1.5:1.75):(y<=1?0:y<=5?.5:1);return{base,prem,gross:base+prem}}
 /* value after the quarterly interest dates already reached; each quarter: gross annual rate / 4, minus 28% IRS, added to the capital */
-function cafCalc(c,B){const d0=new Date(c.date+"T12:00:00"),now=new Date(),T=(c.serie==="E"?10:15)*4,qd=k=>new Date(d0.getFullYear(),d0.getMonth()+3*k,d0.getDate(),12);
-  const ov=+c.override>0&&c.ovDate?+c.override:0;let v=ov||+c.amount||0,n=0;
-  while(n<T&&qd(n+1)<=now){n++;if(ov&&iso(qd(n))<=c.ovDate)continue;v+=Math.floor(v*cafRate(c.serie,B,Math.ceil(n/4)).gross/400*.72*100)/100}
-  const cur=cafRate(c.serie,B,Math.ceil((n+1)/4));
-  return{v,n,cur,next:n<T?iso(qd(n+1)):null,nextNet:n<T?Math.floor(v*cur.gross/400*.72*100)/100:0,matured:n>=T}}
+/* valor de uma subscrição: motor SE (juros trimestrais compostos, prémios, IRS, resgates); ver Poupanças */
+function cafCalc(c,B){const r=svRunOf(c).r,t=todayISO(),nx=r.next,ref=nx||r.last,past=r.events.filter(e=>e.past).length;
+  const cur=ref?{base:ref.rate.base!=null?ref.rate.base:(ref.rate.gross||0),prem:ref.rate.prem||0,gross:ref.rate.gross||0}:{base:0,prem:0,gross:0};
+  return{v:SE.wealthAt(r,t),n:past,cur,next:nx?nx.date:null,nextNet:nx?nx.net:0,matured:!!(r.matured&&r.matured.d<=t)}}
 const pct2=v=>v.toFixed(2).replace(".",",")+"%";
 function cafInv(c){const k=cafCalc(c,cafBase()),open=(+c.amount||0)>0;
   return{id:"caf:"+c.id,kind:"inv",caf:c.id,name:"Aforro · Série "+(c.serie||"F"),ticker:"",cls:"Certificados / Depósitos",qty:open?1:0,cost:+c.amount||0,price:open?Math.round(k.v*100)/100:0,
@@ -2285,6 +2705,7 @@ function setTab(t){
   if(t==="relatorios"){renderSpend(txs());renderCompare()}
   if(t==="orcamentos")renderBudgets();
   if(t==="subscricoes")renderSubs();
+  if(t==="poupancas")renderSav();
 }
 document.querySelectorAll(".tabs,.bnav").forEach(n=>n.addEventListener("click",e=>{const b=e.target.closest("button[data-tab]");if(b){setTab(b.dataset.tab);window.scrollTo({top:0})}}));
 $(".side-brand").innerHTML=$(".top .brand").innerHTML.replace(' id="modeNote"',"").replace("A abrir…","O teu dinheiro, às claras.");
@@ -2634,7 +3055,7 @@ const acctAvail=(a,all,skip)=>{const b=acctBal(a,all,skip),g=goalMoney(a);return
 const noNeg=a=>a&&a.kind==="acct"&&a.type!=="Cartão de crédito";
 const availRaw=(a,all,skip)=>acctBal(a,all,skip)-goalMoney(a);
 function noMoney(a,av,what){const g=goalMoney(a);toast(`Não há saldo suficiente em ${a.name}${what?" para "+what:""}: tens ${eur(Math.max(0,av))} disponíveis${g?` (${eur(g)} estão guardados em metas)`:""}.`)}
-function acctBal(a,all,skip){return (+a.base||0)+all.filter(t=>t.acct===a.id&&(t.at?t.at>(a.baseAt||0):t.date>(a.baseDate||""))).reduce((s,t)=>s+(t.type==="in"?+t.amount:-t.amount),0)+xferFx(a,skip)+lmovFx(a)}
+function acctBal(a,all,skip){return (+a.base||0)+all.filter(t=>t.acct===a.id&&(t.at?t.at>(a.baseAt||0):t.date>(a.baseDate||""))).reduce((s,t)=>s+(t.type==="in"?+t.amount:-t.amount),0)+xferFx(a,skip)+lmovFx(a)+svFx(a)}
 function renderAccts(all){const A=accts();
   const out=h=>{$("#accts").innerHTML=$("#acctsAll").innerHTML=h};
   if(!A.length){out(`<p class="muted" style="margin:4px 0 12px;font-size:.88rem">Junta as tuas contas (banco, poupança, XTB, dinheiro, cartão) com o saldo de hoje. Cada movimento que registares numa conta atualiza o saldo sozinho.</p><div class="actions"><button class="btn" type="button" data-anew>Adicionar conta</button></div>`);return}
@@ -5422,6 +5843,673 @@ $("#wrapDlg").addEventListener("click",e=>{const b=e.target.closest("[data-wgo]"
 $("#wrapDlg").addEventListener("keydown",e=>{if(e.target.closest("input,select,textarea"))return;if(e.key==="ArrowRight"){e.preventDefault();wrapGo(S.wk+1)}else if(e.key==="ArrowLeft"){e.preventDefault();wrapGo(S.wk-1)}});
 let wrapST;$("#wrapTrack").addEventListener("scroll",()=>{clearTimeout(wrapST);wrapST=setTimeout(()=>{const tr=$("#wrapTrack"),k=Math.round(tr.scrollLeft/Math.max(1,tr.clientWidth));if(k!==S.wk){S.wk=k;wrapSync()}},60)},{passive:true});
 
+/* ---------- motor de poupanças ---------- */
+/* Caderneta · motor de cálculo das Poupanças (Certificados de Aforro, Certificados do Tesouro, contas poupança, depósitos a prazo).
+   Código puro, sem DOM nem rede: o mesmo ficheiro corre na app (window.SE) e nos testes (node --test dev/savings/*.test.js).
+
+   Separação dos dados:
+   - RULES ............ regras oficiais de cada produto (com fonte e data de consulta). Mudar uma regra = mudar só esta tabela.
+   - cfg.rates ........ taxas base mensais (oficiais IGCP, registadas pelo utilizador ou calculadas da Euribor que ele indicou).
+   - cfg.proj ......... cenário hipotético para meses futuros (nunca é tratado como taxa oficial).
+   - docs caf / sav ... dados introduzidos pelo utilizador (subscrições, depósitos, resgates).
+   - run*() ........... resultados calculados; nunca são guardados.
+
+   Convenções: datas em texto ISO "AAAA-MM-DD"; taxas em % ao ano; valores em euros arredondados ao cêntimo
+   (meio cêntimo arredonda para cima). Cada vencimento: juros brutos → IRS retido → juros líquidos → somados ao capital. */
+(function(root){
+"use strict";
+const VERSION="2026-11-01";
+
+/* ---------- números ---------- */
+const rN=(v,d)=>{const f=Math.pow(10,d);return Math.sign(v)*Math.round(Math.abs(v)*f+1e-7)/f};
+const r2=v=>rN(v,2),r3=v=>rN(v,3);
+const num=v=>v===null||v===undefined||v===""?null:(isFinite(+v)?+v:null);
+
+/* ---------- datas (sem fusos horários) ---------- */
+const P=s=>{const a=String(s).split("-").map(Number);return{y:a[0],m:a[1],d:a[2]}};
+const pad=n=>String(n).padStart(2,"0");
+const isoOf=(y,m,d)=>y+"-"+pad(m)+"-"+pad(d);
+const dim=(y,m)=>new Date(Date.UTC(y,m,0)).getUTCDate();
+const dnum=s=>{const p=P(s);return Math.round(Date.UTC(p.y,p.m-1,p.d)/864e5)};
+const days=(a,b)=>dnum(b)-dnum(a);
+const ymOf=s=>String(s).slice(0,7);
+const addDays=(s,n)=>new Date((dnum(s)+n)*864e5).toISOString().slice(0,10);
+/* n meses depois de s. Regra "next1" (IGCP): se o dia não existe nesse mês, vence no dia 1 do mês seguinte.
+   Regra "clamp" (bancos): último dia do mês. */
+function addMonths(s,n,rule){const p=P(s),t=p.m-1+n,y=p.y+Math.floor(t/12),m=((t%12)+12)%12+1,L=dim(y,m);
+  if(p.d<=L)return isoOf(y,m,p.d);
+  if(rule==="clamp")return isoOf(y,m,L);
+  return m===12?isoOf(y+1,1,1):isoOf(y,m+1,1)}
+/* anos e meses completos entre a e b (antiguidade) */
+function ageYM(a,b){const A=P(a),B=P(b);let m=(B.y-A.y)*12+(B.m-A.m);if(B.d<A.d)m--;m=Math.max(0,m);return{y:Math.floor(m/12),m:m%12,months:m}}
+
+/* ---------- regras oficiais ---------- */
+const IGCP_URL="https://www.igcp.pt/pt/aforristas/produtos-de-aforro/certificados-de-aforro";
+const RULES={
+  caf:{
+    F:{name:"Série F",active:true,termY:15,periodM:3,dayRule:"next1",unit:1,minUnits:10,
+      base:{spread:0,min:0,max:2.5,dec:3,days:10,fixed:"antepenúltimo dia útil do mês, para o mês seguinte"},
+      prem:[{from:2,to:5,pp:.25},{from:6,to:9,pp:.5},{from:10,to:11,pp:1},{from:12,to:13,pp:1.5},{from:14,to:15,pp:1.75}],
+      redeemAfter:1,capNet:true,
+      src:{label:"IGCP · Portaria n.º 149-A/2023 · ficha de produto Série F (abril 2026)",url:IGCP_URL,checked:"2026-11-01"}},
+    E:{name:"Série E",active:false,termY:10,periodM:3,dayRule:"next1",unit:1,
+      base:{spread:1,min:0,max:3.5,dec:3,days:10,fixed:"antepenúltimo dia útil do mês, para o mês seguinte"},
+      prem:[{from:2,to:5,pp:.5},{from:6,to:10,pp:1}],
+      redeemAfter:1,capNet:true,
+      src:{label:"IGCP · Portaria n.º 329-A/2017 · ficha técnica Série E",url:"https://www.igcp.pt/pt/ficha-tecnica-certificados-de-aforro-serie-e",checked:"2026-11-01"}},
+    /* séries antigas: as regras não estão carregadas na app; a taxa bruta de cada trimestre é a que o utilizador indicar */
+    D:{name:"Série D",manual:true,periodM:3,dayRule:"next1",redeemAfter:1,capNet:true},
+    C:{name:"Série C",manual:true,periodM:3,dayRule:"next1",redeemAfter:1,capNet:true},
+    B:{name:"Série B",manual:true,periodM:3,dayRule:"next1",redeemAfter:1,capNet:true},
+    A:{name:"Série A",manual:true,periodM:3,dayRule:"next1",redeemAfter:1,capNet:true}
+  },
+  /* produtos bancários e do Tesouro: regras genéricas, os parâmetros (taxa, prazo, periodicidade) vêm do contrato do utilizador */
+  sav:{
+    conta:{name:"Conta poupança",periodM:12,basis:365,cap:true,early:"keep",liquid:true},
+    dp:{name:"Depósito a prazo",periodM:0,basis:365,cap:false,early:"lose",termM:12},
+    ct:{name:"Certificados do Tesouro",periodM:12,basis:"per",cap:false,early:"lose",redeemAfter:1,sched:true},
+    outro:{name:"Outro produto",periodM:12,basis:365,cap:true,early:"keep"}
+  }
+};
+const TAX={rate:28,regimes:{lib:"Taxa liberatória (retenção definitiva)",eng:"Englobamento (retenção por conta)",isento:"Sem retenção / outra taxa"}};
+
+function premium(R,y){if(!R||!R.prem)return 0;const b=R.prem.find(x=>y>=x.from&&y<=x.to);return b?b.pp:0}
+/* média da Euribor a 3 meses (dez dias úteis), arredondada à 3.ª casa decimal */
+function euriborAvg(vals){const v=(vals||[]).map(num).filter(x=>x!==null);if(!v.length)return null;return r3(v.reduce((a,b)=>a+b,0)/v.length)}
+/* taxa base de uma série a partir da média da Euribor: E3 (+ spread), limitada ao intervalo oficial */
+function baseFromEuribor(serie,avg){const R=RULES.caf[serie];if(!R||!R.base||avg===null||avg===undefined||!isFinite(avg))return null;
+  return r3(Math.min(R.base.max,Math.max(R.base.min,r3(avg)+R.base.spread)))}
+
+/* ---------- livro de taxas base mensais ---------- */
+/* cfg = {rates:{F:{"2026-09":{v,o:"igcp"|"user"|"euribor",src,at}}}, proj:{F:2.1}, fallback:{F:2}} */
+const KIND={oficial:"oficial",derivada:"derivada da taxa oficial da Série F",euribor:"calculada da Euribor",registada:"registada por ti",utilizador:"indicada por ti",estimada:"estimada",hipotetica:"hipotética",desconhecida:"sem taxa"};
+function rateBook(cfg,today){const rates=(cfg&&cfg.rates)||{},proj=(cfg&&cfg.proj)||{},fb=(cfg&&cfg.fallback)||{},cur=ymOf(today);
+  /* Série E a partir da Série F do mesmo mês: as duas usam a mesma média E3 (fixada no mesmo dia).
+     F = min(2,5; max(0; E3)) e E = min(3,5; max(0; E3 + 1)). Se 0 < F < 2,5 então E3 = F e E = F + 1; se F = 2,5 então E3 ≥ 2,5 e E = 3,5.
+     Com F = 0 não se sabe E3, por isso não se deriva. */
+  const tabs={};Object.keys(rates).forEach(s=>tabs[s]=rates[s]);
+  const dF=rates.F||{},dE={};Object.keys(dF).forEach(k=>{const f=num(dF[k].v);if(f!==null&&f>0)dE[k]={v:r3(Math.min(3.5,f>=2.5?3.5:f+1)),o:"derived"}});
+  tabs.E=Object.assign(dE,rates.E||{});
+  return function(serie,key){const T=tabs[serie]||{},row=T[key];
+    if(row&&num(row.v)!==null)return{v:+row.v,kind:row.o==="igcp"?"oficial":row.o==="euribor"?"euribor":row.o==="derived"?"derivada":"registada",ref:key};
+    const keys=Object.keys(T).filter(k=>num(T[k].v)!==null).sort(),prev=keys.filter(k=>k<key).pop();
+    if(key>cur){if(num(proj[serie])!==null)return{v:+proj[serie],kind:"hipotetica",ref:"cenário"};
+      if(prev)return{v:+T[prev].v,kind:"hipotetica",ref:prev}}
+    else{if(prev)return{v:+T[prev].v,kind:"estimada",ref:prev};
+      if(num(fb[serie])!==null)return{v:+fb[serie],kind:"estimada",ref:"valor por omissão"};
+      const nx=keys.find(k=>k>key);if(nx)return{v:+T[nx].v,kind:"estimada",ref:nx}}
+    if(num(fb[serie])!==null)return{v:+fb[serie],kind:"hipotetica",ref:"valor por omissão"};
+    return{v:null,kind:"desconhecida",ref:null}}}
+const constBook=(v,kind)=>()=>({v,kind:kind||"hipotetica",ref:"cenário"});
+
+/* ---------- Certificados de Aforro: uma subscrição ---------- */
+/* sub = {serie, date, amount (capital ainda aplicado), amount0?, soldCost?, sales:[{d,c,v}], override?, ovDate?, rates:{k:taxa bruta}, rate0?, rateM?, termY?, irs?}
+   ctx = {today, book, irs, until?} */
+function cafPrincipal0(sub){return num(sub.amount0)>0?+sub.amount0:r2((+sub.amount||0)+(+sub.soldCost||0))}
+function runCaf(sub,ctx){
+  const R=RULES.caf[sub.serie]||RULES.caf.F,today=ctx.today,irs=num(sub.irs)!==null?+sub.irs:(num(ctx.irs)!==null?+ctx.irs:TAX.rate);
+  const P0=cafPrincipal0(sub),pm=R.periodM,termY=R.termY||num(sub.termY),termN=termY?termY*12/pm:null;
+  const until=ctx.until||addMonths(today,12*16,"clamp"),start=sub.date;
+  /* resgates: fração do capital resgatado em cada um (capital resgatado ÷ capital antes do resgate) */
+  let pr=P0;const S=(sub.sales||[]).filter(s=>s&&s.d).slice().sort((a,b)=>a.d.localeCompare(b.d)).map(s=>{const c=Math.min(Math.max(+s.c||0,0),pr),f=pr>0?c/pr:0;pr=r2(pr-c);return{d:s.d,c,v:num(s.v),f}});
+  const ov=num(sub.override)>0&&sub.ovDate?{d:sub.ovDate,v:+sub.override/S.filter(s=>s.d>sub.ovDate).reduce((a,s)=>a*(1-s.f),1)}:null;
+  let cap=P0,prin=P0,si=0,ovDone=!ov,k=0,prev=start,matured=null;
+  const ev=[],pts=[{d:start,cap,prin,t:"sub"}],adj=[];
+  const doSale=s=>{const v=r2(cap*s.f);cap=r2(cap-v);prin=r2(prin-s.c);pts.push({d:s.d,cap,prin,t:"red",v:s.v!==null?s.v:v,c:s.c})};
+  const doOv=()=>{const d=r2(ov.v-cap);if(Math.abs(d)>=.005)adj.push({d:ov.d,delta:d});cap=r2(ov.v);pts.push({d:ov.d,cap,prin,t:"ov"});ovDone=true};
+  const flush=lim=>{for(;;){const sN=si<S.length&&S[si].d<lim?S[si]:null,oN=!ovDone&&ov.d<lim;
+    if(sN&&(!oN||sN.d<=ov.d)){doSale(sN);si++;continue}if(oN){doOv();continue}break}};
+  while(prin>0){k++;if(termN&&k>termN)break;const date=addMonths(start,k*pm,R.dayRule);if(!termN&&date>until)break;
+    flush(date);if(prin<=0)break;
+    const y=Math.ceil(k*pm/12),pp=premium(R,y),man=sub.rates&&num(sub.rates[k])!==null?+sub.rates[k]:k===1&&num(sub.rate0)!==null?+sub.rate0:null;
+    let rate;
+    if(man!==null)rate={gross:man,base:r3(man-pp),prem:pp,kind:"utilizador",ref:null};
+    else if(R.manual){const L=Object.keys(sub.rates||{}).map(Number).filter(j=>j<k&&num(sub.rates[j])!==null).sort((a,b)=>a-b).pop();
+      const g=num(sub.rateM)!==null?+sub.rateM:L?+sub.rates[L]:num(sub.rate0);rate={gross:g,base:null,prem:0,kind:g===null?"desconhecida":date<=today&&num(sub.rateM)===null?"estimada":date>today?"hipotetica":"utilizador",ref:null}}
+    else{const b=ctx.book(sub.serie,ymOf(prev));rate={gross:b.v===null?null:r3(b.v+pp),base:b.v,prem:pp,kind:b.kind,ref:b.ref}}
+    const g=rate.gross===null?0:r2(cap*rate.gross/100*pm/12),tax=r2(g*irs/100),net=r2(g-tax),before=cap;
+    cap=r2(cap+net);
+    ev.push({k,y,start:prev,date,rate,cap:before,gross:g,tax,net,after:cap,past:date<=today,irs});
+    pts.push({d:date,cap,prin,t:"int"});
+    flush(addDays(date,1));
+    prev=date;
+    if(termN&&k===termN){matured={d:date,v:cap};pts.push({d:date,cap:0,prin:0,t:"mat",v:cap});cap=0;prin=0}}
+  flush(addDays(today,1));
+  return summarize({kind:"caf",R,P0,ev,pts,adj,matured,today,first:ev[0]?ev[0].date:addMonths(start,pm,R.dayRule),redeemAfter:R.redeemAfter||1,start})}
+
+/* ---------- produtos bancários e Certificados do Tesouro ---------- */
+/* p = {type, date, amount, rate, rates:[{d,r}], sched:[r1..rn], termM, periodM, basis, cap, early, irs, moves:[{d,a}], projRate} */
+function runBank(p,ctx){
+  const T=RULES.sav[p.type]||RULES.sav.outro,today=ctx.today,irs=num(p.irs)!==null?+p.irs:(num(ctx.irs)!==null?+ctx.irs:TAX.rate);
+  const pm=num(p.periodM)!==null?+p.periodM:T.periodM,termM=num(p.termM)>0?+p.termM:(p.type==="dp"?T.termM:null);
+  const basis=p.basis||T.basis,capz=p.cap!==undefined?!!p.cap:T.cap,early=p.early||T.early,start=p.date;
+  const until=ctx.until||addMonths(today,12*16,"clamp"),end=termM?addMonths(start,termM,"clamp"):until;
+  const P0=+p.amount||0,hist=[{d:start,r:num(p.rate)}].concat((p.rates||[]).filter(x=>x&&x.d&&num(x.r)!==null).map(x=>({d:x.d,r:+x.r}))).sort((a,b)=>a.d.localeCompare(b.d));
+  const sched=(p.sched||[]).map(num);
+  const rateAt=d=>{if(T.sched||p.type==="ct"){const y=Math.floor(ageYM(start,d).months/12);const v=sched[y];if(v!==null&&v!==undefined)return{r:v,kind:"utilizador"};
+      const L=sched.filter(x=>x!==null).pop();return{r:L===undefined?null:L,kind:L===undefined?"desconhecida":"hipotetica"}}
+    if(d>today&&num(p.projRate)!==null)return{r:+p.projRate,kind:"hipotetica"};
+    let c=null;for(const h of hist)if(h.d<=d)c=h;return{r:c?c.r:null,kind:c===null||c.r===null?"desconhecida":d>today?"hipotetica":"utilizador"}};
+  const B=[];if(pm>0){for(let k=1;;k++){const d=addMonths(start,k*pm,"clamp");if(d>=end){B.push(end);break}B.push(d)}}else B.push(end);
+  const moves=(p.moves||[]).filter(m=>m&&m.d&&num(m.a)!==null&&m.d>start&&m.d<end).slice().sort((a,b)=>a.d.localeCompare(b.d));
+  const rchg=hist.map(h=>h.d).filter(d=>d>start&&d<end);
+  let bal=P0,acc=0,t=start,mi=0,lost=0,accToday=null,prev=start,matured=null;const ev=[],pts=[{d:start,cap:bal,prin:P0,t:"sub"}];let prin=P0;
+  const seg=to=>{if(to<=t)return;const rr=rateAt(t).r;if(basis!=="per"&&rr!==null){
+      if(accToday===null&&t<=today&&to>today)accToday=acc+bal*rr/100*days(t,today)/basis;
+      acc+=bal*rr/100*days(t,to)/basis}t=to};
+  for(let k=0;k<B.length;k++){const b=B[k],bStart=prev,balStart=bal;
+    const stops=[...new Set(moves.filter(m=>m.d>=bStart&&m.d<b).map(m=>m.d).concat(rchg.filter(d=>d>bStart&&d<b)))].sort();
+    for(const s of stops){seg(s);while(mi<moves.length&&moves[mi].d===s){const m=moves[mi++],a=+m.a;
+        if(a<0&&early==="lose"&&bal>0&&basis!=="per"){const f=Math.min(1,-a/bal),x=acc*f;acc-=x;lost+=x}
+        bal=r2(Math.max(0,bal+a));prin=r2(Math.max(0,prin+a));pts.push({d:s,cap:bal,prin,t:a<0?"red":"dep",v:Math.abs(a)})}}
+    seg(b);
+    const rate=rateAt(bStart),pmEff=pm>0?pm:(termM||12);
+    const g=basis==="per"?(rate.r===null?0:r2(balStart*rate.r/100*pmEff/12)):r2(acc),tax=r2(g*irs/100),net=r2(g-tax),before=bal;
+    acc=0;if(capz)bal=r2(bal+net);
+    ev.push({k:k+1,start:bStart,date:b,rate:{gross:rate.r,kind:rate.kind},cap:before,gross:g,tax,net,after:bal,paid:!capz,past:b<=today,irs});
+    pts.push({d:b,cap:bal,prin,t:"int",paid:capz?0:net});
+    prev=b;
+    if(termM&&b===end){matured={d:b,v:bal};pts.push({d:b,cap:0,prin:0,t:"mat",v:bal});bal=0;prin=0;break}
+    if(bal<=0&&mi>=moves.length)break}
+  const r=summarize({kind:"sav",R:T,P0,ev,pts,adj:[],matured,today,first:B[0],redeemAfter:T.redeemAfter||0,start});
+  r.lost=r2(lost);r.accrued=accToday===null?0:r2(accToday);r.liquid=!!T.liquid;r.early=early;return r}
+
+/* ---------- resumo comum ---------- */
+function valueAt(pts,d){let c=null;for(const x of pts){if(x.d<=d)c=x;else break}return c?c.cap:0}
+/* valor de hoje + o que já foi reembolsado no fim do prazo (para previsões e simulações) */
+function wealthAt(r,d){return r2(valueAt(r.points,d)+(r.matured&&r.matured.d<=d?r.matured.v:0))}
+function principalAt(pts,d){let c=null;for(const x of pts){if(x.d<=d)c=x;else break}return c?c.prin:0}
+function summarize(o){const{ev,pts,today}=o,past=ev.filter(e=>e.past),fut=ev.filter(e=>!e.past),sum=(L,k)=>r2(L.reduce((a,e)=>a+e[k],0));
+  const red=pts.filter(x=>x.t==="red"&&x.d<=today),paidInt=r2(past.filter(e=>e.paid).reduce((a,e)=>a+e.net,0));
+  const matPaid=o.matured&&o.matured.d<=today?o.matured.v:0;
+  /* fluxos para a taxa interna de rentabilidade (TIR, líquida): entradas negativas, saídas positivas, valor de hoje no fim */
+  const flows=[{d:o.start,a:-o.P0}];pts.forEach(x=>{if(x.d>today)return;if(x.t==="dep")flows.push({d:x.d,a:-x.v});if(x.t==="red")flows.push({d:x.d,a:x.v});if(x.t==="mat")flows.push({d:x.d,a:x.v});if(x.paid)flows.push({d:x.d,a:x.paid})});
+  const value=valueAt(pts,today),principal=principalAt(pts,today);if(value>0)flows.push({d:today,a:value});
+  return{kind:o.kind,rule:o.R,P0:o.P0,events:ev,points:pts,adj:o.adj,
+    value,principal,grossToDate:sum(past,"gross"),taxToDate:sum(past,"tax"),netToDate:sum(past,"net"),adjToDate:r2(o.adj.filter(a=>a.d<=today).reduce((s,a)=>s+a.delta,0)),
+    received:r2(red.reduce((a,x)=>a+x.v,0)+paidInt+matPaid),paidInterest:paidInt,
+    last:past[past.length-1]||null,next:fut[0]||null,matured:o.matured,closed:value<=0&&principal<=0,
+    canRedeem:past.length>=o.redeemAfter,redeemFrom:o.first,flows,
+    unknownRates:ev.some(e=>e.rate.kind==="desconhecida"),estimated:past.some(e=>e.rate.kind==="estimada")}}
+
+/* ---------- taxa interna de rentabilidade anual (XIRR, base 365) ---------- */
+function xirr(flows){const F=(flows||[]).filter(f=>f&&isFinite(f.a)&&f.a!==0);if(F.length<2||!F.some(f=>f.a<0)||!F.some(f=>f.a>0))return null;
+  const t0=dnum(F.reduce((a,f)=>f.d<a?f.d:a,F[0].d)),T=F.map(f=>(dnum(f.d)-t0)/365);if(Math.max(...T)<=0)return null;
+  const npv=r=>F.reduce((s,f,i)=>s+f.a/Math.pow(1+r,T[i]),0);
+  let lo=-.99,hi=1;while(npv(hi)>0&&hi<1e3)hi*=2;if(npv(lo)*npv(hi)>0)return null;
+  for(let i=0;i<200;i++){const m=(lo+hi)/2,v=npv(m);if(Math.abs(v)<1e-9)return m;if(npv(lo)*v<0)hi=m;else lo=m}return(lo+hi)/2}
+
+/* ---------- imposto: estimativa do englobamento (hipotética, depende do teu escalão) ---------- */
+function englobamento(grossYear,withheld,marginal){const g=+grossYear||0,w=+withheld||0,m=num(marginal);if(m===null)return null;
+  const final=r2(g*m/100);return{final,diff:r2(w-final)}}/* diff > 0: a reter a mais (reembolso estimado) */
+
+/* ---------- simulador ---------- */
+/* sc = {mode:"cafF"|"rate", P0, monthly, rate, irs, years, start, compM}
+   Reforços: um por mês, do mês 1 ao último mês do prazo (12×anos − 1 reforços).
+   Modo cafF: cada reforço é uma nova subscrição da Série F, com a sua data, prémios de permanência e trimestres próprios;
+   a taxa base hipotética é limitada a 0%–2,50%. Modo rate: um só saldo, juros a 1/12 da taxa por mês, creditados (líquidos) a cada compM meses. */
+function simulate(sc){const Y=Math.max(1,Math.min(40,Math.round(+sc.years||1))),start=sc.start,end=addMonths(start,Y*12,"clamp"),irs=num(sc.irs)!==null?+sc.irs:TAX.rate;
+  const P0=Math.max(0,+sc.P0||0),M=Math.max(0,+sc.monthly||0),N=Y*12;
+  const contrib=[{d:start,a:P0}];for(let m=1;m<N;m++)if(M>0)contrib.push({d:addMonths(start,m,"clamp"),a:M});
+  const invested=r2(contrib.reduce((s,c)=>s+c.a,0)),months=Array.from({length:N+1},(_,m)=>addMonths(start,m,"clamp"));
+  let gross=0,tax=0,series;
+  if(sc.mode==="cafF"){const base=Math.min(2.5,Math.max(0,+sc.rate||0)),book=constBook(base),runs=contrib.filter(c=>c.a>0).map(c=>runCaf({serie:"F",date:c.d,amount:c.a},{today:start,book,irs,until:end}));
+    runs.forEach(r=>r.events.forEach(e=>{if(e.date<=end){gross+=e.gross;tax+=e.tax}}));
+    series=months.map(d=>({d,value:r2(runs.reduce((s,r)=>s+wealthAt(r,d),0)),inv:r2(contrib.filter(c=>c.d<=d).reduce((s,c)=>s+c.a,0))}));
+    const final=r2(runs.reduce((s,r)=>s+wealthAt(r,end),0));gross=r2(gross);tax=r2(tax);
+    return{invested,gross,tax,net:r2(gross-tax),final,series,subs:runs.length,base,end,reforcos:contrib.length-1}}
+  const r=Math.max(0,+sc.rate||0),cm=Math.max(1,Math.round(+sc.compM||1));let bal=0,acc=0;series=[];
+  for(let m=0;m<=N;m++){if(m>0){acc+=bal*r/100/12;if(m%cm===0||m===N){const g=r2(acc),t=r2(g*irs/100);gross+=g;tax+=t;bal=r2(bal+g-t);acc=0}}
+    if(m<N){const c=m===0?P0:M;bal=r2(bal+c)}
+    series.push({d:months[m],value:bal,inv:r2(m===0?P0:P0+M*Math.min(m,N-1))})}
+  series[N].inv=invested;gross=r2(gross);tax=r2(tax);
+  return{invested,gross,tax,net:r2(gross-tax),final:bal,series,subs:1,end,reforcos:contrib.length-1}}
+
+/* ---------- integração com o IGCP: interpretar texto da página (colado pelo utilizador ou obtido por fetch) ---------- */
+const MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+function parseIgcp(text){const t=String(text||"").replace(/\s+/g," "),out=[];
+  const re=/s[ée]rie\s+([A-F])[^.]{0,80}?em\s+(janeiro|fevereiro|mar[çc]o|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)\s+de\s+(\d{4})[^.]{0,40}?(\d+,\d+)\s*%/gi;
+  let m;while((m=re.exec(t))){const mi=MESES.indexOf(m[2].toLowerCase().replace("marco","março"));out.push({serie:m[1].toUpperCase(),ym:m[3]+"-"+pad(mi+1),v:+m[4].replace(",",".")})}
+  return out}
+
+const SE={VERSION,RULES,TAX,KIND,r2,r3,addMonths,addDays,ageYM,days,ymOf,premium,euriborAvg,baseFromEuribor,rateBook,constBook,
+  cafPrincipal0,runCaf,runBank,valueAt,wealthAt,principalAt,xirr,englobamento,simulate,parseIgcp};
+if(typeof module!=="undefined"&&module.exports)module.exports=SE;else root.SE=SE;
+})(typeof self!=="undefined"?self:this);
+
+/* ===================== Poupanças · produtos de aforro (motor: SE) =====================
+   Docs: caf  = subscrição de Certificados de Aforro {serie,date,amount,amount0,name,inst,rate0,rates{k},rateM,termY,irs,acct,payAt,note,override,ovDate,realized,soldCost,sales[{d,v,c,g,acct,at}]}
+         sav  = outro produto {type:conta|dp|ct|outro,name,inst,date,amount,rate,rates[{d,r}],sched[],termM,periodM,cap,basis,early,irs,acct,payAt,note,moves[{d,a,acct,at}]}
+         savcfg (id "savcfg") = {rates:{F:{"AAAA-MM":{v,o,src,at}|{del:true}}},proj:{F,E},tax:{rate,regime,marg}}
+         savsim = cenário guardado do simulador
+   Nada calculado é guardado: tudo sai do motor em cada render (com cache por versão dos dados). */
+const SV_SEED={F:{
+  "2026-07":{v:2.356,o:"igcp",src:"IGCP · taxa para julho de 2026 (divulgada em rankia.pt)",at:"2026-11-01"},
+  "2026-08":{v:2.474,o:"igcp",src:"IGCP · taxa para agosto de 2026 (divulgada em rankia.pt)",at:"2026-11-01"},
+  "2026-09":{v:2.5,o:"igcp",src:"igcp.pt · Certificados de Aforro, setembro de 2026",at:"2026-11-01"}},E:{}};
+const SV_T={caf:{n:"Certificados de Aforro",c:"#1f9d6b"},ct:{n:"Certificados do Tesouro",c:"#2f6fd6"},conta:{n:"Conta poupança",c:"#d08a1c"},dp:{n:"Depósito a prazo",c:"#8a62d6"},outro:{n:"Outro produto",c:"#64748b"}};
+const SV_KC={oficial:["good","oficial"],derivada:["good","oficial (da F)"],euribor:["good","da Euribor"],registada:["neutral","registada"],utilizador:["neutral","indicada"],estimada:["warn","estimada"],hipotetica:["warn","hipotética"],desconhecida:["bad","sem taxa"]};
+const svChip=k=>{const x=SV_KC[k]||SV_KC.desconhecida;return `<span class="chip ${x[0]} sv-k" title="${esc(SE.KIND[k]||"")}">${x[1]}</span>`};
+const savs=()=>[...S.items.values()].filter(o=>o.kind==="sav").sort((a,b)=>(a.date||"").localeCompare(b.date||""));
+const svPct=(v,d)=>v==null||!isFinite(v)?"—":(+v).toLocaleString("pt-PT",{minimumFractionDigits:d??2,maximumFractionDigits:d??3})+"%";
+const svMonth=k=>{const [y,m]=k.split("-");return MLONG?MLONG[+m-1]+" de "+y:k};
+const MLONG=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const svName=(d)=>d.kind==="caf"?(d.name||"Certificados de Aforro")+" · Série "+(d.serie||"F"):(d.name||SV_T[d.type||"outro"].n);
+const svR2=v=>Math.round(v*100)/100;
+const SV={ver:0,c:null,range:(()=>{try{return +localStorage.getItem("caderneta.svRange")||5}catch(e){return 5}})(),cal:12,hist:"all",histN:20,rts:"F",simCache:null};
+S.psub=(()=>{try{return localStorage.getItem("caderneta.psub")||""}catch(e){return ""}})();
+["putMany","delMany"].forEach(k=>{const f=Store[k].bind(Store);Store[k]=x=>{SV.ver++;return f(x)}});
+
+/* ---------- configuração: taxas oficiais (semente no código + registos do utilizador), cenário e impostos ---------- */
+function svCfg(){const d=S.items.get("savcfg")||{},rates={};
+  ["F","E"].forEach(s=>{const R=Object.assign({},SV_SEED[s]||{},(d.rates||{})[s]||{});Object.keys(R).forEach(k=>{if(!R[k]||R[k].del)delete R[k]});rates[s]=R});
+  const st=settings(),B=st.cafBase!=null&&st.cafBase!==""&&isFinite(+st.cafBase)?+st.cafBase:null;
+  return{rates,proj:Object.assign({},d.proj||{}),tax:Object.assign({rate:28,regime:"lib",marg:null},d.tax||{}),
+    fallback:B==null?{}:{F:Math.min(2.5,Math.max(0,B)),E:Math.min(3.5,Math.max(0,B+1))}}}
+function svPutCfg(fn){const d=Object.assign({id:"savcfg",kind:"savcfg"},JSON.parse(JSON.stringify(S.items.get("savcfg")||{})));fn(d);d.id="savcfg";d.kind="savcfg";return Store.put(d)}
+function svAll(){const t=todayISO();if(SV.c&&SV.c.v===SV.ver&&SV.c.items===S.items&&SV.c.t===t)return SV.c;
+  const cfg=svCfg(),book=SE.rateBook(cfg,t),ctx={today:t,book,irs:cfg.tax.regime==="isento"?(cfg.tax.rate??0):cfg.tax.rate};
+  const run=(doc,fn)=>{try{return{doc,r:fn(doc,ctx)}}catch(e){console.error(e);return null}};
+  const caf=cafs().map(c=>run(c,SE.runCaf)).filter(Boolean),sav=savs().map(p=>run(p,SE.runBank)).filter(Boolean),all=caf.concat(sav);
+  SV.c={v:SV.ver,items:S.items,t,cfg,book,ctx,caf,sav,all,byId:new Map(all.map(x=>[x.doc.id,x]))};return SV.c}
+function svRunOf(doc){const A=svAll(),x=A.byId.get(doc.id);if(x&&x.doc===doc)return x;return{doc,r:doc.kind==="sav"?SE.runBank(doc,A.ctx):SE.runCaf(doc,A.ctx)}}
+function svBaseNow(serie){try{const A=svAll(),b=A.book(serie,todayISO().slice(0,7));return b.v}catch(e){return null}}
+/* movimentos de dinheiro entre os produtos e as contas (não são receitas nem despesas) */
+function svFlows(){const A=svAll();if(A.flows)return A.flows;const t=A.t,out=[],noon=d=>new Date(d+"T12:00:00").getTime();
+  const add=(acct,a,d,at)=>{if(acct&&d&&d<=t&&a)out.push({acct,a:svR2(a),d,at:at||noon(d)})};
+  A.all.forEach(({doc:o,r})=>{add(o.acct,-r.P0,o.date,o.payAt);
+    if(o.kind==="caf")(o.sales||[]).forEach(s=>add(s.acct,+s.v||0,s.d,s.at));
+    else{(o.moves||[]).forEach(m=>add(m.acct,-(+m.a||0),m.d,m.at));r.events.forEach(e=>{if(e.past&&e.paid)add(o.acct,e.net,e.date)})}
+    if(r.matured)add(o.acct,r.matured.v,r.matured.d)});
+  return A.flows=out}
+const svFx=a=>svFlows().filter(f=>f.acct===a.id&&f.at>(a.baseAt||0)).reduce((s,f)=>s+f.a,0);
+const svSavValue=d=>svAll().sav.reduce((s,x)=>s+SE.valueAt(x.r.points,d),0);
+/* património: valor dos produtos que não são Certificados de Aforro (esses já entram como posição em Investimentos) */
+nwAt=(f=>function(e,C){const r=f(e,C),t=todayISO();
+  try{if(C.ac&&C.ac.length&&e<t){const ids=new Set(C.ac.map(a=>a.id));r.liq-=svFlows().filter(x=>ids.has(x.acct)&&x.d>e&&x.d<=t).reduce((s,x)=>s+x.a,0)}
+    r.port+=svSavValue(e<t?e:t)}catch(err){console.error(err)}return r})(nwAt);
+
+/* ---------- agregados ---------- */
+function svAgg(){const A=svAll(),t=A.t,L=A.all,q=SE.addMonths(t,-3,"clamp");
+  const o={n:L.length,open:L.filter(x=>!x.r.closed),inv:0,sub:0,cap:0,gross:0,tax:0,net:0,adj:0,rec:0,lq:{gross:0,tax:0,net:0},next:null,flows:[]};
+  L.forEach(({doc,r})=>{o.inv+=r.principal;o.sub+=r.P0+(doc.moves||[]).filter(m=>+m.a>0&&m.d<=t).reduce((s,m)=>s+ +m.a,0);o.cap+=r.value;o.gross+=r.grossToDate;o.tax+=r.taxToDate;o.net+=r.netToDate;o.adj+=r.adjToDate;o.rec+=r.received;
+    r.events.forEach(e=>{if(e.past&&e.date>q){o.lq.gross+=e.gross;o.lq.tax+=e.tax;o.lq.net+=e.net}});
+    if(r.next&&(!o.next||r.next.date<o.next.e.date))o.next={e:r.next,doc};o.flows.push(...r.flows)});
+  o.irr=SE.xirr(o.flows);return o}
+function svNextList(months){const A=svAll(),t=A.t,end=SE.addMonths(t,months,"clamp"),out=[];
+  A.all.forEach(({doc,r})=>r.events.forEach(e=>{if(!e.past&&e.date<=end)out.push({doc,e})}));return out.sort((a,b)=>a.e.date.localeCompare(b.e.date))}
+
+/* ---------- gráfico de linhas reutilizável (tooltip com rato, toque e teclado) ---------- */
+function svChart(sel,o){const el=$(sel);if(!el)return;const P=o.pts;if(!P||P.length<2){el.innerHTML=`<p class="muted sv-cempty">${o.empty||"Sem dados para o gráfico."}</p>`;return}
+  const W=chartW(sel),H=o.h||Math.round(Math.min(280,Math.max(200,W*.32))),L=68,R=12,T=12,B=24,iw=W-L-R,ih=H-T-B,S2=o.series;
+  const vals=P.flatMap(p=>S2.map(s=>p[s.k]).filter(v=>v!=null&&isFinite(v)));let mn=Math.min(...vals),mx=Math.max(...vals);const pd=(mx-mn)*.08||mx*.05||1;mn=Math.max(0,mn-pd);mx+=pd;
+  const t0=Date.parse(P[0].d),t1=Date.parse(P[P.length-1].d)||t0+1,X=d=>L+iw*(Date.parse(d)-t0)/Math.max(1,t1-t0),Y=v=>T+ih-ih*(v-mn)/(mx-mn);
+  const path=(k,f)=>{let s="",on=false;P.forEach(p=>{const v=p[k];if(v==null||!isFinite(v)||(f&&!f(p))){on=false;return}s+=(on?"L":"M")+X(p.d).toFixed(1)+" "+Y(v).toFixed(1);on=true});return s};
+  const id="g"+sel.replace(/\W/g,"");let g=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.label||"Gráfico")}" tabindex="0">`;
+  for(let i=0;i<=3;i++){const v=mn+(mx-mn)*i/3,y=Y(v);g+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" style="stroke:var(--line)"/><text x="${L-8}" y="${y+4}" text-anchor="end">${COMPACT.format(v)}</text>`}
+  const yrs=(t1-t0)/(365*864e5),lbl=d=>{const [y,m]=d.split("-");return yrs>2.5?y:MSHORT[+m-1]+" "+y.slice(2)};
+  [0,.5,1].forEach((f,i)=>{const p=P[Math.round((P.length-1)*f)];g+=`<text x="${X(p.d)}" y="${H-6}" text-anchor="${["start","middle","end"][i]}">${lbl(p.d)}</text>`});
+  if(o.split&&o.split>P[0].d&&o.split<P[P.length-1].d){const x=X(o.split);g+=`<rect x="${x}" y="${T}" width="${W-R-x}" height="${ih}" style="fill:var(--surface-2);opacity:.55"/><line x1="${x}" x2="${x}" y1="${T}" y2="${T+ih}" style="stroke:var(--ink-2);stroke-dasharray:2 3"/><text x="${x+6}" y="${T+12}" style="font-size:10px">hoje</text>`}
+  g+=`<defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" style="stop-color:var(--in);stop-opacity:.25"/><stop offset="1" style="stop-color:var(--in);stop-opacity:0"/></linearGradient></defs>`;
+  S2.forEach(s=>{if(s.area){const d=path(s.k,s.f);if(d){const ps=P.filter(p=>p[s.k]!=null&&(!s.f||s.f(p)));g+=`<path d="${d} L${X(ps[ps.length-1].d)} ${T+ih} L${X(ps[0].d)} ${T+ih} Z" style="fill:url(#${id})"/>`}}});
+  S2.forEach(s=>{const d=path(s.k,s.f);if(d)g+=`<path class="sv-ln" d="${d}" style="fill:none;stroke:${s.c};stroke-width:${s.w||2.2};${s.dash?"stroke-dasharray:"+s.dash+";":""}stroke-linejoin:round;stroke-linecap:round"/>`});
+  g+=`<g class="sv-cur" style="display:none"><line y1="${T}" y2="${T+ih}" style="stroke:var(--ink-2);stroke-width:1"/>${S2.map((s,i)=>`<circle r="4" data-i="${i}" style="fill:${s.c};stroke:var(--surface);stroke-width:2"/>`).join("")}</g></svg><div class="sv-tt" hidden></div>`;
+  el.innerHTML=g;el.classList.add("sv-chart");const svg=el.querySelector("svg"),cur=el.querySelector(".sv-cur"),tt=el.querySelector(".sv-tt");let at=-1;
+  const show=i=>{at=Math.max(0,Math.min(P.length-1,i));const p=P[at],x=X(p.d);cur.style.display="";cur.querySelector("line").setAttribute("x1",x);cur.querySelector("line").setAttribute("x2",x);
+    cur.querySelectorAll("circle").forEach(c=>{const s=S2[+c.dataset.i],v=p[s.k];if(v==null||!isFinite(v)){c.style.display="none";return}c.style.display="";c.setAttribute("cx",x);c.setAttribute("cy",Y(v))});
+    tt.innerHTML=`<b>${dmy(p.d)}</b>`+S2.filter(s=>p[s.k]!=null&&isFinite(p[s.k])).map(s=>`<span><i style="background:${s.c}"></i>${esc(s.lbl)}<em>${eur(p[s.k])}</em></span>`).join("")+(o.tip?o.tip(p):"");
+    tt.hidden=false;const r=svg.getBoundingClientRect(),sc=r.width/W,left=x*sc;tt.style.left=Math.min(Math.max(4,left+12),r.width-tt.offsetWidth-4)+"px";if(left+12+tt.offsetWidth>r.width)tt.style.left=Math.max(4,left-tt.offsetWidth-12)+"px"};
+  const hide=()=>{cur.style.display="none";tt.hidden=true};
+  const near=ev=>{const r=svg.getBoundingClientRect(),x=(ev.clientX-r.left)*W/r.width;let b=0,bd=1e9;P.forEach((p,i)=>{const d=Math.abs(X(p.d)-x);if(d<bd){bd=d;b=i}});return b};
+  svg.addEventListener("pointermove",ev=>show(near(ev)));svg.addEventListener("pointerdown",ev=>show(near(ev)));svg.addEventListener("pointerleave",ev=>{if(ev.pointerType==="mouse")hide()});
+  svg.addEventListener("focus",()=>show(at<0?P.length-1:at));svg.addEventListener("blur",hide);
+  svg.addEventListener("keydown",ev=>{const st=ev.shiftKey?12:1;if(ev.key==="ArrowRight"){ev.preventDefault();show(at+st)}else if(ev.key==="ArrowLeft"){ev.preventDefault();show(at-st)}else if(ev.key==="Home"){ev.preventDefault();show(0)}else if(ev.key==="End"){ev.preventDefault();show(P.length-1)}else if(ev.key==="Escape")hide()})}
+
+/* ---------- sub-abas ---------- */
+const PSUBS=["resumo","produtos","calendario","simulador","taxas","metas"];
+function setPsub(k,focus){if(!PSUBS.includes(k))k="resumo";S.psub=k;try{localStorage.setItem("caderneta.psub",k)}catch(e){}
+  document.querySelectorAll("#psubs [data-psub]").forEach(b=>{const on=b.dataset.psub===k;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1});
+  document.querySelectorAll("#tab-poupancas .psp").forEach(p=>p.hidden=p.dataset.psp!==k);$("#tab-poupancas").dataset.psub=k;
+  if(k==="metas")renderGoals();renderSav();if(focus)$("#psub-"+k).focus();$("#psub-"+k).scrollIntoView({block:"nearest",inline:"nearest"})}
+$("#psubs").addEventListener("click",e=>{const b=e.target.closest("[data-psub]");if(b)setPsub(b.dataset.psub)});
+$("#psubs").addEventListener("keydown",e=>{const B=[...$("#psubs").querySelectorAll("[data-psub]")],i=B.findIndex(b=>b.dataset.psub===S.psub);let n=null;
+  if(e.key==="ArrowRight")n=(i+1)%B.length;else if(e.key==="ArrowLeft")n=(i-1+B.length)%B.length;else if(e.key==="Home")n=0;else if(e.key==="End")n=B.length-1;
+  if(n!=null){e.preventDefault();setPsub(B[n].dataset.psub,true)}});
+document.addEventListener("click",e=>{const g=e.target.closest("[data-psgo]");if(g){setPsub(g.dataset.psgo);document.querySelector("#tab-poupancas").scrollIntoView({block:"start"});return}
+  const n=e.target.closest("[data-svnew]");if(n){n.dataset.svnew==="caf"?svOpenCaf(null,n.dataset.svname?{name:n.dataset.svname}:null):svOpenProd(null);return}},false);
+/* "Ver todas" das metas no Dashboard abre a sub-aba Metas */
+document.addEventListener("click",e=>{if(e.target.closest('[data-go="poupancas"],#goalNew'))setPsub("metas")},true);
+
+function renderSav(){if(!$("#psubs"))return;const A=svAll(),k=S.psub||(A.all.length?"resumo":(goalsCount()?"metas":"resumo"));
+  S.psub=PSUBS.includes(k)?k:"resumo";document.querySelectorAll("#tab-poupancas .psp").forEach(p=>p.hidden=p.dataset.psp!==S.psub);document.querySelectorAll("#psubs [data-psub]").forEach(b=>{const on=b.dataset.psub===S.psub;b.setAttribute("aria-selected",String(on));b.tabIndex=on?0:-1});
+  $("#tab-poupancas").dataset.psub=S.psub;
+  $("#psN").textContent=A.all.filter(x=>!x.r.closed).length||"";$("#pgN").textContent=goalsCount()||"";
+  $("#svActs").hidden=S.psub==="metas";if(S.psub!=="metas")$("#poupSub").textContent="Certificados de Aforro, depósitos e outras poupanças: quanto rendem, quando vencem os juros e quanto vai para o IRS.";$("#tab-poupancas .phead [data-gnew]").hidden=S.psub!=="metas";
+  if(S.tab!=="poupancas")return;
+  try{({resumo:svResumo,produtos:svProdutos,calendario:svCalendario,simulador:svSim,taxas:svTaxas}[S.psub]||(()=>{}))()}catch(e){console.error(e)}}
+const goalsCount=()=>[...S.items.values()].filter(o=>o.kind==="goal").length;
+
+/* ---------- Resumo ---------- */
+function svRateBanner(){const A=svAll(),cur=A.t.slice(0,7),b=A.book("F",cur),hasF=A.caf.some(x=>(x.doc.serie||"F")==="F"&&!x.r.closed);if(!A.caf.length)return"";
+  const ok=b.kind==="oficial"||b.kind==="registada"||b.kind==="euribor";
+  return `<div class="sv-rb ${ok?"":"warn"}"><span>Taxa base Série F · ${svMonth(cur)}</span><b class="num">${svPct(b.v)}</b>${svChip(b.kind)}${ok?"":`<small>${b.ref&&b.ref.length===7?"usa a de "+svMonth(b.ref)+" até registares a nova":"sem taxa registada"}${hasF?"":""}</small><button class="link" type="button" data-psgo="taxas">Atualizar →</button>`}</div>`}
+function svResumo(){const A=svAll(),has=A.all.length>0;$("#svEmpty").hidden=has;$("#svDash").hidden=!has;if(!has)return;
+  const g=svAgg(),t=A.t,irrS=g.irr==null?"—":svPct(g.irr*100,2);
+  $("#svCap").textContent=eur(g.cap);
+  $("#svCapSub").innerHTML=`${g.open.length} ${g.open.length===1?"produto ativo":"produtos ativos"} · ${A.caf.filter(x=>!x.r.closed).length} ${A.caf.filter(x=>!x.r.closed).length===1?"subscrição":"subscrições"} de Certificados de Aforro`;
+  $("#svRateNote").innerHTML=svRateBanner();
+  const yrs=SV.range,end=SE.addMonths(t,yrs*12,"clamp"),fut=A.all.reduce((s,x)=>s+SE.wealthAt(x.r,end),0),futMat=A.all.reduce((s,x)=>s+(x.r.matured&&x.r.matured.d>t&&x.r.matured.d<=end?x.r.matured.v:0),0);
+  const fe=[];A.all.forEach(x=>x.r.events.forEach(e=>{if(!e.past&&e.date<=end&&!e.paid)fe.push(e)}));
+  const fG=fe.reduce((s,e)=>s+e.gross,0),fT=fe.reduce((s,e)=>s+e.tax,0),nx=g.next;
+  const K=[
+    ["Total investido",eur(g.inv),`capital ainda aplicado${g.sub>g.inv+.005?" · "+eur0(g.sub)+" subscrito ao todo":""}`],
+    ["Capital atual",eur(g.cap),`capital + juros líquidos já capitalizados`],
+    ["Juros acumulados (líquidos)",`<span style="color:var(--in)">${seur(g.net)}</span>`,`brutos ${eur(g.gross)} · IRS retido ${eur(g.tax)}${Math.abs(g.adj)>=.01?` · acerto AforroNet ${seur(g.adj)}`:""}`],
+    ["Juros nos últimos 3 meses",`<span style="color:var(--in)">${seur(g.lq.net)}</span>`,`líquidos · brutos ${eur(g.lq.gross)} · IRS ${eur(g.lq.tax)}`],
+    ["Rentabilidade acumulada",g.sub>0?svPct((g.net+g.adj)/g.sub*100,2):"—",`juros líquidos ÷ capital subscrito`],
+    ["Rentabilidade anual",irrS,`taxa interna (TIR) líquida, por ano`],
+    ["Próxima capitalização",nx?dmy(nx.e.date):"—",nx?`${inDays(nx.e.date)} · ${esc(svName(nx.doc))} · + ${eur(nx.e.net)} líquidos ${nx.e.rate.kind==="hipotetica"||nx.e.rate.kind==="estimada"?"(estimado)":""}`:"sem vencimentos marcados"],
+    [`Previsão a ${yrs} ${yrs===1?"ano":"anos"}`,eur(fut),`<span class="chip warn">hipotético</span> + ${eur(fG-fT)} líquidos (brutos ${eur0(fG)}, IRS ${eur0(fT)})${futMat?` · inclui ${eur0(futMat)} reembolsados no fim do prazo`:""}`]];
+  $("#svKpis").innerHTML=K.map(k=>`<div class="kpi"><span class="eyebrow">${k[0]}</span><span class="v num">${k[1]}</span><span class="foot">${k[2]}</span></div>`).join("");
+  document.querySelectorAll("#svRange button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.svr===yrs)));
+  const first=A.all.reduce((m,x)=>x.doc.date<m?x.doc.date:m,"9999"),from=[first,SE.addMonths(t,-yrs*12,"clamp")].sort()[1],pts=[];
+  const nM=Math.max(2,Math.round((Date.parse(end)-Date.parse(from))/(30.44*864e5))),step=Math.max(1,Math.ceil(nM/180));
+  for(let m=0;;m+=step){let d=SE.addMonths(from,m,"clamp");if(d>end)d=end;const p={d,inv:svR2(A.all.reduce((s,x)=>s+SE.principalAt(x.r.points,d),0))},v=svR2(A.all.reduce((s,x)=>s+SE.valueAt(x.r.points,d),0));
+    if(d<=t)p.cap=v;if(d>=t)p.proj=v;pts.push(p);if(d>=end)break}
+  const ti=pts.findIndex(p=>p.d>t);if(ti>0&&pts[ti-1].d<t){const v=svR2(g.cap);pts.splice(ti,0,{d:t,cap:v,proj:v,inv:svR2(g.inv)})}
+  svChart("#svChart",{pts,split:t,label:"Evolução do capital das poupanças",series:[{k:"inv",lbl:"Investido",c:"var(--ink-2)",dash:"4 4",w:1.5},{k:"cap",lbl:"Capital",c:"var(--in)",area:true,w:2.6},{k:"proj",lbl:"Previsão",c:"var(--in)",dash:"6 5",w:2.2}]});
+  const pf=A.book("F",SE.addMonths(t,4,"clamp").slice(0,7));
+  $("#svChNote").innerHTML=`Até hoje: calculado. Depois de hoje: previsão com taxa base de ${svPct(pf.v)} na Série F (${pf.ref==="cenário"?"o teu cenário":"última conhecida"}), mais os prémios de permanência.`;
+  const N=svNextList(12).slice(0,5);
+  $("#svNext").innerHTML=N.length?`<div class="sv-list">${N.map(x=>`<button type="button" class="sv-li" data-svdet="${esc(x.doc.id)}"><span class="sv-dt"><b>${x.e.date.slice(8)}</b><small>${MSHORT[+x.e.date.slice(5,7)-1]}</small></span><span class="sv-n"><b>${esc(svName(x.doc))}</b><small>${svPct(x.e.rate.gross)} ${svChip(x.e.rate.kind)}</small></span><span class="sv-a"><b class="num">+ ${eur(x.e.net)}</b><small>bruto ${eur(x.e.gross)} · IRS ${eur(x.e.tax)}</small></span></button>`).join("")}</div>`:`<p class="muted">Sem vencimentos nos próximos 12 meses.</p>`;
+  const by={};A.all.forEach(x=>{if(x.r.value<=0)return;const k=x.doc.kind==="caf"?"caf":x.doc.type||"outro";by[k]=(by[k]||0)+x.r.value});const tot=Object.values(by).reduce((a,b)=>a+b,0)||1;
+  $("#svMix").innerHTML=Object.keys(by).length?`<div class="sv-mixbar" role="img" aria-label="Distribuição do capital por tipo de produto">${Object.keys(by).map(k=>`<i style="width:${by[k]/tot*100}%;background:${SV_T[k].c}"></i>`).join("")}</div><ul class="sv-mix">${Object.keys(by).sort((a,b)=>by[b]-by[a]).map(k=>`<li><i style="background:${SV_T[k].c}"></i><span>${SV_T[k].n}</span><b class="num">${eur(by[k])}</b><small>${svPct(by[k]/tot*100,1)}</small></li>`).join("")}</ul>`:`<p class="muted">Sem capital aplicado.</p>`}
+$("#svRange").addEventListener("click",e=>{const b=e.target.closest("[data-svr]");if(!b)return;SV.range=+b.dataset.svr;try{localStorage.setItem("caderneta.svRange",SV.range)}catch(x){}svResumo()});
+
+/* ---------- Produtos ---------- */
+const svAge=d=>{const a=SE.ageYM(d,todayISO());return a.y?`${a.y} ${a.y===1?"ano":"anos"}${a.m?" e "+a.m+" "+(a.m===1?"mês":"meses"):""}`:`${a.m} ${a.m===1?"mês":"meses"}`};
+function svCurRate(r){const e=r.next||r.last;return e?e.rate:null}
+function svProdutos(){const A=svAll(),box=$("#svProds");
+  if(!A.all.length){box.innerHTML=`<div class="card empty"><h2>Ainda sem produtos</h2><p>Começa por registar uma subscrição de Certificados de Aforro ou outro produto de poupança.</p><div class="actions sv-emacts"><button class="btn primary" type="button" data-svnew="caf">+ Certificados de Aforro</button><button class="btn" type="button" data-svnew="sav">+ Outro produto</button></div></div>`;return}
+  const groups=new Map();A.caf.forEach(x=>{const k=(x.doc.name||"Certificados de Aforro").trim();if(!groups.has(k))groups.set(k,[]);groups.get(k).push(x)});
+  let h="";
+  groups.forEach((L,name)=>{const open=L.filter(x=>!x.r.closed),cap=L.reduce((s,x)=>s+x.r.value,0),net=L.reduce((s,x)=>s+x.r.netToDate,0),gross=L.reduce((s,x)=>s+x.r.grossToDate,0),tax=L.reduce((s,x)=>s+x.r.taxToDate,0),inst=[...new Set(L.map(x=>x.doc.inst).filter(Boolean))].join(", ");
+    const nx=open.map(x=>x.r.next).filter(Boolean).sort((a,b)=>a.date.localeCompare(b.date))[0];
+    h+=`<section class="card sv-grp" aria-label="${esc(name)}"><div class="sv-gh"><span class="sv-ic" style="background:${SV_T.caf.c}" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 10h8M8 14h5"/></svg></span>
+      <div class="sv-gt"><h3>${esc(name)}</h3><p>${SV_T.caf.n}${inst?" · "+esc(inst):""} · ${open.length} ${open.length===1?"subscrição ativa":"subscrições ativas"}</p></div>
+      <div class="sv-gv"><b class="num">${eur(cap)}</b><small>juros líquidos ${seur(net)}</small></div>
+      <button class="btn" type="button" data-svnew="caf" data-svname="${esc(name)}">+ Subscrição</button></div>
+      <div class="sv-gs"><span>Brutos <b class="num">${eur(gross)}</b></span><span>IRS retido <b class="num">${eur(tax)}</b></span><span>Líquidos <b class="num">${eur(net)}</b></span>${nx?`<span>Próximo vencimento <b class="num">${dmy(nx.date)}</b></span>`:""}</div>
+      <div class="sv-tablewrap"><table class="sv-table sv-subs"><thead><tr><th scope="col">Subscrição</th><th scope="col">Série</th><th scope="col" class="r">Capital</th><th scope="col">Antiguidade</th><th scope="col" class="r">Taxa atual</th><th scope="col" class="r">Valor atual</th><th scope="col">Próximo vencimento</th><th scope="col"><span class="sr">Ações</span></th></tr></thead><tbody>
+      ${L.map(({doc:c,r})=>{const rt=svCurRate(r);return `<tr class="${r.closed?"closed":""}">
+        <td data-l="Subscrição"><b class="num">${dmy(c.date)}</b>${c.note?`<small>${esc(c.note)}</small>`:""}</td>
+        <td data-l="Série">${esc(c.serie||"F")}</td>
+        <td data-l="Capital" class="r num">${eur(r.principal)}${r.P0>r.principal+.005?`<small>de ${eur(r.P0)}</small>`:""}</td>
+        <td data-l="Antiguidade">${r.closed?"—":svAge(c.date)}</td>
+        <td data-l="Taxa atual" class="r">${rt&&!r.closed?`<span class="num">${svPct(rt.gross)}</span><small>${rt.base!=null?svPct(rt.base)+" + "+svPct(rt.prem,2):""} ${svChip(rt.kind)}</small>`:"—"}</td>
+        <td data-l="Valor atual" class="r"><b class="num">${r.closed?(r.matured?"reembolsado":"resgatado"):eur(r.value)}</b>${r.closed?"":`<small style="color:var(--in)">${seur(r.netToDate+r.adjToDate)}</small>`}</td>
+        <td data-l="Próximo vencimento">${r.next&&!r.closed?`<span class="num">${dmy(r.next.date)}</span><small>+ ${eur(r.next.net)} líq.</small>`:"—"}</td>
+        <td class="sv-acts"><button class="link" type="button" data-svdet="${esc(c.id)}">Detalhe</button>${r.closed?"":`<button class="link" type="button" data-svred="${esc(c.id)}">Resgatar</button>`}<button class="link" type="button" data-svedit="${esc(c.id)}">Editar</button></td></tr>`}).join("")}
+      </tbody></table></div></section>`});
+  if(A.sav.length){h+=`<section class="card sv-grp"><div class="sv-gh"><div class="sv-gt"><h3>Outros produtos</h3><p>Certificados do Tesouro, contas poupança, depósitos a prazo e outros.</p></div><button class="btn" type="button" data-svnew="sav">+ Produto</button></div><div class="sv-cards">`+
+    A.sav.map(({doc:p,r})=>{const T=SV_T[p.type||"outro"],rt=svCurRate(r);return `<article class="sv-pc ${r.closed?"closed":""}"><div class="sv-pch"><span class="sv-ic sm" style="background:${T.c}" aria-hidden="true"></span><div><b>${esc(svName(p))}</b><small>${T.n}${p.inst?" · "+esc(p.inst):""}</small></div></div>
+      <div class="sv-pcv"><b class="num">${r.closed?(r.matured?"Terminado":"Levantado"):eur(r.value)}</b><small>${r.closed?"recebido "+eur(r.received):`juros líquidos ${seur(r.netToDate)}${r.accrued?` · ${eur(r.accrued)} a correr (bruto)`:""}`}</small></div>
+      <dl class="sv-dl"><div><dt>Taxa</dt><dd>${rt?svPct(rt.gross)+" "+svChip(rt.kind):"—"}</dd></div><div><dt>Desde</dt><dd>${dmy(p.date)}</dd></div>${r.matured?`<div><dt>Fim do prazo</dt><dd>${dmy(r.matured.d)}</dd></div>`:""}<div><dt>Próx. juros</dt><dd>${r.next?dmy(r.next.date)+" · + "+eur(r.next.net):"—"}</dd></div></dl>
+      <div class="sv-acts"><button class="link" type="button" data-svdet="${esc(p.id)}">Detalhe</button>${r.closed?"":`<button class="link" type="button" data-svred="${esc(p.id)}">${r.liquid||p.type==="outro"?"Depositar / levantar":"Resgatar"}</button>`}<button class="link" type="button" data-svedit="${esc(p.id)}">Editar</button></div></article>`}).join("")+`</div></section>`}
+  else h+=`<div class="card sv-add2"><p>Tens também Certificados do Tesouro, uma conta poupança ou um depósito a prazo?</p><button class="btn" type="button" data-svnew="sav">+ Outro produto</button></div>`;
+  const est=A.caf.filter(x=>!x.r.closed&&x.r.estimated).length,unk=A.all.filter(x=>!x.r.closed&&x.r.unknownRates).length;
+  if(est||unk)h=`<div class="sv-rb warn sv-info" role="note"><span>${est?`${est} ${est===1?"subscrição tem":"subscrições têm"} vencimentos passados calculados com taxa <b>estimada</b> (meses sem taxa registada).`:""}${unk?` ${unk} ${unk===1?"produto não tem":"produtos não têm"} taxa para alguns trimestres.`:""} Para valores exatos, regista as taxas desses meses em Taxas, corrige a taxa de cada trimestre no Detalhe, ou escreve o valor atual do AforroNet em Editar.</span><button class="link" type="button" data-psgo="taxas">Taxas →</button></div>`+h;
+  box.innerHTML=h}
+document.addEventListener("click",e=>{const d=e.target.closest("[data-svdet]");if(d){svOpenDet(d.dataset.svdet);return}
+  const r=e.target.closest("[data-svred]");if(r){const o=S.items.get(r.dataset.svred);if(o)svOpenRed(o);return}
+  const ed=e.target.closest("[data-svedit]");if(ed){const o=S.items.get(ed.dataset.svedit);if(o)o.kind==="caf"?svOpenCaf(o):svOpenProd(o);return}
+  const q=e.target.closest("[data-svq]");if(q){svOpenQ(q.dataset.svq,+q.dataset.k)}});
+
+/* ---------- Calendário, histórico, anos, resgates ---------- */
+function svCalendario(){const A=svAll();document.querySelectorAll("#svCalN button").forEach(b=>b.setAttribute("aria-pressed",String(+b.dataset.svc===SV.cal)));
+  const L=svNextList(SV.cal);
+  if(!L.length)$("#svCal").innerHTML=`<p class="muted">${A.all.length?"Sem vencimentos neste período.":"Ainda sem produtos: os vencimentos aparecem aqui."}</p>`;
+  else{const by=new Map();L.forEach(x=>{const k=x.e.date.slice(0,7);if(!by.has(k))by.set(k,[]);by.get(k).push(x)});
+    $("#svCal").innerHTML=`<div class="sv-cal">${[...by].map(([k,X])=>{const G=X.reduce((s,x)=>s+x.e.gross,0),T=X.reduce((s,x)=>s+x.e.tax,0);return `<div class="sv-cm"><div class="sv-cmh"><h4>${svMonth(k)}</h4><span class="num">+ ${eur(G-T)} <small>líquidos · brutos ${eur(G)} · IRS ${eur(T)}</small></span></div>
+      ${X.map(x=>`<button type="button" class="sv-li" data-svdet="${esc(x.doc.id)}"><span class="sv-dt"><b>${x.e.date.slice(8)}</b><small>${MSHORT[+x.e.date.slice(5,7)-1]}</small></span><span class="sv-n"><b>${esc(svName(x.doc))}</b><small>${x.doc.kind==="caf"?"subscrição de "+dmy(x.doc.date)+" · ano "+x.e.y+" · ":""}${svPct(x.e.rate.gross)} ${svChip(x.e.rate.kind)}</small></span><span class="sv-a"><b class="num">+ ${eur(x.e.net)}</b><small>bruto ${eur(x.e.gross)} · IRS ${eur(x.e.tax)}${x.e.paid?" · pago à conta":""}</small></span></button>`).join("")}</div>`}).join("")}</div>`}
+  const sel=$("#svHistF"),opts=`<option value="all">Todos</option>`+A.all.map(x=>`<option value="${esc(x.doc.id)}">${esc(svName(x.doc))}${x.doc.kind==="caf"?" · "+dmy(x.doc.date):""}</option>`).join("");
+  if(sel.dataset.o!==opts){sel.innerHTML=opts;sel.dataset.o=opts}if(![...sel.options].some(o=>o.value===SV.hist))SV.hist="all";sel.value=SV.hist;
+  const H=[];A.all.forEach(x=>{if(SV.hist!=="all"&&x.doc.id!==SV.hist)return;x.r.events.forEach(e=>{if(e.past)H.push({doc:x.doc,e})})});H.sort((a,b)=>b.e.date.localeCompare(a.e.date));
+  $("#svHist").innerHTML=H.length?`<div class="sv-tablewrap"><table class="sv-table sv-hist"><thead><tr><th scope="col">Data</th><th scope="col">Produto</th><th scope="col" class="r">Taxa</th><th scope="col" class="r">Capital antes</th><th scope="col" class="r">Bruto</th><th scope="col" class="r">IRS</th><th scope="col" class="r">Líquido</th><th scope="col" class="r">Capital depois</th></tr></thead><tbody>
+    ${H.slice(0,SV.histN).map(({doc,e})=>`<tr><td data-l="Data" class="num">${dmy(e.date)}</td><td data-l="Produto">${esc(svName(doc))}${doc.kind==="caf"?`<small>subscrição ${dmy(doc.date)}</small>`:""}</td><td data-l="Taxa" class="r"><span class="num">${svPct(e.rate.gross)}</span> ${svChip(e.rate.kind)}</td><td data-l="Capital antes" class="r num">${eur(e.cap)}</td><td data-l="Bruto" class="r num">${eur(e.gross)}</td><td data-l="IRS" class="r num">− ${eur(e.tax)}</td><td data-l="Líquido" class="r num" style="color:var(--in)">+ ${eur(e.net)}</td><td data-l="Capital depois" class="r num"><b>${eur(e.after)}</b>${e.paid?"<small>juros pagos à conta</small>":""}</td></tr>`).join("")}</tbody></table></div>
+    ${H.length>SV.histN?`<button class="link more" type="button" id="svHistMore">Ver mais ${Math.min(20,H.length-SV.histN)} (de ${H.length-SV.histN})</button>`:""}`:`<p class="muted">Ainda nenhum vencimento passado.</p>`;
+  const Y={};A.all.forEach(x=>x.r.events.forEach(e=>{if(!e.past)return;const y=e.date.slice(0,4);Y[y]=Y[y]||{g:0,t:0,n:0};Y[y].g+=e.gross;Y[y].t+=e.tax;Y[y].n+=e.net}));
+  const tx=A.cfg.tax,eng=tx.regime==="eng"&&tx.marg!=null&&tx.marg!=="";
+  $("#svYears").innerHTML=Object.keys(Y).length?`<div class="sv-tablewrap"><table class="sv-table"><thead><tr><th scope="col">Ano</th><th scope="col" class="r">Brutos</th><th scope="col" class="r">IRS retido</th><th scope="col" class="r">Líquidos</th>${eng?`<th scope="col" class="r">Englobamento (estim.)</th>`:""}</tr></thead><tbody>${Object.keys(Y).sort().reverse().map(y=>{const v=Y[y],en=eng?SE.englobamento(v.g,v.t,+tx.marg):null;return `<tr><td data-l="Ano"><b>${y}</b></td><td data-l="Brutos" class="r num">${eur(v.g)}</td><td data-l="IRS retido" class="r num">${eur(v.t)}</td><td data-l="Líquidos" class="r num">${eur(v.n)}</td>${en?`<td data-l="Englobamento" class="r num">${en.diff>=0?"recebes ≈ "+eur(en.diff):"pagas ≈ "+eur(-en.diff)}</td>`:""}</tr>`}).join("")}</tbody></table></div>${eng?`<p class="note">Englobamento: estimativa com a taxa marginal de ${svPct(+tx.marg,1)}. O valor final depende da tua declaração completa.</p>`:""}`:`<p class="muted">Sem juros vencidos ainda.</p>`;
+  const R=[];A.all.forEach(({doc})=>{if(doc.kind==="caf")(doc.sales||[]).forEach(s=>R.push({doc,d:s.d,v:+s.v,c:+s.c,g:+s.g,acct:s.acct}));else(doc.moves||[]).forEach(m=>R.push({doc,d:m.d,v:-(+m.a),acct:m.acct,mv:true}))});R.sort((a,b)=>b.d.localeCompare(a.d));
+  const an=id=>{const a=id&&S.items.get(id);return a?a.name:""};
+  $("#svReds").innerHTML=R.length?`<div class="sv-list">${R.map(x=>`<div class="sv-li st"><span class="sv-dt"><b>${x.d.slice(8)}</b><small>${MSHORT[+x.d.slice(5,7)-1]} ${x.d.slice(2,4)}</small></span><span class="sv-n"><b>${esc(svName(x.doc))}</b><small>${x.mv?(x.v>0?"Levantamento":"Depósito"):"Resgate"}${x.acct&&an(x.acct)?(x.v>0?" → ":" ← ")+esc(an(x.acct)):""}</small></span><span class="sv-a"><b class="num">${x.v>0?"+ ":"− "}${eur(Math.abs(x.v))}</b>${x.mv?"":`<small>capital ${eur(x.c)} · juros ${eur(x.g)}</small>`}</span></div>`).join("")}</div>`:`<p class="muted">Sem resgates registados.</p>`}
+$("#svCalN").addEventListener("click",e=>{const b=e.target.closest("[data-svc]");if(b){SV.cal=+b.dataset.svc;svCalendario()}});
+$("#svHistF").addEventListener("change",e=>{SV.hist=e.target.value;SV.histN=20;svCalendario()});
+$("#svHist").addEventListener("click",e=>{if(e.target.closest("#svHistMore")){SV.histN+=20;svCalendario()}});
+
+/* ---------- Simulador ---------- */
+const SV_EX={mode:"cafF",P0:"5000",M:"200",R:"2,5",irs:"28",Y:"10",C:"3"};
+function svSimRead(){const g=id=>$(id).value,mode=g("#svSimMode");
+  return{mode,P0:parseNum(g("#svSimP0")),monthly:g("#svSimM").trim()?parseNum(g("#svSimM")):0,rate:parseNum(g("#svSimR")),irs:parseNum(g("#svSimIrs")),years:+g("#svSimY"),start:g("#svSimStart")||todayISO(),compM:+g("#svSimC")}}
+function svSimValid(s){if(!(s.P0>=0))return"Indica o capital inicial (pode ser 0).";if(!(s.monthly>=0))return"O reforço mensal não é válido.";if(!(s.P0>0||s.monthly>0))return"Indica um capital inicial ou um reforço mensal.";
+  if(!(s.rate>=0&&s.rate<=20))return"Indica a taxa em %, entre 0 e 20.";if(!(s.irs>=0&&s.irs<=100))return"O IRS deve estar entre 0 e 100%.";if(!(s.years>=1&&s.years<=40))return"A duração vai de 1 a 40 anos.";
+  if(s.mode==="cafF"&&s.years>15)return"Os Certificados de Aforro Série F têm prazo de 15 anos.";if(s.mode==="cafF"&&(s.P0>0&&s.P0<10||s.monthly>0&&s.monthly<10))return"Na Série F cada subscrição tem de ter pelo menos 10 € (10 unidades).";return""}
+const svSimLbl=s=>`${s.mode==="cafF"?"Aforro F":"Taxa fixa"} · ${eur0(s.P0)}${s.monthly?" + "+eur0(s.monthly)+"/mês":""} · ${svPct(s.mode==="cafF"?Math.min(2.5,s.rate):s.rate,2)} · ${s.years} ${s.years===1?"ano":"anos"}`;
+function svSim(){const s=svSimRead(),cf=s.mode==="cafF";$("#svSimRL").firstChild.textContent=cf?"Taxa base hipotética (%)":"Taxa anual hipotética (TANB, %)";$("#svSimCL").hidden=cf;
+  $("#svSimHelp").textContent=cf?"Cada reforço mensal entra como uma nova subscrição, com a sua data, os seus trimestres e os seus prémios de permanência (somados à taxa base). A taxa base fica entre 0% e 2,50%.":"Um único saldo: os juros contam todos os meses (taxa ÷ 12) e são creditados, já sem IRS, na periodicidade escolhida.";
+  const err=svSimValid(s);$("#svSimErr").hidden=!err;$("#svSimErr").textContent=err;if(err){$("#svSimOut").innerHTML="";$("#svSimChart").innerHTML="";return}
+  if(cf&&s.rate>2.5){$("#svSimErr").hidden=false;$("#svSimErr").textContent="Na Série F a taxa base não passa de 2,50%: a simulação usa 2,50% (mais os prémios)."}
+  const key=JSON.stringify(s);let r=SV.simCache&&SV.simCache.k===key?SV.simCache.r:null;if(!r){r=SE.simulate(s);SV.simCache={k:key,r}}
+  $("#svSimEnd").textContent=`${dmy(s.start)} → ${dmy(r.end)} · ${r.reforcos} reforços${cf?" · "+r.subs+" subscrições":""}`;
+  $("#svSimOut").innerHTML=[["Total investido",eur(r.invested),""],["Juros brutos",eur(r.gross),""],["IRS",`− ${eur(r.tax)}`,"bad"],["Juros líquidos",`+ ${eur(r.net)}`,"good"],["Valor final",eur(r.final),"fin"]].map(x=>`<div class="sv-tile ${x[2]}"><span>${x[0]}</span><b class="num">${x[1]}</b></div>`).join("");
+  svChart("#svSimChart",{pts:r.series.map(p=>({d:p.d,v:p.value,inv:p.inv})),label:"Crescimento simulado",series:[{k:"inv",lbl:"Investido",c:"var(--ink-2)",dash:"4 4",w:1.5},{k:"v",lbl:"Valor",c:"var(--accent)",area:false,w:2.6}]});
+  svCmp()}
+const SV_COLS=["#1f9d6b","#2f6fd6","#d08a1c","#8a62d6","#cc3b46","#0e9aa7"];
+function svCmp(){const L=[...S.items.values()].filter(o=>o.kind==="savsim").sort((a,b)=>(a.at||0)-(b.at||0)).slice(0,6);$("#svCmpCard").hidden=!L.length;if(!L.length)return;
+  const R=L.map(o=>({o,r:SE.simulate(o.sc)})),rows=[["Total investido","invested"],["Juros brutos","gross"],["IRS","tax"],["Juros líquidos","net"],["Valor final","final"]],best=Math.max(...R.map(x=>x.r.final));
+  $("#svCmp").innerHTML=`<thead><tr><th scope="col"><span class="sr">Cenário</span></th>${R.map((x,i)=>`<th scope="col"><span class="sv-cdot" style="background:${SV_COLS[i]}"></span>${esc(svSimLbl(x.o.sc))}<button class="link sv-cx" type="button" data-svsimdel="${esc(x.o.id)}" aria-label="Apagar cenário ${i+1}">Apagar</button></th>`).join("")}</tr></thead><tbody>${rows.map(([l,k])=>`<tr><th scope="row">${l}</th>${R.map(x=>`<td class="r num ${k==="final"&&x.r.final===best&&R.length>1?"sv-best":""}">${k==="tax"?"− ":""}${eur(x.r[k])}</td>`).join("")}</tr>`).join("")}<tr><th scope="row">IRS usado</th>${R.map(x=>`<td class="r num">${svPct(x.o.sc.irs,0)}</td>`).join("")}</tr></tbody>`;
+  const maxN=Math.max(...R.map(x=>x.r.series.length)),longest=R.find(x=>x.r.series.length===maxN).r.series,pts=longest.map((p,m)=>{const o={d:p.d};R.forEach((x,i)=>{const q=x.r.series[m];if(q)o["s"+i]=q.value});return o});
+  svChart("#svCmpChart",{pts,label:"Comparação de cenários",series:R.map((x,i)=>({k:"s"+i,lbl:"Cenário "+(i+1),c:SV_COLS[i],w:2.2}))})}
+["#svSimMode","#svSimP0","#svSimM","#svSimR","#svSimIrs","#svSimY","#svSimStart","#svSimC"].forEach(id=>$(id).addEventListener("input",()=>{clearTimeout(SV.simT);SV.simT=setTimeout(svSim,180)}));
+$("#svSimForm").addEventListener("submit",e=>{e.preventDefault();const s=svSimRead(),err=svSimValid(s);if(err){toast(err);return}
+  const L=[...S.items.values()].filter(o=>o.kind==="savsim");if(L.length>=6){toast("Já tens 6 cenários. Apaga um para guardar outro.");return}
+  Store.put({id:newId("ss"),kind:"savsim",sc:s,at:Date.now()});toast("Cenário guardado para comparar")});
+$("#svSimReset").onclick=()=>{$("#svSimMode").value=SV_EX.mode;$("#svSimP0").value=SV_EX.P0;$("#svSimM").value=SV_EX.M;$("#svSimR").value=SV_EX.R;$("#svSimIrs").value=String(svCfg().tax.rate).replace(".",",");$("#svSimY").value=SV_EX.Y;$("#svSimC").value=SV_EX.C;$("#svSimStart").value=todayISO();svSim()};
+$("#svCmp").addEventListener("click",e=>{const b=e.target.closest("[data-svsimdel]");if(b){Store.del(b.dataset.svsimdel);toast("Cenário apagado")}});
+$("#svSimStart").value=todayISO();
+
+/* ---------- Taxas e impostos ---------- */
+function svTaxas(){const A=svAll(),s=SV.rts,T=A.cfg.rates[s]||{},R=SE.RULES.caf[s],cur=A.t.slice(0,7);
+  document.querySelectorAll("#svRtSerie button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.svs===s)));
+  $("#svRtHelp").textContent=`${R.name}: taxa base = média da Euribor a 3 meses dos ${R.base.days} dias úteis anteriores${R.base.spread?" + "+svPct(R.base.spread,0):""}, arredondada à 3.ª casa decimal, entre ${svPct(R.base.min,0)} e ${svPct(R.base.max,2)}. É fixada no ${R.base.fixed}. Cada trimestre usa a taxa do mês em que começa.`;
+  const keys=Object.keys(T).sort().reverse(),nowB=A.book(s,cur);
+  $("#svRtTable").innerHTML=`<div class="sv-rnow ${["oficial","registada","euribor"].includes(nowB.kind)?"":"warn"}"><span>Este mês (${svMonth(cur)})</span><b class="num">${svPct(nowB.v)}</b>${svChip(nowB.kind)}${nowB.kind==="estimada"?`<small>ainda sem taxa registada: usa a de ${nowB.ref&&nowB.ref.length===7?svMonth(nowB.ref):"omissão"}</small>`:""}</div>`+
+    (keys.length?`<div class="sv-tablewrap"><table class="sv-table sv-rt"><thead><tr><th scope="col">Mês</th><th scope="col" class="r">Taxa base</th><th scope="col">Origem</th><th scope="col">Fonte</th><th scope="col"><span class="sr">Ações</span></th></tr></thead><tbody>${keys.map(k=>{const x=T[k],kd=x.o==="igcp"?"oficial":x.o==="euribor"?"euribor":"registada";return `<tr><td data-l="Mês"><b>${svMonth(k)}</b></td><td data-l="Taxa base" class="r num">${svPct(x.v)}</td><td data-l="Origem">${svChip(kd)}</td><td data-l="Fonte"><small>${esc(x.src||"—")}${x.at?" · registado a "+dmy(x.at):""}</small></td><td class="sv-acts"><button class="link" type="button" data-svrte="${k}">Editar</button><button class="link sv-del" type="button" data-svrtd="${k}">Apagar</button></td></tr>`}).join("")}</tbody></table></div>`:`<p class="muted">Ainda sem taxas registadas para a ${R.name}. Sem taxa, a app não calcula juros dessa série: regista pelo menos a do mês atual.</p>`);
+  const pr=A.cfg.proj;["F","E"].forEach(x=>{const el=$("#svProj"+x);if(document.activeElement!==el)el.value=pr[x]==null||pr[x]===""?"":numStr(pr[x])});
+  const tx=A.cfg.tax;if(document.activeElement!==$("#svTaxRate"))$("#svTaxRate").value=numStr(tx.rate);$("#svTaxReg").value=tx.regime;if(document.activeElement!==$("#svTaxMarg"))$("#svTaxMarg").value=tx.marg==null?"":numStr(tx.marg);
+  $("#svTaxMargL").hidden=tx.regime!=="eng";
+  $("#svTaxNote").textContent=tx.regime==="lib"?"Taxa liberatória: o IRS retido em cada vencimento (28% para residentes) é o imposto final. Não precisas de declarar estes juros.":tx.regime==="eng"?"Englobamento: a retenção continua a ser feita em cada vencimento, mas conta como pagamento por conta. Na declaração, os juros somam-se aos outros rendimentos e pagam à taxa do teu escalão. Em Calendário → Juros por ano vês uma estimativa da diferença.":"Usa a taxa indicada acima (por exemplo, 0% se não há retenção). Confirma a tua situação com a Autoridade Tributária.";
+  const pp=r=>r.prem.map(p=>`ano${p.from===p.to?"":"s"} ${p.from}${p.to!==p.from?" a "+p.to:""}: +${svPct(p.pp,2)}`).join(" · ");
+  $("#svRules").innerHTML=`<div class="sv-tablewrap"><table class="sv-table sv-rules"><thead><tr><th scope="col">Produto</th><th scope="col">Taxa</th><th scope="col">Prémios de permanência</th><th scope="col">Juros</th><th scope="col">Resgate</th><th scope="col">Fonte</th></tr></thead><tbody>${["F","E"].map(k=>{const r=SE.RULES.caf[k];return `<tr><td data-l="Produto"><b>Aforro ${r.name}</b><small>prazo ${r.termY} anos${r.active?"":" · subscrições encerradas"}</small></td><td data-l="Taxa">Euribor 3M (média de ${r.base.days} dias úteis)${r.base.spread?" + "+svPct(r.base.spread,0):""}, entre ${svPct(r.base.min,0)} e ${svPct(r.base.max,2)}</td><td data-l="Prémios">${pp(r)}</td><td data-l="Juros">de 3 em 3 meses, no dia da subscrição (se não existir, dia 1 do mês seguinte); líquidos de IRS, somados ao capital</td><td data-l="Resgate">total ou parcial a partir do 1.º vencimento; perde os juros do trimestre em curso</td><td data-l="Fonte"><a href="${r.src.url}" target="_blank" rel="noopener">${esc(r.src.label)}</a><small>consultado a ${dmy(r.src.checked)}</small></td></tr>`}).join("")}
+    <tr><td data-l="Produto"><b>Aforro Séries A, B, C e D</b></td><td data-l="Taxa" colspan="5">Regras não carregadas na app: indicas a taxa bruta de cada trimestre (vês no AforroNet). Juros de 3 em 3 meses, líquidos de IRS, somados ao capital.</td></tr>
+    <tr><td data-l="Produto"><b>Certificados do Tesouro</b></td><td data-l="Taxa" colspan="5">Indicas a taxa bruta de cada ano, como está na ficha técnica da tua série. Juros pagos uma vez por ano (não capitalizam).</td></tr>
+    <tr><td data-l="Produto"><b>Contas poupança, depósitos e outros</b></td><td data-l="Taxa" colspan="5">TANB, prazo, periodicidade, contagem de dias e regra de mobilização antecipada do teu contrato. Podes registar mudanças de taxa no detalhe do produto.</td></tr></tbody></table></div>`}
+$("#svRtSerie").addEventListener("click",e=>{const b=e.target.closest("[data-svs]");if(b){SV.rts=b.dataset.svs;svTaxas()}});
+const svProjSave=s=>{const raw=$("#svProj"+s).value.trim(),v=raw?parseNum(raw):null;const R=SE.RULES.caf[s];
+  if(raw&&!(v>=R.base.min&&v<=R.base.max)){toast(`A taxa base da ${R.name} fica entre ${svPct(R.base.min,0)} e ${svPct(R.base.max,2)}`);return}
+  svPutCfg(d=>{d.proj=d.proj||{};if(v==null)delete d.proj[s];else d.proj[s]=v});toast("Cenário guardado")};
+$("#svProjF").addEventListener("change",()=>svProjSave("F"));$("#svProjE").addEventListener("change",()=>svProjSave("E"));
+const svTaxSave=()=>{const r=parseNum($("#svTaxRate").value),m=$("#svTaxMarg").value.trim()?parseNum($("#svTaxMarg").value):null;
+  if(!(r>=0&&r<=100)){toast("A taxa de IRS fica entre 0 e 100%");return}if(m!=null&&!(m>=0&&m<=100)){toast("A taxa marginal fica entre 0 e 100%");return}
+  svPutCfg(d=>{d.tax={rate:r,regime:$("#svTaxReg").value,marg:m}});toast("Impostos guardados")};
+["#svTaxRate","#svTaxReg","#svTaxMarg"].forEach(id=>$(id).addEventListener("change",svTaxSave));
+$("#svRtTable").addEventListener("click",e=>{const ed=e.target.closest("[data-svrte]");if(ed){svOpenRt(SV.rts,ed.dataset.svrte);return}
+  const dl=e.target.closest("[data-svrtd]");if(dl){const k=dl.dataset.svrtd;if(!dl.dataset.sure){dl.dataset.sure="1";dl.textContent="Confirmar";setTimeout(()=>{delete dl.dataset.sure;dl.textContent="Apagar"},4000);return}
+    svPutCfg(d=>{d.rates=d.rates||{};d.rates[SV.rts]=d.rates[SV.rts]||{};d.rates[SV.rts][k]=SV_SEED[SV.rts]&&SV_SEED[SV.rts][k]?{del:true}:undefined;if(d.rates[SV.rts][k]===undefined)delete d.rates[SV.rts][k]});toast("Taxa apagada")}});
+$("#svRtAdd").onclick=()=>svOpenRt(SV.rts,null);
+/* integração IGCP: a página oficial não permite leitura direta a partir do navegador (CORS); tenta e, se falhar, explica e abre o registo manual */
+const SV_IGCP={url:"https://www.igcp.pt/pt/aforristas/produtos-de-aforro/certificados-de-aforro",proxy:null};
+$("#svRtFetch").onclick=async()=>{const b=$("#svRtFetch"),msg=$("#svRtMsg");b.disabled=true;b.textContent="A procurar…";msg.textContent="";
+  try{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),8000),res=await fetch(SV_IGCP.proxy?SV_IGCP.proxy+encodeURIComponent(SV_IGCP.url):SV_IGCP.url,{signal:ctl.signal,cache:"no-store"});clearTimeout(tm);
+    if(!res.ok)throw new Error("http "+res.status);const txt=(await res.text()).replace(/<[^>]+>/g," "),L=SE.parseIgcp(txt);if(!L.length)throw new Error("sem taxa no texto");
+    await svPutCfg(d=>{d.rates=d.rates||{};L.forEach(x=>{d.rates[x.serie]=d.rates[x.serie]||{};d.rates[x.serie][x.ym]={v:x.v,o:"igcp",src:"igcp.pt (atualização automática)",at:todayISO()}})});
+    msg.textContent=L.map(x=>`Série ${x.serie}, ${svMonth(x.ym)}: ${svPct(x.v)}`).join(" · ")+" — guardado."}
+  catch(e){msg.innerHTML=`Não foi possível ler o site do IGCP a partir da app (o site não deixa outras páginas lerem os dados). Abre a página do IGCP, copia a frase da taxa e usa <b>+ Registar taxa → Colar do IGCP</b>.`}
+  finally{b.disabled=false;b.textContent="Atualizar do IGCP"}};
+
+/* ---------- diálogo: registar taxa base ---------- */
+function svOpenRt(serie,month){const T=svCfg().rates[serie]||{},x=month&&T[month];S.svRtHow="v";svRtHow();
+  $("#svRtTitle").textContent=month?"Editar taxa base":"Registar taxa base";$("#svRtSer").value=serie;$("#svRtMonth").value=month||todayISO().slice(0,7);
+  $("#svRtVal").value=x?numStr(x.v):"";$("#svRtSrc").value=x?x.src||"":"";$("#svRtEur").value="";$("#svRtPaste").value="";$("#svRtErr").hidden=true;svRtPrev();$("#svRtDlg").showModal();$("#svRtVal").focus()}
+function svRtHow(){document.querySelectorAll("#svRtHow button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.svh===S.svRtHow)));document.querySelectorAll("[data-svhp]").forEach(p=>p.hidden=p.dataset.svhp!==S.svRtHow)}
+function svRtCalc(){const s=$("#svRtSer").value;if(S.svRtHow==="v"){const v=parseNum($("#svRtVal").value);return isFinite(v)?{v,o:"user"}:null}
+  if(S.svRtHow==="eur"){const vals=$("#svRtEur").value.split(/[\n;]+/).map(x=>x.trim()).filter(Boolean).map(parseNum);if(!vals.length||vals.some(x=>!isFinite(x)))return null;const avg=SE.euriborAvg(vals);return{v:SE.baseFromEuribor(s,avg),o:"euribor",avg,n:vals.length}}
+  const L=SE.parseIgcp($("#svRtPaste").value);return L.length?Object.assign({o:"igcp"},L[0]):null}
+function svRtPrev(){const c=svRtCalc(),p=$("#svRtPrev");if(!c){p.innerHTML="";return}
+  if(c.o==="euribor")p.innerHTML=`Média de ${c.n} ${c.n===1?"valor":"valores"}: <b class="num">${svPct(c.avg)}</b> → taxa base <b class="num">${svPct(c.v)}</b>${c.n!==10?` <span class="chip warn">a regra usa 10 dias úteis</span>`:""}`;
+  else if(c.o==="igcp")p.innerHTML=`Encontrado: Série ${c.serie}, ${svMonth(c.ym)}: <b class="num">${svPct(c.v)}</b>`;else p.innerHTML=""}
+$("#svRtHow").addEventListener("click",e=>{const b=e.target.closest("[data-svh]");if(b){S.svRtHow=b.dataset.svh;svRtHow();svRtPrev()}});
+["#svRtVal","#svRtEur","#svRtPaste","#svRtSer"].forEach(id=>$(id).addEventListener("input",svRtPrev));
+$("#svRtForm").addEventListener("submit",e=>{e.preventDefault();const c=svRtCalc(),err=m=>{$("#svRtErr").textContent=m;$("#svRtErr").hidden=false};
+  if(!c)return err(S.svRtHow==="paste"?"Não encontrei a taxa no texto. Copia a frase “A taxa de juro bruta … foi fixada em X%”.":S.svRtHow==="eur"?"Escreve os valores da Euribor, um por linha.":"Indica a taxa base em %.");
+  const s=c.serie||$("#svRtSer").value,m=c.ym||$("#svRtMonth").value,R=SE.RULES.caf[s];
+  if(!/^\d{4}-\d{2}$/.test(m))return err("Indica o mês.");
+  if(!(c.v>=R.base.min&&c.v<=R.base.max))return err(`A taxa base da ${R.name} fica entre ${svPct(R.base.min,0)} e ${svPct(R.base.max,2)}.`);
+  const src=$("#svRtSrc").value.trim()||(c.o==="euribor"?"calculada da Euribor indicada":c.o==="igcp"?"texto do igcp.pt":"registada por ti");
+  svPutCfg(d=>{d.rates=d.rates||{};d.rates[s]=d.rates[s]||{};d.rates[s][m]={v:SE.r3(c.v),o:c.o,src,at:todayISO()}});
+  $("#svRtDlg").close();SV.rts=s;toast(`Taxa base de ${svMonth(m)} guardada`)});
+
+/* ---------- diálogo: subscrição de Certificados de Aforro ---------- */
+function svAcctOpts(sel,cur){const A=accts().filter(a=>a.type!=="Corretora");$(sel).innerHTML=`<option value="">Nenhuma</option>`+A.map(a=>`<option value="${esc(a.id)}">${esc(a.name)}</option>`).join("");$(sel).value=cur&&A.some(a=>a.id===cur)?cur:""}
+function svCafSerie(){const s=$("#svCSerie").value,R=SE.RULES.caf[s],man=!!R.manual;$("#svCManW").hidden=!man;$("#svCRate0L").hidden=man;
+  const d=$("#svCDate").value,b=d&&!man?svAll().book(s,d.slice(0,7)):null;$("#svCRate0").placeholder=b&&b.v!=null?svPct(b.v)+" ("+(SV_KC[b.kind]||[0,""])[1]+")":"da tabela";
+  $("#svCHelp").innerHTML=man?`As regras da ${R.name} não estão carregadas na app. Indica a taxa bruta atual (vês no AforroNet); podes corrigir a de cada trimestre no detalhe.`:`${R.name}: juros de 3 em 3 meses a contar da data da subscrição, prémios de permanência a partir do 2.º ano. A taxa inicial é opcional: se a deixares vazia, a app usa a taxa base do mês da subscrição.`+(s==="E"?" A Série E já não aceita novas subscrições: regista só as antigas.":"")}
+function svOpenCaf(c,pre){S.svEdit=c?c.id:null;$("#svCafTitle").textContent=c?"Editar subscrição":"Nova subscrição";$("#svCSubmit").textContent=c?"Guardar":"Adicionar";$("#svCDel").hidden=!c;
+  const x=c||Object.assign({serie:"F",date:todayISO()},pre||{}),cfg=svCfg();
+  $("#svCNames").innerHTML=[...new Set(cafs().map(o=>o.name).filter(Boolean))].map(n=>`<option value="${esc(n)}">`).join("");
+  $("#svCName").value=x.name||"";$("#svCSerie").value=x.serie||"F";$("#svCAmt").value=c?numStr(SE.cafPrincipal0(c)):"";$("#svCDate").value=x.date||todayISO();$("#svCDate").max=todayISO();
+  $("#svCRate0").value=x.rate0!=null?numStr(x.rate0):"";$("#svCRateM").value=x.rateM!=null?numStr(x.rateM):"";$("#svCTerm").value=x.termY||"";
+  $("#svCIrs").value=x.irs!=null?numStr(x.irs):"";$("#svCIrs").placeholder=numStr(cfg.tax.rate);$("#svCInst").value=x.inst||"";svAcctOpts("#svCAcct",x.acct);
+  $("#svCOv").value=c&&+c.override>0?numStr(c.override):"";$("#svCNote").value=x.note||"";$("#svCErr").hidden=true;
+  $("#svCAmt").disabled=!!(c&&(c.sales||[]).length);$("#svCAmt").title=$("#svCAmt").disabled?"Já tem resgates: o capital inicial não pode mudar":"";
+  svCafSerie();$("#svCafDlg").showModal();(c?$("#svCName"):$("#svCAmt")).focus()}
+$("#svCSerie").addEventListener("change",svCafSerie);$("#svCDate").addEventListener("change",svCafSerie);
+$("#svCafForm").addEventListener("submit",e=>{e.preventDefault();const err=(m,f)=>{$("#svCErr").textContent=m;$("#svCErr").hidden=false;if(f)$(f).focus()};
+  const s=$("#svCSerie").value,R=SE.RULES.caf[s],a=parseNum($("#svCAmt").value),d=$("#svCDate").value,opt=id=>{const v=$(id).value.trim();return v?parseNum(v):null};
+  const r0=opt("#svCRate0"),rM=opt("#svCRateM"),irs=opt("#svCIrs"),ov=opt("#svCOv"),tY=$("#svCTerm").value?+$("#svCTerm").value:null;
+  if(!d||d>todayISO())return err("Indica a data da subscrição (hoje ou antes).","#svCDate");
+  const old=S.svEdit&&S.items.get(S.svEdit);
+  if(!(a>0))return err("Indica o capital subscrito.","#svCAmt");if(s==="F"&&a<10&&!old)return err("Na Série F o mínimo por subscrição é 10 € (10 unidades).","#svCAmt");
+  if(r0!=null&&!(r0>=0&&r0<20))return err("A taxa inicial não é válida.","#svCRate0");if(rM!=null&&!(rM>=0&&rM<20))return err("A taxa não é válida.","#svCRateM");
+  if(R.manual&&rM==null&&!(old&&old.rates&&Object.keys(old.rates).length))return err(`Indica a taxa bruta atual da ${R.name}.`,"#svCRateM");
+  if(irs!=null&&!(irs>=0&&irs<=100))return err("A taxa de IRS fica entre 0 e 100%.","#svCIrs");if(ov!=null&&!(ov>0))return err("O valor atual não é válido.","#svCOv");
+  const o=Object.assign({},old||{},{id:old?old.id:newId("c"),kind:"caf",serie:s,date:d,name:$("#svCName").value.trim()||undefined,inst:$("#svCInst").value.trim()||undefined,note:$("#svCNote").value.trim()||undefined,acct:$("#svCAcct").value||undefined});
+  if(!old||!(old.sales||[]).length){o.amount=svR2(a);o.amount0=svR2(a);o.soldCost=old?old.soldCost:undefined}
+  ["rate0","rateM","irs"].forEach((k,i)=>{const v=[r0,rM,irs][i];if(v==null)delete o[k];else o[k]=v});if(tY)o.termY=tY;else delete o.termY;
+  if(!old||old.acct!==o.acct||old.date!==d){if(o.acct&&d===todayISO())o.payAt=Date.now();else delete o.payAt}
+  if(ov!=null){if(!old||+old.override!==ov){o.override=svR2(ov);o.ovDate=todayISO()}}else{delete o.override;delete o.ovDate}
+  Object.keys(o).forEach(k=>o[k]===undefined&&delete o[k]);
+  Store.put(o);$("#svCafDlg").close();toast(old?"Subscrição guardada":"Subscrição adicionada")});
+$("#svCDel").onclick=()=>{const c=S.items.get(S.svEdit),b=$("#svCDel");if(!c)return;if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar"},4000);return}
+  delete b.dataset.sure;b.textContent="Apagar";Store.del(c.id);$("#svCafDlg").close();toast("Subscrição apagada")};
+/* Investimentos → Aforro usa os mesmos diálogos */
+openCaf=c=>svOpenCaf(c);openCafSell=c=>svOpenRed(c);
+
+/* ---------- diálogo: outro produto ---------- */
+function svProdType(t){S.svPT=t;document.querySelectorAll("#svPTypes [data-svt]").forEach(b=>{const on=b.dataset.svt===t;b.setAttribute("aria-checked",String(on));b.tabIndex=on?0:-1});
+  const ct=t==="ct";$("#svPSchedL").hidden=!ct;$("#svPRate").closest("label").hidden=ct;
+  $("#svPTermL").firstChild.textContent=t==="dp"?"Prazo (meses)":"Prazo (meses, opcional)";
+  $("#svPHelp").textContent=t==="conta"?"Conta poupança: podes depositar e levantar quando quiseres. Se já tens esta conta em Contas, não a registes aqui também (contava duas vezes no património).":t==="dp"?"Depósito a prazo: juros no fim do prazo (ou na periodicidade do contrato). Levantar antes do fim costuma fazer perder os juros do período.":t==="ct"?"Certificados do Tesouro: escreve a taxa bruta de cada ano tal como está na ficha técnica da tua série. Juros pagos uma vez por ano.":"Define as regras do teu produto como estão no contrato."}
+function svOpenProd(p,type){S.svEdit=p?p.id:null;const x=p||{type:type||"conta",date:todayISO()},T=SE.RULES.sav[x.type]||SE.RULES.sav.outro;
+  $("#svPTitle").textContent=p?"Editar produto":"Novo produto de poupança";$("#svPSubmit").textContent=p?"Guardar":"Adicionar";$("#svPDel").hidden=!p;
+  svProdType(x.type);$("#svPName").value=x.name||"";$("#svPInst").value=x.inst||"";$("#svPAmt").value=p?numStr(p.amount):"";$("#svPDate").value=x.date;$("#svPDate").max=todayISO();
+  $("#svPRate").value=x.rate!=null?numStr(x.rate):"";$("#svPTerm").value=x.termM||"";$("#svPSched").value=(x.sched||[]).map(numStr).join("; ");
+  $("#svPPer").value=String(x.periodM!=null?x.periodM:T.periodM);$("#svPCap").value=(x.cap!=null?x.cap:T.cap)?"1":"0";$("#svPBasis").value=String(x.basis||T.basis);$("#svPEarly").value=x.early||T.early;
+  $("#svPIrs").value=x.irs!=null?numStr(x.irs):"";$("#svPIrs").placeholder=numStr(svCfg().tax.rate);svAcctOpts("#svPAcct",x.acct);$("#svPNote").value=x.note||"";$("#svPErr").hidden=true;
+  $("#svPAmt").disabled=!!(p&&(p.moves||[]).length);$("#svProdDlg").showModal();$("#svPName").focus()}
+$("#svPTypes").addEventListener("click",e=>{const b=e.target.closest("[data-svt]");if(!b)return;const t=b.dataset.svt,T=SE.RULES.sav[t];svProdType(t);
+  if(!S.svEdit){$("#svPPer").value=String(T.periodM);$("#svPCap").value=T.cap?"1":"0";$("#svPBasis").value=String(T.basis);$("#svPEarly").value=T.early;if(t==="dp"&&!$("#svPTerm").value)$("#svPTerm").value=T.termM}});
+$("#svPTypes").addEventListener("keydown",e=>{const B=[...$("#svPTypes").querySelectorAll("[data-svt]")],i=B.findIndex(b=>b.dataset.svt===S.svPT);let n=null;if(e.key==="ArrowRight"||e.key==="ArrowDown")n=(i+1)%B.length;else if(e.key==="ArrowLeft"||e.key==="ArrowUp")n=(i-1+B.length)%B.length;if(n!=null){e.preventDefault();B[n].click();B[n].focus()}});
+$("#svProdForm").addEventListener("submit",e=>{e.preventDefault();const err=(m,f)=>{$("#svPErr").textContent=m;$("#svPErr").hidden=false;if(f)$(f).focus()};
+  const t=S.svPT,a=parseNum($("#svPAmt").value),d=$("#svPDate").value,old=S.svEdit&&S.items.get(S.svEdit),term=$("#svPTerm").value?+$("#svPTerm").value:null,per=+$("#svPPer").value,irsR=$("#svPIrs").value.trim(),irs=irsR?parseNum(irsR):null;
+  if(!(a>0))return err("Indica o montante inicial.","#svPAmt");if(!d||d>todayISO())return err("Indica a data de início (hoje ou antes).","#svPDate");
+  let rate=null,sched=null;if(t==="ct"){sched=$("#svPSched").value.split(/;/).map(x=>x.trim()).filter(Boolean).map(parseNum);if(!sched.length||sched.some(x=>!(x>=0&&x<30)))return err("Escreve a taxa de cada ano, separadas por ponto e vírgula.","#svPSched")}
+  else{rate=parseNum($("#svPRate").value);if(!(rate>=0&&rate<30))return err("Indica a TANB em %.","#svPRate")}
+  if(t==="dp"&&!(term>0))return err("Indica o prazo do depósito em meses.","#svPTerm");if(per===0&&!(term>0))return err("Para juros no fim do prazo, indica o prazo.","#svPTerm");
+  if(term!=null&&!(term>=1&&term<=600))return err("O prazo vai de 1 a 600 meses.","#svPTerm");if(irs!=null&&!(irs>=0&&irs<=100))return err("A taxa de IRS fica entre 0 e 100%.","#svPIrs");
+  const o=Object.assign({},old||{},{id:old?old.id:newId("sv"),kind:"sav",type:t,name:$("#svPName").value.trim()||undefined,inst:$("#svPInst").value.trim()||undefined,date:d,amount:svR2(a),
+    rate:rate==null?undefined:rate,sched:sched||undefined,termM:term||undefined,periodM:per,cap:$("#svPCap").value==="1",basis:$("#svPBasis").value==="per"?"per":+$("#svPBasis").value,early:$("#svPEarly").value,
+    irs:irs==null?undefined:irs,acct:$("#svPAcct").value||undefined,note:$("#svPNote").value.trim()||undefined});
+  if(old&&old.moves&&old.moves.length)o.amount=old.amount;
+  if(!old||old.acct!==o.acct||old.date!==d){if(o.acct&&d===todayISO())o.payAt=Date.now();else delete o.payAt}
+  Object.keys(o).forEach(k=>o[k]===undefined&&delete o[k]);
+  Store.put(o);$("#svProdDlg").close();toast(old?"Produto guardado":"Produto adicionado")});
+$("#svPDel").onclick=()=>{const c=S.items.get(S.svEdit),b=$("#svPDel");if(!c)return;if(!b.dataset.sure){b.dataset.sure="1";b.textContent="Toca de novo para apagar";setTimeout(()=>{delete b.dataset.sure;b.textContent="Apagar"},4000);return}
+  delete b.dataset.sure;b.textContent="Apagar";Store.del(c.id);$("#svProdDlg").close();toast("Produto apagado")};
+
+/* ---------- diálogo: resgates, depósitos e levantamentos ---------- */
+function svOpenRed(o){const x=svRunOf(o),r=x.r,caf=o.kind==="caf";S.svRed=o.id;
+  if(!r.canRedeem){toast(caf?`Só podes resgatar depois do primeiro vencimento de juros (${dmy(r.redeemFrom)}).`:`Só podes resgatar depois do primeiro vencimento (${dmy(r.redeemFrom)}).`);return}
+  const liquid=!caf&&(r.liquid||o.type==="outro");S.svRK="part";
+  $("#svRTitle").textContent=caf?"Resgatar certificados":liquid?"Depositar ou levantar":"Resgatar";
+  $("#svRKind").querySelector('[data-svk="dep"]').hidden=!liquid;$("#svRKind").querySelector('[data-svk="part"]').textContent=liquid?"Levantar":"Resgate parcial";
+  $("#svRInfo").textContent=`${svName(o)} · valor hoje ${eur(r.value)}${caf?` (capital ${eur(r.principal)} + juros ${eur(r.value-r.principal)})`:""}.`;
+  $("#svRDate").value=todayISO();$("#svRDate").max=todayISO();$("#svRDate").min=caf?r.redeemFrom:o.date;$("#svRAmt").value="";svAcctOpts("#svRAcct",o.acct);$("#svRErr").hidden=true;svRKind();$("#svRedDlg").showModal();$("#svRAmt").focus()}
+function svRKind(){document.querySelectorAll("#svRKind button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.svk===S.svRK)));
+  const tot=S.svRK==="total",dep=S.svRK==="dep";$("#svRAmt").disabled=tot;$("#svRAcctL").firstChild.textContent=dep?"Sai da conta":"Transferir para a conta";
+  $("#svRSubmit").textContent=dep?"Registar depósito":tot?"Registar resgate total":"Registar";svRPrev()}
+/* valor à data do resgate: capital + juros já vencidos nessa data (os do trimestre em curso não contam) */
+function svRedAt(o,d){const r=svRunOf(o).r;return{v:SE.valueAt(r.points,d),p:SE.principalAt(r.points,d),r}}
+function svRPrev(){const o=S.items.get(S.svRed);if(!o)return;const d=$("#svRDate").value||todayISO(),k=svRedAt(o,d),caf=o.kind==="caf";
+  if(S.svRK==="total")$("#svRAmt").value=numStr(svR2(k.v));
+  const x=parseNum($("#svRAmt").value),p=$("#svRPrev");if(!(x>0)){p.innerHTML="";return}
+  if(S.svRK==="dep"){p.innerHTML=`Depositas <b class="num">${eur(x)}</b>. A partir de ${dmy(d)} passa a render juros.`;return}
+  if(x>k.v+.005){p.innerHTML=`<span style="color:var(--out)">Nessa data o valor era ${eur(k.v)}.</span>`;return}
+  const f=Math.min(1,x/k.v),cap=svR2(k.p*f),jur=svR2(x-cap);
+  let lost="";if(caf){const nx=k.r.events.find(e=>e.date>d);if(nx&&nx.start<d){const dd=SE.days(nx.start,d),tt=SE.days(nx.start,nx.date);lost=` Perdes os juros do trimestre em curso (cerca de ${eur(nx.net*f*dd/tt)} líquidos, ${dd} de ${tt} dias).`}}
+  else if(o.early==="lose"||(!o.early&&SE.RULES.sav[o.type]&&SE.RULES.sav[o.type].early==="lose"))lost=" Pelas regras deste produto, perdes os juros corridos do período sobre o valor levantado.";
+  p.innerHTML=`Recebes <b class="num">${eur(x)}</b>: <b class="num">${eur(cap)}</b> de capital e <b class="num" style="color:var(--in)">${eur(jur)}</b> de juros já líquidos.${lost}`}
+$("#svRKind").addEventListener("click",e=>{const b=e.target.closest("[data-svk]");if(b){S.svRK=b.dataset.svk;svRKind()}});
+$("#svRAmt").addEventListener("input",svRPrev);$("#svRDate").addEventListener("change",svRPrev);
+$("#svRedForm").addEventListener("submit",e=>{e.preventDefault();const o=S.items.get(S.svRed);if(!o)return;const err=m=>{$("#svRErr").textContent=m;$("#svRErr").hidden=false};
+  const d=$("#svRDate").value||todayISO(),x=parseNum($("#svRAmt").value),acct=$("#svRAcct").value||undefined,caf=o.kind==="caf",at=d===todayISO()?Date.now():undefined;
+  if(d>todayISO())return err("A data não pode ser no futuro.");if(!(x>0))return err("Indica o valor.");
+  const k=svRedAt(o,d);
+  if(S.svRK==="dep"){const n=Object.assign({},o,{moves:[...(o.moves||[]),{d,a:svR2(x),acct,at}]});Object.keys(n.moves[n.moves.length-1]).forEach(z=>n.moves[n.moves.length-1][z]===undefined&&delete n.moves[n.moves.length-1][z]);Store.put(n);$("#svRedDlg").close();toast("Depósito registado");return}
+  if(caf&&d<k.r.redeemFrom)return err(`Só podes resgatar a partir de ${dmy(k.r.redeemFrom)} (primeiro vencimento).`);
+  if(x>k.v+.005)return err(`Nessa data o valor disponível era ${eur(k.v)}.`);
+  const f=Math.min(1,x/k.v),tot=f>=.9999,cap=svR2(tot?k.p:k.p*f),jur=svR2(x-cap);
+  if(caf){const s={d,v:svR2(x),c:cap,g:jur};if(acct)s.acct=acct;if(at)s.at=at;
+    const n=Object.assign({},o,{amount0:SE.cafPrincipal0(o),amount:tot?0:svR2((+o.amount||0)-cap),realized:svR2((+o.realized||0)+jur),soldCost:svR2((+o.soldCost||0)+cap),sales:[...(o.sales||[]),s]});
+    if(+o.override>0){if(tot){delete n.override;delete n.ovDate}}
+    Store.put(n)}
+  else{const m={d,a:-svR2(tot?k.v:x),acct,at};Object.keys(m).forEach(z=>m[z]===undefined&&delete m[z]);Store.put(Object.assign({},o,{moves:[...(o.moves||[]),m]}))}
+  $("#svRedDlg").close();toast(tot?"Resgate total registado":"Resgate registado")});
+
+/* ---------- detalhe: calendário completo de capitalização de uma subscrição/produto ---------- */
+function svOpenDet(id){S.svDet=id;if(!$("#svDetDlg").open)$("#svDetDlg").showModal();svDet()}
+function svDet(){const o=S.items.get(S.svDet);if(!o){if($("#svDetDlg").open)$("#svDetDlg").close();return}const {r}=svRunOf(o),caf=o.kind==="caf",t=todayISO(),fut=$("#svDFut").checked;
+  $("#svDTitle").textContent=svName(o);
+  $("#svDSub").innerHTML=caf?`Subscrição de ${dmy(o.date)} · ${eur(r.P0)} · antiguidade ${svAge(o.date)}${o.inst?" · "+esc(o.inst):""}${r.rule.termY?` · termina a ${dmy(SE.addMonths(o.date,r.rule.termY*12,"next1"))}`:""}`:`${SV_T[o.type||"outro"].n} · desde ${dmy(o.date)}${o.inst?" · "+esc(o.inst):""}`;
+  $("#svDTiles").innerHTML=[["Valor atual",eur(r.value)],["Capital",eur(r.principal)],["Juros brutos",eur(r.grossToDate)],["IRS retido",`− ${eur(r.taxToDate)}`],["Juros líquidos",`+ ${eur(r.netToDate)}`]].concat(Math.abs(r.adjToDate)>=.01?[["Acerto AforroNet",seur(r.adjToDate)]]:[]).concat(r.received?[["Já recebido",eur(r.received)]]:[]).map(x=>`<div class="sv-tile"><span>${x[0]}</span><b class="num">${x[1]}</b></div>`).join("");
+  $("#svDActs").innerHTML=(r.closed?"":`<button class="btn" type="button" data-svred="${esc(o.id)}">${caf?"Resgatar":"Movimento"}</button>`)+`<button class="btn ghost" type="button" data-svedit="${esc(o.id)}">Editar</button>`+(caf?`<button class="btn ghost" type="button" data-svnew="caf" data-svname="${esc(o.name||"")}">+ Nova subscrição neste investimento</button>`:"");
+  const pts=[];r.points.forEach(p=>{if(p.t==="mat")return;pts.push({d:p.d,[p.d<=t?"cap":"proj"]:p.cap,inv:p.prin})});const ti=pts.findIndex(p=>p.d>t);if(ti>0)pts.splice(ti,0,{d:t,cap:r.value,proj:r.value,inv:r.principal});
+  svChart("#svDChart",{pts:fut?pts:pts.filter(p=>p.d<=t),split:fut?t:null,h:180,label:"Evolução desta subscrição",series:[{k:"inv",lbl:"Capital",c:"var(--ink-2)",dash:"4 4",w:1.5},{k:"cap",lbl:"Valor",c:"var(--in)",area:true},{k:"proj",lbl:"Previsão",c:"var(--in)",dash:"6 5"}]});
+  const E=r.events.filter(e=>fut||e.past);
+  $("#svDTable").innerHTML=E.length?`<table class="sv-table sv-det"><thead><tr><th scope="col">#</th><th scope="col">Vencimento</th>${caf?`<th scope="col">Ano</th>`:""}<th scope="col" class="r">Taxa</th><th scope="col" class="r">Capital</th><th scope="col" class="r">Bruto</th><th scope="col" class="r">IRS</th><th scope="col" class="r">Líquido</th><th scope="col" class="r">Depois</th></tr></thead><tbody>${E.map(e=>`<tr class="${e.past?"":"fut"}"><td data-l="#">${e.k}</td><td data-l="Vencimento" class="num">${dmy(e.date)}</td>${caf?`<td data-l="Ano">${e.y}</td>`:""}<td data-l="Taxa" class="r"><span class="num">${svPct(e.rate.gross)}</span>${caf&&e.rate.base!=null?`<small>${svPct(e.rate.base)} + ${svPct(e.rate.prem,2)}</small>`:""} ${svChip(e.rate.kind)}${caf?`<button class="link sv-qe" type="button" data-svq="${esc(o.id)}" data-k="${e.k}" aria-label="Corrigir a taxa do vencimento ${e.k}">corrigir</button>`:""}</td><td data-l="Capital" class="r num">${eur(e.cap)}</td><td data-l="Bruto" class="r num">${eur(e.gross)}</td><td data-l="IRS" class="r num">− ${eur(e.tax)}</td><td data-l="Líquido" class="r num">+ ${eur(e.net)}</td><td data-l="Depois" class="r num"><b>${eur(e.after)}</b></td></tr>`).join("")}</tbody></table>`:`<p class="muted">Ainda sem vencimentos.</p>`}
+$("#svDFut").addEventListener("change",svDet);
+function svOpenQ(id,k){const o=S.items.get(id);if(!o)return;const e=svRunOf(o).r.events.find(x=>x.k===k);if(!e)return;S.svQ={id,k};
+  $("#svQInfo").textContent=`Vencimento ${k} (${dmy(e.date)}) · trimestre que começou a ${dmy(e.start)} · agora: ${svPct(e.rate.gross)} (${SE.KIND[e.rate.kind]}).`;
+  $("#svQRate").value=o.rates&&o.rates[k]!=null?numStr(o.rates[k]):"";$("#svQDel").hidden=!(o.rates&&o.rates[k]!=null)&&!(k===1&&o.rate0!=null);$("#svQDlg").showModal();$("#svQRate").focus()}
+$("#svQForm").addEventListener("submit",e=>{e.preventDefault();const q=S.svQ,o=q&&S.items.get(q.id);if(!o)return;const v=parseNum($("#svQRate").value);if(!(v>=0&&v<20)){toast("Indica a taxa em %, por exemplo 2,25");return}
+  Store.put(Object.assign({},o,{rates:Object.assign({},o.rates||{},{[q.k]:v})}));$("#svQDlg").close();svDet();toast("Taxa do trimestre guardada")});
+$("#svQDel").onclick=()=>{const q=S.svQ,o=q&&S.items.get(q.id);if(!o)return;const n=Object.assign({},o,{rates:Object.assign({},o.rates||{})});delete n.rates[q.k];if(q.k===1)delete n.rate0;Store.put(n);$("#svQDlg").close();svDet();toast("Volta a usar a tabela")};
+/* a taxa base escrita em Investimentos → Aforro também fica na tabela, para o mês atual */
+$("#cafBase").addEventListener("change",()=>{const v=parseNum($("#cafBase").value);if(v>=0&&v<=2.5)setTimeout(()=>svPutCfg(d=>{d.rates=d.rates||{};d.rates.F=d.rates.F||{};d.rates.F[todayISO().slice(0,7)]={v:SE.r3(v),o:"user",src:"escrita em Investimentos → Aforro",at:todayISO()}}),0)});
+/* manter os diálogos abertos atualizados quando os dados mudam */
+(f=>{render=function(){f();try{renderSav();if($("#svDetDlg").open)svDet()}catch(e){console.error(e)}}})(render);
+
 /* boot */
 $("#txDate").value=todayISO();setTxType("out");
 try{const t=location.hash.slice(1)||localStorage.getItem("caderneta.tab");if(t&&$("#tab-"+t))setTab(t)}catch(e){}
@@ -5455,7 +6543,7 @@ function bkParse(txt){bkItems=null;bkRcs=null;$("#bkGo").disabled=true;txt=Strin
   const ok=(arr||[]).filter(o=>o&&typeof o==="object"&&typeof o.id==="string"&&o.id&&(o.kind||o.id==="settings"));
   if(!ok.length){$("#bkMsg").textContent="Não encontrei registos da Caderneta nesta cópia.";return}
   const k=ok.reduce((m,o)=>(m[o.kind]=(m[o.kind]||0)+1,m),{}),nNew=ok.filter(o=>!S.items.has(o.id)).length;
-  const lbl=[[k.tx,"movimentos"],[k.inv,"posições"],[k.caf,"certificados"],[k.acct,"contas"],[k.goal,"metas"],[k.loan,"empréstimos"],[k.stay,"estadias"],[k.card,"cartões"]].filter(x=>x[0]).map(x=>x[0]+" "+x[1]).join(", ");
+  const lbl=[[k.tx,"movimentos"],[k.inv,"posições"],[k.caf,"certificados"],[k.sav,"produtos de poupança"],[k.savsim,"cenários"],[k.acct,"contas"],[k.goal,"metas"],[k.loan,"empréstimos"],[k.stay,"estadias"],[k.card,"cartões"]].filter(x=>x[0]).map(x=>x[0]+" "+x[1]).join(", ");
   $("#bkMsg").textContent=`Encontrei ${ok.length} registos${lbl?" ("+lbl+")":""}. ${nNew} ${nNew===1?"é novo":"são novos"}, ${ok.length-nNew} ${ok.length-nNew===1?"substitui":"substituem"} o que já tens.`;
   bkRcs=j&&j.receipts&&typeof j.receipts==="object"?j.receipts:null;const nR=bkRcs?Object.keys(bkRcs).length:0;
   if(nR)$("#bkMsg").textContent+=` Traz também ${nR} ${nR===1?"foto de talão":"fotos de talões"}.`;

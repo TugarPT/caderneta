@@ -1,0 +1,143 @@
+    <div class="isubs" id="psubs" role="tablist" aria-label="Secções de Poupanças">
+      <button type="button" role="tab" id="psub-resumo" data-psub="resumo" aria-controls="psp-resumo" aria-selected="true">Resumo</button>
+      <button type="button" role="tab" id="psub-produtos" data-psub="produtos" aria-controls="psp-produtos" aria-selected="false" tabindex="-1">Produtos<span class="n" id="psN"></span></button>
+      <button type="button" role="tab" id="psub-calendario" data-psub="calendario" aria-controls="psp-calendario" aria-selected="false" tabindex="-1">Calendário</button>
+      <button type="button" role="tab" id="psub-simulador" data-psub="simulador" aria-controls="psp-simulador" aria-selected="false" tabindex="-1">Simulador</button>
+      <button type="button" role="tab" id="psub-taxas" data-psub="taxas" aria-controls="psp-taxas" aria-selected="false" tabindex="-1"><span>Taxas<span class="lg"> e impostos</span></span></button>
+      <button type="button" role="tab" id="psub-metas" data-psub="metas" aria-controls="psp-metas" aria-selected="false" tabindex="-1">Metas<span class="n" id="pgN"></span></button>
+    </div>
+
+    <!-- Resumo -->
+    <div class="psp" id="psp-resumo" data-psp="resumo" role="tabpanel" aria-labelledby="psub-resumo" tabindex="-1">
+      <div class="card empty sv-empty" id="svEmpty" hidden>
+        <span class="sv-emic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 11a7 6 0 0 1 12.4-3.6L20 7v4l-1.6.8A7 6 0 0 1 16 15.5V19h-3v-2h-3v2H7v-3.2A6 6 0 0 1 5 11z"/><path d="M14.5 10h.01"/></svg></span>
+        <h2>Junta aqui as tuas poupanças</h2>
+        <p>Regista os Certificados de Aforro (cada subscrição com a sua data), Certificados do Tesouro, contas poupança e depósitos a prazo. A app calcula os juros de cada vencimento, o IRS retido e o capital acumulado.</p>
+        <div class="actions sv-emacts"><button class="btn primary" type="button" data-svnew="caf">+ Certificados de Aforro</button><button class="btn" type="button" data-svnew="sav">+ Outro produto</button><button class="btn ghost" type="button" data-psgo="simulador">Experimentar o simulador</button></div>
+      </div>
+      <div id="svDash" hidden>
+        <div class="hero sv-hero">
+          <div>
+            <div class="eyebrow">Capital atual</div>
+            <div class="big num" id="svCap">€ 0,00</div>
+            <div class="sub" id="svCapSub"></div>
+          </div>
+          <div class="hero-side" id="svRateNote"></div>
+        </div>
+        <div class="kpis sv-kpis" id="svKpis"></div>
+        <div class="card chart sv-chartcard">
+          <div class="cardhead">
+            <div><h3>Evolução do capital</h3><p class="note" id="svChNote" style="margin:2px 0 0"></p></div>
+            <div class="segs" id="svRange" role="group" aria-label="Período do gráfico">
+              <button type="button" data-svr="1" aria-pressed="false">1 ano</button><button type="button" data-svr="3" aria-pressed="false">3 anos</button><button type="button" data-svr="5" aria-pressed="true">5 anos</button><button type="button" data-svr="10" aria-pressed="false">10 anos</button><button type="button" data-svr="15" aria-pressed="false">15 anos</button>
+            </div>
+          </div>
+          <div class="sv-legend" aria-hidden="true"><span><i class="l-cap"></i>Capital (calculado)</span><span><i class="l-proj"></i>Previsão (hipotética)</span><span><i class="l-inv"></i>Capital investido</span></div>
+          <div class="sv-chart" id="svChart"></div>
+        </div>
+        <div class="sv-2col">
+          <div class="card"><div class="cardhead"><h3>Próximos vencimentos</h3><button class="link" type="button" data-psgo="calendario">Ver calendário →</button></div><div id="svNext"></div></div>
+          <div class="card"><div class="cardhead"><h3>Onde está o dinheiro</h3><button class="link" type="button" data-psgo="produtos">Ver produtos →</button></div><div id="svMix"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produtos -->
+    <div class="psp" id="psp-produtos" data-psp="produtos" role="tabpanel" aria-labelledby="psub-produtos" tabindex="-1" hidden>
+      <div id="svProds"></div>
+    </div>
+
+    <!-- Calendário -->
+    <div class="psp" id="psp-calendario" data-psp="calendario" role="tabpanel" aria-labelledby="psub-calendario" tabindex="-1" hidden>
+      <div class="card">
+        <div class="cardhead"><div><h3>Calendário de vencimentos</h3><p class="note" style="margin:2px 0 0">Juros que ainda vão vencer. Os valores usam a taxa de cada trimestre: oficial quando já é conhecida, senão a do cenário (hipotética).</p></div>
+          <div class="segs" id="svCalN" role="group" aria-label="Período"><button type="button" data-svc="3" aria-pressed="false">3 meses</button><button type="button" data-svc="12" aria-pressed="true">12 meses</button><button type="button" data-svc="36" aria-pressed="false">3 anos</button></div></div>
+        <div id="svCal"></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Histórico de capitalizações</h3><p class="note" style="margin:2px 0 0">Cada vencimento já passado: juros brutos, IRS retido, juros líquidos e capital depois.</p></div>
+          <label class="sv-inline" for="svHistF">Produto<select id="svHistF"></select></label></div>
+        <div id="svHist"></div>
+      </div>
+      <div class="sv-2col">
+        <div class="card"><div class="cardhead"><div><h3>Juros por ano</h3><p class="note" style="margin:2px 0 0">Para a declaração de IRS (anexo E / englobamento).</p></div></div><div id="svYears"></div></div>
+        <div class="card"><div class="cardhead"><h3>Resgates e transferências</h3></div><div id="svReds"></div></div>
+      </div>
+    </div>
+
+    <!-- Simulador -->
+    <div class="psp" id="psp-simulador" data-psp="simulador" role="tabpanel" aria-labelledby="psub-simulador" tabindex="-1" hidden>
+      <div class="sv-sim">
+        <form class="card sv-simf" id="svSimForm" novalidate>
+          <div class="cardhead" style="margin-bottom:4px"><h3>Cenário</h3><span class="chip warn">hipotético</span></div>
+          <label for="svSimMode">Produto<select id="svSimMode"><option value="cafF">Certificados de Aforro Série F (cada reforço é uma subscrição)</option><option value="rate">Taxa fixa (conta poupança, depósito…)</option></select></label>
+          <div class="row2">
+            <label for="svSimP0">Capital inicial (€)<input id="svSimP0" inputmode="decimal" value="5000"></label>
+            <label for="svSimM">Reforço mensal (€)<input id="svSimM" inputmode="decimal" value="200"></label>
+          </div>
+          <div class="row2">
+            <label for="svSimR" id="svSimRL">Taxa base hipotética (%)<input id="svSimR" inputmode="decimal" value="2,5"></label>
+            <label for="svSimIrs">IRS (%)<input id="svSimIrs" inputmode="decimal" value="28"></label>
+          </div>
+          <div class="row2">
+            <label for="svSimY">Duração (anos)<input id="svSimY" type="number" min="1" max="40" step="1" value="10"></label>
+            <label for="svSimStart">Início<input id="svSimStart" type="date"></label>
+          </div>
+          <label for="svSimC" id="svSimCL" hidden>Os juros são creditados<select id="svSimC"><option value="1">todos os meses</option><option value="3" selected>de 3 em 3 meses</option><option value="6">de 6 em 6 meses</option><option value="12">uma vez por ano</option></select></label>
+          <p class="note" id="svSimHelp" style="margin:0"></p>
+          <p class="sv-err" id="svSimErr" role="alert" hidden></p>
+          <div class="actions"><button class="btn primary" type="submit">Guardar para comparar</button><button class="btn ghost" type="button" id="svSimReset">Repor exemplo</button></div>
+        </form>
+        <div class="card sv-simr">
+          <div class="cardhead" style="margin-bottom:6px"><h3>Resultado</h3><span class="note" id="svSimEnd" style="margin:0"></span></div>
+          <div class="sv-tiles" id="svSimOut"></div>
+          <div class="sv-legend" aria-hidden="true"><span><i style="border-top-color:var(--accent)"></i>Valor simulado</span><span><i class="l-inv"></i>Dinheiro investido</span></div>
+          <div class="sv-chart" id="svSimChart"></div>
+        </div>
+      </div>
+      <div class="card" id="svCmpCard" hidden>
+        <div class="cardhead"><div><h3>Comparar cenários</h3><p class="note" style="margin:2px 0 0">Até 6 cenários guardados, lado a lado. São simulações, não previsões.</p></div></div>
+        <div class="sv-chart" id="svCmpChart"></div>
+        <div class="sv-tablewrap"><table class="sv-table sv-cmp" id="svCmp"></table></div>
+      </div>
+    </div>
+
+    <!-- Taxas e impostos -->
+    <div class="psp" id="psp-taxas" data-psp="taxas" role="tabpanel" aria-labelledby="psub-taxas" tabindex="-1" hidden>
+      <div class="sv-legend4" aria-label="Como a app separa os dados">
+        <div><b>Dados teus</b><span>subscrições, depósitos, resgates, taxas que indicas</span></div>
+        <div><b>Taxas oficiais</b><span>tabela abaixo, com fonte e data</span></div>
+        <div><b>Hipóteses</b><span>cenário para os meses sem taxa conhecida e simulador</span></div>
+        <div><b>Resultados</b><span>calculados na hora, nunca guardados</span></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Taxa base dos Certificados de Aforro</h3><p class="note" style="margin:2px 0 0" id="svRtHelp"></p></div>
+          <div class="segs" id="svRtSerie" role="group" aria-label="Série"><button type="button" data-svs="F" aria-pressed="true">Série F</button><button type="button" data-svs="E" aria-pressed="false">Série E</button></div></div>
+        <div class="actions sv-rtacts"><button class="btn primary" type="button" id="svRtAdd">+ Registar taxa</button><button class="btn" type="button" id="svRtFetch">Atualizar do IGCP</button><a class="btn ghost" href="https://www.igcp.pt/pt/aforristas/produtos-de-aforro/certificados-de-aforro" target="_blank" rel="noopener">Abrir página do IGCP ↗</a></div>
+        <p class="note" id="svRtMsg" role="status" style="margin:4px 0 0"></p>
+        <div id="svRtTable"></div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Cenário para o futuro</h3><p class="note" style="margin:2px 0 0">Ninguém sabe a taxa base dos próximos anos. Escolhe a que queres usar nas previsões. Estes valores aparecem sempre marcados como hipotéticos.</p></div><span class="chip warn">hipotético</span></div>
+        <div class="row2">
+          <label for="svProjF">Série F: taxa base futura (%)<input id="svProjF" inputmode="decimal" placeholder="repete a última conhecida"></label>
+          <label for="svProjE">Série E: taxa base futura (%)<input id="svProjE" inputmode="decimal" placeholder="repete a última conhecida"></label>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Impostos</h3><p class="note" style="margin:2px 0 0">Os juros pagam IRS em cada vencimento. A taxa aqui é a usada quando a subscrição não tem uma própria.</p></div></div>
+        <div class="row3">
+          <label for="svTaxRate">Taxa de retenção de IRS (%)<input id="svTaxRate" inputmode="decimal" placeholder="28"></label>
+          <label for="svTaxReg">Regime<select id="svTaxReg"><option value="lib">Taxa liberatória (definitiva)</option><option value="eng">Englobamento (retenção por conta)</option><option value="isento">Sem retenção / outra taxa</option></select></label>
+          <label for="svTaxMarg" id="svTaxMargL">Taxa marginal do teu escalão (%)<input id="svTaxMarg" inputmode="decimal" placeholder="ex.: 13"></label>
+        </div>
+        <p class="note" id="svTaxNote"></p>
+      </div>
+      <div class="card">
+        <div class="cardhead"><div><h3>Regras de cada produto</h3><p class="note" style="margin:2px 0 0">Estão numa tabela própria no código: quando uma regra muda, muda-se só aí.</p></div></div>
+        <div id="svRules"></div>
+      </div>
+    </div>
+
+    <!-- Metas -->
+    <div class="psp" id="psp-metas" data-psp="metas" role="tabpanel" aria-labelledby="psub-metas" tabindex="-1" hidden>
