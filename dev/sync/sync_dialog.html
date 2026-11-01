@@ -1,0 +1,49 @@
+<dialog id="syDlg" class="sy-dlg" aria-labelledby="syTitle">
+  <form method="dialog" id="syForm" onsubmit="return false">
+    <div class="dlg-h"><h3 id="syTitle">Sincronizar</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div id="sySend" hidden>
+      <p class="sy-lead">No outro aparelho, abre a Caderneta → Definições → <b>Ler código</b>, e aponta a câmara para este código até chegar aos 100%.</p>
+      <div class="sy-qrbox"><canvas id="syQr" width="8" height="8" role="img" aria-label="Código QR animado com os teus dados"></canvas></div>
+      <div class="sy-row"><span class="sy-info"><b id="syInfo"></b><small id="syPart"></small></span>
+        <div class="segs" id="sySpeed" role="group" aria-label="Velocidade"><button type="button" data-fps="3" aria-pressed="false">Lento</button><button type="button" data-fps="6" aria-pressed="true">Normal</button><button type="button" data-fps="10" aria-pressed="false">Rápido</button></div></div>
+      <p class="note" id="syEta" style="margin:0"></p>
+      <p class="note" id="syRcNote" hidden style="margin:0">As fotos dos talões ficam neste aparelho (são grandes demais para o QR). Para as levar, usa a Cópia de segurança.</p>
+      <details class="sy-help"><summary>O outro aparelho não tem câmara?</summary><p>Carrega em “Enviar como ficheiro”. No telemóvel abre a partilha do Android (por exemplo Quick Share, email para ti ou cabo USB); no computador o ficheiro vai para as Transferências. No outro aparelho: Ler código → Abrir ficheiro.</p></details>
+      <div class="actions"><button class="btn" type="button" id="syFile">Enviar como ficheiro</button><button class="btn ghost" type="button" data-close>Fechar</button></div>
+    </div>
+    <div id="syRecv" hidden>
+      <p class="sy-lead">Aponta a câmara para o código que aparece no outro aparelho. Se for um QR animado, mantém-na parada até aos 100%: as partes que falharem voltam a passar.</p>
+      <div class="sy-cam"><video id="syVid" playsinline muted autoplay></video><span class="sy-aim" aria-hidden="true"></span><p class="sy-cammsg" id="syCamMsg" role="alert" hidden></p></div>
+      <div class="sy-prog"><div class="sy-bar" id="syProgBox" role="progressbar" aria-label="Recebido" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="syBar"></i></div><span id="syPct" role="status" aria-live="polite"></span></div>
+      <div class="actions"><button class="btn" type="button" id="syCamSw" hidden>Trocar câmara</button><button class="btn" type="button" id="syOpen">Abrir ficheiro</button><input type="file" id="syFileIn" accept=".json,application/json,text/plain" hidden><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+    </div>
+    <div id="syLink" hidden>
+      <ol class="syl-steps" id="sylSteps" aria-label="Passos"><li>Mostrar código</li><li>Ligar</li><li>Trocar dados</li><li>Rever</li></ol>
+      <div id="sylQrBox" class="syl-qr">
+        <p class="sy-lead">No telemóvel, abre a Caderneta → Definições → <b>Ler código</b> e aponta a câmara para aqui. Também dá com a câmara normal do Android: toca no link que aparece.</p>
+        <div class="sy-qrbox"><canvas id="sylQr" width="8" height="8" role="img" aria-label="Código QR para ligar o outro aparelho"></canvas></div>
+      </div>
+      <p class="syl-msg" id="sylMsg" role="status" aria-live="polite"></p>
+      <div class="sy-prog"><div class="sy-bar"><i id="sylBar"></i></div><span id="sylPct" class="syl-pct"></span></div>
+      <p class="note" style="margin:0">Precisa de internet só para combinar a ligação (mensagens cifradas, através do serviço gratuito ntfy.sh). Os teus dados vão diretos de um aparelho para o outro.</p>
+      <div class="actions"><button class="btn" type="button" id="sylAlt" hidden>Usar o QR animado (sem internet)</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+    </div>
+    <div id="syRev" hidden>
+      <p class="sy-lead" id="syRevHead"></p>
+      <ul class="sy-sum" id="sySum"></ul>
+      <fieldset class="sy-mode"><legend>Como juntar</legend>
+        <label class="sy-opt"><input type="radio" name="syMode" value="merge" checked><span><b>Juntar (recomendado)</b><small>Fica tudo o que há nos dois aparelhos. Se o mesmo registo mudou nos dois, fica a alteração mais recente. O que apagaste no outro aparelho também é apagado aqui.</small></span></label>
+        <label class="sy-opt"><input type="radio" name="syMode" value="replace"><span><b>Substituir tudo</b><small>Este aparelho fica exatamente igual ao outro. O que só existe aqui é apagado.</small></span></label>
+      </fieldset>
+      <p class="sy-warn" id="syWarn" role="alert" hidden></p>
+      <p class="note" style="margin:0">Antes de mudar, a Caderneta guarda como estava, para poderes desfazer.</p>
+      <div class="actions"><button class="btn primary" type="button" id="syApply">Juntar</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+    </div>
+    <div id="syDone" hidden>
+      <div class="sy-ok" aria-hidden="true">✓</div>
+      <p class="sy-lead" id="syDoneMsg" style="text-align:center"></p>
+      <p class="note" id="syDoneNote" style="margin:0;text-align:center"></p>
+      <div class="actions sy-center"><button class="btn primary" type="button" id="syBack">Enviar de volta</button><button class="btn" type="button" id="syUndo">Desfazer</button><button class="btn ghost" type="button" data-close>Fechar</button></div>
+    </div>
+  </form>
+</dialog>
