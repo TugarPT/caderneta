@@ -1,0 +1,123 @@
+<dialog id="svCafDlg" class="sv-dlg">
+  <form id="svCafForm" novalidate>
+    <div class="dlg-h"><h3 id="svCafTitle">Nova subscrição</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="row2">
+      <label for="svCName">Nome do investimento<input id="svCName" list="svCNames" autocomplete="off" placeholder="Ex.: Aforro dos miúdos"></label>
+      <label for="svCSerie">Série<select id="svCSerie"><option value="F">Série F (desde junho de 2023)</option><option value="E">Série E (2017 a 2023)</option><option value="D">Série D</option><option value="C">Série C</option><option value="B">Série B</option><option value="A">Série A</option></select></label>
+    </div>
+    <datalist id="svCNames"></datalist>
+    <div class="row3">
+      <label for="svCAmt">Capital inicial (€)<input id="svCAmt" inputmode="decimal" placeholder="0,00"></label>
+      <label for="svCDate">Data da subscrição<input id="svCDate" type="date"></label>
+      <label for="svCRate0" id="svCRate0L">Taxa inicial (%, bruta)<input id="svCRate0" inputmode="decimal" placeholder="da tabela"></label>
+    </div>
+    <div class="row2" id="svCManW" hidden>
+      <label for="svCRateM">Taxa bruta atual (%)<input id="svCRateM" inputmode="decimal" placeholder="vês no AforroNet"></label>
+      <label for="svCTerm">Prazo (anos, opcional)<input id="svCTerm" type="number" min="1" max="40" step="1" placeholder="sem prazo"></label>
+    </div>
+    <div class="row3">
+      <label for="svCIrs">Taxa de IRS (%)<input id="svCIrs" inputmode="decimal" placeholder="28"></label>
+      <label for="svCInst">Instituição ou entidade<input id="svCInst" list="svInsts" autocomplete="off" placeholder="IGCP · AforroNet"></label>
+      <label for="svCAcct">Conta associada<select id="svCAcct"></select></label>
+    </div>
+    <label for="svCOv">Valor atual no AforroNet (€, opcional)<input id="svCOv" inputmode="decimal" placeholder="a app calcula sozinha"></label>
+    <label for="svCNote">Observações<textarea id="svCNote" rows="2" placeholder="Opcional"></textarea></label>
+    <p class="note" id="svCHelp" style="margin:0"></p>
+    <p class="sv-err" id="svCErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit" id="svCSubmit">Adicionar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost sv-del" type="button" id="svCDel" hidden>Apagar</button></div>
+  </form>
+</dialog>
+<datalist id="svInsts"><option value="IGCP · AforroNet"><option value="CTT"><option value="Espaço Cidadão"><option value="Caixa Geral de Depósitos"><option value="Millennium bcp"><option value="Novo Banco"><option value="Santander"><option value="BPI"></datalist>
+<dialog id="svProdDlg" class="sv-dlg">
+  <form id="svProdForm" novalidate>
+    <div class="dlg-h"><h3 id="svPTitle">Novo produto de poupança</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="sv-types" id="svPTypes" role="radiogroup" aria-label="Tipo de produto">
+      <button type="button" role="radio" data-svt="conta" aria-checked="true">Conta poupança</button>
+      <button type="button" role="radio" data-svt="dp" aria-checked="false">Depósito a prazo</button>
+      <button type="button" role="radio" data-svt="ct" aria-checked="false">Certificados do Tesouro</button>
+      <button type="button" role="radio" data-svt="outro" aria-checked="false">Outro</button>
+    </div>
+    <div class="row2">
+      <label for="svPName">Nome<input id="svPName" autocomplete="off" placeholder="Ex.: Poupança férias"></label>
+      <label for="svPInst">Instituição<input id="svPInst" list="svInsts" autocomplete="off" placeholder="Ex.: Banco"></label>
+    </div>
+    <div class="row2">
+      <label for="svPAmt">Montante inicial (€)<input id="svPAmt" inputmode="decimal" placeholder="0,00"></label>
+      <label for="svPDate">Data de início<input id="svPDate" type="date"></label>
+    </div>
+    <div class="row2" id="svPRateW">
+      <label for="svPRate" id="svPRateL">TANB (%, bruta)<input id="svPRate" inputmode="decimal" placeholder="Ex.: 2,25"></label>
+      <label for="svPTerm" id="svPTermL">Prazo (meses)<input id="svPTerm" type="number" min="1" max="600" step="1" placeholder="sem prazo"></label>
+    </div>
+    <label for="svPSched" id="svPSchedL" hidden>Taxa bruta de cada ano (%, separadas por ponto e vírgula)<input id="svPSched" autocomplete="off" placeholder="Ex.: 2,5; 2,75; 3; 3,25; 3,5"></label>
+    <div class="row3">
+      <label for="svPPer">Os juros vencem<select id="svPPer"><option value="1">todos os meses</option><option value="3">de 3 em 3 meses</option><option value="6">de 6 em 6 meses</option><option value="12">uma vez por ano</option><option value="0">no fim do prazo</option></select></label>
+      <label for="svPCap">E depois<select id="svPCap"><option value="1">juntam-se ao capital</option><option value="0">são pagos à conta</option></select></label>
+      <label for="svPBasis">Contagem<select id="svPBasis"><option value="365">dias reais / 365</option><option value="360">dias reais / 360</option><option value="per">taxa ÷ nº de períodos</option></select></label>
+    </div>
+    <div class="row3">
+      <label for="svPEarly">Se levantares antes do fim<select id="svPEarly"><option value="keep">mantém os juros</option><option value="lose">perde os juros do período</option></select></label>
+      <label for="svPIrs">Taxa de IRS (%)<input id="svPIrs" inputmode="decimal" placeholder="28"></label>
+      <label for="svPAcct">Conta associada<select id="svPAcct"></select></label>
+    </div>
+    <label for="svPNote">Observações<textarea id="svPNote" rows="2" placeholder="Opcional"></textarea></label>
+    <p class="note" id="svPHelp" style="margin:0"></p>
+    <p class="sv-err" id="svPErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit" id="svPSubmit">Adicionar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost sv-del" type="button" id="svPDel" hidden>Apagar</button></div>
+  </form>
+</dialog>
+<dialog id="svRedDlg" class="sv-dlg">
+  <form id="svRedForm" novalidate>
+    <div class="dlg-h"><h3 id="svRTitle">Resgatar</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <p class="muted" id="svRInfo" style="margin:0;font-size:.88rem"></p>
+    <div class="segs" id="svRKind" role="group" aria-label="Tipo de movimento"><button type="button" data-svk="part" aria-pressed="true">Resgate parcial</button><button type="button" data-svk="total" aria-pressed="false">Resgate total</button><button type="button" data-svk="dep" aria-pressed="false" hidden>Depósito</button></div>
+    <div class="row2">
+      <label for="svRAmt" id="svRAmtL">Valor (€)<input id="svRAmt" inputmode="decimal" placeholder="0,00"></label>
+      <label for="svRDate">Data<input id="svRDate" type="date"></label>
+    </div>
+    <label for="svRAcct" id="svRAcctL">Transferir para a conta<select id="svRAcct"></select></label>
+    <div class="sv-prev" id="svRPrev" aria-live="polite"></div>
+    <p class="sv-err" id="svRErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit" id="svRSubmit">Registar resgate</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+  </form>
+</dialog>
+<dialog id="svDetDlg" class="sv-dlg sv-wide">
+  <div class="sv-detw">
+    <div class="dlg-h"><div><h3 id="svDTitle"></h3><p class="note" id="svDSub" style="margin:2px 0 0"></p></div><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="sv-tiles" id="svDTiles"></div>
+    <div class="actions" id="svDActs"></div>
+    <div class="sv-chart" id="svDChart"></div>
+    <div class="cardhead" style="margin:6px 0 0"><h4>Calendário de capitalização</h4><label class="sv-inline sv-chk"><input type="checkbox" id="svDFut" checked> mostrar previsão</label></div>
+    <div class="sv-tablewrap" id="svDTable"></div>
+  </div>
+</dialog>
+<dialog id="svQDlg" class="sv-dlg">
+  <form id="svQForm" novalidate>
+    <div class="dlg-h"><h3>Taxa deste trimestre</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <p class="muted" id="svQInfo" style="margin:0;font-size:.88rem"></p>
+    <label for="svQRate">Taxa bruta anual (%)<input id="svQRate" inputmode="decimal" placeholder="Ex.: 2,25"></label>
+    <p class="note" style="margin:0">Usa a taxa que aparece no extrato do AforroNet para este vencimento. Fica só nesta subscrição e passa à frente da tabela.</p>
+    <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button><button class="btn ghost sv-del" type="button" id="svQDel">Usar a tabela</button></div>
+  </form>
+</dialog>
+<dialog id="svRtDlg" class="sv-dlg">
+  <form id="svRtForm" novalidate>
+    <div class="dlg-h"><h3 id="svRtTitle">Registar taxa base</h3><button type="button" class="x" data-close aria-label="Fechar">×</button></div>
+    <div class="segs" id="svRtHow" role="group" aria-label="Como queres indicar a taxa"><button type="button" data-svh="v" aria-pressed="true">Valor</button><button type="button" data-svh="eur" aria-pressed="false">Da Euribor</button><button type="button" data-svh="paste" aria-pressed="false">Colar do IGCP</button></div>
+    <div class="row2">
+      <label for="svRtSer">Série<select id="svRtSer"><option value="F">Série F</option><option value="E">Série E</option></select></label>
+      <label for="svRtMonth">Mês em que se aplica<input id="svRtMonth" type="month"></label>
+    </div>
+    <div data-svhp="v"><label for="svRtVal">Taxa base (%)<input id="svRtVal" inputmode="decimal" placeholder="Ex.: 2,500"></label></div>
+    <div data-svhp="eur" hidden>
+      <label for="svRtEur">Euribor a 3 meses dos 10 dias úteis anteriores (%, uma por linha ou separadas por ponto e vírgula)<textarea id="svRtEur" rows="4" placeholder="2,031&#10;2,029&#10;…"></textarea></label>
+    </div>
+    <div data-svhp="paste" hidden>
+      <label for="svRtPaste">Texto da página do IGCP<textarea id="svRtPaste" rows="4" placeholder="Ex.: A taxa de juro bruta para novas subscrições de Certificados de Aforro, Série F, em setembro de 2026 foi fixada em 2,500%."></textarea></label>
+    </div>
+    <label for="svRtSrc">Fonte<input id="svRtSrc" autocomplete="off" placeholder="Ex.: igcp.pt, consultado hoje"></label>
+    <div class="sv-prev" id="svRtPrev" aria-live="polite"></div>
+    <p class="sv-err" id="svRtErr" role="alert" hidden></p>
+    <div class="actions"><button class="btn primary" type="submit">Guardar</button><button class="btn ghost" type="button" data-close>Cancelar</button></div>
+  </form>
+</dialog>
